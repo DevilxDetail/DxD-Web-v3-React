@@ -1,0 +1,684 @@
+.termsofservice-container1 {
+  width: 100%;
+  display: flex;
+  position: relative;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: var(--dl-space-space-fiveunits);
+  background-color: #e7e7dd;
+}
+ 
+.termsofservice-text100 {
+  display: inline-block;
+}
+ 
+.termsofservice-text101 {
+  display: inline-block;
+}
+ 
+.termsofservice-text102 {
+  display: inline-block;
+}
+ 
+.termsofservice-text103 {
+  display: inline-block;
+}
+ 
+.termsofservice-text104 {
+  display: inline-block;
+}
+ 
+.termsofservice-text105 {
+  display: inline-block;
+}
+ 
+.termsofservice-text106 {
+  display: inline-block;
+}
+ 
+.termsofservice-text107 {
+  display: inline-block;
+}
+ 
+.termsofservice-container2 {
+  flex: 0 0 auto;
+  width: 100%;
+  display: flex;
+  position: relative;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+}
+ 
+.termsofservice-container3 {
+  flex: 0 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+}
+ 
+.termsofservice-container4 {
+  flex: 0 0 auto;
+  width: 90%;
+  height: auto;
+  display: flex;
+  align-self: flex-start;
+  align-items: flex-start;
+  padding-top: var(--dl-space-space-threeunits);
+  padding-left: 40px;
+  padding-right: 40px;
+  flex-direction: column;
+  padding-bottom: 0px;
+  justify-content: flex-start;
+}
+ 
+.termsofservice-text109 {
+  font-family: "Lato";
+}
+ 
+.termsofservice-text110 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text111 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text112 {
+  font-family: "Lato";
+}
+ 
+.termsofservice-text113 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text114 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text115 {
+  font-size: 18px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text116 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text117 {
+  font-family: "Lato";
+}
+ 
+.termsofservice-text118 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text120 {
+  font-family: "Lato";
+}
+ 
+.termsofservice-text121 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text123 {
+  font-family: "Lato";
+}
+ 
+.termsofservice-text124 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text125 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text126 {
+  font-size: 18px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text127 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text128 {
+  font-family: "Lato";
+}
+ 
+.termsofservice-text129 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text130 {
+  font-family: "Lato";
+}
+ 
+.termsofservice-text131 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text133 {
+  font-family: "Lato";
+}
+ 
+.termsofservice-text134 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text136 {
+  font-family: "Lato";
+}
+ 
+.termsofservice-text137 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text138 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text139 {
+  font-family: "Lato";
+}
+ 
+.termsofservice-text140 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text141 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text142 {
+  font-size: 18px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text143 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text145 {
+  font-family: "Lato";
+}
+ 
+.termsofservice-text146 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text148 {
+  font-family: "Lato";
+}
+ 
+.termsofservice-text149 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text151 {
+  font-family: "Lato";
+}
+ 
+.termsofservice-text152 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text154 {
+  font-family: "Lato";
+}
+ 
+.termsofservice-text155 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text156 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text157 {
+  font-size: 18px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text158 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text160 {
+  font-family: "Lato";
+}
+ 
+.termsofservice-text161 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text163 {
+  font-family: "Lato";
+}
+ 
+.termsofservice-text164 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text166 {
+  font-family: "Lato";
+}
+ 
+.termsofservice-text167 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text168 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text169 {
+  font-size: 18px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text170 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text171 {
+  font-family: "Lato";
+}
+ 
+.termsofservice-text172 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text173 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text174 {
+  font-size: 18px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text175 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text176 {
+  font-family: "Lato";
+}
+ 
+.termsofservice-text177 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text178 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text179 {
+  font-size: 18px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text180 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text181 {
+  font-family: "Lato";
+}
+ 
+.termsofservice-text182 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text183 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text184 {
+  font-size: 18px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text185 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text186 {
+  font-family: "Lato";
+}
+ 
+.termsofservice-text187 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text188 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text189 {
+  font-size: 18px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text190 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text191 {
+  font-family: "Lato";
+}
+ 
+.termsofservice-text192 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text193 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text194 {
+  font-size: 18px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text195 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text196 {
+  font-family: "Lato";
+}
+ 
+.termsofservice-text197 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text198 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text199 {
+  font-size: 18px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text200 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text201 {
+  font-family: "Lato";
+}
+ 
+.termsofservice-text202 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text203 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text204 {
+  font-size: 18px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text205 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text206 {
+  font-family: "Lato";
+}
+ 
+.termsofservice-text207 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text208 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text210 {
+  display: inline-block;
+}
+ 
+.termsofservice-text211 {
+  display: inline-block;
+}
+ 
+.termsofservice-text212 {
+  display: inline-block;
+}
+ 
+.termsofservice-text213 {
+  display: inline-block;
+}
+ 
+.termsofservice-text214 {
+  display: inline-block;
+}
+ 
+.termsofservice-text215 {
+  display: inline-block;
+}
+ 
+.termsofservice-text216 {
+  display: inline-block;
+}
+ 
+.termsofservice-text217 {
+  display: inline-block;
+}
+ 
+.termsofservice-text218 {
+  display: inline-block;
+}
+ 
+.termsofservice-text219 {
+  display: inline-block;
+}
+ 
+.termsofservice-text220 {
+  display: inline-block;
+}
+ 
+@media(max-width: 767px) {
+  .termsofservice-container4 {
+    padding-right: 20px;
+  }
+}
+ 
+@media(max-width: 479px) {
+  .termsofservice-container2 {
+    align-self: center;
+    flex-direction: column;
+  }
+  .termsofservice-container3 {
+    align-self: flex-start;
+  }
+  .termsofservice-container4 {
+    padding-right: 20px;
+  }
+}

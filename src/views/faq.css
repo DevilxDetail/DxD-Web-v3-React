@@ -1,0 +1,537 @@
+.faq-container10 {
+  width: 100%;
+  display: flex;
+  position: relative;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: var(--dl-space-space-fiveunits);
+  background-color: #e7e7dd;
+}
+ 
+.faq-text10 {
+  display: inline-block;
+}
+ 
+.faq-text11 {
+  display: inline-block;
+}
+ 
+.faq-text12 {
+  display: inline-block;
+}
+ 
+.faq-text13 {
+  display: inline-block;
+}
+ 
+.faq-text14 {
+  display: inline-block;
+}
+ 
+.faq-text15 {
+  display: inline-block;
+}
+ 
+.faq-text16 {
+  display: inline-block;
+}
+ 
+.faq-text17 {
+  display: inline-block;
+}
+ 
+.faq-container11 {
+  flex: 0 0 auto;
+  width: 100%;
+  display: flex;
+  position: relative;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+}
+ 
+.faq-container12 {
+  flex: 0 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+}
+ 
+.faq-container13 {
+  flex: 0 0 auto;
+  width: 40%;
+  height: auto;
+  display: flex;
+  align-self: flex-start;
+  align-items: flex-start;
+  padding-top: var(--dl-space-space-threeunits);
+  padding-left: 40px;
+  padding-right: 40px;
+  flex-direction: column;
+  padding-bottom: 0px;
+  justify-content: flex-start;
+}
+ 
+.faq-accordion1 {
+  width: 100%;
+  display: flex;
+  margin-bottom: var(--dl-space-space-oneandhalfunits);
+  flex-direction: column;
+}
+ 
+.faq-trigger1 {
+  cursor: pointer;
+  padding-top: var(--dl-space-space-halfunit);
+  padding-left: var(--dl-space-space-oneandhalfunits);
+  padding-right: var(--dl-space-space-unit);
+  padding-bottom: var(--dl-space-space-halfunit);
+}
+ 
+.faq-summary1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+ 
+.faq-text18 {
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+  text-decoration: underline;
+}
+ 
+.faq-icon-container1 {
+  transition: transform 0.3s ease-in-out;
+}
+ 
+.faq-container14 {
+  display: flex;
+  padding-top: var(--dl-space-space-halfunit);
+  padding-left: var(--dl-space-space-oneandhalfunits);
+  padding-right: var(--dl-space-space-oneandhalfunits);
+  flex-direction: column;
+  padding-bottom: var(--dl-space-space-halfunit);
+}
+ 
+.faq-text19 {
+  font-family: "Lato";
+}
+ 
+.faq-accordion2 {
+  width: 100%;
+  display: flex;
+  margin-bottom: var(--dl-space-space-oneandhalfunits);
+  flex-direction: column;
+}
+ 
+.faq-trigger2 {
+  cursor: pointer;
+  padding-top: var(--dl-space-space-halfunit);
+  padding-left: var(--dl-space-space-oneandhalfunits);
+  padding-right: var(--dl-space-space-unit);
+  padding-bottom: var(--dl-space-space-halfunit);
+}
+ 
+.faq-summary2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+ 
+.faq-text20 {
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+  text-decoration: underline;
+}
+ 
+.faq-icon-container2 {
+  transition: transform 0.3s ease-in-out;
+}
+ 
+.faq-container15 {
+  display: flex;
+  padding-top: var(--dl-space-space-halfunit);
+  padding-left: var(--dl-space-space-oneandhalfunits);
+  padding-right: var(--dl-space-space-oneandhalfunits);
+  flex-direction: column;
+  padding-bottom: var(--dl-space-space-halfunit);
+}
+ 
+.faq-text21 {
+  font-family: "Lato";
+}
+ 
+.faq-accordion3 {
+  width: 100%;
+  display: flex;
+  margin-bottom: var(--dl-space-space-oneandhalfunits);
+  flex-direction: column;
+}
+ 
+.faq-trigger3 {
+  cursor: pointer;
+  padding-top: var(--dl-space-space-halfunit);
+  padding-left: var(--dl-space-space-oneandhalfunits);
+  padding-right: var(--dl-space-space-unit);
+  padding-bottom: var(--dl-space-space-halfunit);
+}
+ 
+.faq-summary3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+ 
+.faq-text22 {
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+  text-decoration: underline;
+}
+ 
+.faq-icon-container3 {
+  transition: transform 0.3s ease-in-out;
+}
+ 
+.faq-container16 {
+  display: flex;
+  padding-top: var(--dl-space-space-halfunit);
+  padding-left: var(--dl-space-space-oneandhalfunits);
+  padding-right: var(--dl-space-space-oneandhalfunits);
+  flex-direction: column;
+  padding-bottom: var(--dl-space-space-halfunit);
+}
+ 
+.faq-text23 {
+  font-family: "Lato";
+}
+ 
+.faq-navlink1 {
+  text-decoration: underline;
+}
+ 
+.faq-accordion4 {
+  width: 100%;
+  display: flex;
+  margin-bottom: var(--dl-space-space-oneandhalfunits);
+  flex-direction: column;
+}
+ 
+.faq-trigger4 {
+  cursor: pointer;
+  padding-top: var(--dl-space-space-halfunit);
+  padding-left: var(--dl-space-space-oneandhalfunits);
+  padding-right: var(--dl-space-space-unit);
+  padding-bottom: var(--dl-space-space-halfunit);
+}
+ 
+.faq-summary4 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+ 
+.faq-text26 {
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+  text-decoration: underline;
+}
+ 
+.faq-icon-container4 {
+  transition: transform 0.3s ease-in-out;
+}
+ 
+.faq-container17 {
+  display: flex;
+  padding-top: var(--dl-space-space-halfunit);
+  padding-left: var(--dl-space-space-oneandhalfunits);
+  padding-right: var(--dl-space-space-oneandhalfunits);
+  flex-direction: column;
+  padding-bottom: var(--dl-space-space-halfunit);
+}
+ 
+.faq-text27 {
+  font-family: "Lato";
+}
+ 
+.faq-accordion5 {
+  width: 100%;
+  display: flex;
+  margin-bottom: var(--dl-space-space-oneandhalfunits);
+  flex-direction: column;
+}
+ 
+.faq-trigger5 {
+  cursor: pointer;
+  padding-top: var(--dl-space-space-halfunit);
+  padding-left: var(--dl-space-space-oneandhalfunits);
+  padding-right: var(--dl-space-space-unit);
+  padding-bottom: var(--dl-space-space-halfunit);
+}
+ 
+.faq-summary5 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+ 
+.faq-text28 {
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+  text-decoration: underline;
+}
+ 
+.faq-icon-container5 {
+  transition: transform 0.3s ease-in-out;
+}
+ 
+.faq-container18 {
+  display: flex;
+  padding-top: var(--dl-space-space-halfunit);
+  padding-left: var(--dl-space-space-oneandhalfunits);
+  padding-right: var(--dl-space-space-oneandhalfunits);
+  flex-direction: column;
+  padding-bottom: var(--dl-space-space-halfunit);
+}
+ 
+.faq-text29 {
+  font-family: "Lato";
+}
+ 
+.faq-accordion6 {
+  width: 100%;
+  display: flex;
+  margin-bottom: var(--dl-space-space-oneandhalfunits);
+  flex-direction: column;
+}
+ 
+.faq-trigger6 {
+  cursor: pointer;
+  padding-top: var(--dl-space-space-halfunit);
+  padding-left: var(--dl-space-space-oneandhalfunits);
+  padding-right: var(--dl-space-space-unit);
+  padding-bottom: var(--dl-space-space-halfunit);
+}
+ 
+.faq-summary6 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+ 
+.faq-text30 {
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+  text-decoration: underline;
+}
+ 
+.faq-icon-container6 {
+  transition: transform 0.3s ease-in-out;
+}
+ 
+.faq-container19 {
+  display: flex;
+  padding-top: var(--dl-space-space-halfunit);
+  padding-left: var(--dl-space-space-oneandhalfunits);
+  padding-right: var(--dl-space-space-oneandhalfunits);
+  flex-direction: column;
+  padding-bottom: var(--dl-space-space-halfunit);
+}
+ 
+.faq-text31 {
+  font-family: "Lato";
+}
+ 
+.faq-accordion7 {
+  width: 100%;
+  display: flex;
+  margin-bottom: var(--dl-space-space-oneandhalfunits);
+  flex-direction: column;
+}
+ 
+.faq-trigger7 {
+  cursor: pointer;
+  padding-top: var(--dl-space-space-halfunit);
+  padding-left: var(--dl-space-space-oneandhalfunits);
+  padding-right: var(--dl-space-space-unit);
+  padding-bottom: var(--dl-space-space-halfunit);
+}
+ 
+.faq-summary7 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+ 
+.faq-text32 {
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+  text-decoration: underline;
+}
+ 
+.faq-icon-container7 {
+  transition: transform 0.3s ease-in-out;
+}
+ 
+.faq-container20 {
+  display: flex;
+  padding-top: var(--dl-space-space-halfunit);
+  padding-left: var(--dl-space-space-oneandhalfunits);
+  padding-right: var(--dl-space-space-oneandhalfunits);
+  flex-direction: column;
+  padding-bottom: var(--dl-space-space-halfunit);
+}
+ 
+.faq-text33 {
+  font-family: "Lato";
+}
+ 
+.faq-navlink2 {
+  text-decoration: underline;
+}
+ 
+.faq-accordion8 {
+  width: 100%;
+  display: flex;
+  margin-bottom: var(--dl-space-space-oneandhalfunits);
+  flex-direction: column;
+}
+ 
+.faq-trigger8 {
+  cursor: pointer;
+  padding-top: var(--dl-space-space-halfunit);
+  padding-left: var(--dl-space-space-oneandhalfunits);
+  padding-right: var(--dl-space-space-unit);
+  padding-bottom: var(--dl-space-space-halfunit);
+}
+ 
+.faq-summary8 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+ 
+.faq-text36 {
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+  text-decoration: underline;
+}
+ 
+.faq-icon-container8 {
+  transition: transform 0.3s ease-in-out;
+}
+ 
+.faq-container21 {
+  display: flex;
+  padding-top: var(--dl-space-space-halfunit);
+  padding-left: var(--dl-space-space-oneandhalfunits);
+  padding-right: var(--dl-space-space-oneandhalfunits);
+  flex-direction: column;
+  padding-bottom: var(--dl-space-space-halfunit);
+}
+ 
+.faq-text37 {
+  font-family: "Lato";
+}
+ 
+.faq-navlink3 {
+  text-decoration: underline;
+}
+ 
+.faq-text40 {
+  display: inline-block;
+}
+ 
+.faq-text41 {
+  display: inline-block;
+}
+ 
+.faq-text42 {
+  display: inline-block;
+}
+ 
+.faq-text43 {
+  display: inline-block;
+}
+ 
+.faq-text44 {
+  display: inline-block;
+}
+ 
+.faq-text45 {
+  display: inline-block;
+}
+ 
+.faq-text46 {
+  display: inline-block;
+}
+ 
+.faq-text47 {
+  display: inline-block;
+}
+ 
+.faq-text48 {
+  display: inline-block;
+}
+ 
+.faq-text49 {
+  display: inline-block;
+}
+ 
+.faq-text50 {
+  display: inline-block;
+}
+ 
+@media(max-width: 1200px) {
+  .faq-container13 {
+    width: 60%;
+  }
+}
+ 
+@media(max-width: 991px) {
+  .faq-accordion1 {
+    width: 100%;
+  }
+  .faq-accordion2 {
+    width: 100%;
+  }
+  .faq-accordion3 {
+    width: 100%;
+  }
+  .faq-accordion4 {
+    width: 100%;
+  }
+  .faq-accordion5 {
+    width: 100%;
+  }
+  .faq-accordion6 {
+    width: 100%;
+  }
+}
+ 
+@media(max-width: 767px) {
+  .faq-container13 {
+    width: 90%;
+    padding-right: 20px;
+  }
+}
+ 
+@media(max-width: 479px) {
+  .faq-container11 {
+    align-self: center;
+    flex-direction: column;
+  }
+  .faq-container12 {
+    align-self: flex-start;
+  }
+  .faq-container13 {
+    width: 90%;
+    padding-right: 20px;
+  }
+}
