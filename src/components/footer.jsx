@@ -14,7 +14,7 @@ const Footer = (props) => {
             <span className="footer-text10">
               {props.text1 ?? (
                 <Fragment>
-                  <span className="footer-text20">SOCIAL</span>
+                  <span>SOCIALS</span>
                 </Fragment>
               )}
             </span>
@@ -26,7 +26,7 @@ const Footer = (props) => {
             >
               {props.text2 ?? (
                 <Fragment>
-                  <span className="footer-text22">Twitter (X)</span>
+                  <span>Twitter (X)</span>
                 </Fragment>
               )}
             </a>
@@ -38,60 +38,60 @@ const Footer = (props) => {
             >
               {props.text3 ?? (
                 <Fragment>
-                  <span className="footer-text19">Instagram</span>
+                  <span>Instagram</span>
                 </Fragment>
               )}
             </a>
           </div>
           <div className="footer-container5">
             <span className="footer-text12">
-              {props.text4 ?? (
+              {props.text5 ?? (
                 <Fragment>
-                  <span className="footer-text17">HELP</span>
+                  <span>HELP</span>
                 </Fragment>
               )}
             </span>
             <Link to="/faq" className="footer-navlink1">
-              {props.text5 ?? (
+              {props.text6 ?? (
                 <Fragment>
-                  <span className="footer-text15">FAQ</span>
+                  <span>FAQ</span>
                 </Fragment>
               )}
             </Link>
             <Link to="/contact" className="footer-navlink2">
-              {props.text6 ?? (
+              {props.text7 ?? (
                 <Fragment>
-                  <span className="footer-text25">Contact Us</span>
+                  <span>Contact Us</span>
                 </Fragment>
               )}
             </Link>
           </div>
           <div className="footer-container6">
             <span className="footer-text13">
-              {props.text7 ?? (
+              {props.text8 ?? (
                 <Fragment>
-                  <span className="footer-text16">COMPANY</span>
+                  <span>COMPANY</span>
                 </Fragment>
               )}
             </span>
             <Link to="/privacypolicy" className="footer-navlink3">
-              {props.text8 ?? (
+              {props.text9 ?? (
                 <Fragment>
-                  <span className="footer-text23">Privacy Policy</span>
+                  <span>Privacy Policy</span>
                 </Fragment>
               )}
             </Link>
             <Link to="/termsofservice" className="footer-navlink4">
-              {props.text9 ?? (
+              {props.text10 ?? (
                 <Fragment>
-                  <span className="footer-text18">Terms of Service</span>
+                  <span>Terms of Service</span>
                 </Fragment>
               )}
             </Link>
             <Link to="/affinity" className="footer-navlink5">
-              {props.text91 ?? (
+              {props.text12 ?? (
                 <Fragment>
-                  <span className="footer-text21">Affinity Token</span>
+                  <span>Affinity Token</span>
                 </Fragment>
               )}
             </Link>
@@ -99,9 +99,9 @@ const Footer = (props) => {
         </div>
         <div className="footer-container7">
           <span className="footer-text14">
-            {props.text ?? (
+            {props.text11 ?? (
               <Fragment>
-                <span className="footer-text24">© 2025 Devil x Detail</span>
+                <span>© 2024 DxD. All rights reserved.</span>
               </Fragment>
             )}
           </span>
@@ -112,37 +112,43 @@ const Footer = (props) => {
 }
 
 Footer.defaultProps = {
-  text5: undefined,
-  text7: undefined,
-  text4: undefined,
-  textUrl1: 'https://instagram.com/devilxdetail',
-  textUrl: 'https://x.com/devilxdetail',
-  text9: undefined,
-  text3: undefined,
   text1: undefined,
-  text91: undefined,
   text2: undefined,
-  text8: undefined,
-  rootClassName: '',
-  text: undefined,
+  text3: undefined,
+  text4: undefined,
+  text5: undefined,
   text6: undefined,
+  text7: undefined,
+  text8: undefined,
+  text9: undefined,
+  text10: undefined,
+  text11: undefined,
+  text12: undefined,
+  textUrl: 'https://twitter.com',
+  textUrl1: 'https://instagram.com',
+  textUrl2: 'https://discord.com',
+  textUrl3: 'mailto:hello@dxd.com',
+  rootClassName: '',
 }
 
 Footer.propTypes = {
-  text5: PropTypes.element,
-  text7: PropTypes.element,
-  text4: PropTypes.element,
-  textUrl1: PropTypes.string,
-  textUrl: PropTypes.string,
-  text9: PropTypes.element,
-  text3: PropTypes.element,
   text1: PropTypes.element,
-  text91: PropTypes.element,
   text2: PropTypes.element,
-  text8: PropTypes.element,
-  rootClassName: PropTypes.string,
-  text: PropTypes.element,
+  text3: PropTypes.element,
+  text4: PropTypes.element,
+  text5: PropTypes.element,
   text6: PropTypes.element,
+  text7: PropTypes.element,
+  text8: PropTypes.element,
+  text9: PropTypes.element,
+  text10: PropTypes.element,
+  text11: PropTypes.element,
+  text12: PropTypes.element,
+  textUrl: PropTypes.string,
+  textUrl1: PropTypes.string,
+  textUrl2: PropTypes.string,
+  textUrl3: PropTypes.string,
+  rootClassName: PropTypes.string,
 }
 
 export default Footer

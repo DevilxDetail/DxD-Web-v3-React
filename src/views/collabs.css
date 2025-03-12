@@ -1,11 +1,12 @@
-.collabs-container10 {
+.collabs-container1 {
   width: 100%;
   display: flex;
   position: relative;
+  min-height: 100vh;
   align-items: center;
   flex-direction: column;
-  padding-bottom: var(--dl-space-space-fiveunits);
-  background-color: #e7e7dd;
+  justify-content: space-between;
+  background-color: #292929;
 }
  
 .collabs-text10 {
@@ -32,14 +33,6 @@
   display: inline-block;
 }
  
-.collabs-text16 {
-  display: inline-block;
-}
- 
-.collabs-text17 {
-  display: inline-block;
-}
- 
 .collabs-container11 {
   flex: 0 0 auto;
   width: 100%;
@@ -52,7 +45,7 @@
  
 .collabs-container12 {
   flex: 0 0 auto;
-  width: 100%;
+  width: 80%;
   display: flex;
   align-items: flex-start;
 }
@@ -92,7 +85,8 @@
   justify-content: space-between;
 }
  
-.collabs-text18 {
+.collabs-text16 {
+  color: #ffffff;
   font-style: normal;
   font-family: "Lato";
   font-weight: 700;
@@ -112,7 +106,8 @@
   padding-bottom: var(--dl-space-space-halfunit);
 }
  
-.collabs-text19 {
+.collabs-text17 {
+  color: #ffffff;
   font-family: "Lato";
 }
  
@@ -141,7 +136,8 @@
   justify-content: space-between;
 }
  
-.collabs-text22 {
+.collabs-text20 {
+  color: #ffffff;
   font-style: normal;
   font-family: "Lato";
   font-weight: 700;
@@ -161,7 +157,8 @@
   padding-bottom: var(--dl-space-space-halfunit);
 }
  
-.collabs-text23 {
+.collabs-text21 {
+  color: #ffffff;
   font-family: "Lato";
 }
  
@@ -186,7 +183,8 @@
   justify-content: space-between;
 }
  
-.collabs-text24 {
+.collabs-text22 {
+  color: #ffffff;
   font-style: normal;
   font-family: "Lato";
   font-weight: 700;
@@ -206,7 +204,8 @@
   padding-bottom: var(--dl-space-space-halfunit);
 }
  
-.collabs-text25 {
+.collabs-text23 {
+  color: #ffffff;
   font-family: "Lato";
 }
  
@@ -231,7 +230,8 @@
   justify-content: space-between;
 }
  
-.collabs-text26 {
+.collabs-text24 {
+  color: #ffffff;
   font-style: normal;
   font-family: "Lato";
   font-weight: 700;
@@ -251,7 +251,8 @@
   padding-bottom: var(--dl-space-space-halfunit);
 }
  
-.collabs-text27 {
+.collabs-text25 {
+  color: #ffffff;
   font-family: "Lato";
 }
  
@@ -276,7 +277,8 @@
   justify-content: space-between;
 }
  
-.collabs-text28 {
+.collabs-text26 {
+  color: #ffffff;
   font-style: normal;
   font-family: "Lato";
   font-weight: 700;
@@ -296,7 +298,8 @@
   padding-bottom: var(--dl-space-space-halfunit);
 }
  
-.collabs-text29 {
+.collabs-text27 {
+  color: #ffffff;
   font-family: "Lato";
 }
  
@@ -321,7 +324,8 @@
   justify-content: space-between;
 }
  
-.collabs-text30 {
+.collabs-text28 {
+  color: #ffffff;
   font-style: normal;
   font-family: "Lato";
   font-weight: 700;
@@ -341,7 +345,8 @@
   padding-bottom: var(--dl-space-space-halfunit);
 }
  
-.collabs-text31 {
+.collabs-text29 {
+  color: #ffffff;
   font-family: "Lato";
 }
  
@@ -366,7 +371,8 @@
   justify-content: space-between;
 }
  
-.collabs-text32 {
+.collabs-text30 {
+  color: #ffffff;
   font-style: normal;
   font-family: "Lato";
   font-weight: 700;
@@ -386,7 +392,8 @@
   padding-bottom: var(--dl-space-space-halfunit);
 }
  
-.collabs-text33 {
+.collabs-text31 {
+  color: #ffffff;
   font-family: "Lato";
 }
  
@@ -411,7 +418,8 @@
   justify-content: space-between;
 }
  
-.collabs-text34 {
+.collabs-text32 {
+  color: #ffffff;
   font-style: normal;
   font-family: "Lato";
   font-weight: 700;
@@ -431,8 +439,17 @@
   padding-bottom: var(--dl-space-space-halfunit);
 }
  
-.collabs-text35 {
+.collabs-text33 {
+  color: #ffffff;
   font-family: "Lato";
+}
+ 
+.collabs-text34 {
+  display: inline-block;
+}
+ 
+.collabs-text35 {
+  display: inline-block;
 }
  
 .collabs-text36 {
@@ -468,14 +485,6 @@
 }
  
 .collabs-text44 {
-  display: inline-block;
-}
- 
-.collabs-text45 {
-  display: inline-block;
-}
- 
-.collabs-text46 {
   display: inline-block;
 }
  
@@ -519,6 +528,7 @@
     flex-direction: column;
   }
   .collabs-container12 {
+    width: 100%;
     align-self: flex-start;
   }
   .collabs-container13 {

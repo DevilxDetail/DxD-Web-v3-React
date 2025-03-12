@@ -1,57 +1,27 @@
 import React, { Fragment } from 'react'
-
 import { Helmet } from 'react-helmet'
 
 import Header from '../components/header'
 import CenterText from '../components/center-text'
-import Footer from '../components/footer'
+import ConsistentFooter from '../components/ConsistentFooter'
 import './juice.css'
 
 const Juice = (props) => {
   return (
     <div className="juice-container1">
       <Helmet>
-        <title>juice - exported project</title>
-        <meta property="og:title" content="juice - exported project" />
+        <title>Juice - DxD</title>
+        <meta property="og:title" content="Juice - DxD" />
       </Helmet>
       <Header
         text={
           <Fragment>
-            <span className="juice-text10">(Hey There)</span>
+            <span className="juice-text10">About DxD</span>
           </Fragment>
         }
-        drops={
-          <Fragment>
-            <span className="juice-text11">Drops</span>
-          </Fragment>
-        }
-        button={
-          <Fragment>
-            <span className="juice-text12">CONNECT</span>
-          </Fragment>
-        }
-        aboutUs={
-          <Fragment>
-            <span className="juice-text13">About Us</span>
-          </Fragment>
-        }
-        affinity={
-          <Fragment>
-            <span className="juice-text14">Affinity</span>
-          </Fragment>
-        }
-        thoughts={
-          <Fragment>
-            <span className="juice-text15">Thoughts</span>
-          </Fragment>
-        }
-        myAccount={
-          <Fragment>
-            <span className="juice-text16">My Account</span>
-          </Fragment>
-        }
-        rootClassName="headerroot-class-name7"
-      ></Header>
+        iconBlackSrc="/icon%20-%20black-200h.png"
+        rootClassName="header-root-class-name5"
+      />
       <div className="juice-container2">
         <img
           alt="image"
@@ -70,7 +40,7 @@ const Juice = (props) => {
             </Fragment>
           }
           rootClassName="center-textroot-class-name6"
-        ></CenterText>
+        />
         <div className="juice-container3">
           <span className="juice-text18">
             <span>
@@ -78,7 +48,7 @@ const Juice = (props) => {
               would eventually become Devil x Detail... a brand built around
               collaborative apparel drops. Juice, an incredible
               multidisciplinary artist and rapper, felt like the perfect fit.
-              But it wasn’t just his talent that stood out; it was his vibe and
+              But it wasn't just his talent that stood out; it was his vibe and
               ethos. Juice believes deeply in the power of collaboration,
               bringing authenticity and intention to everything he does.
             </span>
@@ -139,64 +109,7 @@ const Juice = (props) => {
           </span>
         </div>
       </div>
-      <Footer
-        text={
-          <Fragment>
-            <span className="juice-text33">© 2025 Devil x Detail</span>
-          </Fragment>
-        }
-        text1={
-          <Fragment>
-            <span className="juice-text34">SOCIAL</span>
-          </Fragment>
-        }
-        text2={
-          <Fragment>
-            <span className="juice-text35">Twitter (X)</span>
-          </Fragment>
-        }
-        text3={
-          <Fragment>
-            <span className="juice-text36">Instagram</span>
-          </Fragment>
-        }
-        text4={
-          <Fragment>
-            <span className="juice-text37">HELP</span>
-          </Fragment>
-        }
-        text5={
-          <Fragment>
-            <span className="juice-text38">FAQ</span>
-          </Fragment>
-        }
-        text6={
-          <Fragment>
-            <span className="juice-text39">Contact Us</span>
-          </Fragment>
-        }
-        text7={
-          <Fragment>
-            <span className="juice-text40">COMPANY</span>
-          </Fragment>
-        }
-        text8={
-          <Fragment>
-            <span className="juice-text41">Privacy Policy</span>
-          </Fragment>
-        }
-        text9={
-          <Fragment>
-            <span className="juice-text42">Terms of Service</span>
-          </Fragment>
-        }
-        text91={
-          <Fragment>
-            <span className="juice-text43">Affinity Token</span>
-          </Fragment>
-        }
-        rootClassName="footerroot-class-name11"
-      ></Footer>
+      <ConsistentFooter />
     </div>
   )
 }

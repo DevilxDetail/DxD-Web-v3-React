@@ -1,57 +1,27 @@
 import React, { Fragment } from 'react'
-
 import { Helmet } from 'react-helmet'
 
 import Header from '../components/header'
 import CenterText from '../components/center-text'
-import Footer from '../components/footer'
+import ConsistentFooter from '../components/ConsistentFooter'
 import './marfa.css'
 
 const Marfa = (props) => {
   return (
     <div className="marfa-container1">
       <Helmet>
-        <title>marfa - exported project</title>
-        <meta property="og:title" content="marfa - exported project" />
+        <title>Marfa - DxD</title>
+        <meta property="og:title" content="Marfa - DxD" />
       </Helmet>
       <Header
         text={
           <Fragment>
-            <span className="marfa-text10">(Hey There)</span>
+            <span className="marfa-text10">About DxD</span>
           </Fragment>
         }
-        drops={
-          <Fragment>
-            <span className="marfa-text11">Drops</span>
-          </Fragment>
-        }
-        button={
-          <Fragment>
-            <span className="marfa-text12">CONNECT</span>
-          </Fragment>
-        }
-        aboutUs={
-          <Fragment>
-            <span className="marfa-text13">About Us</span>
-          </Fragment>
-        }
-        affinity={
-          <Fragment>
-            <span className="marfa-text14">Affinity</span>
-          </Fragment>
-        }
-        thoughts={
-          <Fragment>
-            <span className="marfa-text15">Thoughts</span>
-          </Fragment>
-        }
-        myAccount={
-          <Fragment>
-            <span className="marfa-text16">My Account</span>
-          </Fragment>
-        }
-        rootClassName="headerroot-class-name9"
-      ></Header>
+        iconBlackSrc="/icon%20-%20black-200h.png"
+        rootClassName="header-root-class-name6"
+      />
       <div className="marfa-container2">
         <div className="marfa-container3">
           <img
@@ -77,12 +47,12 @@ const Marfa = (props) => {
             </Fragment>
           }
           rootClassName="center-textroot-class-name4"
-        ></CenterText>
+        />
         <div className="marfa-container4">
           <span className="marfa-text18">
             <span>
-              For anyone who’s experienced Art Blocks Weekend in Marfa, Texas,
-              no explanation is needed... it’s pure magic. Imagine spending a
+              For anyone who's experienced Art Blocks Weekend in Marfa, Texas,
+              no explanation is needed... it's pure magic. Imagine spending a
               long weekend in a small, art-focused town, surrounded by a couple
               hundred of your closest digital friends from all over the world.
               Our first taste of it was in 2023, and heading into 2024, we knew
@@ -102,10 +72,10 @@ const Marfa = (props) => {
             <br></br>
             <br></br>
             <span>
-              This event embodied exactly why Devil x Detail exists. It’s about
+              This event embodied exactly why Devil x Detail exists. It's about
               bringing together incredibly talented, creative, and intentional
               people. When we talk about blending the digital and physical,
-              we’re not just referring to our clothing. It’s about creating real
+              we're not just referring to our clothing. It's about creating real
               bridges, through art, conversations, and a whole lot of hugs.
             </span>
           </span>
@@ -145,64 +115,7 @@ const Marfa = (props) => {
           />
         </div>
       </div>
-      <Footer
-        text={
-          <Fragment>
-            <span className="marfa-text26">© 2025 Devil x Detail</span>
-          </Fragment>
-        }
-        text1={
-          <Fragment>
-            <span className="marfa-text27">SOCIAL</span>
-          </Fragment>
-        }
-        text2={
-          <Fragment>
-            <span className="marfa-text28">Twitter (X)</span>
-          </Fragment>
-        }
-        text3={
-          <Fragment>
-            <span className="marfa-text29">Instagram</span>
-          </Fragment>
-        }
-        text4={
-          <Fragment>
-            <span className="marfa-text30">HELP</span>
-          </Fragment>
-        }
-        text5={
-          <Fragment>
-            <span className="marfa-text31">FAQ</span>
-          </Fragment>
-        }
-        text6={
-          <Fragment>
-            <span className="marfa-text32">Contact Us</span>
-          </Fragment>
-        }
-        text7={
-          <Fragment>
-            <span className="marfa-text33">COMPANY</span>
-          </Fragment>
-        }
-        text8={
-          <Fragment>
-            <span className="marfa-text34">Privacy Policy</span>
-          </Fragment>
-        }
-        text9={
-          <Fragment>
-            <span className="marfa-text35">Terms of Service</span>
-          </Fragment>
-        }
-        text91={
-          <Fragment>
-            <span className="marfa-text36">Affinity Token</span>
-          </Fragment>
-        }
-        rootClassName="footerroot-class-name8"
-      ></Footer>
+      <ConsistentFooter />
     </div>
   )
 }

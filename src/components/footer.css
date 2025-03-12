@@ -1,14 +1,16 @@
 .footer-container1 {
   flex: 0 0 auto;
-  left: 0px;
   width: 100%;
-  bottom: var(--dl-space-space-threeunits);
   display: flex;
-  position: absolute;
+  position: relative;
   align-self: center;
-  margin-top: var(--dl-space-space-threeunits);
+  margin-top: 0;
   align-items: center;
+  padding-top: var(--dl-space-space-threeunits);
+  padding-bottom: var(--dl-space-space-threeunits);
   justify-content: space-between;
+  z-index: 10;
+  background-color: #292929;
 }
  
 .footer-container2 {
@@ -38,6 +40,7 @@
 }
  
 .footer-text10 {
+  color: #ffffff;
   align-self: flex-start;
   font-style: normal;
   font-family: "Lato";
@@ -47,6 +50,7 @@
 }
  
 .footer-text11 {
+  color: #ffffff;
   align-self: flex-start;
   transition: 0.3s;
   font-family: "Lato";
@@ -56,10 +60,11 @@
 }
  
 .footer-text11:hover {
-  color: #8c8484;
+  color: #b50000;
 }
  
 .footer-link {
+  color: #ffffff;
   align-self: flex-start;
   transition: 0.3s;
   font-family: "Lato";
@@ -69,7 +74,7 @@
 }
  
 .footer-link:hover {
-  color: #8c8484;
+  color: #b50000;
 }
  
 .footer-container5 {
@@ -85,6 +90,7 @@
 }
  
 .footer-text12 {
+  color: #ffffff;
   align-self: flex-start;
   font-style: normal;
   font-family: "Lato";
@@ -94,6 +100,7 @@
 }
  
 .footer-navlink1 {
+  color: #ffffff;
   align-self: flex-start;
   transition: 0.3s;
   font-family: "Lato";
@@ -103,10 +110,11 @@
 }
  
 .footer-navlink1:hover {
-  color: #8c8484;
+  color: #b50000;
 }
  
 .footer-navlink2 {
+  color: #ffffff;
   align-self: flex-start;
   transition: 0.3s;
   font-family: "Lato";
@@ -116,7 +124,7 @@
 }
  
 .footer-navlink2:hover {
-  color: #8c8484;
+  color: #b50000;
 }
  
 .footer-container6 {
@@ -132,6 +140,7 @@
 }
  
 .footer-text13 {
+  color: #ffffff;
   align-self: flex-start;
   font-style: normal;
   font-family: "Lato";
@@ -141,6 +150,7 @@
 }
  
 .footer-navlink3 {
+  color: #ffffff;
   align-self: flex-start;
   transition: 0.3s;
   font-family: "Lato";
@@ -150,10 +160,11 @@
 }
  
 .footer-navlink3:hover {
-  color: #8c8484;
+  color: #b50000;
 }
  
 .footer-navlink4 {
+  color: #ffffff;
   align-self: flex-start;
   transition: 0.3s;
   font-family: "Lato";
@@ -163,10 +174,11 @@
 }
  
 .footer-navlink4:hover {
-  color: #8c8484;
+  color: #b50000;
 }
  
 .footer-navlink5 {
+  color: #ffffff;
   align-self: flex-start;
   transition: 0.3s;
   font-family: "Lato";
@@ -176,7 +188,7 @@
 }
  
 .footer-navlink5:hover {
-  color: #8c8484;
+  color: #b50000;
 }
  
 .footer-container7 {
@@ -188,6 +200,7 @@
 }
  
 .footer-text14 {
+  color: #ffffff;
   align-self: flex-start;
   text-align: right;
   font-family: "Lato";
@@ -287,6 +300,18 @@
 .footerroot-class-name12 {
   left: 0px;
   bottom: 128px;
+  position: static;
+}
+ 
+.footerroot-class-name13 {
+  position: static;
+}
+ 
+.footerroot-class-name14 {
+  position: static;
+}
+ 
+.footerroot-class-name15 {
   position: static;
 }
  

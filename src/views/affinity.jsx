@@ -1,57 +1,27 @@
 import React, { Fragment } from 'react'
-
 import { Helmet } from 'react-helmet'
 
 import Header from '../components/header'
 import CenterText from '../components/center-text'
-import Footer from '../components/footer'
+import ConsistentFooter from '../components/ConsistentFooter'
 import './affinity.css'
 
 const Affinity = (props) => {
   return (
     <div className="affinity-container1">
       <Helmet>
-        <title>affinity - exported project</title>
-        <meta property="og:title" content="affinity - exported project" />
+        <title>Affinity - DxD</title>
+        <meta property="og:title" content="Affinity - DxD" />
       </Helmet>
       <Header
         text={
           <Fragment>
-            <span className="affinity-text10">(Hey There)</span>
+            <span className="affinity-text10">About DxD</span>
           </Fragment>
         }
-        drops={
-          <Fragment>
-            <span className="affinity-text11">Drops</span>
-          </Fragment>
-        }
-        button={
-          <Fragment>
-            <span className="affinity-text12">CONNECT</span>
-          </Fragment>
-        }
-        aboutUs={
-          <Fragment>
-            <span className="affinity-text13">About Us</span>
-          </Fragment>
-        }
-        affinity={
-          <Fragment>
-            <span className="affinity-text14">Affinity</span>
-          </Fragment>
-        }
-        thoughts={
-          <Fragment>
-            <span className="affinity-text15">Thoughts</span>
-          </Fragment>
-        }
-        myAccount={
-          <Fragment>
-            <span className="affinity-text16">My Account</span>
-          </Fragment>
-        }
-        rootClassName="headerroot-class-name11"
-      ></Header>
+        iconBlackSrc="/icon%20-%20black-200h.png"
+        rootClassName="header-root-class-name8"
+      />
       <div className="affinity-container2">
         <div className="affinity-container3">
           <img
@@ -77,12 +47,12 @@ const Affinity = (props) => {
             </Fragment>
           }
           rootClassName="center-textroot-class-name8"
-        ></CenterText>
+        />
         <div className="affinity-container4">
           <span className="affinity-text18">
             <span>
               The Affinity Token is our onchain loyalty program, designed to
-              recognize and reward our community’s support. Whether through
+              recognize and reward our community's support. Whether through
               purchases, social media engagement, advice, or any other
               contribution, fans can earn Affinity Tokens as a symbol of their
               connection to DxD.
@@ -91,7 +61,7 @@ const Affinity = (props) => {
             <br></br>
             <span>
               Fully self-custodial and transferable, the Affinity Token puts
-              ownership in your hands... you’ve earned it, you own it. Tokens
+              ownership in your hands... you've earned it, you own it. Tokens
               can unlock perks like limited-edition merch, early access to
               drops, and invites to exclusive events. We also use them to assign
               community roles, highlight standout supporters, and track
@@ -121,71 +91,14 @@ const Affinity = (props) => {
             <br></br>
             <span>
               As we grow, so will the benefits... think contributions to future
-              collaborations, partner perks, and more. Affinity isn’t just a
-              program; it’s how we keep our people at the center of everything
+              collaborations, partner perks, and more. Affinity isn't just a
+              program; it's how we keep our people at the center of everything
               we do.
             </span>
           </span>
         </div>
       </div>
-      <Footer
-        text={
-          <Fragment>
-            <span className="affinity-text30">© 2025 Devil x Detail</span>
-          </Fragment>
-        }
-        text1={
-          <Fragment>
-            <span className="affinity-text31">SOCIAL</span>
-          </Fragment>
-        }
-        text2={
-          <Fragment>
-            <span className="affinity-text32">Twitter (X)</span>
-          </Fragment>
-        }
-        text3={
-          <Fragment>
-            <span className="affinity-text33">Instagram</span>
-          </Fragment>
-        }
-        text4={
-          <Fragment>
-            <span className="affinity-text34">HELP</span>
-          </Fragment>
-        }
-        text5={
-          <Fragment>
-            <span className="affinity-text35">FAQ</span>
-          </Fragment>
-        }
-        text6={
-          <Fragment>
-            <span className="affinity-text36">Contact Us</span>
-          </Fragment>
-        }
-        text7={
-          <Fragment>
-            <span className="affinity-text37">COMPANY</span>
-          </Fragment>
-        }
-        text8={
-          <Fragment>
-            <span className="affinity-text38">Privacy Policy</span>
-          </Fragment>
-        }
-        text9={
-          <Fragment>
-            <span className="affinity-text39">Terms of Service</span>
-          </Fragment>
-        }
-        text91={
-          <Fragment>
-            <span className="affinity-text40">Affinity Token</span>
-          </Fragment>
-        }
-        rootClassName="footerroot-class-name12"
-      ></Footer>
+      <ConsistentFooter />
     </div>
   )
 }

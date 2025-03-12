@@ -2,10 +2,11 @@
   width: 100%;
   display: flex;
   position: relative;
+  min-height: 100vh;
   align-items: center;
   flex-direction: column;
-  padding-bottom: var(--dl-space-space-fiveunits);
-  background-color: #e7e7dd;
+  justify-content: space-between;
+  background-color: #292929;
 }
  
 .marfa-text10 {
@@ -28,12 +29,12 @@
   display: inline-block;
 }
  
-.marfa-text15 {
-  display: inline-block;
-}
- 
-.marfa-text16 {
-  display: inline-block;
+.marfa-text18 {
+  color: #ffffff;
+  font-size: 16px;
+  font-family: 'Noto Sans';
+  line-height: 1.5;
+  text-align: left;
 }
  
 .marfa-container2 {
@@ -83,13 +84,13 @@
   grid-column-start: 1;
 }
  
-.marfa-text17 {
+.marfa-text15 {
   display: inline-block;
 }
  
 .marfa-container4 {
   flex: 0 0 auto;
-  width: 90%;
+  width: 80%;
   display: flex;
   align-self: center;
   margin-top: var(--dl-space-space-unit);
@@ -101,7 +102,8 @@
   justify-content: space-between;
 }
  
-.marfa-text18 {
+.marfa-text16 {
+  color: #ffffff;
   align-self: flex-start;
   text-align: left;
   font-family: "Lato";
@@ -184,6 +186,14 @@
   grid-column-start: 2;
 }
  
+.marfa-text24 {
+  display: inline-block;
+}
+ 
+.marfa-text25 {
+  display: inline-block;
+}
+ 
 .marfa-text26 {
   display: inline-block;
 }
@@ -217,14 +227,6 @@
 }
  
 .marfa-text34 {
-  display: inline-block;
-}
- 
-.marfa-text35 {
-  display: inline-block;
-}
- 
-.marfa-text36 {
   display: inline-block;
 }
  

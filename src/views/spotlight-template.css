@@ -28,14 +28,6 @@
   display: inline-block;
 }
  
-.spotlight-template-text15 {
-  display: inline-block;
-}
- 
-.spotlight-template-text16 {
-  display: inline-block;
-}
- 
 .spotlight-template-body {
   flex: 0 0 auto;
   display: flex;
@@ -80,14 +72,14 @@
   object-fit: cover;
 }
  
-.spotlight-template-text17 {
+.spotlight-template-text15 {
   font-size: 12px;
   align-self: center;
   margin-top: var(--dl-space-space-halfunit);
   font-family: "Lato";
 }
  
-.spotlight-template-text18 {
+.spotlight-template-text16 {
   width: 60%;
   align-self: flex-start;
   font-family: "Lato";
@@ -108,7 +100,7 @@
   justify-content: flex-end;
 }
  
-.spotlight-template-text19 {
+.spotlight-template-text17 {
   width: 60%;
   align-self: flex-start;
   text-align: right;
@@ -131,7 +123,7 @@
   object-fit: cover;
 }
  
-.spotlight-template-text20 {
+.spotlight-template-text18 {
   font-size: 12px;
   margin-top: var(--dl-space-space-halfunit);
   font-family: "Lato";
@@ -184,6 +176,21 @@
   justify-content: flex-start;
 }
  
+.spotlight-template-text19 {
+  font-size: 14px;
+  align-self: flex-start;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 300;
+  margin-bottom: var(--dl-space-space-halfunit);
+}
+ 
+.spotlight-template-text20 {
+  font-size: 14px;
+  align-self: flex-start;
+  font-family: "Lato";
+}
+ 
 .spotlight-template-text21 {
   font-size: 14px;
   align-self: flex-start;
@@ -194,21 +201,6 @@
 }
  
 .spotlight-template-text22 {
-  font-size: 14px;
-  align-self: flex-start;
-  font-family: "Lato";
-}
- 
-.spotlight-template-text23 {
-  font-size: 14px;
-  align-self: flex-start;
-  font-style: normal;
-  font-family: "Lato";
-  font-weight: 300;
-  margin-bottom: var(--dl-space-space-halfunit);
-}
- 
-.spotlight-template-text24 {
   font-size: 14px;
   align-self: flex-start;
   font-style: normal;
@@ -249,6 +241,23 @@
   justify-content: flex-start;
 }
  
+.spotlight-template-text23 {
+  font-size: 14px;
+  align-self: flex-start;
+  font-style: normal;
+  text-align: left;
+  font-family: "Lato";
+  font-weight: 300;
+  margin-bottom: var(--dl-space-space-halfunit);
+}
+ 
+.spotlight-template-text24 {
+  font-size: 14px;
+  align-self: flex-start;
+  text-align: left;
+  font-family: "Lato";
+}
+ 
 .spotlight-template-text25 {
   font-size: 14px;
   align-self: flex-start;
@@ -260,23 +269,6 @@
 }
  
 .spotlight-template-text26 {
-  font-size: 14px;
-  align-self: flex-start;
-  text-align: left;
-  font-family: "Lato";
-}
- 
-.spotlight-template-text27 {
-  font-size: 14px;
-  align-self: flex-start;
-  font-style: normal;
-  text-align: left;
-  font-family: "Lato";
-  font-weight: 300;
-  margin-bottom: var(--dl-space-space-halfunit);
-}
- 
-.spotlight-template-text28 {
   font-size: 14px;
   align-self: flex-start;
   font-style: normal;
@@ -318,6 +310,23 @@
   justify-content: flex-start;
 }
  
+.spotlight-template-text27 {
+  font-size: 14px;
+  align-self: flex-start;
+  font-style: normal;
+  text-align: left;
+  font-family: "Lato";
+  font-weight: 300;
+  margin-bottom: var(--dl-space-space-halfunit);
+}
+ 
+.spotlight-template-text28 {
+  font-size: 14px;
+  align-self: flex-start;
+  text-align: left;
+  font-family: "Lato";
+}
+ 
 .spotlight-template-text29 {
   font-size: 14px;
   align-self: flex-start;
@@ -331,27 +340,18 @@
 .spotlight-template-text30 {
   font-size: 14px;
   align-self: flex-start;
+  font-style: normal;
   text-align: left;
   font-family: "Lato";
+  font-weight: 300;
 }
  
 .spotlight-template-text31 {
-  font-size: 14px;
-  align-self: flex-start;
-  font-style: normal;
-  text-align: left;
-  font-family: "Lato";
-  font-weight: 300;
-  margin-bottom: var(--dl-space-space-halfunit);
+  display: inline-block;
 }
  
 .spotlight-template-text32 {
-  font-size: 14px;
-  align-self: flex-start;
-  font-style: normal;
-  text-align: left;
-  font-family: "Lato";
-  font-weight: 300;
+  display: inline-block;
 }
  
 .spotlight-template-text33 {
@@ -387,14 +387,6 @@
 }
  
 .spotlight-template-text41 {
-  display: inline-block;
-}
- 
-.spotlight-template-text42 {
-  display: inline-block;
-}
- 
-.spotlight-template-text43 {
   display: inline-block;
 }
  

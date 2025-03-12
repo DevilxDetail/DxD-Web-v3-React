@@ -2,10 +2,11 @@
   width: 100%;
   display: flex;
   position: relative;
+  min-height: 100vh;
   align-items: center;
   flex-direction: column;
-  padding-bottom: var(--dl-space-space-fiveunits);
-  background-color: #e7e7dd;
+  justify-content: space-between;
+  background-color: #292929;
 }
  
 .affinity-text10 {
@@ -27,13 +28,12 @@
 .affinity-text14 {
   display: inline-block;
 }
- 
-.affinity-text15 {
-  display: inline-block;
-}
- 
-.affinity-text16 {
-  display: inline-block;
+
+.affinity-text17 {
+  color: #ffffff;
+  font-family: "Lato";
+  margin-top: var(--dl-space-space-unit);
+  margin-bottom: var(--dl-space-space-unit);
 }
  
 .affinity-container2 {
@@ -53,6 +53,7 @@
   padding-top: var(--dl-space-space-unit);
   padding-left: 40px;
   padding-right: 40px;
+  padding-bottom: var(--dl-space-space-unit);
   justify-content: center;
 }
  
@@ -86,13 +87,9 @@
   grid-column-start: 1;
 }
  
-.affinity-text17 {
-  display: inline-block;
-}
- 
 .affinity-container4 {
   flex: 0 0 auto;
-  width: 90%;
+  width: 80%;
   display: flex;
   align-self: center;
   margin-top: 0px;
@@ -105,6 +102,7 @@
 }
  
 .affinity-text18 {
+  color: #ffffff;
   align-self: flex-start;
   text-align: left;
   font-family: "Lato";
@@ -112,6 +110,14 @@
  
 .affinity-link {
   text-decoration: underline;
+}
+ 
+.affinity-text28 {
+  display: inline-block;
+}
+ 
+.affinity-text29 {
+  display: inline-block;
 }
  
 .affinity-text30 {
@@ -147,14 +153,6 @@
 }
  
 .affinity-text38 {
-  display: inline-block;
-}
- 
-.affinity-text39 {
-  display: inline-block;
-}
- 
-.affinity-text40 {
   display: inline-block;
 }
  

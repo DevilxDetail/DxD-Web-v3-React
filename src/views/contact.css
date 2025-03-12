@@ -1,12 +1,12 @@
 .contact-container1 {
   width: 100%;
-  height: 100%;
   display: flex;
   position: relative;
+  min-height: 100vh;
   align-items: center;
   flex-direction: column;
-  padding-bottom: var(--dl-space-space-threeunits);
-  background-color: #e7e7dd;
+  justify-content: space-between;
+  background-color: #292929;
 }
  
 .contact-text10 {
@@ -32,18 +32,15 @@
 .contact-text15 {
   display: inline-block;
 }
- 
-.contact-text16 {
-  display: inline-block;
-}
- 
+
 .contact-text17 {
-  display: inline-block;
+  color: #ffffff;
+  font-family: "Lato";
 }
  
 .contact-container2 {
   flex: 0 0 auto;
-  width: 100%;
+  width: 80%;
   display: flex;
   position: relative;
   align-self: center;
@@ -69,11 +66,17 @@
 }
  
 .contact-text18 {
+  color: #ffffff;
   font-size: 18px;
   font-style: normal;
   font-family: "Lato";
   font-weight: 700;
   margin-bottom: var(--dl-space-space-halfunit);
+}
+
+.contact-text21 {
+  color: #ffffff;
+  font-family: "Lato";
 }
  
 .contact-link1 {
@@ -96,11 +99,17 @@
 }
  
 .contact-text24 {
+  color: #ffffff;
   font-size: 18px;
   font-style: normal;
   font-family: "Lato";
   font-weight: 700;
   margin-bottom: var(--dl-space-space-halfunit);
+}
+
+.contact-text27 {
+  color: #ffffff;
+  font-family: "Lato";
 }
  
 .contact-link2 {
@@ -123,15 +132,29 @@
 }
  
 .contact-text31 {
+  color: #ffffff;
   font-size: 18px;
   font-style: normal;
   font-family: "Lato";
   font-weight: 700;
   margin-bottom: var(--dl-space-space-halfunit);
 }
+
+.contact-text34 {
+  color: #ffffff;
+  font-family: "Lato";
+}
  
 .contact-link3 {
   text-decoration: underline;
+}
+ 
+.contact-text36 {
+  display: inline-block;
+}
+ 
+.contact-text37 {
+  display: inline-block;
 }
  
 .contact-text38 {
@@ -170,14 +193,6 @@
   display: inline-block;
 }
  
-.contact-text47 {
-  display: inline-block;
-}
- 
-.contact-text48 {
-  display: inline-block;
-}
- 
 @media(max-width: 767px) {
   .contact-container3 {
     padding-right: 20px;
@@ -192,6 +207,7 @@
  
 @media(max-width: 479px) {
   .contact-container2 {
+    width: 100%;
     align-self: center;
     flex-direction: column;
   }

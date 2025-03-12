@@ -2,10 +2,11 @@
   width: 100%;
   display: flex;
   position: relative;
+  min-height: 100vh;
   align-items: center;
   flex-direction: column;
-  padding-bottom: var(--dl-space-space-fiveunits);
-  background-color: #e7e7dd;
+  justify-content: space-between;
+  background-color: #292929;
 }
  
 .termsofservice-text100 {
@@ -31,13 +32,22 @@
 .termsofservice-text105 {
   display: inline-block;
 }
- 
-.termsofservice-text106 {
-  display: inline-block;
+
+/* Add styling for all text elements in the terms of service */
+.termsofservice-container3 span {
+  color: #ffffff;
+  font-size: 16px;
+  font-family: 'Noto Sans';
+  line-height: 1.5;
+  text-align: left;
 }
- 
-.termsofservice-text107 {
-  display: inline-block;
+
+.termsofservice-container3 h1, 
+.termsofservice-container3 h2, 
+.termsofservice-container3 h3 {
+  color: #ffffff;
+  font-family: 'STIX Two Text';
+  margin-bottom: 16px;
 }
  
 .termsofservice-container2 {
@@ -72,15 +82,30 @@
   justify-content: flex-start;
 }
  
-.termsofservice-text109 {
+.termsofservice-text106 {
+  color: #ffffff;
+}
+ 
+.termsofservice-text107 {
   font-family: "Lato";
 }
  
-.termsofservice-text110 {
+.termsofservice-text108 {
   font-size: 20px;
   font-style: normal;
   font-family: "Lato";
   font-weight: 700;
+}
+ 
+.termsofservice-text109 {
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.termsofservice-text110 {
+  font-family: "Lato";
 }
  
 .termsofservice-text111 {
@@ -91,11 +116,14 @@
 }
  
 .termsofservice-text112 {
+  font-size: 20px;
+  font-style: normal;
   font-family: "Lato";
+  font-weight: 700;
 }
  
 .termsofservice-text113 {
-  font-size: 20px;
+  font-size: 18px;
   font-style: normal;
   font-family: "Lato";
   font-weight: 700;
@@ -109,10 +137,7 @@
 }
  
 .termsofservice-text115 {
-  font-size: 18px;
-  font-style: normal;
   font-family: "Lato";
-  font-weight: 700;
 }
  
 .termsofservice-text116 {
@@ -122,22 +147,22 @@
   font-weight: 700;
 }
  
-.termsofservice-text117 {
+.termsofservice-text118 {
   font-family: "Lato";
 }
  
-.termsofservice-text118 {
+.termsofservice-text119 {
   font-size: 20px;
   font-style: normal;
   font-family: "Lato";
   font-weight: 700;
 }
  
-.termsofservice-text120 {
+.termsofservice-text121 {
   font-family: "Lato";
 }
  
-.termsofservice-text121 {
+.termsofservice-text122 {
   font-size: 20px;
   font-style: normal;
   font-family: "Lato";
@@ -145,11 +170,14 @@
 }
  
 .termsofservice-text123 {
+  font-size: 20px;
+  font-style: normal;
   font-family: "Lato";
+  font-weight: 700;
 }
  
 .termsofservice-text124 {
-  font-size: 20px;
+  font-size: 18px;
   font-style: normal;
   font-family: "Lato";
   font-weight: 700;
@@ -163,10 +191,7 @@
 }
  
 .termsofservice-text126 {
-  font-size: 18px;
-  font-style: normal;
   font-family: "Lato";
-  font-weight: 700;
 }
  
 .termsofservice-text127 {
@@ -187,22 +212,22 @@
   font-weight: 700;
 }
  
-.termsofservice-text130 {
+.termsofservice-text131 {
   font-family: "Lato";
 }
  
-.termsofservice-text131 {
+.termsofservice-text132 {
   font-size: 20px;
   font-style: normal;
   font-family: "Lato";
   font-weight: 700;
 }
  
-.termsofservice-text133 {
+.termsofservice-text134 {
   font-family: "Lato";
 }
  
-.termsofservice-text134 {
+.termsofservice-text135 {
   font-size: 20px;
   font-style: normal;
   font-family: "Lato";
@@ -210,14 +235,14 @@
 }
  
 .termsofservice-text136 {
-  font-family: "Lato";
-}
- 
-.termsofservice-text137 {
   font-size: 20px;
   font-style: normal;
   font-family: "Lato";
   font-weight: 700;
+}
+ 
+.termsofservice-text137 {
+  font-family: "Lato";
 }
  
 .termsofservice-text138 {
@@ -228,11 +253,14 @@
 }
  
 .termsofservice-text139 {
+  font-size: 20px;
+  font-style: normal;
   font-family: "Lato";
+  font-weight: 700;
 }
  
 .termsofservice-text140 {
-  font-size: 20px;
+  font-size: 18px;
   font-style: normal;
   font-family: "Lato";
   font-weight: 700;
@@ -245,47 +273,44 @@
   font-weight: 700;
 }
  
-.termsofservice-text142 {
-  font-size: 18px;
-  font-style: normal;
+.termsofservice-text143 {
   font-family: "Lato";
-  font-weight: 700;
 }
  
-.termsofservice-text143 {
+.termsofservice-text144 {
   font-size: 20px;
   font-style: normal;
   font-family: "Lato";
   font-weight: 700;
-}
- 
-.termsofservice-text145 {
-  font-family: "Lato";
 }
  
 .termsofservice-text146 {
+  font-family: "Lato";
+}
+ 
+.termsofservice-text147 {
   font-size: 20px;
   font-style: normal;
   font-family: "Lato";
   font-weight: 700;
-}
- 
-.termsofservice-text148 {
-  font-family: "Lato";
 }
  
 .termsofservice-text149 {
+  font-family: "Lato";
+}
+ 
+.termsofservice-text150 {
   font-size: 20px;
   font-style: normal;
   font-family: "Lato";
   font-weight: 700;
 }
  
-.termsofservice-text151 {
+.termsofservice-text152 {
   font-family: "Lato";
 }
  
-.termsofservice-text152 {
+.termsofservice-text153 {
   font-size: 20px;
   font-style: normal;
   font-family: "Lato";
@@ -293,11 +318,14 @@
 }
  
 .termsofservice-text154 {
+  font-size: 20px;
+  font-style: normal;
   font-family: "Lato";
+  font-weight: 700;
 }
  
 .termsofservice-text155 {
-  font-size: 20px;
+  font-size: 18px;
   font-style: normal;
   font-family: "Lato";
   font-weight: 700;
@@ -310,36 +338,33 @@
   font-weight: 700;
 }
  
-.termsofservice-text157 {
-  font-size: 18px;
-  font-style: normal;
+.termsofservice-text158 {
   font-family: "Lato";
-  font-weight: 700;
 }
  
-.termsofservice-text158 {
+.termsofservice-text159 {
   font-size: 20px;
   font-style: normal;
   font-family: "Lato";
   font-weight: 700;
-}
- 
-.termsofservice-text160 {
-  font-family: "Lato";
 }
  
 .termsofservice-text161 {
+  font-family: "Lato";
+}
+ 
+.termsofservice-text162 {
   font-size: 20px;
   font-style: normal;
   font-family: "Lato";
   font-weight: 700;
 }
  
-.termsofservice-text163 {
+.termsofservice-text164 {
   font-family: "Lato";
 }
  
-.termsofservice-text164 {
+.termsofservice-text165 {
   font-size: 20px;
   font-style: normal;
   font-family: "Lato";
@@ -347,11 +372,14 @@
 }
  
 .termsofservice-text166 {
+  font-size: 20px;
+  font-style: normal;
   font-family: "Lato";
+  font-weight: 700;
 }
  
 .termsofservice-text167 {
-  font-size: 20px;
+  font-size: 18px;
   font-style: normal;
   font-family: "Lato";
   font-weight: 700;
@@ -365,10 +393,7 @@
 }
  
 .termsofservice-text169 {
-  font-size: 18px;
-  font-style: normal;
   font-family: "Lato";
-  font-weight: 700;
 }
  
 .termsofservice-text170 {
@@ -379,11 +404,14 @@
 }
  
 .termsofservice-text171 {
+  font-size: 20px;
+  font-style: normal;
   font-family: "Lato";
+  font-weight: 700;
 }
  
 .termsofservice-text172 {
-  font-size: 20px;
+  font-size: 18px;
   font-style: normal;
   font-family: "Lato";
   font-weight: 700;
@@ -397,10 +425,7 @@
 }
  
 .termsofservice-text174 {
-  font-size: 18px;
-  font-style: normal;
   font-family: "Lato";
-  font-weight: 700;
 }
  
 .termsofservice-text175 {
@@ -411,11 +436,14 @@
 }
  
 .termsofservice-text176 {
+  font-size: 20px;
+  font-style: normal;
   font-family: "Lato";
+  font-weight: 700;
 }
  
 .termsofservice-text177 {
-  font-size: 20px;
+  font-size: 18px;
   font-style: normal;
   font-family: "Lato";
   font-weight: 700;
@@ -429,10 +457,7 @@
 }
  
 .termsofservice-text179 {
-  font-size: 18px;
-  font-style: normal;
   font-family: "Lato";
-  font-weight: 700;
 }
  
 .termsofservice-text180 {
@@ -443,11 +468,14 @@
 }
  
 .termsofservice-text181 {
+  font-size: 20px;
+  font-style: normal;
   font-family: "Lato";
+  font-weight: 700;
 }
  
 .termsofservice-text182 {
-  font-size: 20px;
+  font-size: 18px;
   font-style: normal;
   font-family: "Lato";
   font-weight: 700;
@@ -461,10 +489,7 @@
 }
  
 .termsofservice-text184 {
-  font-size: 18px;
-  font-style: normal;
   font-family: "Lato";
-  font-weight: 700;
 }
  
 .termsofservice-text185 {
@@ -475,11 +500,14 @@
 }
  
 .termsofservice-text186 {
+  font-size: 20px;
+  font-style: normal;
   font-family: "Lato";
+  font-weight: 700;
 }
  
 .termsofservice-text187 {
-  font-size: 20px;
+  font-size: 18px;
   font-style: normal;
   font-family: "Lato";
   font-weight: 700;
@@ -493,10 +521,7 @@
 }
  
 .termsofservice-text189 {
-  font-size: 18px;
-  font-style: normal;
   font-family: "Lato";
-  font-weight: 700;
 }
  
 .termsofservice-text190 {
@@ -507,11 +532,14 @@
 }
  
 .termsofservice-text191 {
+  font-size: 20px;
+  font-style: normal;
   font-family: "Lato";
+  font-weight: 700;
 }
  
 .termsofservice-text192 {
-  font-size: 20px;
+  font-size: 18px;
   font-style: normal;
   font-family: "Lato";
   font-weight: 700;
@@ -525,10 +553,7 @@
 }
  
 .termsofservice-text194 {
-  font-size: 18px;
-  font-style: normal;
   font-family: "Lato";
-  font-weight: 700;
 }
  
 .termsofservice-text195 {
@@ -539,11 +564,14 @@
 }
  
 .termsofservice-text196 {
+  font-size: 20px;
+  font-style: normal;
   font-family: "Lato";
+  font-weight: 700;
 }
  
 .termsofservice-text197 {
-  font-size: 20px;
+  font-size: 18px;
   font-style: normal;
   font-family: "Lato";
   font-weight: 700;
@@ -557,10 +585,7 @@
 }
  
 .termsofservice-text199 {
-  font-size: 18px;
-  font-style: normal;
   font-family: "Lato";
-  font-weight: 700;
 }
  
 .termsofservice-text200 {
@@ -571,11 +596,14 @@
 }
  
 .termsofservice-text201 {
+  font-size: 20px;
+  font-style: normal;
   font-family: "Lato";
+  font-weight: 700;
 }
  
 .termsofservice-text202 {
-  font-size: 20px;
+  font-size: 18px;
   font-style: normal;
   font-family: "Lato";
   font-weight: 700;
@@ -589,10 +617,7 @@
 }
  
 .termsofservice-text204 {
-  font-size: 18px;
-  font-style: normal;
   font-family: "Lato";
-  font-weight: 700;
 }
  
 .termsofservice-text205 {
@@ -603,10 +628,6 @@
 }
  
 .termsofservice-text206 {
-  font-family: "Lato";
-}
- 
-.termsofservice-text207 {
   font-size: 20px;
   font-style: normal;
   font-family: "Lato";
@@ -614,10 +635,11 @@
 }
  
 .termsofservice-text208 {
-  font-size: 20px;
-  font-style: normal;
-  font-family: "Lato";
-  font-weight: 700;
+  display: inline-block;
+}
+ 
+.termsofservice-text209 {
+  display: inline-block;
 }
  
 .termsofservice-text210 {
@@ -653,14 +675,6 @@
 }
  
 .termsofservice-text218 {
-  display: inline-block;
-}
- 
-.termsofservice-text219 {
-  display: inline-block;
-}
- 
-.termsofservice-text220 {
   display: inline-block;
 }
  

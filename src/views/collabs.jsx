@@ -1,58 +1,28 @@
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
-
 import { Helmet } from 'react-helmet'
 
 import Header from '../components/header'
 import CenterText from '../components/center-text'
-import Footer from '../components/footer'
+import ConsistentFooter from '../components/ConsistentFooter'
 import './collabs.css'
 
 const Collabs = (props) => {
   return (
     <div className="collabs-container10">
       <Helmet>
-        <title>collabs - exported project</title>
-        <meta property="og:title" content="collabs - exported project" />
+        <title>Collabs - DxD</title>
+        <meta property="og:title" content="Collabs - DxD" />
       </Helmet>
       <Header
         text={
           <Fragment>
-            <span className="collabs-text10">(Hey There)</span>
+            <span className="collabs-text10">About DxD</span>
           </Fragment>
         }
-        drops={
-          <Fragment>
-            <span className="collabs-text11">Drops</span>
-          </Fragment>
-        }
-        button={
-          <Fragment>
-            <span className="collabs-text12">CONNECT</span>
-          </Fragment>
-        }
-        aboutUs={
-          <Fragment>
-            <span className="collabs-text13">About Us</span>
-          </Fragment>
-        }
-        affinity={
-          <Fragment>
-            <span className="collabs-text14">Affinity</span>
-          </Fragment>
-        }
-        thoughts={
-          <Fragment>
-            <span className="collabs-text15">Thoughts</span>
-          </Fragment>
-        }
-        myAccount={
-          <Fragment>
-            <span className="collabs-text16">My Account</span>
-          </Fragment>
-        }
-        rootClassName="headerroot-class-name5"
-      ></Header>
+        iconBlackSrc="/icon%20-%20black-200h.png"
+        rootClassName="header-root-class-name13"
+      />
       <CenterText
         text={
           <Fragment>
@@ -60,7 +30,7 @@ const Collabs = (props) => {
           </Fragment>
         }
         rootClassName="center-textroot-class-name3"
-      ></CenterText>
+      />
       <div className="collabs-container11">
         <div className="collabs-container12">
           <div className="collabs-container13">
@@ -354,64 +324,7 @@ const Collabs = (props) => {
           </div>
         </div>
       </div>
-      <Footer
-        text={
-          <Fragment>
-            <span className="collabs-text36">© 2025 Devil x Detail</span>
-          </Fragment>
-        }
-        text1={
-          <Fragment>
-            <span className="collabs-text37">SOCIAL</span>
-          </Fragment>
-        }
-        text2={
-          <Fragment>
-            <span className="collabs-text38">Twitter (X)</span>
-          </Fragment>
-        }
-        text3={
-          <Fragment>
-            <span className="collabs-text39">Instagram</span>
-          </Fragment>
-        }
-        text4={
-          <Fragment>
-            <span className="collabs-text40">HELP</span>
-          </Fragment>
-        }
-        text5={
-          <Fragment>
-            <span className="collabs-text41">FAQ</span>
-          </Fragment>
-        }
-        text6={
-          <Fragment>
-            <span className="collabs-text42">Contact Us</span>
-          </Fragment>
-        }
-        text7={
-          <Fragment>
-            <span className="collabs-text43">COMPANY</span>
-          </Fragment>
-        }
-        text8={
-          <Fragment>
-            <span className="collabs-text44">Privacy Policy</span>
-          </Fragment>
-        }
-        text9={
-          <Fragment>
-            <span className="collabs-text45">Terms of Service</span>
-          </Fragment>
-        }
-        text91={
-          <Fragment>
-            <span className="collabs-text46">Affinity Token</span>
-          </Fragment>
-        }
-        rootClassName="footerroot-class-name4"
-      ></Footer>
+      <ConsistentFooter />
     </div>
   )
 }

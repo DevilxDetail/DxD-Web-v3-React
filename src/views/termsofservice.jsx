@@ -1,57 +1,27 @@
 import React, { Fragment } from 'react'
-
 import { Helmet } from 'react-helmet'
 
 import Header from '../components/header'
 import CenterText from '../components/center-text'
-import Footer from '../components/footer'
+import ConsistentFooter from '../components/ConsistentFooter'
 import './termsofservice.css'
 
 const Termsofservice = (props) => {
   return (
     <div className="termsofservice-container1">
       <Helmet>
-        <title>termsofservice - exported project</title>
-        <meta property="og:title" content="termsofservice - exported project" />
+        <title>Terms of Service - DxD</title>
+        <meta property="og:title" content="Terms of Service - DxD" />
       </Helmet>
       <Header
         text={
           <Fragment>
-            <span className="termsofservice-text100">(Hey There)</span>
+            <span className="termsofservice-text10">About DxD</span>
           </Fragment>
         }
-        drops={
-          <Fragment>
-            <span className="termsofservice-text101">Drops</span>
-          </Fragment>
-        }
-        button={
-          <Fragment>
-            <span className="termsofservice-text102">CONNECT</span>
-          </Fragment>
-        }
-        aboutUs={
-          <Fragment>
-            <span className="termsofservice-text103">About Us</span>
-          </Fragment>
-        }
-        affinity={
-          <Fragment>
-            <span className="termsofservice-text104">Affinity</span>
-          </Fragment>
-        }
-        thoughts={
-          <Fragment>
-            <span className="termsofservice-text105">Thoughts</span>
-          </Fragment>
-        }
-        myAccount={
-          <Fragment>
-            <span className="termsofservice-text106">My Account</span>
-          </Fragment>
-        }
-        rootClassName="headerroot-class-name3"
-      ></Header>
+        iconBlackSrc="/icon%20-%20black-200h.png"
+        rootClassName="header-root-class-name11"
+      />
       <CenterText
         text={
           <Fragment>
@@ -59,7 +29,7 @@ const Termsofservice = (props) => {
           </Fragment>
         }
         rootClassName="center-textroot-class-name"
-      ></CenterText>
+      />
       <div className="termsofservice-container2">
         <div className="termsofservice-container3">
           <div className="termsofservice-container4">
@@ -272,66 +242,7 @@ const Termsofservice = (props) => {
           </div>
         </div>
       </div>
-      <Footer
-        text={
-          <Fragment>
-            <span className="termsofservice-text210">
-              © 2025 Devil x Detail
-            </span>
-          </Fragment>
-        }
-        text1={
-          <Fragment>
-            <span className="termsofservice-text211">SOCIAL</span>
-          </Fragment>
-        }
-        text2={
-          <Fragment>
-            <span className="termsofservice-text212">Twitter (X)</span>
-          </Fragment>
-        }
-        text3={
-          <Fragment>
-            <span className="termsofservice-text213">Instagram</span>
-          </Fragment>
-        }
-        text4={
-          <Fragment>
-            <span className="termsofservice-text214">HELP</span>
-          </Fragment>
-        }
-        text5={
-          <Fragment>
-            <span className="termsofservice-text215">FAQ</span>
-          </Fragment>
-        }
-        text6={
-          <Fragment>
-            <span className="termsofservice-text216">Contact Us</span>
-          </Fragment>
-        }
-        text7={
-          <Fragment>
-            <span className="termsofservice-text217">COMPANY</span>
-          </Fragment>
-        }
-        text8={
-          <Fragment>
-            <span className="termsofservice-text218">Privacy Policy</span>
-          </Fragment>
-        }
-        text9={
-          <Fragment>
-            <span className="termsofservice-text219">Terms of Service</span>
-          </Fragment>
-        }
-        text91={
-          <Fragment>
-            <span className="termsofservice-text220">Affinity Token</span>
-          </Fragment>
-        }
-        rootClassName="footerroot-class-name2"
-      ></Footer>
+      <ConsistentFooter />
     </div>
   )
 }

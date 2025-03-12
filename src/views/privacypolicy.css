@@ -2,10 +2,11 @@
   width: 100%;
   display: flex;
   position: relative;
+  min-height: 100vh;
   align-items: center;
   flex-direction: column;
-  padding-bottom: var(--dl-space-space-fiveunits);
-  background-color: #e7e7dd;
+  justify-content: space-between;
+  background-color: #292929;
 }
  
 .privacypolicy-text100 {
@@ -31,13 +32,22 @@
 .privacypolicy-text105 {
   display: inline-block;
 }
- 
-.privacypolicy-text106 {
-  display: inline-block;
+
+/* Add styling for all text elements in the privacy policy */
+.privacypolicy-container3 span {
+  color: #ffffff;
+  font-size: 16px;
+  font-family: 'Noto Sans';
+  line-height: 1.5;
+  text-align: left;
 }
- 
-.privacypolicy-text107 {
-  display: inline-block;
+
+.privacypolicy-container3 h1, 
+.privacypolicy-container3 h2, 
+.privacypolicy-container3 h3 {
+  color: #ffffff;
+  font-family: 'STIX Two Text';
+  margin-bottom: 16px;
 }
  
 .privacypolicy-container2 {
@@ -71,6 +81,18 @@
   justify-content: flex-start;
 }
  
+.privacypolicy-text106 {
+  color: #ffffff;
+}
+ 
+.privacypolicy-text107 {
+  font-family: "Lato";
+}
+ 
+.privacypolicy-text108 {
+  font-family: "Lato";
+}
+ 
 .privacypolicy-text109 {
   font-family: "Lato";
 }
@@ -92,7 +114,10 @@
 }
  
 .privacypolicy-text114 {
+  font-size: 18px;
+  font-style: normal;
   font-family: "Lato";
+  font-weight: 700;
 }
  
 .privacypolicy-text115 {
@@ -100,10 +125,7 @@
 }
  
 .privacypolicy-text116 {
-  font-size: 18px;
-  font-style: normal;
   font-family: "Lato";
-  font-weight: 700;
 }
  
 .privacypolicy-text117 {
@@ -115,26 +137,22 @@
 }
  
 .privacypolicy-text119 {
+  font-style: normal;
   font-family: "Lato";
+  font-weight: 700;
 }
  
 .privacypolicy-text120 {
-  font-family: "Lato";
-}
- 
-.privacypolicy-text121 {
   font-style: normal;
   font-family: "Lato";
   font-weight: 700;
 }
  
 .privacypolicy-text122 {
-  font-style: normal;
   font-family: "Lato";
-  font-weight: 700;
 }
  
-.privacypolicy-text124 {
+.privacypolicy-text123 {
   font-family: "Lato";
 }
  
@@ -142,11 +160,15 @@
   font-family: "Lato";
 }
  
-.privacypolicy-text127 {
+.privacypolicy-text126 {
   font-family: "Lato";
 }
  
 .privacypolicy-text128 {
+  font-family: "Lato";
+}
+ 
+.privacypolicy-text129 {
   font-family: "Lato";
 }
  
@@ -155,26 +177,22 @@
 }
  
 .privacypolicy-text131 {
+  font-style: normal;
   font-family: "Lato";
+  font-weight: 700;
 }
  
 .privacypolicy-text132 {
-  font-family: "Lato";
-}
- 
-.privacypolicy-text133 {
   font-style: normal;
   font-family: "Lato";
   font-weight: 700;
 }
  
 .privacypolicy-text134 {
-  font-style: normal;
   font-family: "Lato";
-  font-weight: 700;
 }
  
-.privacypolicy-text136 {
+.privacypolicy-text135 {
   font-family: "Lato";
 }
  
@@ -182,11 +200,15 @@
   font-family: "Lato";
 }
  
-.privacypolicy-text139 {
+.privacypolicy-text138 {
   font-family: "Lato";
 }
  
 .privacypolicy-text140 {
+  font-family: "Lato";
+}
+ 
+.privacypolicy-text141 {
   font-family: "Lato";
 }
  
@@ -195,23 +217,23 @@
 }
  
 .privacypolicy-text143 {
+  font-style: normal;
   font-family: "Lato";
+  font-weight: 700;
 }
  
 .privacypolicy-text144 {
+  font-style: normal;
   font-family: "Lato";
+  font-weight: 700;
 }
  
 .privacypolicy-text145 {
-  font-style: normal;
   font-family: "Lato";
-  font-weight: 700;
 }
  
 .privacypolicy-text146 {
-  font-style: normal;
   font-family: "Lato";
-  font-weight: 700;
 }
  
 .privacypolicy-text147 {
@@ -219,7 +241,10 @@
 }
  
 .privacypolicy-text148 {
+  font-size: 18px;
+  font-style: normal;
   font-family: "Lato";
+  font-weight: 700;
 }
  
 .privacypolicy-text149 {
@@ -227,10 +252,7 @@
 }
  
 .privacypolicy-text150 {
-  font-size: 18px;
-  font-style: normal;
   font-family: "Lato";
-  font-weight: 700;
 }
  
 .privacypolicy-text151 {
@@ -241,15 +263,11 @@
   font-family: "Lato";
 }
  
-.privacypolicy-text153 {
-  font-family: "Lato";
-}
- 
 .privacypolicy-text154 {
   font-family: "Lato";
 }
  
-.privacypolicy-text156 {
+.privacypolicy-text155 {
   font-family: "Lato";
 }
  
@@ -257,7 +275,7 @@
   font-family: "Lato";
 }
  
-.privacypolicy-text159 {
+.privacypolicy-text158 {
   font-family: "Lato";
 }
  
@@ -265,7 +283,7 @@
   font-family: "Lato";
 }
  
-.privacypolicy-text162 {
+.privacypolicy-text161 {
   font-family: "Lato";
 }
  
@@ -273,11 +291,15 @@
   font-family: "Lato";
 }
  
-.privacypolicy-text165 {
+.privacypolicy-text164 {
   font-family: "Lato";
 }
  
 .privacypolicy-text166 {
+  font-family: "Lato";
+}
+ 
+.privacypolicy-text167 {
   font-family: "Lato";
 }
  
@@ -286,7 +308,10 @@
 }
  
 .privacypolicy-text169 {
+  font-size: 18px;
+  font-style: normal;
   font-family: "Lato";
+  font-weight: 700;
 }
  
 .privacypolicy-text170 {
@@ -294,10 +319,7 @@
 }
  
 .privacypolicy-text171 {
-  font-size: 18px;
-  font-style: normal;
   font-family: "Lato";
-  font-weight: 700;
 }
  
 .privacypolicy-text172 {
@@ -308,15 +330,11 @@
   font-family: "Lato";
 }
  
-.privacypolicy-text174 {
-  font-family: "Lato";
-}
- 
 .privacypolicy-text175 {
   font-family: "Lato";
 }
  
-.privacypolicy-text177 {
+.privacypolicy-text176 {
   font-family: "Lato";
 }
  
@@ -324,11 +342,15 @@
   font-family: "Lato";
 }
  
-.privacypolicy-text180 {
+.privacypolicy-text179 {
   font-family: "Lato";
 }
  
 .privacypolicy-text181 {
+  font-family: "Lato";
+}
+ 
+.privacypolicy-text182 {
   font-family: "Lato";
 }
  
@@ -337,41 +359,41 @@
 }
  
 .privacypolicy-text184 {
-  font-family: "Lato";
-}
- 
-.privacypolicy-text185 {
-  font-family: "Lato";
-}
- 
-.privacypolicy-text186 {
   font-size: 18px;
   font-style: normal;
   font-family: "Lato";
   font-weight: 700;
 }
  
-.privacypolicy-text187 {
+.privacypolicy-text185 {
   font-size: 18px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+}
+ 
+.privacypolicy-text186 {
+  font-family: "Lato";
+}
+ 
+.privacypolicy-text187 {
   font-style: normal;
   font-family: "Lato";
   font-weight: 700;
 }
  
 .privacypolicy-text188 {
+  font-style: normal;
   font-family: "Lato";
+  font-weight: 700;
 }
  
 .privacypolicy-text189 {
-  font-style: normal;
   font-family: "Lato";
-  font-weight: 700;
 }
  
 .privacypolicy-text190 {
-  font-style: normal;
   font-family: "Lato";
-  font-weight: 700;
 }
  
 .privacypolicy-text191 {
@@ -379,23 +401,23 @@
 }
  
 .privacypolicy-text192 {
+  font-style: normal;
   font-family: "Lato";
+  font-weight: 700;
 }
  
 .privacypolicy-text193 {
+  font-style: normal;
   font-family: "Lato";
+  font-weight: 700;
 }
  
 .privacypolicy-text194 {
-  font-style: normal;
   font-family: "Lato";
-  font-weight: 700;
 }
  
 .privacypolicy-text195 {
-  font-style: normal;
   font-family: "Lato";
-  font-weight: 700;
 }
  
 .privacypolicy-text196 {
@@ -403,23 +425,23 @@
 }
  
 .privacypolicy-text197 {
+  font-style: normal;
   font-family: "Lato";
+  font-weight: 700;
 }
  
 .privacypolicy-text198 {
+  font-style: normal;
   font-family: "Lato";
+  font-weight: 700;
 }
  
 .privacypolicy-text199 {
-  font-style: normal;
   font-family: "Lato";
-  font-weight: 700;
 }
  
 .privacypolicy-text200 {
-  font-style: normal;
   font-family: "Lato";
-  font-weight: 700;
 }
  
 .privacypolicy-text201 {
@@ -427,7 +449,10 @@
 }
  
 .privacypolicy-text202 {
+  font-size: 18px;
+  font-style: normal;
   font-family: "Lato";
+  font-weight: 700;
 }
  
 .privacypolicy-text203 {
@@ -435,10 +460,7 @@
 }
  
 .privacypolicy-text204 {
-  font-size: 18px;
-  font-style: normal;
   font-family: "Lato";
-  font-weight: 700;
 }
  
 .privacypolicy-text205 {
@@ -450,7 +472,10 @@
 }
  
 .privacypolicy-text207 {
+  font-size: 18px;
+  font-style: normal;
   font-family: "Lato";
+  font-weight: 700;
 }
  
 .privacypolicy-text208 {
@@ -458,10 +483,7 @@
 }
  
 .privacypolicy-text209 {
-  font-size: 18px;
-  font-style: normal;
   font-family: "Lato";
-  font-weight: 700;
 }
  
 .privacypolicy-text210 {
@@ -473,7 +495,10 @@
 }
  
 .privacypolicy-text212 {
+  font-size: 18px;
+  font-style: normal;
   font-family: "Lato";
+  font-weight: 700;
 }
  
 .privacypolicy-text213 {
@@ -481,10 +506,7 @@
 }
  
 .privacypolicy-text214 {
-  font-size: 18px;
-  font-style: normal;
   font-family: "Lato";
-  font-weight: 700;
 }
  
 .privacypolicy-text215 {
@@ -496,7 +518,10 @@
 }
  
 .privacypolicy-text217 {
+  font-size: 18px;
+  font-style: normal;
   font-family: "Lato";
+  font-weight: 700;
 }
  
 .privacypolicy-text218 {
@@ -504,10 +529,7 @@
 }
  
 .privacypolicy-text219 {
-  font-size: 18px;
-  font-style: normal;
   font-family: "Lato";
-  font-weight: 700;
 }
  
 .privacypolicy-text220 {
@@ -518,12 +540,12 @@
   font-family: "Lato";
 }
  
-.privacypolicy-text222 {
-  font-family: "Lato";
+.privacypolicy-text223 {
+  display: inline-block;
 }
  
-.privacypolicy-text223 {
-  font-family: "Lato";
+.privacypolicy-text224 {
+  display: inline-block;
 }
  
 .privacypolicy-text225 {
@@ -559,14 +581,6 @@
 }
  
 .privacypolicy-text233 {
-  display: inline-block;
-}
- 
-.privacypolicy-text234 {
-  display: inline-block;
-}
- 
-.privacypolicy-text235 {
   display: inline-block;
 }
  

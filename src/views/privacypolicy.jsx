@@ -1,57 +1,27 @@
 import React, { Fragment } from 'react'
-
 import { Helmet } from 'react-helmet'
 
 import Header from '../components/header'
 import CenterText from '../components/center-text'
-import Footer from '../components/footer'
+import ConsistentFooter from '../components/ConsistentFooter'
 import './privacypolicy.css'
 
 const Privacypolicy = (props) => {
   return (
     <div className="privacypolicy-container1">
       <Helmet>
-        <title>privacypolicy - exported project</title>
-        <meta property="og:title" content="privacypolicy - exported project" />
+        <title>Privacy Policy - DxD</title>
+        <meta property="og:title" content="Privacy Policy - DxD" />
       </Helmet>
       <Header
         text={
           <Fragment>
-            <span className="privacypolicy-text100">(Hey There)</span>
+            <span className="privacypolicy-text10">About DxD</span>
           </Fragment>
         }
-        drops={
-          <Fragment>
-            <span className="privacypolicy-text101">Drops</span>
-          </Fragment>
-        }
-        button={
-          <Fragment>
-            <span className="privacypolicy-text102">CONNECT</span>
-          </Fragment>
-        }
-        aboutUs={
-          <Fragment>
-            <span className="privacypolicy-text103">About Us</span>
-          </Fragment>
-        }
-        affinity={
-          <Fragment>
-            <span className="privacypolicy-text104">Affinity</span>
-          </Fragment>
-        }
-        thoughts={
-          <Fragment>
-            <span className="privacypolicy-text105">Thoughts</span>
-          </Fragment>
-        }
-        myAccount={
-          <Fragment>
-            <span className="privacypolicy-text106">My Account</span>
-          </Fragment>
-        }
-        rootClassName="headerroot-class-name"
-      ></Header>
+        iconBlackSrc="/icon%20-%20black-200h.png"
+        rootClassName="header-root-class-name10"
+      />
       <CenterText
         text={
           <Fragment>
@@ -59,7 +29,7 @@ const Privacypolicy = (props) => {
           </Fragment>
         }
         rootClassName="center-textroot-class-name2"
-      ></CenterText>
+      />
       <div className="privacypolicy-container2">
         <div className="privacypolicy-container3">
           <div className="privacypolicy-container4">
@@ -293,7 +263,7 @@ const Privacypolicy = (props) => {
               <br className="privacypolicy-text220"></br>
               <span className="privacypolicy-text221">
                 If you have any questions or concerns about this Privacy Policy
-                or our practices, please contact us at: 
+                or our practices, please contact us at: 
               </span>
               <span className="privacypolicy-text222">
                 hello@devilxdetail.com
@@ -304,64 +274,7 @@ const Privacypolicy = (props) => {
           </div>
         </div>
       </div>
-      <Footer
-        text={
-          <Fragment>
-            <span className="privacypolicy-text225">© 2025 Devil x Detail</span>
-          </Fragment>
-        }
-        text1={
-          <Fragment>
-            <span className="privacypolicy-text226">SOCIAL</span>
-          </Fragment>
-        }
-        text2={
-          <Fragment>
-            <span className="privacypolicy-text227">Twitter (X)</span>
-          </Fragment>
-        }
-        text3={
-          <Fragment>
-            <span className="privacypolicy-text228">Instagram</span>
-          </Fragment>
-        }
-        text4={
-          <Fragment>
-            <span className="privacypolicy-text229">HELP</span>
-          </Fragment>
-        }
-        text5={
-          <Fragment>
-            <span className="privacypolicy-text230">FAQ</span>
-          </Fragment>
-        }
-        text6={
-          <Fragment>
-            <span className="privacypolicy-text231">Contact Us</span>
-          </Fragment>
-        }
-        text7={
-          <Fragment>
-            <span className="privacypolicy-text232">COMPANY</span>
-          </Fragment>
-        }
-        text8={
-          <Fragment>
-            <span className="privacypolicy-text233">Privacy Policy</span>
-          </Fragment>
-        }
-        text9={
-          <Fragment>
-            <span className="privacypolicy-text234">Terms of Service</span>
-          </Fragment>
-        }
-        text91={
-          <Fragment>
-            <span className="privacypolicy-text235">Affinity Token</span>
-          </Fragment>
-        }
-        rootClassName="footerroot-class-name6"
-      ></Footer>
+      <ConsistentFooter />
     </div>
   )
 }
