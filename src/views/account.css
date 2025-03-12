@@ -1,0 +1,467 @@
+.account-container1 {
+  width: 100%;
+  display: flex;
+  position: relative;
+  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: #292929;
+}
+ 
+.account-text10 {
+  display: inline-block;
+}
+ 
+.account-text11 {
+  display: inline-block;
+}
+ 
+.account-text12 {
+  display: inline-block;
+}
+ 
+.account-text13 {
+  display: inline-block;
+}
+ 
+.account-text14 {
+  display: inline-block;
+}
+ 
+.account-container2 {
+  flex: 0 0 auto;
+  width: 100%;
+  display: flex;
+  align-self: flex-start;
+  margin-top: var(--dl-space-space-unit);
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-bottom: var(--dl-space-space-threeunits);
+  padding-left: 80px;
+}
+ 
+.account-image {
+  width: 140px;
+  object-fit: cover;
+  border-radius: var(--dl-radius-radius-round);
+  margin-bottom: var(--dl-space-space-twounits);
+}
+ 
+.account-container3 {
+  flex: 0 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: var(--dl-space-space-unit);
+  flex-direction: column;
+}
+ 
+.account-text15 {
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+  margin-bottom: var(--dl-space-space-unit);
+}
+ 
+.account-textinput1 {
+  color: #000000;
+  width: 100%;
+  font-family: "Lato";
+  border-width: 0px;
+  border-radius: 0px;
+  background-color: #ffffff;
+}
+ 
+.account-container4 {
+  flex: 0 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+ 
+.account-text16 {
+  color: rgb(255, 255, 255);
+  font-size: 18px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+  margin-bottom: var(--dl-space-space-halfunit);
+}
+ 
+.account-textinput2 {
+  color: #000000;
+  width: 100%;
+  font-family: "Lato";
+  border-width: 0px;
+  border-radius: 0px;
+  background-color: #ffffff;
+}
+ 
+.account-container5 {
+  flex: 0 0 auto;
+  width: 40%;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: var(--dl-space-space-twounits);
+  flex-direction: column;
+}
+ 
+.account-text17 {
+  color: #ffffff;
+  font-family: "Lato";
+  margin-bottom: var(--dl-space-space-unit);
+}
+ 
+.account-textinput3 {
+  color: #000000;
+  width: 100%;
+  font-family: "Lato";
+  border-width: 0px;
+  border-radius: 0px;
+  background-color: #ffffff;
+}
+ 
+.account-container6 {
+  flex: 0 0 auto;
+  width: 40%;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: var(--dl-space-space-threeunits);
+  flex-direction: column;
+}
+ 
+.account-text18 {
+  color: rgb(255, 255, 255);
+  font-size: 18px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+  margin-bottom: var(--dl-space-space-halfunit);
+}
+ 
+.account-textinput4 {
+  color: #000000;
+  width: 100%;
+  font-family: "Lato";
+  border-width: 0px;
+  border-radius: 0px;
+  background-color: #ffffff;
+}
+ 
+.account-button {
+  color: #ffffff;
+  padding: 12px 24px;
+  font-size: 16px;
+  transition: 0.3s;
+  font-family: "Lato";
+  font-weight: 600;
+  border-width: 0px;
+  border-radius: 4px;
+  background-color: #b50000;
+}
+ 
+.account-button:hover {
+  color: #ffffff;
+  background-color: #7b0000;
+}
+ 
+.account-text20 {
+  display: inline-block;
+}
+ 
+.account-text21 {
+  display: inline-block;
+}
+ 
+.account-text22 {
+  display: inline-block;
+}
+ 
+.account-text23 {
+  display: inline-block;
+}
+ 
+.account-text24 {
+  display: inline-block;
+}
+ 
+.account-text25 {
+  display: inline-block;
+}
+ 
+.account-text26 {
+  display: inline-block;
+}
+ 
+.account-text27 {
+  display: inline-block;
+}
+ 
+.account-text28 {
+  display: inline-block;
+}
+ 
+.account-text29 {
+  display: inline-block;
+}
+ 
+.account-text30 {
+  display: inline-block;
+}
+ 
+/* Login container styles */
+.account-login-container {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  padding: var(--dl-space-space-twounits);
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: #333;
+  border-radius: 4px;
+  margin-bottom: var(--dl-space-space-threeunits);
+}
+
+.account-login-text {
+  color: #ffffff;
+  font-size: 24px;
+  text-align: left;
+  font-family: "Lato";
+  margin-bottom: var(--dl-space-space-twounits);
+}
+
+/* Profile section styles */
+.account-profile-section {
+  width: 100%;
+  display: flex;
+  padding: var(--dl-space-space-unit);
+  background-color: #333;
+  border-radius: 4px;
+  margin-bottom: var(--dl-space-space-twounits);
+  flex-direction: column;
+}
+
+.account-info-row {
+  width: 100%;
+  display: flex;
+  padding: var(--dl-space-space-halfunit) 0;
+  align-items: center;
+  border-bottom: 1px solid #444;
+}
+
+.account-info-label {
+  color: #ffffff;
+  font-size: 16px;
+  font-style: normal;
+  font-family: "Lato";
+  font-weight: 700;
+  margin-right: var(--dl-space-space-unit);
+  width: 80px;
+}
+
+.account-info-value {
+  color: #ffffff;
+  font-size: 16px;
+  font-family: "Lato";
+  flex: 1;
+}
+
+/* Form styles */
+.account-form {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--dl-space-space-twounits);
+  max-width: 480px;
+  padding: 20px 40px 40px 0;
+}
+
+.account-profile-picture {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-bottom: var(--dl-space-space-twounits);
+}
+
+.account-avatar-container {
+  width: 144px;
+  height: 144px;
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  border-radius: 50%;
+  justify-content: center;
+  background-color: #e0e0e0;
+}
+
+.account-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.account-form-field {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+}
+
+.account-label {
+  color: #ffffff;
+  font-size: 18px;
+  font-family: "Lato";
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.account-input {
+  color: #333333;
+  width: 100%;
+  height: 40px;
+  padding: 0 16px;
+  font-size: 14px;
+  font-family: "Lato";
+  border-width: 0;
+  border-radius: 0;
+  background-color: #ffffff;
+}
+
+.account-input::placeholder {
+  color: #999999;
+}
+
+.account-address-hint {
+  color: #cccccc;
+  font-size: 12px;
+  margin-top: 4px;
+  font-family: "Lato";
+}
+
+.account-form-actions {
+  display: flex;
+  margin-top: var(--dl-space-space-twounits);
+}
+
+.account-save-button {
+  color: #ffffff;
+  width: 96px;
+  height: 40px;
+  display: flex;
+  font-size: 14px;
+  align-items: center;
+  font-family: "Lato";
+  font-weight: 700;
+  border-width: 0;
+  justify-content: center;
+  background-color: #b50000;
+  cursor: pointer;
+  transition: 0.3s;
+  text-transform: uppercase;
+}
+
+.account-save-button:hover {
+  background-color: #7b0000;
+}
+
+/* Keep these for compatibility */
+.account-text17 {
+  color: #ffffff;
+  font-family: "Lato";
+  margin-bottom: var(--dl-space-space-unit);
+}
+
+/* Media queries */
+@media(max-width: 991px) {
+  .account-container2 {
+    width: 100%;
+    padding-left: 60px;
+  }
+  
+  .account-form {
+    padding: 15px 30px 30px 0;
+  }
+}
+ 
+@media(max-width: 767px) {
+  .account-container2 {
+    width: 100%;
+    align-self: flex-start;
+    margin-top: 10px;
+    padding-left: 40px;
+    padding-right: 20px;
+    flex-direction: column;
+  }
+  
+  .account-avatar-container {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .account-form {
+    padding: 10px 0 20px 0;
+  }
+  
+  .account-info-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .account-info-label {
+    margin-bottom: 4px;
+  }
+}
+ 
+@media(max-width: 479px) {
+  .account-container2 {
+    padding-left: 20px;
+    padding-right: 15px;
+    margin-top: 5px;
+  }
+  
+  .account-login-text {
+    font-size: 20px;
+  }
+  
+  .account-avatar-container {
+    width: 96px;
+    height: 96px;
+  }
+  
+  .account-label {
+    font-size: 14px;
+  }
+  
+  .account-input {
+    height: 36px;
+    font-size: 12px;
+  }
+  
+  .account-form {
+    padding: 5px 0 15px 0;
+  }
+}
+
+.account-input-error {
+  border: 1px solid #b50000 !important;
+  background-color: rgba(181, 0, 0, 0.05) !important;
+}
+
+.account-error-message {
+  color: #b50000;
+  font-size: 12px;
+  margin-top: 4px;
+  font-family: "Lato";
+}
+
+.account-input-hint {
+  color: #cccccc;
+  font-size: 12px;
+  margin-top: 4px;
+  font-family: "Lato";
+}
