@@ -7,9 +7,13 @@ export default defineConfig({
     port: 3000, // Match CRA's default port
   },
   build: {
-    target: 'esnext',
+    outDir: "dist",
+    assetsDir: "assets",
     rollupOptions: {
-      external: ['@rollup/rollup-darwin-arm64'],
+      output: {
+        manualChunks: undefined,
+      },
     },
   },
+  base: "./",
 });
