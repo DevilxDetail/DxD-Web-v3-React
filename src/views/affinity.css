@@ -31,9 +31,17 @@
 
 .affinity-text17 {
   color: #ffffff;
-  font-family: "Lato";
+  font-family: 'Marcellus', serif;
+  font-weight: 400;
+  font-size: 26px;
   margin-top: var(--dl-space-space-unit);
   margin-bottom: var(--dl-space-space-unit);
+}
+
+.center-text.center-textroot-class-name8 {
+  font-family: 'Marcellus', serif;
+  font-weight: 400;
+  font-size: 26px;
 }
  
 .affinity-container2 {

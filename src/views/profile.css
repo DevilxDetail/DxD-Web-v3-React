@@ -50,12 +50,19 @@
   margin-bottom: 0px;
   flex-direction: row;
   justify-content: flex-start;
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 20px;
+  border-radius: 10px;
 }
  
 .profile-image {
-  width: 140px;
+  width: 150px;
+  height: 150px;
   object-fit: cover;
-  border-radius: var(--dl-radius-radius-round);
+  border-radius: 75px;
+  margin-right: 20px;
 }
  
 .profile-container4 {
@@ -65,17 +72,23 @@
   align-items: flex-start;
   margin-left: var(--dl-space-space-twounits);
   flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
  
 .profile-text15 {
-  color: rgb(255, 255, 255);
+  color: white;
   font-size: 24px;
-  padding-bottom: var(--dl-space-space-halfunit);
+  font-weight: 600;
+  margin-bottom: 10px;
 }
  
 .profile-text16 {
-  color: rgb(255, 255, 255);
-  padding-bottom: var(--dl-space-space-halfunit);
+  color: #cccccc;
+  font-size: 16px;
+  font-family: monospace;
+  margin-bottom: 5px;
 }
  
 .profile-container5 {
@@ -93,10 +106,8 @@
 }
  
 .profile-text17 {
-  color: rgb(255, 255, 255);
-  font-size: 26px;
-  align-self: flex-start;
-  font-family: "Marcellus";
+  color: #cccccc;
+  font-size: 16px;
 }
  
 .profile-container6 {
@@ -160,18 +171,28 @@
 }
  
 .profile-button {
+  padding: 12px 24px;
+  background-color: #676FFF;
   color: white;
   border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  margin-top: 20px;
-  background-color: #b50000;
+  border-radius: 6px;
   cursor: pointer;
-  border-radius: 4px;
+  font-size: 16px;
+  transition: background-color 0.3s;
 }
 
 .profile-button:hover {
-  background-color: #8e0000;
+  background-color: #5158cc;
+}
+
+.profile-edit-icon {
+  color: #676FFF;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.profile-edit-icon:hover {
+  color: #5158cc;
 }
  
 @media(max-width: 1600px) {

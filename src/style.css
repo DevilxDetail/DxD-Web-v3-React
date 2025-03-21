@@ -1,6 +1,6 @@
 /* Global styles for fixed header and footer */
 [class$="-container1"] {
-  padding-top: 100px !important; /* Increased from 80px to ensure enough space */
+  padding-top: 60px !important; /* Increased from 80px to ensure enough space */
   display: flex !important;
   min-height: 100vh !important;
   flex-direction: column !important;

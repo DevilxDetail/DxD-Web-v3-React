@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Marcellus&display=swap');
+
+.center-text {
+  font-family: 'Marcellus', serif;
+  font-weight: 400;
+  font-size: 26px;
+  text-align: center;
+}
+
+.center-text.center-textroot-class-name {
+  font-family: 'Marcellus', serif;
+  font-weight: 400;
+  font-size: 26px;
+} 

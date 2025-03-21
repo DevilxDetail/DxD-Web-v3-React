@@ -101,7 +101,7 @@ const Footer = (props) => {
           <span className="footer-text14">
             {props.text11 ?? (
               <Fragment>
-                <span>© 2024 DxD. All rights reserved.</span>
+                <span>© 2025 Devil x Detail</span>
               </Fragment>
             )}
           </span>

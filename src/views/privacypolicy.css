@@ -86,7 +86,11 @@
 }
  
 .privacypolicy-text107 {
-  font-family: "Lato";
+  color: #ffffff;
+  font-family: 'Marcellus', serif;
+  font-weight: 400;
+  font-size: 26px;
+  margin-bottom: var(--dl-space-space-unit);
 }
  
 .privacypolicy-text108 {
@@ -601,4 +605,10 @@
   .privacypolicy-container4 {
     padding-right: 20px;
   }
+}
+
+.center-text.center-textroot-class-name2 {
+  font-family: 'Marcellus', serif;
+  font-weight: 400;
+  font-size: 26px;
 }

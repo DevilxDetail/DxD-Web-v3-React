@@ -33,21 +33,35 @@
   display: inline-block;
 }
 
-/* Add styling for all text elements in the terms of service */
-.termsofservice-container3 span {
+/* Update all text elements in the terms of service container */
+.termsofservice-container2 span,
+.termsofservice-container3 span,
+.termsofservice-container4 span {
   color: #ffffff;
   font-size: 16px;
-  font-family: 'Noto Sans';
+  font-family: "Lato";
+  font-weight: 400;
   line-height: 1.5;
   text-align: left;
 }
 
+/* Remove the bold styling from headings */
 .termsofservice-container3 h1, 
 .termsofservice-container3 h2, 
 .termsofservice-container3 h3 {
   color: #ffffff;
-  font-family: 'STIX Two Text';
+  font-family: "Lato";
+  font-weight: 400;
   margin-bottom: 16px;
+}
+
+/* Keep the title styling */
+.termsofservice-text107 {
+  color: #ffffff;
+  font-family: 'Marcellus', serif;
+  font-weight: 400;
+  font-size: 26px;
+  margin-bottom: var(--dl-space-space-unit);
 }
  
 .termsofservice-container2 {
@@ -84,10 +98,6 @@
  
 .termsofservice-text106 {
   color: #ffffff;
-}
- 
-.termsofservice-text107 {
-  font-family: "Lato";
 }
  
 .termsofservice-text108 {
@@ -695,4 +705,10 @@
   .termsofservice-container4 {
     padding-right: 20px;
   }
+}
+
+.center-text.center-textroot-class-name {
+  font-family: 'Marcellus', serif;
+  font-weight: 400;
+  font-size: 26px;
 }

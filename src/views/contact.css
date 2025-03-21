@@ -35,7 +35,16 @@
 
 .contact-text17 {
   color: #ffffff;
-  font-family: "Lato";
+  font-family: 'Marcellus', serif;
+  font-weight: 400;
+  font-size: 26px;
+  margin-bottom: var(--dl-space-space-unit);
+}
+
+.center-text.center-textroot-class-name2 {
+  font-family: 'Marcellus', serif;
+  font-weight: 400;
+  font-size: 26px;
 }
  
 .contact-container2 {

@@ -4,12 +4,19 @@
   "private": true,
   "dependencies": {
     "@privy-io/react-auth": "^2.4.4",
+    "@supabase/supabase-js": "^2.49.1",
+    "@thirdweb-dev/chains": "^0.1.120",
+    "@thirdweb-dev/react": "^4.9.4",
+    "@thirdweb-dev/sdk": "^4.0.99",
+    "ethers": "^5.7.2",
     "next": "^12.1.10",
     "prop-types": "15.7.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "thirdweb": "^5.92.1",
+    "web3": "^4.16.0"
   },
   "scripts": {
     "dev": "vite",
