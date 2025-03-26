@@ -4,7 +4,7 @@
   position: relative;
   align-items: center;
   flex-direction: column;
-  padding-bottom: var(--dl-space-space-fiveunits);
+  padding-bottom: var(--dl-layout-space-fiveunits);
   background-color: #292929;
 }
  
@@ -40,29 +40,24 @@
  
 .profile-container3 {
   flex: 0 0 auto;
-  width: 80%;
+  width: 90%;
   display: flex;
   align-self: center;
-  margin-top: var(--dl-space-space-threeunits);
+  margin-top: 20px;
   align-items: flex-end;
   margin-left: 40px;
   margin-right: 40px;
-  margin-bottom: 0px;
+  margin-bottom: 20px;
   flex-direction: row;
   justify-content: flex-start;
-  display: flex;
-  align-items: center;
-  margin-bottom: 30px;
-  padding: 20px;
-  border-radius: 10px;
 }
  
 .profile-image {
-  width: 150px;
-  height: 150px;
+  width: 140px;
   object-fit: cover;
-  border-radius: 75px;
+  border-radius: 50%;
   margin-right: 20px;
+  margin-bottom: 20px;
 }
  
 .profile-container4 {
@@ -70,25 +65,24 @@
   display: flex;
   align-self: flex-start;
   align-items: flex-start;
-  margin-left: var(--dl-space-space-twounits);
+  margin-left: var(--dl-layout-space-twounits);
+  margin-bottom: var(--dl-layout-space-unit);
   flex-direction: column;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
  
 .profile-text15 {
-  color: white;
+  color: rgb(255, 255, 255);
   font-size: 24px;
-  font-weight: 600;
-  margin-bottom: 10px;
+  font-family: "Lato";
+  padding-bottom: var(--dl-layout-space-halfunit);
+  margin-bottom: var(--dl-layout-space-halfunit);
 }
  
 .profile-text16 {
-  color: #cccccc;
-  font-size: 16px;
-  font-family: monospace;
-  margin-bottom: 5px;
+  color: rgb(255, 255, 255);
+  font-family: "Lato";
+  padding-bottom: var(--dl-layout-space-halfunit);
+  margin-bottom: var(--dl-layout-space-halfunit);
 }
  
 .profile-container5 {
@@ -96,18 +90,21 @@
   width: 90%;
   display: flex;
   align-self: center;
-  margin-top: var(--dl-space-space-threeunits);
+  margin-top: var(--dl-layout-space-threeunits);
   align-items: flex-end;
   margin-left: 40px;
   margin-right: 40px;
-  margin-bottom: 0px;
+  margin-bottom: var(--dl-layout-space-twounits);
   flex-direction: row;
   justify-content: space-between;
 }
  
 .profile-text17 {
-  color: #cccccc;
-  font-size: 16px;
+  color: rgb(255, 255, 255);
+  font-size: 26px;
+  margin-bottom: 20px;
+  font-family: "Marcellus";
+  align-self: flex-start;
 }
  
 .profile-container6 {
@@ -116,7 +113,7 @@
   height: 200px;
   display: flex;
   align-self: center;
-  margin-top: var(--dl-space-space-twounits);
+  margin-top: var(--dl-layout-space-twounits);
   align-items: flex-end;
   margin-left: 40px;
   margin-right: 40px;
@@ -170,29 +167,14 @@
   display: inline-block;
 }
  
-.profile-button {
-  padding: 12px 24px;
-  background-color: #676FFF;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s;
-}
-
-.profile-button:hover {
-  background-color: #5158cc;
-}
-
 .profile-edit-icon {
-  color: #676FFF;
+  color: #b50000;
   cursor: pointer;
-  transition: color 0.3s;
+  transition: color 0.3s ease;
 }
 
 .profile-edit-icon:hover {
-  color: #5158cc;
+  color: #ff0000;
 }
  
 @media(max-width: 1600px) {
@@ -234,6 +216,7 @@
     margin-top: 20px;
     margin-left: 0px;
     margin-right: 0px;
+    margin-bottom: 20px;
     padding-left: 20px;
     padding-right: 20px;
     flex-direction: column;
@@ -251,7 +234,7 @@
   .profile-container6 {
     width: 100%;
     align-self: flex-start;
-    margin-top: 20px;
+    margin-top: 0px;
     margin-left: 0px;
     margin-right: 0px;
     padding-left: 20px;
@@ -262,18 +245,20 @@
  
 @media(max-width: 479px) {
   .profile-container3 {
+    width: 100%;
     padding-left: 20px;
     padding-right: 20px;
-    flex-direction: row;
+    flex-direction: column;
   }
   .profile-image {
     width: 80px;
     align-self: flex-start;
-    margin-bottom: var(--dl-space-space-twounits);
+    aspect-ratio: 1/1;
+    margin-bottom: 20px;
   }
   .profile-container4 {
     align-self: flex-start;
-    margin-left: var(--dl-space-space-twounits);
+    margin-left: 0px;
   }
   .profile-container5 {
     padding-left: 20px;
