@@ -6,7 +6,7 @@
   align-self: center;
   margin-top: 0;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding-left: 40px;
   padding-right: 40px;
   padding-top: 20px;
@@ -21,10 +21,8 @@
 
 .header-logo-container {
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -46,21 +44,21 @@
 .header-container {
   flex: 0 0 auto;
   display: flex;
-  align-self: center;
   align-items: center;
   justify-content: flex-end;
   z-index: 1;
+  margin-left: auto;
 }
 
 .header-navlink2 {
   color: #ffffff;
-  align-self: center;
   font-style: normal;
   transition: 0.3s;
   font-family: "Marcellus";
   font-weight: 400;
-  margin-right: 20px;
   text-decoration: none;
+  position: absolute;
+  left: 40px;
 }
 
 .header-navlink2:hover {
@@ -310,9 +308,6 @@
   .header-container {
     padding-right: 20px;
   }
-  .header-navlink2 {
-    display: none;
-  }
 }
 
 @media(max-width: 479px) {
@@ -321,6 +316,13 @@
   }
   .header-container {
     padding-right: 20px;
+  }
+  .header-header {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .header-navlink2 {
+    left: 20px;
   }
 }
 
