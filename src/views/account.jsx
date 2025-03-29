@@ -31,8 +31,6 @@ const Account = (props) => {
   const [saveStatus, setSaveStatus] = useState(''); // For showing save status messages
   const fileInputRef = useRef(null);
   const [imageLoading, setImageLoading] = useState(false);
-  const [mintLoading, setMintLoading] = useState(false);
-  const [mintStatus, setMintStatus] = useState(''); // For showing mint status messages
 
   // Redirect to home if not authenticated
   useEffect(() => {
@@ -212,119 +210,6 @@ const Account = (props) => {
     }
   };
 
-  const handleMint = async () => {
-    try {
-      setMintLoading(true);
-      setMintStatus('connecting');
-
-      if (!authenticated) {
-        console.log("Not authenticated");
-        await login();
-        return;
-      }
-
-      try {
-        setMintStatus('requesting');
-        const provider = await window.ethereum;
-        if (!provider) {
-          throw new Error("No Ethereum provider found");
-        }
-
-        const web3 = new Web3(provider);
-        const accounts = await web3.eth.getAccounts();
-        const userAddress = accounts[0];
-        console.log("Connected wallet address:", userAddress);
-
-        // Contract details
-        const contractAddress = "0xCFe04bdF3795c52541Ecc504167BbcDFf6dfcBE2";
-        
-        // Contract ABI for the claim function
-        const nftDropAbi = [{
-          "inputs": [
-            {"internalType": "address","name": "_receiver","type": "address"},
-            {"internalType": "uint256","name": "_quantity","type": "uint256"},
-            {"internalType": "address","name": "_currency","type": "address"},
-            {"internalType": "uint256","name": "_pricePerToken","type": "uint256"},
-            {"internalType": "tuple","name": "_allowlistProof","type": "tuple",
-             "components": [
-               {"internalType": "bytes32[]","name": "proof","type": "bytes32[]"},
-               {"internalType": "uint256","name": "quantityLimitPerWallet","type": "uint256"},
-               {"internalType": "uint256","name": "pricePerToken","type": "uint256"},
-               {"internalType": "address","name": "currency","type": "address"}
-             ]
-            },
-            {"internalType": "bytes","name": "_data","type": "bytes"}
-          ],
-          "name": "claim",
-          "outputs": [],
-          "stateMutability": "payable",
-          "type": "function"
-        }];
-
-        // Initialize contract
-        const nftDropContract = new web3.eth.Contract(nftDropAbi, contractAddress);
-
-        // Define claim parameters to match successful transaction
-        const receiver = userAddress;
-        const quantity = "1";
-        const currency = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
-        const pricePerToken = "1000000000000000";
-        const allowlistProof = {
-          proof: [],
-          quantityLimitPerWallet: "0",
-          pricePerToken: "115792089237316195423570985008687907853269984665640564039457584007913129639935",
-          currency: "0x0000000000000000000000000000000000000000"
-        };
-        const data = "0x";
-
-        try {
-          console.log("Preparing transaction with parameters:", {
-            receiver,
-            quantity,
-            currency,
-            pricePerToken,
-            allowlistProof,
-            data
-          });
-
-          // Send transaction directly without gas estimation
-          const tx = await nftDropContract.methods.claim(
-            receiver,
-            quantity,
-            currency,
-            pricePerToken,
-            allowlistProof,
-            data
-          ).send({
-            from: userAddress,
-            value: pricePerToken,
-            gas: 300000
-          });
-
-          console.log("Transaction successful:", tx);
-          setMintStatus('success');
-
-        } catch (error) {
-          console.error("Detailed error:", error);
-          const errorMessage = error.message || "Unknown error";
-          setMintStatus(`error: ${errorMessage}`);
-          throw error;
-        }
-
-      } catch (error) {
-        console.error("Error accessing wallet:", error);
-        setMintStatus('error');
-        throw error;
-      }
-
-    } catch (error) {
-      console.error("Error in mint process:", error);
-      setMintStatus('error');
-    } finally {
-      setMintLoading(false);
-    }
-  };
-
   // Show loading state while checking authentication
   if (loading) {
     return (
@@ -467,21 +352,6 @@ const Account = (props) => {
             >
               {saveStatus === 'saving' ? 'SAVING...' : 'SAVE'}
             </button>
-            <button 
-              type="button" 
-              className={`account-save-button ${mintLoading ? 'saving' : ''}`}
-              style={{ marginTop: '20px' }}
-              onClick={handleMint}
-              disabled={mintLoading}
-            >
-              {mintLoading ? 'CONNECTING...' : 'MINT'}
-            </button>
-            {mintStatus === 'success' && (
-              <div className="account-success-message">Wallet connected successfully!</div>
-            )}
-            {mintStatus === 'error' && (
-              <div className="account-error-message">Failed to connect wallet. Please try again.</div>
-            )}
             {saveStatus === 'success' && (
               <div className="account-success-message">Profile updated successfully!</div>
             )}

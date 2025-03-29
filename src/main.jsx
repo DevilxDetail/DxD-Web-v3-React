@@ -14,6 +14,7 @@ import Faq from './views/faq'
 import Juice from './views/juice'
 import About from './views/about'
 import Marfa from './views/marfa'
+import Drop from './views/drop'
 import Privacypolicy from './views/privacypolicy'
 import Alex from './views/alex'
 import Affinity from './views/affinity'
@@ -37,6 +38,7 @@ const App = () => {
         <Route component={Juice} exact path="/juice" />
         <Route component={About} exact path="/about" />
         <Route component={Marfa} exact path="/marfa" />
+        <Route component={Drop} exact path="/drop" />
         <Route component={Privacypolicy} exact path="/privacypolicy" />
         <Route component={Alex} exact path="/alex" />
         <Route component={Affinity} exact path="/affinity" />
