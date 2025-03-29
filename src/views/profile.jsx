@@ -53,8 +53,20 @@ const Profile = (props) => {
     return (
       <div className="profile-container1">
         <Helmet>
-          <title>Profile - DxD</title>
-          <meta property="og:title" content="Profile - DxD" />
+          <title>DxD - Profile</title>
+          <meta name="description" content="Culturally inspired, digitally integrated apparel and goods" />
+          
+          {/* Essential OG Tags */}
+          <meta property="og:title" content="DxD - Profile" />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content="https://devilxdetail.com/profile" />
+          <meta property="og:image" content="https://devilxdetail.com/alpha_thumbnail.jpg" />
+          <meta property="og:description" content="Culturally inspired, digitally integrated apparel and goods" />
+          
+          {/* Twitter Card tags */}
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content="DxD - Profile" />
+          <meta name="twitter:description" content="Culturally inspired, digitally integrated apparel and goods" />
         </Helmet>
         <Header
           text={<Fragment><span className="profile-text10">About DxD</span></Fragment>}
@@ -77,8 +89,20 @@ const Profile = (props) => {
   return (
     <div className="profile-container1">
       <Helmet>
-        <title>Profile - DxD</title>
-        <meta property="og:title" content="Profile - DxD" />
+        <title>DxD - Profile</title>
+        <meta name="description" content="Culturally inspired, digitally integrated apparel and goods" />
+        
+        {/* Essential OG Tags */}
+        <meta property="og:title" content="DxD - Profile" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://devilxdetail.com/profile" />
+        <meta property="og:image" content="https://devilxdetail.com/alpha_thumbnail.jpg" />
+        <meta property="og:description" content="Culturally inspired, digitally integrated apparel and goods" />
+        
+        {/* Twitter Card tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="DxD - Profile" />
+        <meta name="twitter:description" content="Culturally inspired, digitally integrated apparel and goods" />
       </Helmet>
       <Header
         text={

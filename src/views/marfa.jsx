@@ -10,8 +10,20 @@ const Marfa = (props) => {
   return (
     <div className="marfa-container1">
       <Helmet>
-        <title>Marfa - DxD</title>
-        <meta property="og:title" content="Marfa - DxD" />
+        <title>DxD - Marfa</title>
+        <meta name="description" content="Culturally inspired, digitally integrated apparel and goods" />
+        
+        {/* Essential OG Tags */}
+        <meta property="og:title" content="DxD - Marfa" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://devilxdetail.com/marfa" />
+        <meta property="og:image" content="https://devilxdetail.com/alpha_thumbnail.jpg" />
+        <meta property="og:description" content="Culturally inspired, digitally integrated apparel and goods" />
+        
+        {/* Twitter Card tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="DxD - Marfa" />
+        <meta name="twitter:description" content="Culturally inspired, digitally integrated apparel and goods" />
       </Helmet>
       <Header
         text={

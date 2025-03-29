@@ -10,8 +10,21 @@ const Juice = (props) => {
   return (
     <div className="juice-container1">
       <Helmet>
-        <title>Juice - DxD</title>
-        <meta property="og:title" content="Juice - DxD" />
+        <title>DxD - Juice</title>
+        <meta name="description" content="Culturally inspired, digitally integrated apparel and goods" />
+        
+        {/* Essential OG Tags */}
+        <meta property="og:title" content="DxD - Juice" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://devilxdetail.com/juice" />
+        <meta property="og:image" content="https://devilxdetail.com/instc 2025-01-26 105424.174-1200w.png" />
+        <meta property="og:description" content="Culturally inspired, digitally integrated apparel and goods" />
+        
+        {/* Twitter Card tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="DxD - Juice" />
+        <meta name="twitter:description" content="Culturally inspired, digitally integrated apparel and goods" />
+        <meta name="twitter:image" content="https://devilxdetail.com/instc 2025-01-26 105424.174-1200w.png" />
       </Helmet>
       <Header
         text={

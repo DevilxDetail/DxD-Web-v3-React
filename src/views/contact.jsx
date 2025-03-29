@@ -10,8 +10,20 @@ const Contact = (props) => {
   return (
     <div className="contact-container1">
       <Helmet>
-        <title>Contact - DxD</title>
-        <meta property="og:title" content="Contact - DxD" />
+        <title>DxD - Contact</title>
+        <meta name="description" content="Culturally inspired, digitally integrated apparel and goods" />
+        
+        {/* Essential OG Tags */}
+        <meta property="og:title" content="DxD - Contact" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://devilxdetail.com/contact" />
+        <meta property="og:image" content="https://devilxdetail.com/alpha_thumbnail.jpg" />
+        <meta property="og:description" content="Culturally inspired, digitally integrated apparel and goods" />
+        
+        {/* Twitter Card tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="DxD - Contact" />
+        <meta name="twitter:description" content="Culturally inspired, digitally integrated apparel and goods" />
       </Helmet>
       <Header
         text={

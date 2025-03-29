@@ -12,8 +12,20 @@ const About = (props) => {
   return (
     <div className="about-container1">
       <Helmet>
-        <title>About - DxD</title>
-        <meta property="og:title" content="About - DxD" />
+        <title>DxD - About</title>
+        <meta name="description" content="Culturally inspired, digitally integrated apparel and goods" />
+        
+        {/* Essential OG Tags */}
+        <meta property="og:title" content="DxD - About" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://devilxdetail.com/about" />
+        <meta property="og:image" content="https://devilxdetail.com/alpha_thumbnail.jpg" />
+        <meta property="og:description" content="Culturally inspired, digitally integrated apparel and goods" />
+        
+        {/* Twitter Card tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="DxD - About" />
+        <meta name="twitter:description" content="Culturally inspired, digitally integrated apparel and goods" />
       </Helmet>
       <Header
         text={

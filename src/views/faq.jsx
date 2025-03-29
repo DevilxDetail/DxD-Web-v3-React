@@ -21,8 +21,20 @@ const Faq = (props) => {
   return (
     <div className="faq-container1">
       <Helmet>
-        <title>FAQ - DxD</title>
-        <meta property="og:title" content="FAQ - DxD" />
+        <title>DxD - FAQ</title>
+        <meta name="description" content="Culturally inspired, digitally integrated apparel and goods" />
+        
+        {/* Essential OG Tags */}
+        <meta property="og:title" content="DxD - FAQ" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://devilxdetail.com/faq" />
+        <meta property="og:image" content="https://devilxdetail.com/alpha_thumbnail.jpg" />
+        <meta property="og:description" content="Culturally inspired, digitally integrated apparel and goods" />
+        
+        {/* Twitter Card tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="DxD - FAQ" />
+        <meta name="twitter:description" content="Culturally inspired, digitally integrated apparel and goods" />
       </Helmet>
       <Header
         text={

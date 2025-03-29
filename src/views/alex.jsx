@@ -10,8 +10,21 @@ const Alex = (props) => {
   return (
     <div className="alex-container1">
       <Helmet>
-        <title>Alex - DxD</title>
-        <meta property="og:title" content="Alex - DxD" />
+        <title>DxD - Alex</title>
+        <meta name="description" content="Culturally inspired, digitally integrated apparel and goods" />
+        
+        {/* Essential OG Tags */}
+        <meta property="og:title" content="DxD - Alex" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://devilxdetail.com/alex" />
+        <meta property="og:image" content="https://devilxdetail.com/instc 2025-01-26 105424.281-1200w.png" />
+        <meta property="og:description" content="Culturally inspired, digitally integrated apparel and goods" />
+        
+        {/* Twitter Card tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="DxD - Alex" />
+        <meta name="twitter:description" content="Culturally inspired, digitally integrated apparel and goods" />
+        <meta name="twitter:image" content="https://devilxdetail.com/instc 2025-01-26 105424.281-1200w.png" />
       </Helmet>
       <Header
         text={

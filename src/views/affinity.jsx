@@ -10,8 +10,20 @@ const Affinity = (props) => {
   return (
     <div className="affinity-container1">
       <Helmet>
-        <title>Affinity - DxD</title>
-        <meta property="og:title" content="Affinity - DxD" />
+        <title>DxD - Affinity</title>
+        <meta name="description" content="Culturally inspired, digitally integrated apparel and goods" />
+        
+        {/* Essential OG Tags */}
+        <meta property="og:title" content="DxD - Affinity" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://devilxdetail.com/affinity" />
+        <meta property="og:image" content="https://devilxdetail.com/alpha_thumbnail.jpg" />
+        <meta property="og:description" content="Culturally inspired, digitally integrated apparel and goods" />
+        
+        {/* Twitter Card tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="DxD - Affinity" />
+        <meta name="twitter:description" content="Culturally inspired, digitally integrated apparel and goods" />
       </Helmet>
       <Header
         text={
