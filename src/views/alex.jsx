@@ -62,22 +62,22 @@ const Alex = (props) => {
               based in Vancouver, British Columbia, Alex's work had always stood
               out. Beyond her breathtaking landscapes, we were also drawn to her
               expressive watercolor pieces. Her desire to experiment, paired
-              with her down-to-earth vibe, made her the perfect collaborator.
+              with her down to earth vibe, made her the perfect collaborator.
             </span>
             <br></br>
             <br></br>
             <span>
               As we started brainstorming, Alex came to us with the concept of
-              MounTone—a creative twist on the popular Pantone panels. She
+              mounTONE, a creative twist on the popular Pantone panels. She
               blended her stunning mountain photography with abstract watercolor
-              overlays, creating a six-panel MounTone piece that felt like six
+              overlays, creating a six-panel mounTONE piece that felt like six
               works of art in one. The result was nothing short of breathtaking.
             </span>
             <br></br>
             <br></br>
             <span>
               Given her northern influence and the fall season, we chose a
-              heavyweight, 100% cotton sweatshirt for the drop. The MounTone
+              heavyweight, 100% cotton sweatshirt for the drop. The mounTONE
               panels took center stage on the front, complemented by an original
               artwork from Alex on the back. To complete the experience, each
               drop included an NFT paired with a high-quality print on
@@ -88,7 +88,7 @@ const Alex = (props) => {
             <span>
               Alex's limited edition drop launched on September 23rd and was met
               with adoration. Her thoughtfulness and attention to detail made
-              our second drop an absolute success.
+              our second drop one to remember.
             </span>
             <br></br>
             <br></br>
