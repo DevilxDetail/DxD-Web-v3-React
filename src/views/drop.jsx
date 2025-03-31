@@ -130,20 +130,29 @@ const Drop = (props) => {
   return (
     <div className="drop-container1">
       <Helmet>
-        <title>Drop - DxD</title>
-        <meta property="og:title" content="Drop - DxD" />
+        <title>DxD - Drop</title>
+        <meta name="description" content="Culturally inspired, digitally integrated apparel and goods" />
+        
+        {/* Essential OG Tags */}
+        <meta property="og:title" content="DxD - Drop" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://devilxdetail.com/drop" />
         <meta property="og:image" content="https://devilxdetail.com/alpha_thumbnail.jpg" />
+        <meta property="og:image:secure_url" content="https://devilxdetail.com/alpha_thumbnail.jpg" />
+        <meta property="og:image:type" content="image/jpeg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:description" content="Devil x Detail Drop 2024 - Exclusive NFT Collection" />
+        <meta property="og:image:alt" content="Devil x Detail Drop 2024" />
+        <meta property="og:description" content="Culturally inspired, digitally integrated apparel and goods" />
+        <meta property="og:site_name" content="Devil x Detail" />
         
         {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Drop - DxD" />
-        <meta name="twitter:description" content="Devil x Detail Drop 2024 - Exclusive NFT Collection" />
+        <meta name="twitter:site" content="@devilxdetail" />
+        <meta name="twitter:title" content="DxD - Drop" />
+        <meta name="twitter:description" content="Culturally inspired, digitally integrated apparel and goods" />
         <meta name="twitter:image" content="https://devilxdetail.com/alpha_thumbnail.jpg" />
+        <meta name="twitter:image:alt" content="Devil x Detail Drop 2024" />
       </Helmet>
       <Header
         text={

@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet'
 import Header from '../components/header'
 import CenterText from '../components/center-text'
 import ConsistentFooter from '../components/ConsistentFooter'
-import './faq.css'
+import './collab.css'
 
 const Faq = (props) => {
   const [openAccordion, setOpenAccordion] = useState(null);
@@ -21,7 +21,7 @@ const Faq = (props) => {
   return (
     <div className="faq-container1">
       <Helmet>
-        <title>DxD - FAQ</title>
+        <title>DxD - Collaborations</title>
         <meta name="description" content="Culturally inspired, digitally integrated apparel and goods" />
         
         {/* Essential OG Tags */}
@@ -33,7 +33,7 @@ const Faq = (props) => {
         
         {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="DxD - FAQ" />
+        <meta name="twitter:title" content="DxD - Collaborations" />
         <meta name="twitter:description" content="Culturally inspired, digitally integrated apparel and goods" />
       </Helmet>
       <Header
@@ -48,7 +48,7 @@ const Faq = (props) => {
       <CenterText
         text={
           <Fragment>
-            <span className="faq-text17">FAQ</span>
+            <span className="faq-text17">Collaborating with DxD</span>
           </Fragment>
         }
         rootClassName="center-textroot-class-name1"
@@ -62,8 +62,7 @@ const Faq = (props) => {
                 onClick={() => toggleAccordion(0)}
               >
                 <span className="faq-text18">
-                  Is it possible to purchase a drop after the release window
-                  has closed?
+                  Who do you look to collaborate with?
                 </span>
                 <div className={`faq-icon-container1 ${openAccordion === 0 ? 'rotated' : ''}`}>
                   <svg width="32" height="32" viewBox="0 0 24 24">
@@ -75,11 +74,7 @@ const Faq = (props) => {
                 <div className="faq-content1">
                   <div className="faq-container5">
                     <p className="faq-text19">
-                      Unfortunately, once a drop window has closed, the release is
-                      no longer available for direct purchase. Our limited-edition
-                      pieces are established with the collaborator and are not
-                      restocked. However, keep an eye out for future drops or
-                      special collaborations for similar designs or inspirations.
+                      We look for vibes first and foremost. If an artist, musician, creative or any cultural driver matches our wavelength, we are interested. If what we have to say on our About page speaks to you, we want to connect. If the vibe is right, the results will no doubt be amazing.
                     </p>
                   </div>
                 </div>
@@ -92,8 +87,7 @@ const Faq = (props) => {
                 onClick={() => toggleAccordion(1)}
               >
                 <span className="faq-text20">
-                  Do I need a crypto wallet to receive my digital assets as
-                  part of a drop?
+                  Why collaborations?
                 </span>
                 <div className={`faq-icon-container2 ${openAccordion === 1 ? 'rotated' : ''}`}>
                   <svg width="32" height="32" viewBox="0 0 24 24">
@@ -105,11 +99,7 @@ const Faq = (props) => {
                 <div className="faq-content2">
                   <div className="faq-container6">
                     <p className="faq-text21">
-                      No, you don't need to have a crypto wallet to receive your
-                      digital assets. When you create an account with your email
-                      or phone number, we create a crypto wallet for you. You
-                      always have the option to export assets to a sovereign
-                      wallet if you choose.
+                      Because we are inspired by our creative friends. We have a chance to create cool things with cool people so we are going to take it.
                     </p>
                   </div>
                 </div>
@@ -122,7 +112,7 @@ const Faq = (props) => {
                 onClick={() => toggleAccordion(2)}
               >
                 <span className="faq-text22">
-                  What is the Devil x Detail Affinity Program?
+                  What does a DxD collaboration look like?
                 </span>
                 <div className={`faq-icon-container3 ${openAccordion === 2 ? 'rotated' : ''}`}>
                   <svg width="32" height="32" viewBox="0 0 24 24">
@@ -134,17 +124,7 @@ const Faq = (props) => {
                 <div className="faq-content3">
                   <div className="faq-container7">
                     <p className="faq-text23">
-                      <span>
-                        Oh you are going to love it. The Affinity Program is the
-                        loyalty program that we created on day 1. Fully onchain,
-                        you own your Affinity Token and all of the perks that come
-                        with it. To learn more, check out our
-                        {' '}
-                      </span>
-                      <Link to="/affinity" className="faq-navlink1">
-                        Affinity page
-                      </Link>
-                      <span>.</span>
+                      We try to make it a very inspiring, fun experience. Our goal is to bring out the authentic creativity of our collaborator and overlay that with the DxD ethos. We will coordinate the piece(s), the art, the theme and all drop details together but there are no set parameters. Let's make something truly unique.
                     </p>
                   </div>
                 </div>
@@ -157,8 +137,7 @@ const Faq = (props) => {
                 onClick={() => toggleAccordion(3)}
               >
                 <span className="faq-text26">
-                  What does it mean when you say that an item is digitally
-                  authenticated?
+                  Are there limits to what kinds of apparel we can create?
                 </span>
                 <div className={`faq-icon-container4 ${openAccordion === 3 ? 'rotated' : ''}`}>
                   <svg width="32" height="32" viewBox="0 0 24 24">
@@ -170,10 +149,7 @@ const Faq = (props) => {
                 <div className="faq-content4">
                   <div className="faq-container8">
                     <p className="faq-text27">
-                      All limited edition Devil x Detail items have a NFC chip
-                      attached to the piece. This chip, when scanned with an NFC
-                      reader (like your phone), will bring you to a webpage
-                      verifying the item&apos;s authenticity.
+                      For the most part no. The best part about letting creative minds use apparel and goods as a canvas is that the limits are virtually endless. We do, of course, want our fans to wear what we make so maybe no pirate hats (or idk, maybe yes).
                     </p>
                   </div>
                 </div>
@@ -186,7 +162,7 @@ const Faq = (props) => {
                 onClick={() => toggleAccordion(4)}
               >
                 <span className="faq-text28">
-                  Can I pay for a drop with a credit card instead of crypto?
+                  Why limited edition drops?
                 </span>
                 <div className={`faq-icon-container5 ${openAccordion === 4 ? 'rotated' : ''}`}>
                   <svg width="32" height="32" viewBox="0 0 24 24">
@@ -198,10 +174,7 @@ const Faq = (props) => {
                 <div className="faq-content5">
                   <div className="faq-container9">
                     <p className="faq-text29">
-                      We will always attempt to allow for multiple payment options
-                      for a drop including credit cards. If the drop is restricted
-                      to a certain payment type, we will do our best to
-                      communicate the limitations and explain why.
+                      We love limited edition drops because they capture a moment in time. Each collaboration is a snapshot of culture, creativity, and connection. While we may evolve our model in the future, right now, scarcity fuels significance. Every piece is crafted with intention, uniquely chipped, and linked to our digital universe, making it  part of a living story.
                     </p>
                   </div>
                 </div>
@@ -214,8 +187,7 @@ const Faq = (props) => {
                 onClick={() => toggleAccordion(5)}
               >
                 <span className="faq-text30">
-                  Are your artists and collaborators compensated for their
-                  involvment in your drops?
+                  Do you compensate collaborators?
                 </span>
                 <div className={`faq-icon-container6 ${openAccordion === 5 ? 'rotated' : ''}`}>
                   <svg width="32" height="32" viewBox="0 0 24 24">
@@ -227,10 +199,7 @@ const Faq = (props) => {
                 <div className="faq-content6">
                   <div className="faq-container10">
                     <p className="faq-text31">
-                      Absolutely. We will never ask an artist to provide work for
-                      &quot;exposure&quot;. Compensation varies by collaborator
-                      but we will always ensure that our friends are taken care
-                      of.
+                      Absolutely. We don't believe in "exposure" as payment. Each collaboration is a combination of commission and percentage of drop profits agreed upon with the collaborator up front.
                     </p>
                   </div>
                 </div>
@@ -243,7 +212,7 @@ const Faq = (props) => {
                 onClick={() => toggleAccordion(6)}
               >
                 <span className="faq-text32">
-                  Will every drop include an accompanying digital asset?
+                  What do you expect of your collaborators?
                 </span>
                 <div className={`faq-icon-container7 ${openAccordion === 6 ? 'rotated' : ''}`}>
                   <svg width="32" height="32" viewBox="0 0 24 24">
@@ -255,16 +224,7 @@ const Faq = (props) => {
                 <div className="faq-content7">
                   <div className="faq-container11">
                     <p className="faq-text33">
-                      <span>
-                        Definitely. We will always ensure a digital intersection
-                        with every physical item we release. For more information
-                        on how we operate check out our
-                        {' '}
-                      </span>
-                      <Link to="/about" className="faq-navlink2">
-                        About page
-                      </Link>
-                      <span>.</span>
+                      We take the term "collaboration" seriously. As we dedicated to create something amazing, we hope for the same. In addition to close coordination in selecting the garments, art, and production details, we also look for dedicated efforts in promoting the drop as well. We will create the promotion plan together but it will not only include content and social posts but direct communications with our existing communities and supporters.
                     </p>
                   </div>
                 </div>
@@ -290,18 +250,10 @@ const Faq = (props) => {
                 <div className="faq-content8">
                   <div className="faq-container12">
                     <p className="faq-text37">
-                      <span>
                         We are always down to talk about new ideas. Our drops are
                         highly curated so there is no guarantee that the timing
                         will work out but please get in touch with us at
-                        artists@devilxdetail.com or DM us on Twitter. You can also
-                        learn more about our collaborations
-                        {' '}
-                      </span>
-                      <Link to="/collab" className="faq-navlink3">
-                        here
-                      </Link>
-                      <span>.</span>
+                        artists@devilxdetail.com or DM us on Twitter.
                     </p>
                   </div>
                 </div>

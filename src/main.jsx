@@ -24,6 +24,7 @@ import Home from './views/home'
 import Profile from './views/profile'
 import Termsofservice from './views/termsofservice'
 import Contact from './views/contact'
+import Collab from './views/collab'
 import Collabs from './views/collabs'
 import NotFound from './views/not-found'
 import ScrollToTop from './components/ScrollToTop'
@@ -48,7 +49,8 @@ const App = () => {
         <Route component={Profile} exact path="/profile" />
         <Route component={Termsofservice} exact path="/termsofservice" />
         <Route component={Contact} exact path="/contact" />
-        <Route component={Collabs} exact path="/collabs" />
+        <Route exact path="/collabs" component={Collabs} />
+        <Route exact path="/collab" component={Collab} />
         <Route component={NotFound} path="**" />
         <Redirect to="**" />
       </Switch>
