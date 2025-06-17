@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { supabase } from '../lib/supabase';
+import { supabase, supabaseServiceRole } from '../lib/supabase';
 
 const IYKPage = () => {
   const location = useLocation();
@@ -142,7 +142,10 @@ const IYKPage = () => {
         ? formData.twitter.trim() 
         : `@${formData.twitter.trim()}`;
 
-      const { error } = await supabase
+      // Use service role client if available, otherwise fall back to regular client
+      const client = supabaseServiceRole || supabase;
+      
+      const { error } = await client
         .from('cc_user')
         .insert([{
           uid: apiData.uid,
