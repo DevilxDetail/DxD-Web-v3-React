@@ -63,11 +63,17 @@ const IYKPage = () => {
         .eq('uid', uid)
         .single();
 
-      if (error && error.code !== 'PGRST116') {
-        throw error;
+      if (error) {
+        if (error.code === 'PGRST116') {
+          // No user found - this is expected for new registrations
+          setSupabaseData(null);
+        } else {
+          throw error;
+        }
+      } else {
+        // User found - set the data
+        setSupabaseData(data);
       }
-
-      setSupabaseData(data);
     } catch (err) {
       console.error('Error checking Supabase user:', err);
       setError('Failed to check user registration status');
@@ -135,16 +141,44 @@ const IYKPage = () => {
       return;
     }
     
+    // Double-check that user hasn't already registered (prevent race conditions)
+    if (supabaseData) {
+      setError('User has already registered. Please refresh the page.');
+      return;
+    }
+    
+    // Prevent multiple submissions
+    if (submitting) {
+      return;
+    }
+    
     setSubmitting(true);
+    setError(null); // Clear any previous errors
+    
     try {
+      // Final check with service role client to ensure no duplicate
+      const client = supabaseServiceRole || supabase;
+      
+      // Check one more time before inserting
+      const { data: existingUser, error: checkError } = await client
+        .from('cc_user')
+        .select('uid')
+        .eq('uid', apiData.uid)
+        .single();
+
+      if (checkError && checkError.code !== 'PGRST116') {
+        throw checkError;
+      }
+
+      if (existingUser) {
+        throw new Error('User has already registered');
+      }
+
       // Ensure Twitter handle has @ prefix
       const twitterHandle = formData.twitter.trim().startsWith('@') 
         ? formData.twitter.trim() 
         : `@${formData.twitter.trim()}`;
 
-      // Use service role client if available, otherwise fall back to regular client
-      const client = supabaseServiceRole || supabase;
-      
       const { error } = await client
         .from('cc_user')
         .insert([{
@@ -155,7 +189,13 @@ const IYKPage = () => {
           created_at: new Date().toISOString()
         }]);
 
-      if (error) throw error;
+      if (error) {
+        // Check if it's a duplicate key error
+        if (error.code === '23505' || error.message.includes('duplicate')) {
+          throw new Error('User has already registered');
+        }
+        throw error;
+      }
       
       setSubmitted(true);
       setSupabaseData({
@@ -165,7 +205,13 @@ const IYKPage = () => {
       });
     } catch (err) {
       console.error('Error submitting form:', err);
-      setError('Failed to submit registration. Please try again.');
+      if (err.message === 'User has already registered') {
+        setError('This chip has already been registered. Please refresh the page.');
+        // Refresh the user data
+        checkSupabaseUser(apiData.uid);
+      } else {
+        setError('Failed to submit registration. Please try again.');
+      }
     } finally {
       setSubmitting(false);
     }
