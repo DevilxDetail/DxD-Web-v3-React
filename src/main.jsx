@@ -27,6 +27,7 @@ import Contact from './views/contact'
 import Collab from './views/collab'
 import Collabs from './views/collabs'
 import NotFound from './views/not-found'
+import IYKPage from './views/iyk-page'
 import ScrollToTop from './components/ScrollToTop'
 
 const App = () => {
@@ -51,6 +52,7 @@ const App = () => {
         <Route component={Contact} exact path="/contact" />
         <Route exact path="/collabs" component={Collabs} />
         <Route exact path="/collab" component={Collab} />
+        <Route component={IYKPage} exact path="/cc25" />
         <Route component={NotFound} path="**" />
         <Redirect to="**" />
       </Switch>
