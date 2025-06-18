@@ -57,23 +57,35 @@ const IYKPage = () => {
   const checkSupabaseUser = async (uid) => {
     setCheckingSupabase(true);
     try {
-      const { data, error } = await supabase
+      // First check if the UID exists in cc_uid table (chip already claimed)
+      const { data: uidData, error: uidError } = await supabase
+        .from('cc_uid')
+        .select('uid')
+        .eq('uid', uid)
+        .single();
+
+      if (uidError && uidError.code !== 'PGRST116') {
+        throw uidError;
+      }
+
+      // If UID exists in cc_uid, chip has been claimed
+      if (uidData) {
+        setSupabaseData({ claimed: true });
+        return;
+      }
+
+      // If UID doesn't exist in cc_uid, check if user has registered in cc_user
+      const { data: userData, error: userError } = await supabase
         .from('cc_user')
         .select('twitter, email, evm_wallet')
         .eq('uid', uid)
         .single();
 
-      if (error) {
-        if (error.code === 'PGRST116') {
-          // No user found - this is expected for new registrations
-          setSupabaseData(null);
-        } else {
-          throw error;
-        }
-      } else {
-        // User found - set the data
-        setSupabaseData(data);
+      if (userError && userError.code !== 'PGRST116') {
+        throw userError;
       }
+
+      setSupabaseData(userData);
     } catch (err) {
       console.error('Error checking Supabase user:', err);
       setError('Failed to check user registration status');
@@ -141,45 +153,27 @@ const IYKPage = () => {
       return;
     }
     
-    // Double-check that user hasn't already registered (prevent race conditions)
-    if (supabaseData) {
-      setError('User has already registered. Please refresh the page.');
-      return;
-    }
-    
-    // Prevent multiple submissions
-    if (submitting) {
-      return;
-    }
-    
     setSubmitting(true);
-    setError(null); // Clear any previous errors
-    
     try {
-      // Final check with service role client to ensure no duplicate
-      const client = supabaseServiceRole || supabase;
-      
-      // Check one more time before inserting
-      const { data: existingUser, error: checkError } = await client
-        .from('cc_user')
-        .select('uid')
-        .eq('uid', apiData.uid)
-        .single();
-
-      if (checkError && checkError.code !== 'PGRST116') {
-        throw checkError;
-      }
-
-      if (existingUser) {
-        throw new Error('User has already registered');
-      }
-
       // Ensure Twitter handle has @ prefix
       const twitterHandle = formData.twitter.trim().startsWith('@') 
         ? formData.twitter.trim() 
         : `@${formData.twitter.trim()}`;
 
-      const { error } = await client
+      // Use service role client if available, otherwise fall back to regular client
+      const client = supabaseServiceRole || supabase;
+      
+      // Insert into cc_uid table first (mark chip as claimed)
+      const { error: uidError } = await client
+        .from('cc_uid')
+        .insert([{
+          uid: apiData.uid
+        }]);
+
+      if (uidError) throw uidError;
+
+      // Then insert into cc_user table with user details
+      const { error: userError } = await client
         .from('cc_user')
         .insert([{
           uid: apiData.uid,
@@ -189,29 +183,18 @@ const IYKPage = () => {
           created_at: new Date().toISOString()
         }]);
 
-      if (error) {
-        // Check if it's a duplicate key error
-        if (error.code === '23505' || error.message.includes('duplicate')) {
-          throw new Error('User has already registered');
-        }
-        throw error;
-      }
+      if (userError) throw userError;
       
       setSubmitted(true);
       setSupabaseData({
         twitter: twitterHandle,
         email: formData.email.trim(),
-        evm_wallet: formData.evm_wallet.trim()
+        evm_wallet: formData.evm_wallet.trim(),
+        claimed: false // This indicates user has registered (not just claimed)
       });
     } catch (err) {
       console.error('Error submitting form:', err);
-      if (err.message === 'User has already registered') {
-        setError('This chip has already been registered. Please refresh the page.');
-        // Refresh the user data
-        checkSupabaseUser(apiData.uid);
-      } else {
-        setError('Failed to submit registration. Please try again.');
-      }
+      setError('Failed to submit registration. Please try again.');
     } finally {
       setSubmitting(false);
     }
@@ -459,122 +442,156 @@ const IYKPage = () => {
                       </div>
                     )}
 
-                    {/* User already registered */}
+                    {/* Chip already claimed or user already registered */}
                     {!checkingSupabase && supabaseData && (
                       <div style={{ width: '100%' }}>
-                        <div style={{
-                          width: '100%',
-                          marginBottom: 'var(--dl-space-space-twounits)',
-                          padding: 'var(--dl-space-space-unit)',
-                          backgroundColor: 'rgba(76, 175, 80, 0.1)',
-                          border: '1px solid #4CAF50',
-                          borderRadius: '4px'
-                        }}>
+                        {/* Chip already claimed (UID exists in cc_uid but no user data) */}
+                        {supabaseData.claimed && (
                           <div style={{
-                            color: '#4CAF50',
-                            fontSize: '16px',
-                            fontFamily: 'Lato, sans-serif',
-                            fontWeight: '700',
-                            marginBottom: 'var(--dl-space-space-halfunit)'
+                            width: '100%',
+                            marginBottom: 'var(--dl-space-space-twounits)',
+                            padding: 'var(--dl-space-space-unit)',
+                            backgroundColor: 'rgba(255, 152, 0, 0.1)',
+                            border: '1px solid #FF9800',
+                            borderRadius: '4px'
                           }}>
-                            Already Registered
+                            <div style={{
+                              color: '#FF9800',
+                              fontSize: '16px',
+                              fontFamily: 'Lato, sans-serif',
+                              fontWeight: '700',
+                              marginBottom: 'var(--dl-space-space-halfunit)'
+                            }}>
+                              Already Claimed
+                            </div>
+                            <div style={{
+                              color: '#ffffff',
+                              fontSize: '14px',
+                              fontFamily: 'Lato, sans-serif'
+                            }}>
+                              This chip has already been claimed by someone else. Follow our socials below!
+                            </div>
                           </div>
-                          <div style={{
-                            color: '#ffffff',
-                            fontSize: '14px',
-                            fontFamily: 'Lato, sans-serif'
-                          }}>
-                            You've already claimed this experience. Follow our socials below!
-                          </div>
-                        </div>
+                        )}
 
-                        {/* Read-only form */}
-                        <div style={{
-                          width: '100%',
-                          marginBottom: 'var(--dl-space-space-twounits)',
-                          padding: 'var(--dl-space-space-unit)',
-                          backgroundColor: '#333',
-                          border: '1px solid #444',
-                          borderRadius: '4px'
-                        }}>
-                          <div style={{
-                            display: 'flex',
-                            padding: 'var(--dl-space-space-halfunit) 0',
-                            alignItems: 'center',
-                            borderBottom: '1px solid #444',
-                            marginBottom: 'var(--dl-space-space-halfunit)'
-                          }}>
+                        {/* User already registered (has user data) */}
+                        {!supabaseData.claimed && (
+                          <>
                             <div style={{
-                              color: '#ffffff',
-                              fontSize: '16px',
-                              fontFamily: 'Lato, sans-serif',
-                              fontWeight: '700',
-                              marginRight: 'var(--dl-space-space-unit)',
-                              width: '120px'
+                              width: '100%',
+                              marginBottom: 'var(--dl-space-space-twounits)',
+                              padding: 'var(--dl-space-space-unit)',
+                              backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                              border: '1px solid #4CAF50',
+                              borderRadius: '4px'
                             }}>
-                              Twitter Handle
+                              <div style={{
+                                color: '#4CAF50',
+                                fontSize: '16px',
+                                fontFamily: 'Lato, sans-serif',
+                                fontWeight: '700',
+                                marginBottom: 'var(--dl-space-space-halfunit)'
+                              }}>
+                                Already Registered
+                              </div>
+                              <div style={{
+                                color: '#ffffff',
+                                fontSize: '14px',
+                                fontFamily: 'Lato, sans-serif'
+                              }}>
+                                You've already claimed this experience. Follow our socials below!
+                              </div>
                             </div>
+
+                            {/* Read-only form */}
                             <div style={{
-                              color: '#ffffff',
-                              fontSize: '16px',
-                              fontFamily: 'Lato, sans-serif',
-                              flex: '1'
+                              width: '100%',
+                              marginBottom: 'var(--dl-space-space-twounits)',
+                              padding: 'var(--dl-space-space-unit)',
+                              backgroundColor: '#333',
+                              border: '1px solid #444',
+                              borderRadius: '4px'
                             }}>
-                              {supabaseData.twitter}
+                              <div style={{
+                                display: 'flex',
+                                padding: 'var(--dl-space-space-halfunit) 0',
+                                alignItems: 'center',
+                                borderBottom: '1px solid #444',
+                                marginBottom: 'var(--dl-space-space-halfunit)'
+                              }}>
+                                <div style={{
+                                  color: '#ffffff',
+                                  fontSize: '16px',
+                                  fontFamily: 'Lato, sans-serif',
+                                  fontWeight: '700',
+                                  marginRight: 'var(--dl-space-space-unit)',
+                                  width: '120px'
+                                }}>
+                                  Twitter Handle
+                                </div>
+                                <div style={{
+                                  color: '#ffffff',
+                                  fontSize: '16px',
+                                  fontFamily: 'Lato, sans-serif',
+                                  flex: '1'
+                                }}>
+                                  {supabaseData.twitter}
+                                </div>
+                              </div>
+                              <div style={{
+                                display: 'flex',
+                                padding: 'var(--dl-space-space-halfunit) 0',
+                                alignItems: 'center',
+                                borderBottom: '1px solid #444',
+                                marginBottom: 'var(--dl-space-space-halfunit)'
+                              }}>
+                                <div style={{
+                                  color: '#ffffff',
+                                  fontSize: '16px',
+                                  fontFamily: 'Lato, sans-serif',
+                                  fontWeight: '700',
+                                  marginRight: 'var(--dl-space-space-unit)',
+                                  width: '120px'
+                                }}>
+                                  Email
+                                </div>
+                                <div style={{
+                                  color: '#ffffff',
+                                  fontSize: '16px',
+                                  fontFamily: 'Lato, sans-serif',
+                                  flex: '1'
+                                }}>
+                                  {supabaseData.email}
+                                </div>
+                              </div>
+                              <div style={{
+                                display: 'flex',
+                                padding: 'var(--dl-space-space-halfunit) 0',
+                                alignItems: 'center'
+                              }}>
+                                <div style={{
+                                  color: '#ffffff',
+                                  fontSize: '16px',
+                                  fontFamily: 'Lato, sans-serif',
+                                  fontWeight: '700',
+                                  marginRight: 'var(--dl-space-space-unit)',
+                                  width: '120px'
+                                }}>
+                                  EVM Wallet
+                                </div>
+                                <div style={{
+                                  color: '#ffffff',
+                                  fontSize: '16px',
+                                  fontFamily: 'Lato, sans-serif',
+                                  flex: '1',
+                                  wordBreak: 'break-all'
+                                }}>
+                                  {supabaseData.evm_wallet}
+                                </div>
+                              </div>
                             </div>
-                          </div>
-                          <div style={{
-                            display: 'flex',
-                            padding: 'var(--dl-space-space-halfunit) 0',
-                            alignItems: 'center',
-                            borderBottom: '1px solid #444',
-                            marginBottom: 'var(--dl-space-space-halfunit)'
-                          }}>
-                            <div style={{
-                              color: '#ffffff',
-                              fontSize: '16px',
-                              fontFamily: 'Lato, sans-serif',
-                              fontWeight: '700',
-                              marginRight: 'var(--dl-space-space-unit)',
-                              width: '120px'
-                            }}>
-                              Email
-                            </div>
-                            <div style={{
-                              color: '#ffffff',
-                              fontSize: '16px',
-                              fontFamily: 'Lato, sans-serif',
-                              flex: '1'
-                            }}>
-                              {supabaseData.email}
-                            </div>
-                          </div>
-                          <div style={{
-                            display: 'flex',
-                            padding: 'var(--dl-space-space-halfunit) 0',
-                            alignItems: 'center'
-                          }}>
-                            <div style={{
-                              color: '#ffffff',
-                              fontSize: '16px',
-                              fontFamily: 'Lato, sans-serif',
-                              fontWeight: '700',
-                              marginRight: 'var(--dl-space-space-unit)',
-                              width: '120px'
-                            }}>
-                              EVM Wallet
-                            </div>
-                            <div style={{
-                              color: '#ffffff',
-                              fontSize: '16px',
-                              fontFamily: 'Lato, sans-serif',
-                              flex: '1',
-                              wordBreak: 'break-all'
-                            }}>
-                              {supabaseData.evm_wallet}
-                            </div>
-                          </div>
-                        </div>
+                          </>
+                        )}
 
                         <SocialLinks />
                       </div>
