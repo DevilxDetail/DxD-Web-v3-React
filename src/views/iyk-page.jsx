@@ -189,12 +189,7 @@ const IYKPage = () => {
       if (userError) throw userError;
       
       setSubmitted(true);
-      setSupabaseData({
-        twitter: twitterHandle,
-        email: formData.email.trim(),
-        evm_wallet: formData.evm_wallet.trim(),
-        claimed: false // This indicates user has registered (not just claimed)
-      });
+      // Don't set supabaseData here to avoid duplicate SocialLinks
     } catch (err) {
       console.error('Error submitting form:', err);
       setError('Failed to submit registration. Please try again.');
@@ -443,7 +438,7 @@ const IYKPage = () => {
                     )}
 
                     {/* Chip already claimed or user already registered */}
-                    {!checkingSupabase && supabaseData && (
+                    {!checkingSupabase && supabaseData && !submitted && (
                       <div style={{ width: '100%' }}>
                         {/* Chip already claimed (UID exists in cc_uid but no user data) */}
                         {supabaseData.claimed && (
