@@ -85,6 +85,7 @@
   max-width: 400px;
   height: auto;
   margin-bottom: 0px;
+  margin-top: -10px;
 }
 
 .liv-form {
@@ -94,6 +95,7 @@
   width: 100%;
   max-width: 400px;
   margin-bottom: 20px;
+  margin-top: -30px;
 }
 
 .liv-input {
@@ -267,7 +269,7 @@
   line-height: 1.5;
   text-align: center;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-  margin-top: 20px;
+  margin-top: -30px;
 }
 
 .liv-footer-link {

@@ -473,6 +473,8 @@ const IYKPage = () => {
                             </div>
                           </div>
                         )}
+
+                        <SocialLinks />
                       </div>
                     )}
 
