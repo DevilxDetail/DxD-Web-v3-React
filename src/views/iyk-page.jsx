@@ -216,7 +216,7 @@ const IYKPage = () => {
   const SocialLinks = () => (
     <div className="mt-6 p-6 bg-gray-800 border border-gray-700 rounded-lg">
       <h3 className="text-lg font-semibold text-white text-center mb-4" style={{ fontFamily: 'Marcellus, serif' }}>
-        Make sure you are following{' '}
+        Make sure to follow{' '}
         <a 
           href="https://x.com/clickcreateio" 
           target="_blank" 
@@ -446,12 +446,12 @@ const IYKPage = () => {
                     width: '100%',
                     marginBottom: 'var(--dl-space-space-twounits)',
                     padding: 'var(--dl-space-space-unit)',
-                    backgroundColor: 'rgba(181, 0, 0, 0.1)',
-                    border: '1px solid #b50000',
+                    backgroundColor: 'rgba(255, 0, 0, 0.2)',
+                    border: '1px solid #ff6666',
                     borderRadius: '4px'
                   }}>
                     <div style={{
-                      color: '#b50000',
+                      color: '#ff6666',
                       fontSize: '16px',
                       fontFamily: 'Lato, sans-serif',
                       fontWeight: '700',
@@ -526,8 +526,6 @@ const IYKPage = () => {
                             </div>
                           </div>
                         )}
-
-                        <SocialLinks />
                       </div>
                     )}
 
