@@ -216,7 +216,7 @@ const IYKPage = () => {
   const SocialLinks = () => (
     <div className="mt-6 p-6 bg-gray-800 border border-gray-700 rounded-lg">
       <h3 className="text-lg font-semibold text-white text-center mb-4" style={{ fontFamily: 'Marcellus, serif', color: 'white' }}>
-        Make sure to follow{' '}
+        Make sure to follow<br/>
         <a 
           href="https://x.com/clickcreateio" 
           target="_blank" 
@@ -473,8 +473,6 @@ const IYKPage = () => {
                             </div>
                           </div>
                         )}
-
-                        <SocialLinks />
                       </div>
                     )}
 
@@ -691,6 +689,22 @@ const IYKPage = () => {
         @keyframes spin {
           0% { transform: rotate(0deg); }
           100% { transform: rotate(360deg); }
+        }
+        
+        input::placeholder {
+          text-align: left !important;
+        }
+        
+        input::-webkit-input-placeholder {
+          text-align: left !important;
+        }
+        
+        input::-moz-placeholder {
+          text-align: left !important;
+        }
+        
+        input:-ms-input-placeholder {
+          text-align: left !important;
         }
       `}</style>
     </div>
