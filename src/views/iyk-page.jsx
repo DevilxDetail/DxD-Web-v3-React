@@ -221,7 +221,7 @@ const IYKPage = () => {
           href="https://x.com/clickcreateio" 
           target="_blank" 
           rel="noopener noreferrer"
-          style={{ color: 'white', textDecoration: 'underline' }}
+          style={{ textDecoration: 'underline' }}
         >
           @clickcreateio
         </a>
@@ -230,7 +230,7 @@ const IYKPage = () => {
           href="https://x.com/devilxdetail" 
           target="_blank" 
           rel="noopener noreferrer"
-          style={{ color: 'white', textDecoration: 'underline' }}
+          style={{ textDecoration: 'underline' }}
         >
           @devilxdetail
         </a>
@@ -331,7 +331,7 @@ const IYKPage = () => {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        zIndex: 1000
+        zIndex: 9999
       }}>
         <a 
           href="https://clickcreate.io" 
@@ -347,7 +347,7 @@ const IYKPage = () => {
           rel="noopener noreferrer"
           style={{ display: 'inline-block' }}
         >
-          <img src="/Icon - White.png" alt="DxD Logo" style={{ height: '30px' }} />
+          <img src="/icon - white-200h.png" alt="DxD Logo" style={{ height: '30px' }} />
         </a>
       </div>
       
@@ -383,7 +383,9 @@ const IYKPage = () => {
             paddingRight: '24px',
             flexDirection: 'column',
             paddingBottom: '24px',
+            paddingTop: '20px',
             justifyContent: 'center',
+            marginTop: '-20px'
           }}>
             {/* Loading State */}
             {loading && (
@@ -526,6 +528,8 @@ const IYKPage = () => {
                             </div>
                           </div>
                         )}
+
+                        <SocialLinks />
                       </div>
                     )}
 
@@ -572,7 +576,8 @@ const IYKPage = () => {
                           marginBottom: '16px',
                           lineHeight: '1.2'
                         }}>
-                          Thank you Season 2 full set holders!
+                          Thank you Season 2<br/>
+                          full set holders!
                         </h2>
                         <p style={{
                           color: '#ffffff',
@@ -580,9 +585,11 @@ const IYKPage = () => {
                           marginBottom: '24px',
                           fontFamily: 'Lato, sans-serif'
                         }}>
-                          We hope you enjoy your merch, but we have one more surprise...<br/>
+                          We hope you enjoy your merch,<br/>
+                          but we have one more surprise...<br/>
                           <br/>
-                          Enter your info below and we will drop you some Clicks!
+                          Enter your info below<br/>
+                          and we will drop you some Clicks!
                         </p>
                         
                         {/* Registration form */}
@@ -607,7 +614,8 @@ const IYKPage = () => {
                                 border: formErrors.twitter ? '1px solid #b50000' : '1px solid #ccc',
                                 fontSize: '12pt',
                                 textAlign: 'left',
-                                fontFamily: 'Lato, sans-serif'
+                                fontFamily: 'Lato, sans-serif',
+                                'text-align': 'left'
                               }}
                             />
                             {formErrors.twitter && (
@@ -640,7 +648,8 @@ const IYKPage = () => {
                                 border: formErrors.email ? '1px solid #b50000' : '1px solid #ccc',
                                 fontSize: '12pt',
                                 textAlign: 'left',
-                                fontFamily: 'Lato, sans-serif'
+                                fontFamily: 'Lato, sans-serif',
+                                'text-align': 'left'
                               }}
                             />
                             {formErrors.email && (
@@ -673,7 +682,8 @@ const IYKPage = () => {
                                 border: formErrors.evm_wallet ? '1px solid #b50000' : '1px solid #ccc',
                                 fontSize: '12pt',
                                 textAlign: 'left',
-                                fontFamily: 'Lato, sans-serif'
+                                fontFamily: 'Lato, sans-serif',
+                                'text-align': 'left'
                               }}
                             />
                             {formErrors.evm_wallet && (
