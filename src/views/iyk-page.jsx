@@ -43,8 +43,8 @@ const IYKPage = () => {
       const data = await response.json();
       setApiData(data);
       
-      // If valid reference, check Supabase
-      if (data.isValidRef) {
+      // If valid reference and form hasn't been submitted, check Supabase
+      if (data.isValidRef && !submitted) {
         checkSupabaseUser(data.uid);
       }
     } catch (err) {
