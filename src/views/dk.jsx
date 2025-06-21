@@ -69,6 +69,7 @@ const DK = () => {
       <Helmet>
         <title>DxD - DK Presale</title>
         <meta name="description" content="Join the DK x devil x detail presale list" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         
         {/* Essential OG Tags */}
         <meta property="og:title" content="DxD - DK Presale" />
@@ -85,32 +86,34 @@ const DK = () => {
       </Helmet>
       
       <div className="dk-background">
+        <div className="dk-top-icons">
+          <a 
+            href="https://dk-nft.xyz/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="dk-logo-link"
+          >
+            <img 
+              src="/dk-logo.png" 
+              alt="DK Logo" 
+              className="dk-logo"
+            />
+          </a>
+          <a 
+            href="/" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="dk-home-link"
+          >
+            <img 
+              src="/icon - white-200h.png" 
+              alt="White Icon" 
+              className="dk-white-icon"
+            />
+          </a>
+        </div>
+        
         <div className="dk-content">
-          <div className="dk-top-icons">
-            <a 
-              href="https://dk-nft.xyz/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="dk-logo-link"
-            >
-              <img 
-                src="/dk-logo.png" 
-                alt="DK Logo" 
-                className="dk-logo"
-              />
-            </a>
-            <a 
-              href="/" 
-              className="dk-home-link"
-            >
-              <img 
-                src="/icon - white-200h.png" 
-                alt="White Icon" 
-                className="dk-white-icon"
-              />
-            </a>
-          </div>
-          
           <div className="dk-main-content">
             <img 
               src="/dk-header.png" 
@@ -154,8 +157,6 @@ const DK = () => {
                 {isSubmitting ? 'Submitting...' : 'Submit'}
               </button>
             </form>
-            
-
             
             <div className="dk-footer-text">
               Make sure you are following<br />

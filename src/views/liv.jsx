@@ -69,6 +69,7 @@ const Liv = () => {
       <Helmet>
         <title>DxD - Liv Collaboration</title>
         <meta name="description" content="Join the Liv x devil x detail presale list" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         
         {/* Essential OG Tags */}
         <meta property="og:title" content="DxD - Liv Collaboration" />
@@ -80,37 +81,39 @@ const Liv = () => {
         {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="DxD - Liv Collaboration" />
-        <meta name="twitter:description" content="Join the Liv x devil x detail presale list" />
+        <meta name="twitter:description" content="Join the Liv x detail presale list" />
         <meta name="twitter:image" content="https://devilxdetail.com/liv-header.png" />
       </Helmet>
       
       <div className="liv-background">
+        <div className="liv-top-icons">
+          <a 
+            href="https://oliviapedigo.com/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="liv-logo-link"
+          >
+            <img 
+              src="/liv-logo.png" 
+              alt="Liv Logo" 
+              className="liv-logo"
+            />
+          </a>
+          <a 
+            href="/" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="liv-icon-link"
+          >
+            <img 
+              src="/icon-white-200h.png" 
+              alt="White Icon" 
+              className="liv-white-icon"
+            />
+          </a>
+        </div>
+        
         <div className="liv-content">
-          <div className="liv-top-icons">
-            <a 
-              href="https://oliviapedigo.com/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="liv-logo-link"
-            >
-              <img 
-                src="/liv-logo.png" 
-                alt="Liv Logo" 
-                className="liv-logo"
-              />
-            </a>
-            <a 
-              href="/" 
-              className="liv-icon-link"
-            >
-              <img 
-                src="/icon-white-200h.png" 
-                alt="White Icon" 
-                className="liv-white-icon"
-              />
-            </a>
-          </div>
-          
           <div className="liv-main-content">
             <img 
               src="/liv-header.png" 

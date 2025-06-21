@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import { supabase, supabaseServiceRole } from '../lib/supabase';
 
 const IYKPage = () => {
@@ -118,12 +119,14 @@ const IYKPage = () => {
       errors.email = 'Please enter a valid email address';
     }
     
-    // EVM wallet validation (valid Ethereum address format)
+    // EVM wallet validation (valid Ethereum address format OR ENS name)
     const walletRegex = /^0x[a-fA-F0-9]{40}$/;
-    if (!formData.evm_wallet.trim()) {
-      errors.evm_wallet = 'EVM wallet address is required';
-    } else if (!walletRegex.test(formData.evm_wallet.trim())) {
-      errors.evm_wallet = 'Please enter a valid Ethereum wallet address (0x followed by 40 characters)';
+    const ensRegex = /^.+\.eth$/;
+    const walletValue = formData.evm_wallet.trim();
+    if (!walletValue) {
+      errors.evm_wallet = 'Wallet address or ENS name is required';
+    } else if (!walletRegex.test(walletValue) && !ensRegex.test(walletValue)) {
+      errors.evm_wallet = 'Please enter a valid Ethereum wallet address (0x followed by 40 characters) or ENS name (ending in .eth)';
     }
     
     setFormErrors(errors);
@@ -213,7 +216,24 @@ const IYKPage = () => {
   const SocialLinks = () => (
     <div className="mt-6 p-6 bg-gray-800 border border-gray-700 rounded-lg">
       <h3 className="text-lg font-semibold text-white text-center mb-4" style={{ fontFamily: 'Marcellus, serif' }}>
-        Follow Us
+        Make sure you are following{' '}
+        <a 
+          href="https://x.com/clickcreateio" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          style={{ color: 'white', textDecoration: 'underline' }}
+        >
+          @clickcreateio
+        </a>
+        {' '}and{' '}
+        <a 
+          href="https://x.com/devilxdetail" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          style={{ color: 'white', textDecoration: 'underline' }}
+        >
+          @devilxdetail
+        </a>
       </h3>
       
       {/* ClickCreate Section */}
@@ -274,62 +294,91 @@ const IYKPage = () => {
   );
 
   return (
-    <div className="iyk-container1" style={{ 
-      width: '100%',
-      display: 'flex',
-      position: 'relative',
-      minHeight: '100vh',
-      alignItems: 'center',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      backgroundImage: 'url("/ClickCreate Background.png")',
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      fontFamily: 'Lato, sans-serif',
-      padding: '20px'
-    }}>
+    <>
+      <Helmet>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+      </Helmet>
+      <style jsx global>{`
+        body, html {
+          margin: 0 !important;
+          padding: 0 !important;
+          height: 100vh;
+          overflow: hidden;
+        }
+      `}</style>
+      <div className="iyk-container1" style={{ 
+        width: '100vw',
+        height: '100vh',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        margin: 0,
+        padding: 0,
+        backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("/ClickCreate Background.png")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        fontFamily: 'Lato, sans-serif',
+        position: 'relative'
+      }}>
+      {/* Header Container */}
+      <div style={{
+        position: 'absolute',
+        top: '10px',
+        left: '10px',
+        right: '10px',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        zIndex: 1000
+      }}>
+        <a 
+          href="https://clickcreate.io" 
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ display: 'inline-block' }}
+        >
+          <img src="/ClickCreate White.png" alt="ClickCreate Logo" style={{ height: '30px' }} />
+        </a>
+        <a 
+          href="/" 
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ display: 'inline-block' }}
+        >
+          <img src="/Icon - White.png" alt="DxD Logo" style={{ height: '30px' }} />
+        </a>
+      </div>
+      
       {/* Main Container */}
       <div className="iyk-container2" style={{
-        flex: '0 0 auto',
         width: '100%',
-        display: 'flex',
+        height: '100%',
         position: 'relative',
-        alignSelf: 'center',
+        margin: 0,
+        padding: 0,
+        display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
       }}>
         <div className="iyk-container3" style={{
-          flex: '0 0 auto',
           width: '100%',
-          maxWidth: '420px',
+          height: '100%',
           display: 'flex',
           alignItems: 'center',
-          alignSelf: 'center',
           justifyContent: 'center',
-          backgroundColor: 'rgba(0, 0, 0, 0.6)',
-          borderRadius: '12px',
           position: 'relative',
+          margin: 0,
+          padding: 0
         }}>
-           <div style={{
-              position: 'absolute',
-              top: '20px',
-              left: '20px',
-              right: '20px',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center'
-            }}>
-              <img src="/ClickCreate White.png" alt="ClickCreate Logo" style={{ height: '40px', width: '40px' }} />
-              <img src="/Icon - White.png" alt="DxD Logo" style={{ height: '40px', width: '40px' }} />
-            </div>
 
           <div className="iyk-container4" style={{
-            flex: '0 0 auto',
+            flex: '1',
             width: '100%',
             display: 'flex',
             alignSelf: 'center',
             alignItems: 'center',
-            paddingTop: '100px',
             paddingLeft: '24px',
             paddingRight: '24px',
             flexDirection: 'column',
@@ -466,136 +515,50 @@ const IYKPage = () => {
                               fontWeight: '700',
                               marginBottom: 'var(--dl-space-space-halfunit)'
                             }}>
-                              Already Claimed
+                              Clicks Already Claimed
                             </div>
                             <div style={{
                               color: '#ffffff',
                               fontSize: '14px',
                               fontFamily: 'Lato, sans-serif'
                             }}>
-                              This chip has already been claimed by someone else. Follow our socials below!
+                              The Clicks for this shirt have already been claimed. If you are receiving this message in error, please dm the ClickCreate team on Twitter @clickcreateio.
                             </div>
                           </div>
                         )}
 
-                        {/* User already registered (has user data) */}
-                        {!supabaseData.claimed && (
-                          <>
-                            <div style={{
-                              width: '100%',
-                              marginBottom: 'var(--dl-space-space-twounits)',
-                              padding: 'var(--dl-space-space-unit)',
-                              backgroundColor: 'rgba(76, 175, 80, 0.1)',
-                              border: '1px solid #4CAF50',
-                              borderRadius: '4px'
-                            }}>
-                              <div style={{
-                                color: '#4CAF50',
-                                fontSize: '16px',
-                                fontFamily: 'Lato, sans-serif',
-                                fontWeight: '700',
-                                marginBottom: 'var(--dl-space-space-halfunit)'
-                              }}>
-                                Already Registered
-                              </div>
-                              <div style={{
-                                color: '#ffffff',
-                                fontSize: '14px',
-                                fontFamily: 'Lato, sans-serif'
-                              }}>
-                                You've already claimed this experience. Follow our socials below!
-                              </div>
-                            </div>
+                        <SocialLinks />
+                      </div>
+                    )}
 
-                            {/* Read-only form */}
-                            <div style={{
-                              width: '100%',
-                              marginBottom: 'var(--dl-space-space-twounits)',
-                              padding: 'var(--dl-space-space-unit)',
-                              backgroundColor: '#333',
-                              border: '1px solid #444',
-                              borderRadius: '4px'
-                            }}>
-                              <div style={{
-                                display: 'flex',
-                                padding: 'var(--dl-space-space-halfunit) 0',
-                                alignItems: 'center',
-                                borderBottom: '1px solid #444',
-                                marginBottom: 'var(--dl-space-space-halfunit)'
-                              }}>
-                                <div style={{
-                                  color: '#ffffff',
-                                  fontSize: '16px',
-                                  fontFamily: 'Lato, sans-serif',
-                                  fontWeight: '700',
-                                  marginRight: 'var(--dl-space-space-unit)',
-                                  width: '120px'
-                                }}>
-                                  Twitter Handle
-                                </div>
-                                <div style={{
-                                  color: '#ffffff',
-                                  fontSize: '16px',
-                                  fontFamily: 'Lato, sans-serif',
-                                  flex: '1'
-                                }}>
-                                  {supabaseData.twitter}
-                                </div>
-                              </div>
-                              <div style={{
-                                display: 'flex',
-                                padding: 'var(--dl-space-space-halfunit) 0',
-                                alignItems: 'center',
-                                borderBottom: '1px solid #444',
-                                marginBottom: 'var(--dl-space-space-halfunit)'
-                              }}>
-                                <div style={{
-                                  color: '#ffffff',
-                                  fontSize: '16px',
-                                  fontFamily: 'Lato, sans-serif',
-                                  fontWeight: '700',
-                                  marginRight: 'var(--dl-space-space-unit)',
-                                  width: '120px'
-                                }}>
-                                  Email
-                                </div>
-                                <div style={{
-                                  color: '#ffffff',
-                                  fontSize: '16px',
-                                  fontFamily: 'Lato, sans-serif',
-                                  flex: '1'
-                                }}>
-                                  {supabaseData.email}
-                                </div>
-                              </div>
-                              <div style={{
-                                display: 'flex',
-                                padding: 'var(--dl-space-space-halfunit) 0',
-                                alignItems: 'center'
-                              }}>
-                                <div style={{
-                                  color: '#ffffff',
-                                  fontSize: '16px',
-                                  fontFamily: 'Lato, sans-serif',
-                                  fontWeight: '700',
-                                  marginRight: 'var(--dl-space-space-unit)',
-                                  width: '120px'
-                                }}>
-                                  EVM Wallet
-                                </div>
-                                <div style={{
-                                  color: '#ffffff',
-                                  fontSize: '16px',
-                                  fontFamily: 'Lato, sans-serif',
-                                  flex: '1',
-                                  wordBreak: 'break-all'
-                                }}>
-                                  {supabaseData.evm_wallet}
-                                </div>
-                              </div>
-                            </div>
-                          </>
-                        )}
+                    {/* Success message after registration */}
+                    {submitted && (
+                      <div style={{ width: '100%' }}>
+                        <div style={{
+                          width: '100%',
+                          marginBottom: 'var(--dl-space-space-twounits)',
+                          padding: 'var(--dl-space-space-unit)',
+                          backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                          border: '1px solid #4CAF50',
+                          borderRadius: '4px'
+                        }}>
+                          <div style={{
+                            color: '#4CAF50',
+                            fontSize: '16px',
+                            fontFamily: 'Lato, sans-serif',
+                            fontWeight: '700',
+                            marginBottom: 'var(--dl-space-space-halfunit)'
+                          }}>
+                            We've Got It
+                          </div>
+                          <div style={{
+                            color: '#ffffff',
+                            fontSize: '14px',
+                            fontFamily: 'Lato, sans-serif'
+                          }}>
+                            Thank you for submitting your info. We will notify you once your Clicks have been airdropped!
+                          </div>
+                        </div>
 
                         <SocialLinks />
                       </div>
@@ -619,7 +582,8 @@ const IYKPage = () => {
                           marginBottom: '24px',
                           fontFamily: 'Lato, sans-serif'
                         }}>
-                          we hope you enjoy your merch, but we have one more surprise...<br/>
+                          We hope you enjoy your merch, but we have one more surprise...<br/>
+                          <br/>
                           Enter your info below and we will drop you some Clicks!
                         </p>
                         
@@ -643,7 +607,9 @@ const IYKPage = () => {
                                 padding: '12px',
                                 borderRadius: '4px',
                                 border: formErrors.twitter ? '1px solid #b50000' : '1px solid #ccc',
-                                fontSize: '16px'
+                                fontSize: '12pt',
+                                textAlign: 'left',
+                                fontFamily: 'Lato, sans-serif'
                               }}
                             />
                             {formErrors.twitter && (
@@ -674,7 +640,9 @@ const IYKPage = () => {
                                 padding: '12px',
                                 borderRadius: '4px',
                                 border: formErrors.email ? '1px solid #b50000' : '1px solid #ccc',
-                                fontSize: '16px'
+                                fontSize: '12pt',
+                                textAlign: 'left',
+                                fontFamily: 'Lato, sans-serif'
                               }}
                             />
                             {formErrors.email && (
@@ -696,7 +664,7 @@ const IYKPage = () => {
                               name="evm_wallet"
                               value={formData.evm_wallet}
                               onChange={handleFormChange}
-                              placeholder="Ethereum Wallet Address"
+                              placeholder="Ethereum Wallet Address or ENS Name"
                               className="thq-input"
                               style={{
                                 width: '100%',
@@ -705,7 +673,9 @@ const IYKPage = () => {
                                 padding: '12px',
                                 borderRadius: '4px',
                                 border: formErrors.evm_wallet ? '1px solid #b50000' : '1px solid #ccc',
-                                fontSize: '16px'
+                                fontSize: '12pt',
+                                textAlign: 'left',
+                                fontFamily: 'Lato, sans-serif'
                               }}
                             />
                             {formErrors.evm_wallet && (
@@ -729,8 +699,9 @@ const IYKPage = () => {
                               backgroundColor: '#a60000',
                               color: 'white',
                               padding: '14px',
-                              fontSize: '18px',
+                              fontSize: '14pt',
                               fontWeight: 'bold',
+                              fontFamily: 'Lato, sans-serif',
                               border: 'none',
                               borderRadius: '4px',
                               cursor: 'pointer'
@@ -739,8 +710,9 @@ const IYKPage = () => {
                             {submitting ? 'Submitting...' : 'Submit'}
                           </button>
                         </form>
-                         <p style={{ color: 'white', fontSize: '14px', fontFamily: 'Lato, sans-serif' }}>
-                          To learn more about Clicks, check out the{' '}
+                         <p style={{ color: 'white', fontSize: '14pt', fontFamily: 'Lato, sans-serif' }}>
+                          To learn more about Clicks,<br/>
+                          Check out the{' '}
                           <a href="https://clickcreate.io/" target="_blank" rel="noopener noreferrer" style={{ color: 'white', textDecoration: 'underline' }}>
                             ClickCreate Marketplace
                           </a>
@@ -748,62 +720,13 @@ const IYKPage = () => {
                       </div>
                     )}
 
-                    {/* Success message after registration */}
-                    {submitted && (
-                      <div style={{ width: '100%' }}>
-                        <div style={{
-                          width: '100%',
-                          marginBottom: 'var(--dl-space-space-twounits)',
-                          padding: 'var(--dl-space-space-unit)',
-                          backgroundColor: 'rgba(76, 175, 80, 0.1)',
-                          border: '1px solid #4CAF50',
-                          borderRadius: '4px'
-                        }}>
-                          <div style={{
-                            color: '#4CAF50',
-                            fontSize: '16px',
-                            fontFamily: 'Lato, sans-serif',
-                            fontWeight: '700',
-                            marginBottom: 'var(--dl-space-space-halfunit)'
-                          }}>
-                            Thanks! Your info was submitted.
-                          </div>
-                          <div style={{
-                            color: '#ffffff',
-                            fontSize: '14px',
-                            fontFamily: 'Lato, sans-serif'
-                          }}>
-                            Thank you for registering! Follow our socials below.
-                          </div>
-                        </div>
 
-                        <SocialLinks />
-                      </div>
-                    )}
                   </>
                 )}
               </div>
             )}
 
-            {/* Refresh Button */}
-            {iykRef && <div style={{ width: '100%', textAlign: 'center' }}>
-              <button 
-                onClick={fetchIYKData}
-                disabled={loading}
-                style={{ 
-                  width: '200px',
-                  marginTop: 'var(--dl-space-space-twounits)',
-                  backgroundColor: '#4a4a4a',
-                  color: 'white',
-                  border: '1px solid #666',
-                  borderRadius: '4px',
-                  padding: '10px 0',
-                  cursor: 'pointer'
-                }}
-              >
-                {loading ? 'Loading...' : 'Refresh Data'}
-              </button>
-            </div>}
+
           </div>
         </div>
       </div>
@@ -815,6 +738,7 @@ const IYKPage = () => {
         }
       `}</style>
     </div>
+    </>
   );
 };
 
