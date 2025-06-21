@@ -281,9 +281,12 @@ const IYKPage = () => {
       minHeight: '100vh',
       alignItems: 'center',
       flexDirection: 'column',
-      justifyContent: 'space-between',
-      backgroundColor: '#292929',
-      fontFamily: 'Lato, sans-serif'
+      justifyContent: 'center',
+      backgroundImage: 'url("/ClickCreate Background.png")',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      fontFamily: 'Lato, sans-serif',
+      padding: '20px'
     }}>
       {/* Main Container */}
       <div className="iyk-container2" style={{
@@ -294,7 +297,6 @@ const IYKPage = () => {
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: '16px'
       }}>
         <div className="iyk-container3" style={{
           flex: '0 0 auto',
@@ -303,35 +305,37 @@ const IYKPage = () => {
           display: 'flex',
           alignItems: 'center',
           alignSelf: 'center',
-          justifyContent: 'center'
+          justifyContent: 'center',
+          backgroundColor: 'rgba(0, 0, 0, 0.6)',
+          borderRadius: '12px',
+          position: 'relative',
         }}>
+           <div style={{
+              position: 'absolute',
+              top: '20px',
+              left: '20px',
+              right: '20px',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center'
+            }}>
+              <img src="/ClickCreate White.png" alt="ClickCreate Logo" style={{ height: '40px', width: '40px' }} />
+              <img src="/Icon - White.png" alt="DxD Logo" style={{ height: '40px', width: '40px' }} />
+            </div>
+
           <div className="iyk-container4" style={{
             flex: '0 0 auto',
             width: '100%',
             display: 'flex',
-            alignSelf: 'flex-start',
-            alignItems: 'flex-start',
-            paddingTop: '24px',
-            paddingLeft: '12px',
-            paddingRight: '12px',
+            alignSelf: 'center',
+            alignItems: 'center',
+            paddingTop: '100px',
+            paddingLeft: '24px',
+            paddingRight: '24px',
             flexDirection: 'column',
             paddingBottom: '24px',
-            justifyContent: 'flex-start',
-            marginBottom: '0'
+            justifyContent: 'center',
           }}>
-            {/* Header */}
-            <h1 className="iyk-text17" style={{
-              color: '#ffffff',
-              fontFamily: 'Marcellus, serif',
-              fontWeight: '400',
-              fontSize: '26px',
-              marginBottom: '16px',
-              textAlign: 'center',
-              width: '100%'
-            }}>
-              IYK Reference
-            </h1>
-
             {/* Loading State */}
             {loading && (
               <div style={{
@@ -599,138 +603,118 @@ const IYKPage = () => {
 
                     {/* User not registered - show registration form */}
                     {!checkingSupabase && !supabaseData && !submitted && (
-                      <div style={{ width: '100%' }}>
-                        <div style={{
-                          width: '100%',
-                          marginBottom: 'var(--dl-space-space-twounits)',
-                          padding: 'var(--dl-space-space-unit)',
-                          backgroundColor: 'rgba(103, 111, 255, 0.1)',
-                          border: '1px solid #676FFF',
-                          borderRadius: '4px'
+                      <div style={{ width: '100%', textAlign: 'center' }}>
+                         <h2 style={{
+                          color: '#ffffff',
+                          fontFamily: 'Marcellus, serif',
+                          fontSize: '32px',
+                          marginBottom: '16px',
+                          lineHeight: '1.2'
                         }}>
-                          <div style={{
-                            color: '#676FFF',
-                            fontSize: '16px',
-                            fontFamily: 'Lato, sans-serif',
-                            fontWeight: '700',
-                            marginBottom: 'var(--dl-space-space-halfunit)'
-                          }}>
-                            Registration Required
-                          </div>
-                          <div style={{
-                            color: '#ffffff',
-                            fontSize: '14px',
-                            fontFamily: 'Lato, sans-serif'
-                          }}>
-                            Please complete your registration to claim this experience.
-                          </div>
-                        </div>
-
+                          Thank you Season 2 full set holders!
+                        </h2>
+                        <p style={{
+                          color: '#ffffff',
+                          fontSize: '18px',
+                          marginBottom: '24px',
+                          fontFamily: 'Lato, sans-serif'
+                        }}>
+                          we hope you enjoy your merch, but we have one more surprise...<br/>
+                          Enter your info below and we will drop you some Clicks!
+                        </p>
+                        
                         {/* Registration form */}
                         <form onSubmit={handleFormSubmit} style={{
                           width: '100%',
-                          padding: 'var(--dl-space-space-unit)',
-                          backgroundColor: '#333',
-                          border: '1px solid #444',
-                          borderRadius: '4px',
                           marginBottom: 'var(--dl-space-space-twounits)'
                         }}>
-                          <div style={{ marginBottom: 'var(--dl-space-space-unit)' }}>
-                            <label style={{
-                              display: 'block',
-                              color: '#ffffff',
-                              fontSize: '16px',
-                              fontFamily: 'Lato, sans-serif',
-                              marginBottom: '8px'
-                            }}>
-                              Twitter Handle *
-                            </label>
+                          <div style={{ marginBottom: '16px' }}>
                             <input
                               type="text"
                               name="twitter"
                               value={formData.twitter}
                               onChange={handleFormChange}
-                              placeholder="@yourhandle or yourhandle"
+                              placeholder="Twitter Username"
                               className="thq-input"
                               style={{
                                 width: '100%',
-                                borderColor: formErrors.twitter ? '#b50000' : undefined
+                                backgroundColor: '#ffffff',
+                                color: '#000000',
+                                padding: '12px',
+                                borderRadius: '4px',
+                                border: formErrors.twitter ? '1px solid #b50000' : '1px solid #ccc',
+                                fontSize: '16px'
                               }}
                             />
                             {formErrors.twitter && (
                               <div style={{
-                                color: '#b50000',
+                                color: '#ffb3b3',
                                 fontSize: '12px',
                                 marginTop: '4px',
-                                fontFamily: 'Lato, sans-serif'
+                                fontFamily: 'Lato, sans-serif',
+                                textAlign: 'left'
                               }}>
                                 {formErrors.twitter}
                               </div>
                             )}
                           </div>
 
-                          <div style={{ marginBottom: 'var(--dl-space-space-unit)' }}>
-                            <label style={{
-                              display: 'block',
-                              color: '#ffffff',
-                              fontSize: '16px',
-                              fontFamily: 'Lato, sans-serif',
-                              marginBottom: '8px'
-                            }}>
-                              Email Address *
-                            </label>
+                          <div style={{ marginBottom: '16px' }}>
                             <input
                               type="email"
                               name="email"
                               value={formData.email}
                               onChange={handleFormChange}
-                              placeholder="your@email.com"
+                              placeholder="Email"
                               className="thq-input"
                               style={{
                                 width: '100%',
-                                borderColor: formErrors.email ? '#b50000' : undefined
+                                backgroundColor: '#ffffff',
+                                color: '#000000',
+                                padding: '12px',
+                                borderRadius: '4px',
+                                border: formErrors.email ? '1px solid #b50000' : '1px solid #ccc',
+                                fontSize: '16px'
                               }}
                             />
                             {formErrors.email && (
                               <div style={{
-                                color: '#b50000',
+                                color: '#ffb3b3',
                                 fontSize: '12px',
                                 marginTop: '4px',
-                                fontFamily: 'Lato, sans-serif'
+                                fontFamily: 'Lato, sans-serif',
+                                textAlign: 'left'
                               }}>
                                 {formErrors.email}
                               </div>
                             )}
                           </div>
 
-                          <div style={{ marginBottom: 'var(--dl-space-space-twounits)' }}>
-                            <label style={{
-                              display: 'block',
-                              color: '#ffffff',
-                              fontSize: '16px',
-                              fontFamily: 'Lato, sans-serif',
-                              marginBottom: '8px'
-                            }}>
-                              EVM Wallet Address *
-                            </label>
+                          <div style={{ marginBottom: '24px' }}>
                             <input
                               type="text"
                               name="evm_wallet"
                               value={formData.evm_wallet}
                               onChange={handleFormChange}
-                              placeholder="0x..."
+                              placeholder="Ethereum Wallet Address"
                               className="thq-input"
                               style={{
                                 width: '100%',
-                                borderColor: formErrors.evm_wallet ? '#b50000' : undefined
+                                backgroundColor: '#ffffff',
+                                color: '#000000',
+                                padding: '12px',
+                                borderRadius: '4px',
+                                border: formErrors.evm_wallet ? '1px solid #b50000' : '1px solid #ccc',
+                                fontSize: '16px'
                               }}
                             />
                             {formErrors.evm_wallet && (
                               <div style={{
-                                color: '#b50000',
+                                color: '#ffb3b3',
                                 fontSize: '12px',
                                 marginTop: '4px',
-                                fontFamily: 'Lato, sans-serif'
+                                fontFamily: 'Lato, sans-serif',
+                                textAlign: 'left'
                               }}>
                                 {formErrors.evm_wallet}
                               </div>
@@ -740,12 +724,27 @@ const IYKPage = () => {
                           <button
                             type="submit"
                             disabled={submitting}
-                            className="thq-button-filled"
-                            style={{ width: '100%' }}
+                            style={{ 
+                              width: '100%',
+                              backgroundColor: '#a60000',
+                              color: 'white',
+                              padding: '14px',
+                              fontSize: '18px',
+                              fontWeight: 'bold',
+                              border: 'none',
+                              borderRadius: '4px',
+                              cursor: 'pointer'
+                             }}
                           >
-                            {submitting ? 'Submitting...' : 'Complete Registration'}
+                            {submitting ? 'Submitting...' : 'Submit'}
                           </button>
                         </form>
+                         <p style={{ color: 'white', fontSize: '14px', fontFamily: 'Lato, sans-serif' }}>
+                          To learn more about Clicks, check out the{' '}
+                          <a href="https://clickcreate.io/" target="_blank" rel="noopener noreferrer" style={{ color: 'white', textDecoration: 'underline' }}>
+                            ClickCreate Marketplace
+                          </a>
+                        </p>
                       </div>
                     )}
 
@@ -787,19 +786,24 @@ const IYKPage = () => {
             )}
 
             {/* Refresh Button */}
-            <div style={{ width: '100%', textAlign: 'center' }}>
+            {iykRef && <div style={{ width: '100%', textAlign: 'center' }}>
               <button 
                 onClick={fetchIYKData}
                 disabled={loading}
-                className="thq-button-filled"
                 style={{ 
                   width: '200px',
-                  marginTop: 'var(--dl-space-space-twounits)'
+                  marginTop: 'var(--dl-space-space-twounits)',
+                  backgroundColor: '#4a4a4a',
+                  color: 'white',
+                  border: '1px solid #666',
+                  borderRadius: '4px',
+                  padding: '10px 0',
+                  cursor: 'pointer'
                 }}
               >
                 {loading ? 'Loading...' : 'Refresh Data'}
               </button>
-            </div>
+            </div>}
           </div>
         </div>
       </div>

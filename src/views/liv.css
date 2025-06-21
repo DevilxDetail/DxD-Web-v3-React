@@ -1,0 +1,390 @@
+.liv-container {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.liv-background {
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url('/liv-background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.liv-content {
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.liv-top-icons {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+  z-index: 3;
+}
+
+.liv-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
+.liv-logo-link {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.liv-logo-link:hover {
+  transform: scale(1.05);
+}
+
+.liv-icon-link {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.liv-icon-link:hover {
+  transform: scale(1.05);
+}
+
+.liv-white-icon {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.liv-main-content {
+  margin-top: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.liv-header-image {
+  max-width: 100%;
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.liv-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+
+.liv-input {
+  background-color: white;
+  border: 2px solid #e9ecef;
+  border-radius: 25px;
+  padding: 16px 24px;
+  font-size: 18px;
+  color: #333;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.liv-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.liv-input::placeholder {
+  color: #6c757d;
+}
+
+.liv-email-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: 2px solid #e9ecef;
+  border-radius: 50px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.liv-email-container:focus-within {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.liv-email-input {
+  flex: 1;
+  border: none !important;
+  background: transparent !important;
+  padding: 16px 20px !important;
+  font-size: 18px !important;
+  outline: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.liv-email-input:focus {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.liv-submit-btn-embedded {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  margin-right: 6px;
+  transition: transform 0.3s ease;
+  z-index: 2;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.liv-submit-btn-embedded:hover {
+  transform: scale(1.05);
+}
+
+.liv-submit-btn-embedded:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.liv-button-image-embedded {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 50%;
+  display: block;
+}
+
+.liv-toast {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  max-width: 400px;
+  width: 90%;
+  animation: slideInDown 0.3s ease-out;
+}
+
+.liv-toast-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 15px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
+}
+
+.liv-toast.success .liv-toast-content {
+  background: rgba(34, 197, 94, 0.95);
+  color: white;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.liv-toast.error .liv-toast-content {
+  background: rgba(239, 68, 68, 0.95);
+  color: white;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.liv-toast-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.liv-toast-message {
+  flex: 1;
+  line-height: 1.4;
+}
+
+.liv-toast-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.liv-toast-close:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.liv-footer-text {
+  font-size: 28px;
+  color: white;
+  line-height: 1.5;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  margin-top: 20px;
+}
+
+.liv-footer-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.liv-footer-link:hover {
+  color: #f0f8ff;
+  text-decoration: underline;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .liv-content {
+    padding: 15px;
+    max-width: 95%;
+  }
+  
+  .liv-top-icons {
+    padding: 15px;
+  }
+  
+  .liv-logo {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .liv-white-icon {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .liv-main-content {
+    margin-top: 100px;
+    gap: 15px;
+  }
+  
+  .liv-header-image {
+    max-width: 100%;
+  }
+  
+  .liv-input {
+    padding: 14px 20px;
+    font-size: 16px;
+  }
+  
+  .liv-button-image-embedded {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .liv-email-input {
+    padding: 14px 16px !important;
+    font-size: 16px !important;
+  }
+  
+  .liv-footer-text {
+    font-size: 22px;
+  }
+  
+  .liv-toast {
+    top: 15px;
+    width: 95%;
+    max-width: 350px;
+  }
+  
+  .liv-toast-content {
+    padding: 14px 16px;
+    font-size: 14px;
+  }
+  
+  .liv-toast-icon {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .liv-input {
+    padding: 12px 18px;
+    font-size: 15px;
+  }
+  
+  .liv-button-image-embedded {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .liv-email-input {
+    padding: 12px 16px !important;
+    font-size: 15px !important;
+  }
+  
+  .liv-footer-text {
+    font-size: 22px;
+  }
+  
+  .liv-toast {
+    top: 10px;
+    width: 95%;
+    max-width: 320px;
+  }
+  
+  .liv-toast-content {
+    padding: 12px 14px;
+    font-size: 13px;
+    gap: 8px;
+  }
+  
+  .liv-toast-icon {
+    font-size: 14px;
+  }
+  
+  .liv-toast-close {
+    width: 20px;
+    height: 20px;
+    font-size: 16px;
+  }
+} 
