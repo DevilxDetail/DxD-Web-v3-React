@@ -37,7 +37,7 @@ const NY25 = () => {
                 </div>
 
                 <p className="ny25-text follow-text">
-                    Make sure you are following <a href="https://www.instagram.com/devilxdetail" target="_blank" rel="noopener noreferrer">@devilxdetail</a>
+                    Make sure you are following <a href="https://twitter.com/devilxdetail" target="_blank" rel="noopener noreferrer">@devilxdetail</a>
                 </p>
             </div>
         </div>
