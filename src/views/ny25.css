@@ -1,0 +1,116 @@
+.ny25-page {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Marcellus', serif;
+    padding-bottom: 15vh;
+}
+
+#bg-vid {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: auto;
+    height: auto;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+    z-index: -2;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.6;
+    z-index: -1;
+}
+
+.ny25-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 1;
+    max-width: 500px;
+}
+
+.top-right-logo-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 2;
+}
+
+.top-right-logo {
+    width: 30px;
+    height: 30px;
+}
+
+.ny25-header-image {
+    width: 250px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.ny25-text {
+    margin: 10px 0;
+    font-size: 22px;
+    max-width: 400px;
+    line-height: 1.5;
+}
+
+.artist-profiles {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    gap: 40px;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 10px;
+    color: white;
+    text-decoration: none;
+}
+
+.profile-pic {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+    align-content: center;
+}
+
+.profile p {
+    margin: 0;
+    font-size: 22px;
+}
+
+.follow-text {
+    margin-top: 20px;
+}
+
+.follow-text a {
+    color: white;
+    text-decoration: none;
+}
+
+.follow-text a:hover {
+    text-decoration: underline;
+} 
