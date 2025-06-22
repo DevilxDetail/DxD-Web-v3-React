@@ -4,7 +4,7 @@ import './ny25.css';
 const NY25 = () => {
     return (
         <div className="ny25-page">
-            <video autoPlay muted loop id="bg-vid">
+            <video autoPlay muted loop playsInline id="bg-vid">
                 <source src="/bkgrd-vid.MP4" type="video/mp4" />
             </video>
             <div className="video-overlay"></div>
