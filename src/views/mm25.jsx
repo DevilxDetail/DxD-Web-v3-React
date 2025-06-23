@@ -156,11 +156,6 @@ const MM23 = () => {
             
             <div className="mm23-page">
                 <div className="mm23-overlay"></div>
-                
-                <a href="/" className="top-right-logo-container" target="_blank" rel="noopener noreferrer">
-                    <img src="/icon-white-200h.png" alt="Logo" className="top-right-logo" />
-                </a>
-                
                 <div className="mm23-content">
                     {/* Logo Grid */}
                     <div className="logo-grid">
@@ -185,14 +180,13 @@ const MM23 = () => {
                     {loading && (
                         <div className="loading-container">
                             <div className="loading-spinner"></div>
-                            Loading...
                         </div>
                     )}
 
                     {/* Error State */}
                     {error && (
                         <div className="error-container">
-                            <div className="error-title">Error</div>
+                            <div className="error-title"></div>
                             <div className="error-text">{error}</div>
                         </div>
                     )}
@@ -203,9 +197,9 @@ const MM23 = () => {
                             {/* Authentication Failed Message */}
                             {!apiData.isValidRef && (
                                 <div className="error-container">
-                                    <div className="error-title">Authentication Failed</div>
+                                    <div className="error-title"></div>
                                     <div className="error-text">
-                                        This IYK reference is not valid. Please check your reference and try again.
+                                        This IYK reference is not valid.
                                     </div>
                                 </div>
                             )}
@@ -216,9 +210,9 @@ const MM23 = () => {
                                     {/* Success message after registration */}
                                     {submitted && (
                                         <div className="success-message">
-                                            <div className="success-title">Registration Successful</div>
+                                            <div className="success-title"></div>
                                             <div className="success-text">
-                                                Thank you for registering! We'll be in touch soon.
+                                                Thank you for registering!
                                             </div>
                                         </div>
                                     )}
@@ -226,13 +220,6 @@ const MM23 = () => {
                                     {/* Registration form */}
                                     {!submitted && (
                                         <div>
-                                            <h2 className="mm23-text" style={{ fontSize: '32px', marginBottom: '16px' }}>
-                                                Welcome to MM23
-                                            </h2>
-                                            <p className="mm23-text">
-                                                Please enter your information below to complete your registration.
-                                            </p>
-
                                             <form onSubmit={handleFormSubmit} className="form-container">
                                                 <input
                                                     type="text"
