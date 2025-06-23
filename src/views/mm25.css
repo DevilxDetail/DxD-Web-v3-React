@@ -1,0 +1,241 @@
+.mm23-page {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    font-family: 'Marcellus', serif;
+    padding-top: 40px;
+    background-image: url('/mm25-bkgrd.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.mm23-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.6;
+    z-index: -1;
+}
+
+.mm23-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 1;
+    max-width: 500px;
+}
+
+.top-right-logo-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 2;
+}
+
+.top-right-logo {
+    width: 30px;
+    height: 30px;
+}
+
+.logo-grid {
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px 0;
+    margin-bottom: 30px;
+    max-width: 420px;
+}
+
+.logo-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid white;
+}
+
+/* Top row: 3 logos in columns 1, 3, 5 */
+.logo-item.top-left {
+    grid-column: 1;
+    grid-row: 1;
+}
+.logo-item.top-center {
+    grid-column: 3;
+    grid-row: 1;
+}
+.logo-item.top-right {
+    grid-column: 5;
+    grid-row: 1;
+}
+
+/* Bottom row: 2 logos in columns 2 and 4 */
+.logo-item.bottom-left {
+    grid-column: 2;
+    grid-row: 2;
+}
+.logo-item.bottom-right {
+    grid-column: 4;
+    grid-row: 2;
+}
+
+.mm23-text {
+    margin: 10px 0;
+    font-size: 20px;
+    max-width: 400px;
+    line-height: 1.5;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px 0;
+}
+
+.form-input {
+    width: 100%;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 12px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 12pt;
+    text-align: left;
+    font-family: 'Lato', sans-serif;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+.form-input.error {
+    border: 1px solid #b50000;
+}
+
+.form-input::placeholder {
+    text-align: left !important;
+}
+
+.error-message {
+    color: #ffb3b3;
+    font-size: 12px;
+    margin-top: 4px;
+    font-family: 'Lato', sans-serif;
+    text-align: left;
+}
+
+.submit-button {
+    width: 100%;
+    background-color: #a60000;
+    color: white;
+    padding: 14px;
+    font-size: 14pt;
+    font-weight: bold;
+    font-family: 'Lato', sans-serif;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.submit-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.success-message {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 12px;
+    background-color: rgba(76, 175, 80, 0.1);
+    border: 1px solid #4CAF50;
+    border-radius: 4px;
+}
+
+.success-title {
+    color: #4CAF50;
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.success-text {
+    color: #ffffff;
+    font-size: 14px;
+    font-family: 'Lato', sans-serif;
+}
+
+.error-container {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 12px;
+    background-color: rgba(181, 0, 0, 0.1);
+    border: 1px solid #b50000;
+    border-radius: 4px;
+}
+
+.error-title {
+    color: #b50000;
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.error-text {
+    color: #ffffff;
+    font-size: 14px;
+    font-family: 'Lato', sans-serif;
+}
+
+.loading-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: #ffffff;
+    font-family: 'Lato', sans-serif;
+}
+
+.loading-spinner {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #ffffff;
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-right: 12px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 600px) {
+    .logo-grid {
+        max-width: 300px;
+        gap: 10px 0;
+    }
+    .logo-circle {
+        width: 50px;
+        height: 50px;
+    }
+} 

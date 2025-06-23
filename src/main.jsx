@@ -31,6 +31,7 @@ import IYKPage from './views/iyk-page'
 import DK from './views/dk'
 import Liv from './views/liv'
 import NY25 from './views/ny25'
+import MM23 from './views/mm25'
 import ScrollToTop from './components/ScrollToTop'
 
 const App = () => {
@@ -59,6 +60,7 @@ const App = () => {
         <Route component={DK} exact path="/dk" />
         <Route component={Liv} exact path="/liv" />
         <Route component={NY25} exact path="/ny25" />
+        <Route component={MM23} exact path="/mm25" />
         <Route component={NotFound} path="**" />
         <Redirect to="**" />
       </Switch>
