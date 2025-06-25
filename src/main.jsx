@@ -32,6 +32,7 @@ import DK from './views/dk'
 import Liv from './views/liv'
 import NY25 from './views/ny25'
 import MM23 from './views/mm25'
+import Arc from './views/arc'
 import ScrollToTop from './components/ScrollToTop'
 
 const App = () => {
@@ -61,6 +62,7 @@ const App = () => {
         <Route component={Liv} exact path="/liv" />
         <Route component={NY25} exact path="/ny25" />
         <Route component={MM23} exact path="/mm25" />
+        <Route component={Arc} exact path="/arc" />
         <Route component={NotFound} path="**" />
         <Redirect to="**" />
       </Switch>

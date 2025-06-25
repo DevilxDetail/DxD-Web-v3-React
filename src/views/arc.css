@@ -1,0 +1,165 @@
+.arc-page {
+    min-height: 100vh;
+    background-image: url('/arc-bkgrd.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.arc-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+}
+
+.arc-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+}
+
+/* Loading Styles */
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Error Styles - Black screen with "nothing to see here" */
+.error-container {
+    background: black;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+}
+
+.error-text {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: lowercase;
+    letter-spacing: 2px;
+}
+
+/* Welcome Content Styles */
+.welcome-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    gap: 30px;
+}
+
+.welcome-title {
+    font-size: 48px;
+    font-weight: bold;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.welcome-subtitle {
+    font-size: 24px;
+    margin: 0;
+    font-style: italic;
+    opacity: 0.9;
+}
+
+.welcome-message {
+    font-size: 20px;
+    margin: 0;
+    text-transform: lowercase;
+    font-weight: 300;
+    opacity: 0.8;
+}
+
+.welcome-footer {
+    font-size: 18px;
+    margin: 0;
+    margin-top: 50px;
+    opacity: 0.7;
+    font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .welcome-title {
+        font-size: 36px;
+        letter-spacing: 2px;
+    }
+    
+    .welcome-subtitle {
+        font-size: 20px;
+    }
+    
+    .welcome-message {
+        font-size: 18px;
+    }
+    
+    .welcome-footer {
+        font-size: 16px;
+    }
+    
+    .error-text {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .welcome-title {
+        font-size: 28px;
+        letter-spacing: 1px;
+    }
+    
+    .welcome-subtitle {
+        font-size: 18px;
+    }
+    
+    .welcome-message {
+        font-size: 16px;
+    }
+    
+    .welcome-footer {
+        font-size: 14px;
+    }
+    
+    .error-text {
+        font-size: 18px;
+    }
+} 
