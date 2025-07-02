@@ -70,7 +70,7 @@
 
 .error-text {
     color: white;
-    font-size: 24px;
+    font-size: 48px;
     font-weight: bold;
     text-transform: lowercase;
     letter-spacing: 2px;
@@ -84,7 +84,7 @@
     align-items: center;
     justify-content: flex-start;
     min-height: 60vh;
-    gap: 20px;
+    gap: 0px;
     position: relative;
     width: 100%;
     padding-top: 40px;
@@ -101,7 +101,7 @@
 
 .welcome-subtitle {
     font-size: 48px;
-    margin: 0;
+    margin: 20px 0 0 0;
     font-style: normal;
     opacity: 0.9;
     font-family: 'Marcellus', serif;
@@ -144,11 +144,11 @@
     }
     
     .welcome-footer {
-        font-size: 16px;
+        font-size: 36px;
     }
     
     .error-text {
-        font-size: 20px;
+        font-size: 36px;
     }
 }
 
@@ -159,18 +159,18 @@
     }
     
     .welcome-subtitle {
-        font-size: 18px;
+        font-size: 28px;
     }
     
     .welcome-message {
-        font-size: 16px;
+        font-size: 28px;
     }
     
     .welcome-footer {
-        font-size: 14px;
+        font-size: 28px;
     }
     
     .error-text {
-        font-size: 18px;
+        font-size: 28px;
     }
 } 
