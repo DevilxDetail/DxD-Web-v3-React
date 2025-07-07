@@ -87,7 +87,7 @@ const Arc = () => {
                             {/* Valid Reference - Show Welcome Content */}
                             {apiData.isValidRef && (
                                 <div className="welcome-container">
-                                    <h1 className="welcome-title">Welcome to Arc</h1>
+                                    <h1 className="welcome-title">Welcome to the Arc</h1>
                                     <p className="welcome-subtitle">The physical token is the key...</p>
                                     <p className="welcome-message">dont lose it</p>
                                     <p className="welcome-footer">More to come...</p>
