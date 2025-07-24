@@ -28,12 +28,12 @@ const Home = (props) => {
       <div className="home-container2">
         <img
           alt="image"
-          src="/header%20vintage%202-1500w.png"
+          src="/Banner%20-%20Teaser.png"
           className="home-image1"
         />
         <img
           alt="image"
-          src="/header%20vintage%20mobile-1500w.png"
+          src="/Banner%20-%20Teaser.png"
           className="home-image2"
         />
         <div className="home-container3">
