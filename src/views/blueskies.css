@@ -1,5 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Lato:wght@400;600;700&display=swap');
 
+/* Transparent Header for Blueskies Page */
+.blueskies-page .header-header {
+  background-color: transparent !important;
+  backdrop-filter: none !important;
+}
+
+/* Ensure header text is visible on light background */
+.blueskies-page .header-navlink2 {
+  color: #2D3748 !important;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.blueskies-page .header-navlink2:hover {
+  color: #b50000 !important;
+}
+
 .blueskies-container {
   width: 100%;
   min-height: 100vh;

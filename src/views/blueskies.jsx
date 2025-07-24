@@ -45,8 +45,14 @@ const BlueSkies = () => {
         return
       }
 
+      const apiKey = import.meta.env.VITE_GOOGLE_PLACES_API_KEY
+      if (!apiKey) {
+        console.error('Google Places API key is not configured. Please add VITE_GOOGLE_PLACES_API_KEY to your .env file.')
+        return
+      }
+
       const script = document.createElement('script')
-      script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyAr0Dg3eFnN1blIDN3HbgmYzUiUkZ09frE&libraries=places`
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`
       script.async = true
       script.defer = true
       script.onload = () => {
@@ -614,7 +620,7 @@ const BlueSkies = () => {
   }
 
   return (
-    <div className="blueskies-container">
+    <div className="blueskies-container blueskies-page">
       <Helmet>
         <title>DxD - Blue Skies Forever</title>
         <meta property="og:title" content="DxD - Blue Skies Forever" />
