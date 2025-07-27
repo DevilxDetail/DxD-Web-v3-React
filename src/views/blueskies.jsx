@@ -466,7 +466,7 @@ const BlueSkies = () => {
         console.log("Connected wallet address:", userAddress);
 
         // Contract details
-        const contractAddress = "0xCFe04bdF3795c52541Ecc504167BbcDFf6dfcBE2";
+        const contractAddress = "0xfc2847E5058D081B51c47F02d76a1F9621346a7a";
         
         // Contract ABI for the claim function
         const nftDropAbi = [{
@@ -498,7 +498,7 @@ const BlueSkies = () => {
         const receiver = userAddress;
         const quantity = "1";
         const currency = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
-        const pricePerToken = "1000000000000000";
+        const pricePerToken = "150000000000000000";
         const allowlistProof = {
           proof: [],
           quantityLimitPerWallet: "0",
