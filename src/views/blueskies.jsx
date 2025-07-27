@@ -466,12 +466,13 @@ const BlueSkies = () => {
         console.log("Connected wallet address:", userAddress);
 
         // Contract details
-        const contractAddress = "0xfc2847E5058D081B51c47F02d76a1F9621346a7a";
-        const zeroAddress = "0x0000000000000000000000000000000000000000";
+        const contractAddress = "0x41E791EC136492484A96455CDA32C5201cF11650";
 
-        
+
+
+        /*
         // Contract ABI for the claim function
-        /*const nftDropAbi = [{
+        const nftDropAbi = [{
           "inputs": [
             {"internalType": "address","name": "_receiver","type": "address"},
             {"internalType": "uint256","name": "_quantity","type": "uint256"},
@@ -491,79 +492,14 @@ const BlueSkies = () => {
           "outputs": [],
           "stateMutability": "payable",
           "type": "function"
-        }];*/
-
-
-
-        const editionAbi = [
-          // only the functions you’ll call
-          {
-            "inputs":[
-              { "internalType":"address","name":"_to","type":"address" },
-              { "internalType":"uint256","name":"_tokenId","type":"uint256" },
-              { "internalType":"string","name":"_uri","type":"string" },
-              { "internalType":"uint256","name":"_amount","type":"uint256" }
-            ],
-            "name":"mintTo",
-            "outputs":[],
-            "stateMutability":"nonpayable",
-            "type":"function"
-          },
-          {
-            "inputs":[
-              {
-                "components":[
-                  { "internalType":"address","name":"to","type":"address" },
-                  { "internalType":"address","name":"royaltyRecipient","type":"address" },
-                  { "internalType":"uint256","name":"royaltyBps","type":"uint256" },
-                  { "internalType":"address","name":"primarySaleRecipient","type":"address" },
-                  { "internalType":"uint256","name":"tokenId","type":"uint256" },
-                  { "internalType":"string","name":"uri","type":"string" },
-                  { "internalType":"uint256","name":"quantity","type":"uint256" },
-                  { "internalType":"uint256","name":"pricePerToken","type":"uint256" },
-                  { "internalType":"address","name":"currency","type":"address" },
-                  { "internalType":"uint128","name":"validityStartTimestamp","type":"uint128" },
-                  { "internalType":"uint128","name":"validityEndTimestamp","type":"uint128" },
-                  { "internalType":"bytes32","name":"uid","type":"bytes32" }
-                ],
-                "internalType":"struct ITokenERC1155.MintRequest",
-                "name":"_req",
-                "type":"tuple"
-              },
-              { "internalType":"bytes","name":"_signature","type":"bytes" }
-            ],
-            "name":"mintWithSignature",
-            "outputs":[],
-            "stateMutability":"payable",
-            "type":"function"
-          }
-        ]
+        }];
 
 
         // Initialize contract
-        //const nftDropContract = new web3.eth.Contract(nftDropAbi, contractAddress);
-        
-        const edition = new web3.eth.Contract(editionAbi, contractAddress);
-
-
-        const req = {
-          to:                    userAddress,
-          royaltyRecipient:      zeroAddress,
-          royaltyBps:            0,
-          primarySaleRecipient:  zeroAddress,
-          tokenId:               0,   // change if you need a different ID
-          uri:                   "",  // optional override
-          quantity:              1,
-          pricePerToken:         web3.utils.toWei("0.15", "ether"),
-          currency:              zeroAddress,
-          validityStartTimestamp: 0,
-          validityEndTimestamp:   0,
-          uid:                   web3.utils.randomHex(32),
-        };
+        const nftDropContract = new web3.eth.Contract(nftDropAbi, contractAddress);
 
         
         // Define claim parameters
-        /*
         const receiver = userAddress;
         const tokenId = 0;
         const quantity = "1";
@@ -585,15 +521,9 @@ const BlueSkies = () => {
             pricePerToken,
             allowlistProof,
             data
-          });*/
+          });
 
-          const { signature } = await fetch("/api/getMintSignature", {
-            method:  "POST",
-            headers: { "Content-Type": "application/json" },
-            body:    JSON.stringify({ req }),
-          }).then((res) => res.json());
-
-          /*
+          
           // Send transaction
           const tx = await nftDropContract.methods.claim(
             receiver,
@@ -619,17 +549,95 @@ const BlueSkies = () => {
             .send({
               from: userAddress,
               gas: 300_000
-            });*/
+            });
+          */
+
+        // Initialize contract
+        const bsfEdition = new web3.eth.Contract(editionABI, contractAddress);
+
+
+          const editionABI = [
+            {
+              "inputs": [
+                { "internalType": "address",  "name": "_receiver",         "type": "address" },
+                { "internalType": "uint256",  "name": "_tokenId",          "type": "uint256" },
+                { "internalType": "uint256",  "name": "_quantity",         "type": "uint256" },
+                { "internalType": "address",  "name": "_currency",         "type": "address" },
+                { "internalType": "uint256",  "name": "_pricePerToken",    "type": "uint256" },
+                { "components": [
+                    { "internalType": "bytes32[]", "name": "proof",                 "type": "bytes32[]" },
+                    { "internalType": "uint256",   "name": "quantityLimitPerWallet","type": "uint256" },
+                    { "internalType": "uint256",   "name": "pricePerToken",         "type": "uint256" },
+                    { "internalType": "address",   "name": "currency",              "type": "address" }
+                  ],
+                  "internalType": "struct IDrop1155.AllowlistProof",
+                  "name": "_allowlistProof",
+                  "type": "tuple"
+                },
+                { "internalType": "bytes",    "name": "_data",             "type": "bytes" }
+              ],
+              "name": "claim",
+              "outputs": [],
+              "stateMutability": "payable",
+              "type": "function"
+            }
+          ]
+
+          // Initialize contract
+          const bsfEdition = new web3.eth.Contract(editionABI, contractAddress);
+
+          const tokenId        = 0;                            // ID you lazy‑minted
+          const quantity       = "1";
+          const pricePerToken  = web3.utils.toWei("0.15", "ether");   // 0.15 ETH
+          
+          // Native ETH is always the zero‑address in thirdweb Drop contracts
+          const ZERO_ADDRESS   = "0x0000000000000000000000000000000000000000";
+          
+          /**
+           * `AllowlistProof` struct — leave empty if you are NOT using an allowlist.
+           * Web3 v1.10+ accepts either an object (as shown) or an ordered array:
+           *    const allowlistProof = [ [], quantity, pricePerToken, ZERO_ADDRESS ];
+           */
+          const allowlistProof = {
+            proof:                 [],                // no Merkle proof
+            quantityLimitPerWallet: quantity,         // 1 ‑‑ matches your claim phase
+            pricePerToken:         pricePerToken,     // must mirror pricePerToken arg
+            currency:              ZERO_ADDRESS
+          };
+          
+          const data = "0x";                          // arbitrary bytes payload (unused)
+          
+          // -----------------------------------------------------------------------------
+          // 3)  Send the single‑signature mint transaction
+          // -----------------------------------------------------------------------------
+          console.log("Claiming…");
 
           try {
-            await edition.methods
-              .mintWithSignature(req, signature)
-              .send({
-                from:  userAddress,
-                value: req.pricePerToken,
-                gas:   300000,
-              });
-             
+            console.log("Preparing transaction with parameters:", {
+              userAddress,
+              tokenId,
+              quantity,
+              pricePerToken,
+              allowlistProof,
+              data
+            });
+
+          
+          const receipt = await drop.methods
+            .claim(
+              userAddress,              // _receiver
+              tokenId,           // _tokenId                ←  NOTE the parameter order!
+              quantity,          // _quantity
+              ZERO_ADDRESS,      // _currency  (ETH)
+              pricePerToken,     // _pricePerToken
+              allowlistProof,    // _allowlistProof struct
+              data               // _data
+            )
+            .send({
+              from:   user,
+              value:  web3.utils.toBN(pricePerToken).mul(web3.utils.toBN(quantity)), // payable ETH
+              gas:    300_000
+            });
 
           
           console.log("Transaction successful:", tx);
