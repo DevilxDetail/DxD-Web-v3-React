@@ -583,6 +583,22 @@ const BlueSkies = () => {
           // Initialize contract
           const bsfEdition = new web3.eth.Contract(editionABI, contractAddress);
 
+
+          const receiver = userAddress;
+          const tokenId = 0;
+          const quantity = "1";
+          const currency = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
+          const pricePerToken = "150000000000000000";
+          const allowlistProof = {
+            proof: [],
+            quantityLimitPerWallet: "0",
+            pricePerToken: "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+            currency: "0x0000000000000000000000000000000000000000"
+          };
+          const data = "0x";
+
+
+        /*
           const tokenId        = 0;                            // ID you lazy‑minted
           const quantity       = "1";
           const pricePerToken  = web3.utils.toWei("0.15", "ether");   // 0.15 ETH
@@ -590,20 +606,21 @@ const BlueSkies = () => {
           // Native ETH is always the zero‑address in thirdweb Drop contracts
           const ZERO_ADDRESS   = "0x0000000000000000000000000000000000000000";
           
-          /**
-           * `AllowlistProof` struct — leave empty if you are NOT using an allowlist.
-           * Web3 v1.10+ accepts either an object (as shown) or an ordered array:
-           *    const allowlistProof = [ [], quantity, pricePerToken, ZERO_ADDRESS ];
-           */
+         // *
+         //  * `AllowlistProof` struct — leave empty if you are NOT using an allowlist.
+         //  * Web3 v1.10+ accepts either an object (as shown) or an ordered array:
+        //   *    const allowlistProof = [ [], quantity, pricePerToken, ZERO_ADDRESS ];
+          
           const allowlistProof = {
             proof:                 [],                // no Merkle proof
             quantityLimitPerWallet: "5",         // 1 ‑‑ matches your claim phase
             pricePerToken:         pricePerToken,     // must mirror pricePerToken arg
-            currency:              ZERO_ADDRESS
+            currency:              "0x0000000000000000000000000000000000000000"
           };
           
           const data = "0x";                          // arbitrary bytes payload (unused)
-          
+          */
+        
           // -----------------------------------------------------------------------------
           // 3)  Send the single‑signature mint transaction
           // -----------------------------------------------------------------------------
@@ -611,7 +628,7 @@ const BlueSkies = () => {
 
           try {
             console.log("Preparing transaction with parameters:", {
-              userAddress,
+              receiver,
               tokenId,
               quantity,
               pricePerToken,
@@ -622,16 +639,16 @@ const BlueSkies = () => {
           
           const receipt = await bsfEdition.methods
             .claim(
-              userAddress,              // _receiver
+              receiver,              // _receiver
               tokenId,           // _tokenId                ←  NOTE the parameter order!
               quantity,          // _quantity
-              ZERO_ADDRESS,      // _currency  (ETH)
+              currency,      // _currency  (ETH)
               pricePerToken,     // _pricePerToken
               allowlistProof,    // _allowlistProof struct
               data               // _data
             )
             .send({
-              from:   userAddress,
+              from:   receiver,
               value:  pricePerToken, // payable ETH
               gas:    300_000
             });
