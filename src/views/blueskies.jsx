@@ -467,9 +467,11 @@ const BlueSkies = () => {
 
         // Contract details
         const contractAddress = "0xfc2847E5058D081B51c47F02d76a1F9621346a7a";
+        const zeroAddress = "0x0000000000000000000000000000000000000000";
+
         
         // Contract ABI for the claim function
-        const nftDropAbi = [{
+        /*const nftDropAbi = [{
           "inputs": [
             {"internalType": "address","name": "_receiver","type": "address"},
             {"internalType": "uint256","name": "_quantity","type": "uint256"},
@@ -489,13 +491,81 @@ const BlueSkies = () => {
           "outputs": [],
           "stateMutability": "payable",
           "type": "function"
-        }];
+        }];*/
+
+
+
+        const editionAbi = [
+          // only the functions you’ll call
+          {
+            "inputs":[
+              { "internalType":"address","name":"_to","type":"address" },
+              { "internalType":"uint256","name":"_tokenId","type":"uint256" },
+              { "internalType":"string","name":"_uri","type":"string" },
+              { "internalType":"uint256","name":"_amount","type":"uint256" }
+            ],
+            "name":"mintTo",
+            "outputs":[],
+            "stateMutability":"nonpayable",
+            "type":"function"
+          },
+          {
+            "inputs":[
+              {
+                "components":[
+                  { "internalType":"address","name":"to","type":"address" },
+                  { "internalType":"address","name":"royaltyRecipient","type":"address" },
+                  { "internalType":"uint256","name":"royaltyBps","type":"uint256" },
+                  { "internalType":"address","name":"primarySaleRecipient","type":"address" },
+                  { "internalType":"uint256","name":"tokenId","type":"uint256" },
+                  { "internalType":"string","name":"uri","type":"string" },
+                  { "internalType":"uint256","name":"quantity","type":"uint256" },
+                  { "internalType":"uint256","name":"pricePerToken","type":"uint256" },
+                  { "internalType":"address","name":"currency","type":"address" },
+                  { "internalType":"uint128","name":"validityStartTimestamp","type":"uint128" },
+                  { "internalType":"uint128","name":"validityEndTimestamp","type":"uint128" },
+                  { "internalType":"bytes32","name":"uid","type":"bytes32" }
+                ],
+                "internalType":"struct ITokenERC1155.MintRequest",
+                "name":"_req",
+                "type":"tuple"
+              },
+              { "internalType":"bytes","name":"_signature","type":"bytes" }
+            ],
+            "name":"mintWithSignature",
+            "outputs":[],
+            "stateMutability":"payable",
+            "type":"function"
+          }
+        ]
+
 
         // Initialize contract
-        const nftDropContract = new web3.eth.Contract(nftDropAbi, contractAddress);
+        //const nftDropContract = new web3.eth.Contract(nftDropAbi, contractAddress);
+        
+        const edition = new web3.eth.Contract(editionAbi, contractAddress);
 
+
+        const req = {
+          to:                    userAddress,
+          royaltyRecipient:      zeroAddress,
+          royaltyBps:            0,
+          primarySaleRecipient:  zeroAddress,
+          tokenId:               0,   // change if you need a different ID
+          uri:                   "",  // optional override
+          quantity:              1,
+          pricePerToken:         web3.utils.toWei("0.15", "ether"),
+          currency:              zeroAddress,
+          validityStartTimestamp: 0,
+          validityEndTimestamp:   0,
+          uid:                   web3.utils.randomHex(32),
+        };
+
+        
         // Define claim parameters
+        /*
         const receiver = userAddress;
+        const tokenId = 0;
         const quantity = "1";
         const currency = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
         const pricePerToken = "150000000000000000";
@@ -506,7 +576,7 @@ const BlueSkies = () => {
           currency: "0x0000000000000000000000000000000000000000"
         };
         const data = "0x";
-
+        
         try {
           console.log("Preparing transaction with parameters:", {
             receiver,
@@ -515,12 +585,20 @@ const BlueSkies = () => {
             pricePerToken,
             allowlistProof,
             data
-          });
+          });*/
 
+          const { signature } = await fetch("/api/getMintSignature", {
+            method:  "POST",
+            headers: { "Content-Type": "application/json" },
+            body:    JSON.stringify({ req }),
+          }).then((res) => res.json());
+
+          /*
           // Send transaction
-          const tx = await nftDropContract.methods.mint(
+          const tx = await nftDropContract.methods.claim(
             receiver,
             quantity,
+            tokenId,
             currency,
             pricePerToken,
             allowlistProof,
@@ -531,6 +609,29 @@ const BlueSkies = () => {
             gas: 300000
           });
 
+           const tx = await edition.methods
+            .mintTo(
+              receiver,    // _to
+              tokenId,        // _tokenId
+              "",             // _uri  — empty if you don’t need to override
+              quantity        // _amount
+            )
+            .send({
+              from: userAddress,
+              gas: 300_000
+            });*/
+
+          try {
+            await edition.methods
+              .mintWithSignature(req, signature)
+              .send({
+                from:  userAddress,
+                value: req.pricePerToken,
+                gas:   300000,
+              });
+             
+
+          
           console.log("Transaction successful:", tx);
           
           // If transaction successful, save to database
@@ -648,7 +749,7 @@ const BlueSkies = () => {
             <div className="blueskies-included-section">
               <h3 className="blueskies-included-title">Included in this drop:</h3>
               <ul className="blueskies-items-list">
-                <li>Blue Skies Forever Tee</li>
+                <li>Blue Skies Forever T</li>
                 <li>DK Edition</li>
                 <li>Bag Boy Diner Mug</li>
               </ul>
