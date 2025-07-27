@@ -597,7 +597,7 @@ const BlueSkies = () => {
            */
           const allowlistProof = {
             proof:                 [],                // no Merkle proof
-            quantityLimitPerWallet: quantity,         // 1 ‑‑ matches your claim phase
+            quantityLimitPerWallet: "5",         // 1 ‑‑ matches your claim phase
             pricePerToken:         pricePerToken,     // must mirror pricePerToken arg
             currency:              ZERO_ADDRESS
           };
