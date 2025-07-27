@@ -552,9 +552,6 @@ const BlueSkies = () => {
             });
           */
 
-        // Initialize contract
-        const bsfEdition = new web3.eth.Contract(editionABI, contractAddress);
-
 
           const editionABI = [
             {
