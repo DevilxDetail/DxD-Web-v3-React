@@ -631,7 +631,7 @@ const BlueSkies = () => {
               data               // _data
             )
             .send({
-              from:   user,
+              from:   userAddress,
               value:  web3.utils.toBN(pricePerToken).mul(web3.utils.toBN(quantity)), // payable ETH
               gas:    300_000
             });
