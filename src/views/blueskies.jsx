@@ -518,7 +518,7 @@ const BlueSkies = () => {
           });
 
           // Send transaction
-          const tx = await nftDropContract.methods.claim(
+          const tx = await nftDropContract.methods.mint(
             receiver,
             quantity,
             currency,
