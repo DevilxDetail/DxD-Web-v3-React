@@ -623,7 +623,7 @@ const BlueSkies = () => {
             });
 
           
-          const receipt = await drop.methods
+          const receipt = await bsfEdition.methods
             .claim(
               userAddress,              // _receiver
               tokenId,           // _tokenId                ←  NOTE the parameter order!
