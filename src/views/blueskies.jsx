@@ -458,16 +458,16 @@ const BlueSkies = () => {
         setMintStatus('requesting');
 
         // Retrieve the appropriate linked wallet: prioritize user's primary wallet address
-        let linkedWallet = null;
-        if (user?.wallet?.address) {
-          linkedWallet = wallets?.find((w) => w.address?.toLowerCase() === user.wallet.address.toLowerCase());
+        if (!user?.wallet?.address) {
+          throw new Error("Authenticated user has no linked wallet address");
         }
+
+        const linkedWallet = wallets?.find(
+          (w) => w.address?.toLowerCase() === user.wallet.address.toLowerCase()
+        );
+
         if (!linkedWallet) {
-          // Fallback: choose the first non-embedded wallet
-          linkedWallet = wallets?.find((w) => !w.isEmbedded);
-        }
-        if (!linkedWallet) {
-          throw new Error("No linked external wallet found");
+          throw new Error("Linked wallet matching user not found or not connected");
         }
 
         const provider = await linkedWallet.getEthereumProvider();
