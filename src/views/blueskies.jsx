@@ -656,8 +656,8 @@ const BlueSkies = () => {
               gas:    300_000
             });
 
-          
-          console.log("Transaction successful:", tx);
+          // Transaction receipt contains transactionHash and other details
+          console.log("Transaction successful:", receipt);
           
           // If transaction successful, save to database
           try {
@@ -673,7 +673,7 @@ const BlueSkies = () => {
                 country: formData.country,
                 size: selectedSize,
                 status: 'minted',
-                transaction_hash: tx.transactionHash
+                transaction_hash: receipt.transactionHash
               }])
 
             if (dropError) {
@@ -685,6 +685,7 @@ const BlueSkies = () => {
             // Still show success since minting worked
           }
           
+          // Set mint status to success so UI shows correct confirmation
           setMintStatus('success');
 
         } catch (error) {
