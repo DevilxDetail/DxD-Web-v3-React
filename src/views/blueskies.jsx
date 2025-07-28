@@ -7,7 +7,7 @@ import Header from '../components/header'
 import './blueskies.css'
 
 const BlueSkies = () => {
-  const { login, authenticated, user } = usePrivy()
+  const { login, authenticated, user, selectWallet } = usePrivy()
   const [selectedSize, setSelectedSize] = useState('')
   const [isOrdering, setIsOrdering] = useState(false)
   const [showDataModal, setShowDataModal] = useState(false)
@@ -453,18 +453,85 @@ const BlueSkies = () => {
         return;
       }
 
-      try {
-        setMintStatus('requesting');
+      // Check user's wallet configuration
+      console.log("User wallet info:", {
+        hasWallet: !!user.wallet,
+        walletAddress: user.wallet?.address,
+        linkedAccounts: user.linkedAccounts,
+        email: user.email?.address
+      });
+
+      let userAddress;
+      let web3;
+
+      // Determine which wallet to use based on user's Privy configuration
+      if (user.wallet && user.wallet.address) {
+        // User has a connected wallet (MetaMask, WalletConnect, etc.)
+        console.log("Using user's connected wallet:", user.wallet.address);
+        
+        // Try to get the provider from the connected wallet
+        const provider = await window.ethereum;
+        if (!provider) {
+          throw new Error("No Ethereum provider found for connected wallet");
+        }
+        
+        web3 = new Web3(provider);
+        const accounts = await web3.eth.getAccounts();
+        userAddress = accounts[0];
+        
+        if (userAddress.toLowerCase() !== user.wallet.address.toLowerCase()) {
+          throw new Error("Connected wallet address doesn't match user's wallet address");
+        }
+      } else if (user.linkedAccounts && user.linkedAccounts.length > 0) {
+        // User has linked accounts but no primary wallet - show Privy modal for selection
+        console.log("User has linked accounts, showing Privy wallet selector");
+        setMintStatus('');
+        setMintLoading(false);
+        
+        // Use Privy's wallet selector
+        await selectWallet();
+        
+        // Re-check after wallet selection
+        if (!user.wallet || !user.wallet.address) {
+          throw new Error("No wallet selected");
+        }
+        
         const provider = await window.ethereum;
         if (!provider) {
           throw new Error("No Ethereum provider found");
         }
-
-        const web3 = new Web3(provider);
+        
+        web3 = new Web3(provider);
         const accounts = await web3.eth.getAccounts();
-        const userAddress = accounts[0];
-        console.log("Connected wallet address:", userAddress);
+        userAddress = accounts[0];
+      } else {
+        // User only has embedded wallet - show Privy modal for external wallet selection
+        console.log("User has embedded wallet only, prompting for external wallet");
+        setMintStatus('');
+        setMintLoading(false);
+        
+        // Use Privy's wallet selector to choose external wallet
+        await selectWallet();
+        
+        // Re-check after wallet selection
+        if (!user.wallet || !user.wallet.address) {
+          throw new Error("No wallet selected");
+        }
+        
+        const provider = await window.ethereum;
+        if (!provider) {
+          throw new Error("No Ethereum provider found");
+        }
+        
+        web3 = new Web3(provider);
+        const accounts = await web3.eth.getAccounts();
+        userAddress = accounts[0];
+      }
 
+      console.log("Final wallet address for minting:", userAddress);
+      setMintStatus('requesting');
+
+      try {
         // Contract details
         const contractAddress = "0x41E791EC136492484A96455CDA32C5201cF11650";
 
@@ -654,7 +721,7 @@ const BlueSkies = () => {
             });
 
           
-          console.log("Transaction successful:", tx);
+          console.log("Transaction successful:", receipt);
           
           // If transaction successful, save to database
           try {
@@ -670,7 +737,7 @@ const BlueSkies = () => {
                 country: formData.country,
                 size: selectedSize,
                 status: 'minted',
-                transaction_hash: tx.transactionHash
+                transaction_hash: receipt.transactionHash
               }])
 
             if (dropError) {
