@@ -5,8 +5,6 @@ import { supabase } from '../lib/supabase'
 import Web3 from 'web3'
 import Header from '../components/header'
 import './blueskies.css'
-// Sepolia chain ID
-const SEPOLIA_CHAIN_ID = 11155111;
 
 const BlueSkies = () => {
   const { login, authenticated, user } = usePrivy()
@@ -466,29 +464,37 @@ const BlueSkies = () => {
         }
 
         const provider = await linkedWallet.getEthereumProvider();
-        const web3 = new Web3(provider);
-        const userAddress = linkedWallet.address;
-        console.log("Connected wallet address:", userAddress);
-
-        // ------------------------------------------------------------------
-        //  Chain check ‑ ensure wallet is on Sepolia
-        // ------------------------------------------------------------------
+        // --- Ensure wallet is connected to Sepolia ---
+        const SEPOLIA_CHAIN_ID = 11155111; // decimal for Sepolia
         try {
-          const currentChainId = await web3.eth.getChainId();
+          const currentChainIdHex = await provider.request({ method: 'eth_chainId' });
+          const currentChainId = parseInt(currentChainIdHex, 16);
           if (currentChainId !== SEPOLIA_CHAIN_ID) {
-            console.log(`Wallet on chain ${currentChainId}, requesting switch to ${SEPOLIA_CHAIN_ID}`);
-            try {
+            // Attempt to switch using Privy helper
+            if (typeof linkedWallet.switchChain === 'function') {
               await linkedWallet.switchChain(SEPOLIA_CHAIN_ID);
-            } catch (switchErr) {
-              console.error('User rejected chain switch or switch failed:', switchErr);
-              setMintStatus('error: Please switch your wallet to the Sepolia testnet and retry.');
+            } else {
+              setMintStatus('error: Please switch your wallet to the Sepolia network and try again.');
               setMintLoading(false);
               return;
             }
           }
         } catch (chainErr) {
-          console.error('Unable to determine chain ID:', chainErr);
+          console.error('Chain check/switch failed:', chainErr);
+          setMintStatus('error: Unable to switch your wallet to Sepolia.');
+          setMintLoading(false);
+          return;
         }
+        const web3 = new Web3(provider);
+        const userAddress = linkedWallet.address;
+        console.log("Connected wallet address:", userAddress);
+
+        // Contract details
+        const contractAddress = "0x41E791EC136492484A96455CDA32C5201cF11650";
+
+
+
+        // (Old claim flow removed for clarity – we now use bsfEdition below)
 
 
           const editionABI = [

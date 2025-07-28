@@ -8,9 +8,6 @@ import CenterText from '../components/center-text'
 import ConsistentFooter from '../components/ConsistentFooter'
 import './drop.css'
 
-// Sepolia chain ID
-const SEPOLIA_CHAIN_ID = 11155111;
-
 const Drop = (props) => {
   const { login, authenticated, user } = usePrivy();
   const { wallets } = useWallets();
@@ -38,26 +35,29 @@ const Drop = (props) => {
         }
 
         const provider = await linkedWallet.getEthereumProvider();
-        const web3 = new Web3(provider);
-        const userAddress = linkedWallet.address;
-        console.log("Connected wallet address:", userAddress);
-
-        // Ensure wallet is on Sepolia
+        // Verify wallet network is Sepolia (11155111)
+        const SEPOLIA_CHAIN_ID = 11155111;
         try {
-          const currentChainId = await web3.eth.getChainId();
+          const currentChainIdHex = await provider.request({ method: 'eth_chainId' });
+          const currentChainId = parseInt(currentChainIdHex, 16);
           if (currentChainId !== SEPOLIA_CHAIN_ID) {
-            try {
+            if (typeof linkedWallet.switchChain === 'function') {
               await linkedWallet.switchChain(SEPOLIA_CHAIN_ID);
-            } catch (switchErr) {
-              console.error('Failed to switch chain:', switchErr);
-              setMintStatus('error');
+            } else {
+              setMintStatus('error: Please switch your wallet to the Sepolia network and try again.');
               setMintLoading(false);
               return;
             }
           }
         } catch (chainErr) {
-          console.error('Unable to get chainId', chainErr);
+          console.error('Chain check/switch failed:', chainErr);
+          setMintStatus('error: Unable to switch your wallet to Sepolia.');
+          setMintLoading(false);
+          return;
         }
+        const web3 = new Web3(provider);
+        const userAddress = linkedWallet.address;
+        console.log("Connected wallet address:", userAddress);
 
         // Contract details
         const contractAddress = "0xCFe04bdF3795c52541Ecc504167BbcDFf6dfcBE2";
