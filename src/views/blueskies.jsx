@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect, useRef } from 'react'
 import { Helmet } from 'react-helmet'
-import { usePrivy } from "@privy-io/react-auth"
+import { usePrivy, useWallets } from "@privy-io/react-auth"
 import { supabase } from '../lib/supabase'
 import Web3 from 'web3'
 import Header from '../components/header'
@@ -8,6 +8,7 @@ import './blueskies.css'
 
 const BlueSkies = () => {
   const { login, authenticated, user } = usePrivy()
+  const { wallets, ready } = useWallets()
   const [selectedSize, setSelectedSize] = useState('')
   const [isOrdering, setIsOrdering] = useState(false)
   const [showDataModal, setShowDataModal] = useState(false)
@@ -453,9 +454,23 @@ const BlueSkies = () => {
         return;
       }
 
-      // Check if user has a linked wallet in Privy
-      if (!user?.wallet) {
+      // Wait until Privy finishes discovering wallets
+      if (!ready) {
+        setMintStatus('connecting');
+        return;
+      }
+
+      // Check if user has any linked wallets
+      if (wallets.length === 0) {
         const errorMessage = "No wallet linked to your account. Please link a wallet to your Privy account to proceed with minting.";
+        console.error(errorMessage);
+        setMintStatus(`error: ${errorMessage}`);
+        return;
+      }
+
+      // If user has multiple wallets, show error asking them to choose one
+      if (wallets.length > 1) {
+        const errorMessage = `Multiple wallets detected (${wallets.length}). Please use only one wallet for minting. Available wallets: ${wallets.map(w => w.walletClientType).join(', ')}`;
         console.error(errorMessage);
         setMintStatus(`error: ${errorMessage}`);
         return;
@@ -464,17 +479,18 @@ const BlueSkies = () => {
       try {
         setMintStatus('requesting');
         
-        // Use Privy's linked wallet instead of window.ethereum
-        const userAddress = user.wallet.address;
-        console.log("Using Privy linked wallet address:", userAddress);
-
-        // Get the wallet provider from Privy
-        const walletProvider = user.wallet.provider;
-        if (!walletProvider) {
+        // Use the single wallet from the wallets array
+        const wallet = wallets[0];
+        console.log("Minting with:", wallet.walletClientType, wallet.address);
+        
+        // Get the Ethereum provider from the wallet
+        const provider = await wallet.getEthereumProvider();
+        if (!provider) {
           throw new Error("No wallet provider available from Privy");
         }
 
-        const web3 = new Web3(walletProvider);
+        const web3 = new Web3(provider);
+        const userAddress = wallet.address;
 
         // Contract details
         const contractAddress = "0x41E791EC136492484A96455CDA32C5201cF11650";
@@ -714,7 +730,7 @@ const BlueSkies = () => {
 
     } catch (error) {
       console.error("Error in mint process:", error);
-      if (!user?.wallet) {
+      if (wallets.length === 0) {
         setMintStatus('error: No wallet linked to your account. Please link a wallet to your Privy account to proceed with minting.');
       } else {
         setMintStatus('error');
@@ -824,7 +840,7 @@ const BlueSkies = () => {
               {isOrdering ? 'PLACING ORDER...' : 'PLACE ORDER'}
             </button>
             
-            {authenticated && !user?.wallet && (
+            {authenticated && ready && wallets.length === 0 && (
               <div className="blueskies-wallet-notice">
                 <p>⚠️ You need to link a wallet to your account to complete this purchase.</p>
                 <p>Please connect a wallet in your account settings before proceeding.</p>
