@@ -464,27 +464,6 @@ const BlueSkies = () => {
         }
 
         const provider = await linkedWallet.getEthereumProvider();
-        // --- Ensure wallet is connected to Sepolia ---
-        const SEPOLIA_CHAIN_ID = 11155111; // decimal for Sepolia
-        try {
-          const currentChainIdHex = await provider.request({ method: 'eth_chainId' });
-          const currentChainId = parseInt(currentChainIdHex, 16);
-          if (currentChainId !== SEPOLIA_CHAIN_ID) {
-            // Attempt to switch using Privy helper
-            if (typeof linkedWallet.switchChain === 'function') {
-              await linkedWallet.switchChain(SEPOLIA_CHAIN_ID);
-            } else {
-              setMintStatus('error: Please switch your wallet to the Sepolia network and try again.');
-              setMintLoading(false);
-              return;
-            }
-          }
-        } catch (chainErr) {
-          console.error('Chain check/switch failed:', chainErr);
-          setMintStatus('error: Unable to switch your wallet to Sepolia.');
-          setMintLoading(false);
-          return;
-        }
         const web3 = new Web3(provider);
         const userAddress = linkedWallet.address;
         console.log("Connected wallet address:", userAddress);

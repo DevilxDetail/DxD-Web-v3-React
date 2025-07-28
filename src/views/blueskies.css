@@ -186,28 +186,6 @@
   transform: translateY(0);
 }
 
-.blueskies-wallet-notice {
-  margin-top: 15px;
-  padding: 12px;
-  background-color: #fff3cd;
-  border: 1px solid #ffeaa7;
-  border-radius: 8px;
-  text-align: center;
-}
-
-.blueskies-wallet-notice p {
-  margin: 0;
-  font-size: 14px;
-  color: #856404;
-  font-family: 'Lato', sans-serif;
-  line-height: 1.4;
-}
-
-.blueskies-wallet-notice p:first-child {
-  font-weight: 600;
-  margin-bottom: 4px;
-}
-
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
   .blueskies-main-content {
@@ -256,15 +234,6 @@
     padding: 16px 24px;
     font-size: 14px;
   }
-  
-  .blueskies-wallet-notice {
-    margin-top: 12px;
-    padding: 10px;
-  }
-  
-  .blueskies-wallet-notice p {
-    font-size: 13px;
-  }
 }
 
 @media (max-width: 480px) {
@@ -297,15 +266,6 @@
   
   .blueskies-price {
     font-size: 32px;
-  }
-  
-  .blueskies-wallet-notice {
-    margin-top: 10px;
-    padding: 8px;
-  }
-  
-  .blueskies-wallet-notice p {
-    font-size: 12px;
   }
 }
 
