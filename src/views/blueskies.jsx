@@ -454,14 +454,32 @@ const BlueSkies = () => {
         return;
       }
 
-      // Wait until Privy finishes discovering wallets
+      // Check for Privy's embedded wallet first
+      const hasEmbeddedWallet = !!user?.wallet;
+      
+      // Wait until Privy finishes discovering external wallets
       if (!ready) {
         setMintStatus('connecting');
         return;
       }
 
-      // Check if user has any linked wallets
-      if (wallets.length === 0) {
+      // Combine embedded wallet with external wallets
+      const allWallets = [];
+      
+      if (hasEmbeddedWallet) {
+        allWallets.push({
+          address: user.wallet.address,
+          walletClientType: 'privy',
+          walletType: 'embedded',
+          getEthereumProvider: () => user.wallet.provider
+        });
+      }
+      
+      // Add external wallets
+      allWallets.push(...wallets);
+
+      // Check if user has any wallets at all
+      if (allWallets.length === 0) {
         const errorMessage = "No wallet linked to your account. Please link a wallet to your Privy account to proceed with minting.";
         console.error(errorMessage);
         setMintStatus(`error: ${errorMessage}`);
@@ -469,8 +487,9 @@ const BlueSkies = () => {
       }
 
       // If user has multiple wallets, show error asking them to choose one
-      if (wallets.length > 1) {
-        const errorMessage = `Multiple wallets detected (${wallets.length}). Please use only one wallet for minting. Available wallets: ${wallets.map(w => w.walletClientType).join(', ')}`;
+      if (allWallets.length > 1) {
+        const walletTypes = allWallets.map(w => w.walletClientType).join(', ');
+        const errorMessage = `Multiple wallets detected (${allWallets.length}). Please use only one wallet for minting. Available wallets: ${walletTypes}`;
         console.error(errorMessage);
         setMintStatus(`error: ${errorMessage}`);
         return;
@@ -479,8 +498,8 @@ const BlueSkies = () => {
       try {
         setMintStatus('requesting');
         
-        // Use the single wallet from the wallets array
-        const wallet = wallets[0];
+        // Use the single wallet from all available wallets
+        const wallet = allWallets[0];
         console.log("Minting with:", wallet.walletClientType, wallet.address);
         
         // Get the Ethereum provider from the wallet
@@ -730,7 +749,10 @@ const BlueSkies = () => {
 
     } catch (error) {
       console.error("Error in mint process:", error);
-      if (wallets.length === 0) {
+      const hasEmbeddedWallet = !!user?.wallet;
+      const hasExternalWallets = wallets.length > 0;
+      
+      if (!hasEmbeddedWallet && !hasExternalWallets) {
         setMintStatus('error: No wallet linked to your account. Please link a wallet to your Privy account to proceed with minting.');
       } else {
         setMintStatus('error');
@@ -840,7 +862,7 @@ const BlueSkies = () => {
               {isOrdering ? 'PLACING ORDER...' : 'PLACE ORDER'}
             </button>
             
-            {authenticated && ready && wallets.length === 0 && (
+            {authenticated && ready && !user?.wallet && wallets.length === 0 && (
               <div className="blueskies-wallet-notice">
                 <p>⚠️ You need to link a wallet to your account to complete this purchase.</p>
                 <p>Please connect a wallet in your account settings before proceeding.</p>
