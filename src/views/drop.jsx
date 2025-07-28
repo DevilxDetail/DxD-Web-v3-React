@@ -1,7 +1,6 @@
 import React, { Fragment, useState } from 'react'
-import { usePrivy } from "@privy-io/react-auth";
+import { usePrivy, useWallets } from "@privy-io/react-auth";
 import { Helmet } from 'react-helmet'
-import { ethers } from 'ethers';
 import Web3 from 'web3';
 
 import Header from '../components/header'
@@ -11,6 +10,7 @@ import './drop.css'
 
 const Drop = (props) => {
   const { login, authenticated, user } = usePrivy();
+  const { wallets } = useWallets();
   const [mintLoading, setMintLoading] = useState(false);
   const [mintStatus, setMintStatus] = useState('');
 
@@ -27,14 +27,16 @@ const Drop = (props) => {
 
       try {
         setMintStatus('requesting');
-        const provider = await window.ethereum;
-        if (!provider) {
-          throw new Error("No Ethereum provider found");
+
+        // Retrieve the first linked (non-embedded) wallet from Privy
+        const linkedWallet = wallets?.find((w) => !w.isEmbedded);
+        if (!linkedWallet) {
+          throw new Error("No linked external wallet found");
         }
 
+        const provider = await linkedWallet.getEthereumProvider();
         const web3 = new Web3(provider);
-        const accounts = await web3.eth.getAccounts();
-        const userAddress = accounts[0];
+        const userAddress = linkedWallet.address;
         console.log("Connected wallet address:", userAddress);
 
         // Contract details
