@@ -28,8 +28,14 @@ const Drop = (props) => {
       try {
         setMintStatus('requesting');
 
-        // Retrieve the first linked (non-embedded) wallet from Privy
-        const linkedWallet = wallets?.find((w) => !w.isEmbedded);
+        // Retrieve the appropriate linked wallet: prioritize user's primary wallet address
+        let linkedWallet = null;
+        if (user?.wallet?.address) {
+          linkedWallet = wallets?.find((w) => w.address?.toLowerCase() === user.wallet.address.toLowerCase());
+        }
+        if (!linkedWallet) {
+          linkedWallet = wallets?.find((w) => !w.isEmbedded);
+        }
         if (!linkedWallet) {
           throw new Error("No linked external wallet found");
         }
