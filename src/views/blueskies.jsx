@@ -478,6 +478,13 @@ const BlueSkies = () => {
       // Add external wallets
       allWallets.push(...wallets);
 
+      // Log all available wallets for debugging
+      console.log('All available wallets:', allWallets.map(wallet => ({
+        address: wallet.address,
+        provider: wallet.walletClientType,
+        type: wallet.walletType || 'external'
+      })));
+
       // Check if user has any wallets at all
       if (allWallets.length === 0) {
         const errorMessage = "No wallet linked to your account. Please link a wallet to your Privy account to proceed with minting.";
