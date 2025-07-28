@@ -7,7 +7,7 @@ import Header from '../components/header'
 import './blueskies.css'
 
 const BlueSkies = () => {
-  const { login, authenticated, user, selectWallet } = usePrivy()
+  const { login, authenticated, user } = usePrivy()
   const [selectedSize, setSelectedSize] = useState('')
   const [isOrdering, setIsOrdering] = useState(false)
   const [showDataModal, setShowDataModal] = useState(false)
@@ -453,119 +453,29 @@ const BlueSkies = () => {
         return;
       }
 
-      // Check user's wallet configuration
-      console.log("=== WALLET TROUBLESHOOTING ===");
-      console.log("User wallet info:", {
-        hasWallet: !!user.wallet,
-        walletAddress: user.wallet?.address,
-        linkedAccounts: user.linkedAccounts,
-        email: user.email?.address
-      });
-      
-      // Log linked accounts details
-      if (user.linkedAccounts && user.linkedAccounts.length > 0) {
-        console.log("Linked accounts found:", user.linkedAccounts.length);
-        user.linkedAccounts.forEach((account, index) => {
-          console.log(`Linked account ${index + 1}:`, {
-            type: account.type,
-            address: account.address,
-            verifiedAt: account.verifiedAt
-          });
-        });
-      } else {
-        console.log("No linked accounts found");
+      // Check if user has a linked wallet in Privy
+      if (!user?.wallet) {
+        const errorMessage = "No wallet linked to your account. Please link a wallet to your Privy account to proceed with minting.";
+        console.error(errorMessage);
+        setMintStatus(`error: ${errorMessage}`);
+        return;
       }
-
-      let userAddress;
-      let web3;
-      let connectedAddress;
-
-      // Determine which wallet to use based on user's Privy configuration
-      console.log("=== WALLET SELECTION PROCESS ===");
-      if (user.wallet && user.wallet.address) {
-        // User has a connected wallet (MetaMask, WalletConnect, etc.)
-        console.log("✅ User has connected wallet:", user.wallet.address);
-        console.log("Wallet type:", user.wallet.type || "unknown");
-        
-        // Try to get the provider from the connected wallet
-        const provider = await window.ethereum;
-        if (!provider) {
-          throw new Error("No Ethereum provider found for connected wallet");
-        }
-        
-        web3 = new Web3(provider);
-        const accounts = await web3.eth.getAccounts();
-        const connectedAddress = accounts[0];
-        
-        console.log("Connected wallet address:", connectedAddress);
-        console.log("Privy wallet address:", user.wallet.address);
-        
-        // Use the Privy wallet address as the source of truth
-        // If the connected wallet is different, we'll use the Privy wallet address
-        // but still use the connected provider for the transaction
-        userAddress = user.wallet.address;
-        
-        if (connectedAddress.toLowerCase() !== user.wallet.address.toLowerCase()) {
-          console.log("Warning: Connected wallet address doesn't match Privy wallet address");
-          console.log("Using Privy wallet address for transaction");
-        }
-      } else if (user.linkedAccounts && user.linkedAccounts.length > 0) {
-        // User has linked accounts but no primary wallet - show Privy modal for selection
-        console.log("🔄 User has linked accounts, showing Privy wallet selector");
-        console.log("Linked accounts count:", user.linkedAccounts.length);
-        setMintStatus('');
-        setMintLoading(false);
-        
-        // Use Privy's wallet selector
-        await selectWallet();
-        
-        // Re-check after wallet selection
-        if (!user.wallet || !user.wallet.address) {
-          throw new Error("No wallet selected");
-        }
-        
-        const provider = await window.ethereum;
-        if (!provider) {
-          throw new Error("No Ethereum provider found");
-        }
-        
-        web3 = new Web3(provider);
-        const accounts = await web3.eth.getAccounts();
-        connectedAddress = accounts[0];
-        userAddress = accounts[0];
-      } else {
-        // User only has embedded wallet - show Privy modal for external wallet selection
-        console.log("🔄 User has embedded wallet only, prompting for external wallet");
-        console.log("Embedded wallet address:", user.wallet?.address || "none");
-        setMintStatus('');
-        setMintLoading(false);
-        
-        // Use Privy's wallet selector to choose external wallet
-        await selectWallet();
-        
-        // Re-check after wallet selection
-        if (!user.wallet || !user.wallet.address) {
-          throw new Error("No wallet selected");
-        }
-        
-        const provider = await window.ethereum;
-        if (!provider) {
-          throw new Error("No Ethereum provider found");
-        }
-        
-        web3 = new Web3(provider);
-        const accounts = await web3.eth.getAccounts();
-        connectedAddress = accounts[0];
-        userAddress = accounts[0];
-      }
-
-      console.log("=== FINAL WALLET CONFIGURATION ===");
-      console.log("Final wallet address for minting:", userAddress);
-      console.log("Connected wallet address for transaction:", connectedAddress);
-      console.log("Wallet addresses match:", userAddress?.toLowerCase() === connectedAddress?.toLowerCase());
-      setMintStatus('requesting');
 
       try {
+        setMintStatus('requesting');
+        
+        // Use Privy's linked wallet instead of window.ethereum
+        const userAddress = user.wallet.address;
+        console.log("Using Privy linked wallet address:", userAddress);
+
+        // Get the wallet provider from Privy
+        const walletProvider = user.wallet.provider;
+        if (!walletProvider) {
+          throw new Error("No wallet provider available from Privy");
+        }
+
+        const web3 = new Web3(walletProvider);
+
         // Contract details
         const contractAddress = "0x41E791EC136492484A96455CDA32C5201cF11650";
 
@@ -602,10 +512,7 @@ const BlueSkies = () => {
         
         // Define claim parameters
         const receiver = userAddress;
-        console.log("=== TRANSACTION PARAMETERS ===");
-        console.log("Receiver address (NFT recipient):", receiver);
-        console.log("Transaction sender address:", connectedAddress || userAddress);
-        console.log("Token ID:", 0);
+        const tokenId = 0;
         const quantity = "1";
         const currency = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
         const pricePerToken = "150000000000000000";
@@ -618,7 +525,6 @@ const BlueSkies = () => {
         const data = "0x";
         
         try {
-          console.log("=== TRANSACTION PREPARATION ===");
           console.log("Preparing transaction with parameters:", {
             receiver,
             quantity,
@@ -627,7 +533,6 @@ const BlueSkies = () => {
             allowlistProof,
             data
           });
-          console.log("Transaction will be sent from:", connectedAddress || userAddress);
 
           
           // Send transaction
@@ -754,7 +659,7 @@ const BlueSkies = () => {
               data               // _data
             )
             .send({
-              from:   connectedAddress || userAddress, // Use connected address for transaction
+              from:   receiver,
               value:  pricePerToken, // payable ETH
               gas:    300_000
             });
@@ -798,14 +703,22 @@ const BlueSkies = () => {
         }
 
       } catch (error) {
-        console.error("Error accessing wallet:", error);
-        setMintStatus('error');
+        console.error("Error accessing Privy wallet:", error);
+        if (error.message.includes("No wallet provider available")) {
+          setMintStatus('error: Unable to access your linked wallet. Please try reconnecting your wallet to your Privy account.');
+        } else {
+          setMintStatus('error');
+        }
         throw error;
       }
 
     } catch (error) {
       console.error("Error in mint process:", error);
-      setMintStatus('error');
+      if (!user?.wallet) {
+        setMintStatus('error: No wallet linked to your account. Please link a wallet to your Privy account to proceed with minting.');
+      } else {
+        setMintStatus('error');
+      }
     } finally {
       setMintLoading(false);
     }
@@ -910,6 +823,13 @@ const BlueSkies = () => {
             >
               {isOrdering ? 'PLACING ORDER...' : 'PLACE ORDER'}
             </button>
+            
+            {authenticated && !user?.wallet && (
+              <div className="blueskies-wallet-notice">
+                <p>⚠️ You need to link a wallet to your account to complete this purchase.</p>
+                <p>Please connect a wallet in your account settings before proceeding.</p>
+              </div>
+            )}
           </div>
         </div>
       </div>
