@@ -711,9 +711,9 @@ const BlueSkies = () => {
   return (
     <div className="blueskies-container blueskies-page">
       <Helmet>
-        <title>DxD - Blue Skies Forever</title>
-        <meta property="og:title" content="DxD - Blue Skies Forever" />
-        <meta name="description" content="Blue Skies Forever collection by DK - A powerful body of work that reminds you of it every time you look up on a sunny day." />
+        <title>Blue Skies Forever</title>
+        <meta property="og:title" content="Blue Skies Forever" />
+        <meta name="description" content="Blue Skies Forever - a DK collaboration" />
       </Helmet>
       
       <Header
@@ -864,7 +864,7 @@ const BlueSkies = () => {
               <div className="blueskies-order-summary">
                 <h4>Order Summary</h4>
                 <div className="blueskies-order-details">
-                  <p><strong>Product:</strong> Blue Skies Forever Collection</p>
+                  <p><strong>Drop:</strong> Blue Skies Forever</p>
                   <p><strong>Size:</strong> {selectedSize}</p>
                   <p><strong>Price:</strong> 0.15 ETH</p>
                 </div>
@@ -977,7 +977,7 @@ const BlueSkies = () => {
               </button>
             </div>
             <div className="blueskies-modal-content">
-              <p>Please sign in to complete your order. If you don't have an account, you'll be able to create one during the sign-in process.</p>
+              <p>Please sign in or create an account to proceed.</p>
               
               <div className="blueskies-signup-options">
                 <button 
@@ -988,7 +988,7 @@ const BlueSkies = () => {
                   className="blueskies-button-primary"
                   style={{ width: '100%', marginBottom: '12px' }}
                 >
-                  Sign In / Sign Up
+                  Sign In / Create Account
                 </button>
                 
                 <button 
@@ -1020,8 +1020,8 @@ const BlueSkies = () => {
               {mintStatus === 'requesting' && (
                 <>
                   <div className="blueskies-spinner"></div>
-                  <h3>Preparing transaction...</h3>
-                  <p>Setting up the minting process</p>
+                  <h3>Minting...</h3>
+                  <p>Submitting transaction</p>
                 </>
               )}
               
@@ -1029,7 +1029,7 @@ const BlueSkies = () => {
                 <>
                   <div className="blueskies-success-icon">✓</div>
                   <h3>Minting Successful!</h3>
-                  <p>Your Blue Skies Forever collection has been minted</p>
+                  <p>Please check your email for confirmation and additional information.</p>
                   <button 
                     onClick={() => {
                       setMintStatus('')
@@ -1062,7 +1062,7 @@ const BlueSkies = () => {
                 <>
                   <div className="blueskies-error-icon">✗</div>
                   <h3>Minting Failed</h3>
-                  <p>Please try again or contact support</p>
+                  <p>Please try again or email hello@devilxdetail.com</p>
                   <button 
                     onClick={() => setMintStatus('')}
                     className="blueskies-button-primary"
