@@ -454,20 +454,38 @@ const BlueSkies = () => {
       }
 
       // Check user's wallet configuration
+      console.log("=== WALLET TROUBLESHOOTING ===");
       console.log("User wallet info:", {
         hasWallet: !!user.wallet,
         walletAddress: user.wallet?.address,
         linkedAccounts: user.linkedAccounts,
         email: user.email?.address
       });
+      
+      // Log linked accounts details
+      if (user.linkedAccounts && user.linkedAccounts.length > 0) {
+        console.log("Linked accounts found:", user.linkedAccounts.length);
+        user.linkedAccounts.forEach((account, index) => {
+          console.log(`Linked account ${index + 1}:`, {
+            type: account.type,
+            address: account.address,
+            verifiedAt: account.verifiedAt
+          });
+        });
+      } else {
+        console.log("No linked accounts found");
+      }
 
       let userAddress;
       let web3;
+      let connectedAddress;
 
       // Determine which wallet to use based on user's Privy configuration
+      console.log("=== WALLET SELECTION PROCESS ===");
       if (user.wallet && user.wallet.address) {
         // User has a connected wallet (MetaMask, WalletConnect, etc.)
-        console.log("Using user's connected wallet:", user.wallet.address);
+        console.log("✅ User has connected wallet:", user.wallet.address);
+        console.log("Wallet type:", user.wallet.type || "unknown");
         
         // Try to get the provider from the connected wallet
         const provider = await window.ethereum;
@@ -477,14 +495,24 @@ const BlueSkies = () => {
         
         web3 = new Web3(provider);
         const accounts = await web3.eth.getAccounts();
-        userAddress = accounts[0];
+        const connectedAddress = accounts[0];
         
-        if (userAddress.toLowerCase() !== user.wallet.address.toLowerCase()) {
-          throw new Error("Connected wallet address doesn't match user's wallet address");
+        console.log("Connected wallet address:", connectedAddress);
+        console.log("Privy wallet address:", user.wallet.address);
+        
+        // Use the Privy wallet address as the source of truth
+        // If the connected wallet is different, we'll use the Privy wallet address
+        // but still use the connected provider for the transaction
+        userAddress = user.wallet.address;
+        
+        if (connectedAddress.toLowerCase() !== user.wallet.address.toLowerCase()) {
+          console.log("Warning: Connected wallet address doesn't match Privy wallet address");
+          console.log("Using Privy wallet address for transaction");
         }
       } else if (user.linkedAccounts && user.linkedAccounts.length > 0) {
         // User has linked accounts but no primary wallet - show Privy modal for selection
-        console.log("User has linked accounts, showing Privy wallet selector");
+        console.log("🔄 User has linked accounts, showing Privy wallet selector");
+        console.log("Linked accounts count:", user.linkedAccounts.length);
         setMintStatus('');
         setMintLoading(false);
         
@@ -503,10 +531,12 @@ const BlueSkies = () => {
         
         web3 = new Web3(provider);
         const accounts = await web3.eth.getAccounts();
+        connectedAddress = accounts[0];
         userAddress = accounts[0];
       } else {
         // User only has embedded wallet - show Privy modal for external wallet selection
-        console.log("User has embedded wallet only, prompting for external wallet");
+        console.log("🔄 User has embedded wallet only, prompting for external wallet");
+        console.log("Embedded wallet address:", user.wallet?.address || "none");
         setMintStatus('');
         setMintLoading(false);
         
@@ -525,10 +555,14 @@ const BlueSkies = () => {
         
         web3 = new Web3(provider);
         const accounts = await web3.eth.getAccounts();
+        connectedAddress = accounts[0];
         userAddress = accounts[0];
       }
 
+      console.log("=== FINAL WALLET CONFIGURATION ===");
       console.log("Final wallet address for minting:", userAddress);
+      console.log("Connected wallet address for transaction:", connectedAddress);
+      console.log("Wallet addresses match:", userAddress?.toLowerCase() === connectedAddress?.toLowerCase());
       setMintStatus('requesting');
 
       try {
@@ -568,7 +602,10 @@ const BlueSkies = () => {
         
         // Define claim parameters
         const receiver = userAddress;
-        const tokenId = 0;
+        console.log("=== TRANSACTION PARAMETERS ===");
+        console.log("Receiver address (NFT recipient):", receiver);
+        console.log("Transaction sender address:", connectedAddress || userAddress);
+        console.log("Token ID:", 0);
         const quantity = "1";
         const currency = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
         const pricePerToken = "150000000000000000";
@@ -581,6 +618,7 @@ const BlueSkies = () => {
         const data = "0x";
         
         try {
+          console.log("=== TRANSACTION PREPARATION ===");
           console.log("Preparing transaction with parameters:", {
             receiver,
             quantity,
@@ -589,6 +627,7 @@ const BlueSkies = () => {
             allowlistProof,
             data
           });
+          console.log("Transaction will be sent from:", connectedAddress || userAddress);
 
           
           // Send transaction
@@ -715,7 +754,7 @@ const BlueSkies = () => {
               data               // _data
             )
             .send({
-              from:   receiver,
+              from:   connectedAddress || userAddress, // Use connected address for transaction
               value:  pricePerToken, // payable ETH
               gas:    300_000
             });
