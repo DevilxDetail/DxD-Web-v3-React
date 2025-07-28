@@ -464,6 +464,41 @@ const BlueSkies = () => {
         }
 
         const provider = await linkedWallet.getEthereumProvider();
+
+        // Ensure the wallet is connected to Sepolia
+        const SEPOLIA_ID = "0xaa36a7"; // Hex chain id for Sepolia (11155111)
+        try {
+          const chainIdHex = await provider.request({ method: "eth_chainId" });
+          if (chainIdHex !== SEPOLIA_ID) {
+            try {
+              await provider.request({
+                method: "wallet_switchEthereumChain",
+                params: [{ chainId: SEPOLIA_ID }],
+              });
+            } catch (switchErr) {
+              // 4902 = Unrecognized chain -> add it first
+              if (switchErr.code === 4902) {
+                await provider.request({
+                  method: "wallet_addEthereumChain",
+                  params: [{
+                    chainId: SEPOLIA_ID,
+                    chainName: "Ethereum Sepolia",
+                    rpcUrls: ["https://11155111.rpc.thirdweb.com"],
+                    nativeCurrency: { name: "Sepolia Ether", symbol: "ETH", decimals: 18 },
+                    blockExplorerUrls: ["https://sepolia.etherscan.io"],
+                  }],
+                });
+              } else {
+                throw switchErr;
+              }
+            }
+          }
+        } catch (chainErr) {
+          console.error("Chain check/switch failed:", chainErr);
+          setMintStatus("error: Wrong network");
+          return;
+        }
+
         const web3 = new Web3(provider);
         const userAddress = linkedWallet.address;
         console.log("Connected wallet address:", userAddress);
