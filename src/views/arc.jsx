@@ -140,7 +140,6 @@ const Arc = () => {
             console.log('Attempting to create order...');
             
             const orderData = {
-                auth_user_id: user.id,
                 drop: 'Blue Skies Bonus',
                 size: selectedShoeSize,
                 created_at: new Date().toISOString(),
