@@ -148,14 +148,8 @@ const Arc = () => {
             };
             console.log('Order data to insert:', orderData);
 
-            // Use service role client to bypass RLS policies
-            console.log('Service role client available:', !!supabaseServiceRole);
-            if (!supabaseServiceRole) {
-                console.error('Service role client is not available - check VITE_SUPABASE_SERVICE_ROLE_KEY');
-                throw new Error('Service role client not configured');
-            }
-
-            const { data: orderInsertData, error: orderError } = await supabaseServiceRole
+            // Use regular client since service role is not configured
+            const { data: orderInsertData, error: orderError } = await supabase
                 .from('order')
                 .insert([orderData])
                 .select();
