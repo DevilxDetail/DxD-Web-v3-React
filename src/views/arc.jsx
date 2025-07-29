@@ -138,8 +138,21 @@ const Arc = () => {
 
             // Then, create the order in the order table
             console.log('Attempting to create order...');
+            
+            // Get the user_id from the user table first
+            const { data: userData, error: userDataError } = await supabase
+                .from('user')
+                .select('user_id')
+                .eq('auth_user_id', user.id)
+                .single();
+
+            if (userDataError) {
+                console.error('Error getting user_id:', userDataError);
+                throw userDataError;
+            }
+
             const orderData = {
-                auth_user_id: user.id,
+                user_id: userData.user_id,
                 drop: 'Blue Skies Bonus',
                 size: selectedShoeSize,
                 created_at: new Date().toISOString(),
@@ -160,26 +173,10 @@ const Arc = () => {
                     details: orderError.details,
                     hint: orderError.hint
                 });
-                
-                // Try alternative approach - check if table exists or has different structure
-                console.log('Attempting alternative order creation...');
-                const { error: altOrderError } = await supabase
-                    .from('order')
-                    .insert([{
-                        auth_user_id: user.id,
-                        drop: 'Blue Skies Bonus',
-                        size: selectedShoeSize
-                    }]);
-
-                if (altOrderError) {
-                    console.error('Alternative order creation also failed:', altOrderError);
-                    throw orderError; // Throw original error
-                } else {
-                    console.log('Alternative order creation successful');
-                }
-            } else {
-                console.log('Order created successfully:', orderInsertData);
+                throw orderError;
             }
+
+            console.log('Order created successfully:', orderInsertData);
 
             setSubmitStatus('success');
             setTimeout(() => {
