@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect, useRef } from 'react'
 import { Helmet } from 'react-helmet'
-import { usePrivy } from "@privy-io/react-auth"
+import { usePrivy, useWallets } from "@privy-io/react-auth"
 import { supabase } from '../lib/supabase'
 import Web3 from 'web3'
 import Header from '../components/header'
@@ -8,6 +8,7 @@ import './blueskies.css'
 
 const BlueSkies = () => {
   const { login, authenticated, user } = usePrivy()
+  const { wallets } = useWallets()
   const [selectedSize, setSelectedSize] = useState('')
   const [isOrdering, setIsOrdering] = useState(false)
   const [showDataModal, setShowDataModal] = useState(false)
@@ -455,83 +456,170 @@ const BlueSkies = () => {
 
       try {
         setMintStatus('requesting');
-        const provider = await window.ethereum;
-        if (!provider) {
-          throw new Error("No Ethereum provider found");
+
+        // Retrieve the appropriate linked wallet: prioritize user's primary wallet address
+        if (!user?.wallet?.address) {
+          throw new Error("Authenticated user has no linked wallet address");
+        }
+
+        const linkedWallet = wallets?.find(
+          (w) => w.address?.toLowerCase() === user.wallet.address.toLowerCase()
+        );
+
+        if (!linkedWallet) {
+          throw new Error("Linked wallet matching user not found or not connected");
+        }
+
+        const provider = await linkedWallet.getEthereumProvider();
+
+        // Ensure the wallet is connected to Sepolia
+        const SEPOLIA_ID = "0xaa36a7"; // Hex chain id for Sepolia (11155111)
+        try {
+          const chainIdHex = await provider.request({ method: "eth_chainId" });
+          if (chainIdHex !== SEPOLIA_ID) {
+            try {
+              await provider.request({
+                method: "wallet_switchEthereumChain",
+                params: [{ chainId: SEPOLIA_ID }],
+              });
+            } catch (switchErr) {
+              // 4902 = Unrecognized chain -> add it first
+              if (switchErr.code === 4902) {
+                await provider.request({
+                  method: "wallet_addEthereumChain",
+                  params: [{
+                    chainId: SEPOLIA_ID,
+                    chainName: "Ethereum Sepolia",
+                    rpcUrls: ["https://11155111.rpc.thirdweb.com"],
+                    nativeCurrency: { name: "Sepolia Ether", symbol: "ETH", decimals: 18 },
+                    blockExplorerUrls: ["https://sepolia.etherscan.io"],
+                  }],
+                });
+              } else {
+                throw switchErr;
+              }
+            }
+          }
+        } catch (chainErr) {
+          console.error("Chain check/switch failed:", chainErr);
+          setMintStatus("error: Wrong network");
+          return;
         }
 
         const web3 = new Web3(provider);
-        const accounts = await web3.eth.getAccounts();
-        const userAddress = accounts[0];
+        const userAddress = linkedWallet.address;
         console.log("Connected wallet address:", userAddress);
 
         // Contract details
-        const contractAddress = "0xCFe04bdF3795c52541Ecc504167BbcDFf6dfcBE2";
+        const contractAddress = "0x41E791EC136492484A96455CDA32C5201cF11650";
+
+
+
+        // (Old claim flow removed for clarity – we now use bsfEdition below)
+
+
+          const editionABI = [
+            {
+              "inputs": [
+                { "internalType": "address",  "name": "_receiver",         "type": "address" },
+                { "internalType": "uint256",  "name": "_tokenId",          "type": "uint256" },
+                { "internalType": "uint256",  "name": "_quantity",         "type": "uint256" },
+                { "internalType": "address",  "name": "_currency",         "type": "address" },
+                { "internalType": "uint256",  "name": "_pricePerToken",    "type": "uint256" },
+                { "components": [
+                    { "internalType": "bytes32[]", "name": "proof",                 "type": "bytes32[]" },
+                    { "internalType": "uint256",   "name": "quantityLimitPerWallet","type": "uint256" },
+                    { "internalType": "uint256",   "name": "pricePerToken",         "type": "uint256" },
+                    { "internalType": "address",   "name": "currency",              "type": "address" }
+                  ],
+                  "internalType": "struct IDrop1155.AllowlistProof",
+                  "name": "_allowlistProof",
+                  "type": "tuple"
+                },
+                { "internalType": "bytes",    "name": "_data",             "type": "bytes" }
+              ],
+              "name": "claim",
+              "outputs": [],
+              "stateMutability": "payable",
+              "type": "function"
+            }
+          ]
+
+          // Initialize contract
+          const bsfEdition = new web3.eth.Contract(editionABI, contractAddress);
+
+
+          const receiver = userAddress;
+          const tokenId = 0;
+          const quantity = "1";
+          const currency = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
+          const pricePerToken = "150000000000000000";
+          const allowlistProof = {
+            proof: [],
+            quantityLimitPerWallet: "0",
+            pricePerToken: "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+            currency: "0x0000000000000000000000000000000000000000"
+          };
+          const data = "0x";
+
+
+        /*
+          const tokenId        = 0;                            // ID you lazy‑minted
+          const quantity       = "1";
+          const pricePerToken  = web3.utils.toWei("0.15", "ether");   // 0.15 ETH
+          
+          // Native ETH is always the zero‑address in thirdweb Drop contracts
+          const ZERO_ADDRESS   = "0x0000000000000000000000000000000000000000";
+          
+         // *
+         //  * `AllowlistProof` struct — leave empty if you are NOT using an allowlist.
+         //  * Web3 v1.10+ accepts either an object (as shown) or an ordered array:
+        //   *    const allowlistProof = [ [], quantity, pricePerToken, ZERO_ADDRESS ];
+          
+          const allowlistProof = {
+            proof:                 [],                // no Merkle proof
+            quantityLimitPerWallet: "5",         // 1 ‑‑ matches your claim phase
+            pricePerToken:         pricePerToken,     // must mirror pricePerToken arg
+            currency:              "0x0000000000000000000000000000000000000000"
+          };
+          
+          const data = "0x";                          // arbitrary bytes payload (unused)
+          */
         
-        // Contract ABI for the claim function
-        const nftDropAbi = [{
-          "inputs": [
-            {"internalType": "address","name": "_receiver","type": "address"},
-            {"internalType": "uint256","name": "_quantity","type": "uint256"},
-            {"internalType": "address","name": "_currency","type": "address"},
-            {"internalType": "uint256","name": "_pricePerToken","type": "uint256"},
-            {"internalType": "tuple","name": "_allowlistProof","type": "tuple",
-             "components": [
-               {"internalType": "bytes32[]","name": "proof","type": "bytes32[]"},
-               {"internalType": "uint256","name": "quantityLimitPerWallet","type": "uint256"},
-               {"internalType": "uint256","name": "pricePerToken","type": "uint256"},
-               {"internalType": "address","name": "currency","type": "address"}
-             ]
-            },
-            {"internalType": "bytes","name": "_data","type": "bytes"}
-          ],
-          "name": "claim",
-          "outputs": [],
-          "stateMutability": "payable",
-          "type": "function"
-        }];
+          // -----------------------------------------------------------------------------
+          // 3)  Send the single‑signature mint transaction
+          // -----------------------------------------------------------------------------
+          console.log("Claiming…");
 
-        // Initialize contract
-        const nftDropContract = new web3.eth.Contract(nftDropAbi, contractAddress);
+          try {
+            console.log("Preparing transaction with parameters:", {
+              receiver,
+              tokenId,
+              quantity,
+              pricePerToken,
+              allowlistProof,
+              data
+            });
 
-        // Define claim parameters
-        const receiver = userAddress;
-        const quantity = "1";
-        const currency = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
-        const pricePerToken = "1000000000000000";
-        const allowlistProof = {
-          proof: [],
-          quantityLimitPerWallet: "0",
-          pricePerToken: "115792089237316195423570985008687907853269984665640564039457584007913129639935",
-          currency: "0x0000000000000000000000000000000000000000"
-        };
-        const data = "0x";
+          
+          const receipt = await bsfEdition.methods
+            .claim(
+              receiver,              // _receiver
+              tokenId,           // _tokenId                ←  NOTE the parameter order!
+              quantity,          // _quantity
+              currency,      // _currency  (ETH)
+              pricePerToken,     // _pricePerToken
+              allowlistProof,    // _allowlistProof struct
+              data               // _data
+            )
+            .send({
+              from:   receiver,
+              value:  pricePerToken, // payable ETH
+              gas:    300_000
+            });
 
-        try {
-          console.log("Preparing transaction with parameters:", {
-            receiver,
-            quantity,
-            currency,
-            pricePerToken,
-            allowlistProof,
-            data
-          });
-
-          // Send transaction
-          const tx = await nftDropContract.methods.claim(
-            receiver,
-            quantity,
-            currency,
-            pricePerToken,
-            allowlistProof,
-            data
-          ).send({
-            from: userAddress,
-            value: pricePerToken,
-            gas: 300000
-          });
-
-          console.log("Transaction successful:", tx);
+          // Transaction receipt contains transactionHash and other details
+          console.log("Transaction successful:", receipt);
           
           // If transaction successful, save to database
           try {
@@ -547,7 +635,7 @@ const BlueSkies = () => {
                 country: formData.country,
                 size: selectedSize,
                 status: 'minted',
-                transaction_hash: tx.transactionHash
+                transaction_hash: receipt.transactionHash
               }])
 
             if (dropError) {
@@ -559,6 +647,7 @@ const BlueSkies = () => {
             // Still show success since minting worked
           }
           
+          // Set mint status to success so UI shows correct confirmation
           setMintStatus('success');
 
         } catch (error) {
@@ -622,9 +711,9 @@ const BlueSkies = () => {
   return (
     <div className="blueskies-container blueskies-page">
       <Helmet>
-        <title>DxD - Blue Skies Forever</title>
-        <meta property="og:title" content="DxD - Blue Skies Forever" />
-        <meta name="description" content="Blue Skies Forever collection by DK - A powerful body of work that reminds you of it every time you look up on a sunny day." />
+        <title>Blue Skies Forever</title>
+        <meta property="og:title" content="Blue Skies Forever" />
+        <meta name="description" content="Blue Skies Forever - a DK collaboration" />
       </Helmet>
       
       <Header
@@ -648,7 +737,7 @@ const BlueSkies = () => {
             <div className="blueskies-included-section">
               <h3 className="blueskies-included-title">Included in this drop:</h3>
               <ul className="blueskies-items-list">
-                <li>Blue Skies Forever Tee</li>
+                <li>Blue Skies Forever T</li>
                 <li>DK Edition</li>
                 <li>Bag Boy Diner Mug</li>
               </ul>
@@ -775,7 +864,7 @@ const BlueSkies = () => {
               <div className="blueskies-order-summary">
                 <h4>Order Summary</h4>
                 <div className="blueskies-order-details">
-                  <p><strong>Product:</strong> Blue Skies Forever Collection</p>
+                  <p><strong>Drop:</strong> Blue Skies Forever</p>
                   <p><strong>Size:</strong> {selectedSize}</p>
                   <p><strong>Price:</strong> 0.15 ETH</p>
                 </div>
@@ -888,7 +977,7 @@ const BlueSkies = () => {
               </button>
             </div>
             <div className="blueskies-modal-content">
-              <p>Please sign in to complete your order. If you don't have an account, you'll be able to create one during the sign-in process.</p>
+              <p>Please sign in or create an account to proceed.</p>
               
               <div className="blueskies-signup-options">
                 <button 
@@ -899,7 +988,7 @@ const BlueSkies = () => {
                   className="blueskies-button-primary"
                   style={{ width: '100%', marginBottom: '12px' }}
                 >
-                  Sign In / Sign Up
+                  Sign In / Create Account
                 </button>
                 
                 <button 
@@ -931,8 +1020,8 @@ const BlueSkies = () => {
               {mintStatus === 'requesting' && (
                 <>
                   <div className="blueskies-spinner"></div>
-                  <h3>Preparing transaction...</h3>
-                  <p>Setting up the minting process</p>
+                  <h3>Minting...</h3>
+                  <p>Submitting transaction</p>
                 </>
               )}
               
@@ -940,7 +1029,7 @@ const BlueSkies = () => {
                 <>
                   <div className="blueskies-success-icon">✓</div>
                   <h3>Minting Successful!</h3>
-                  <p>Your Blue Skies Forever collection has been minted</p>
+                  <p>Please check your email for confirmation and additional information.</p>
                   <button 
                     onClick={() => {
                       setMintStatus('')
@@ -973,7 +1062,7 @@ const BlueSkies = () => {
                 <>
                   <div className="blueskies-error-icon">✗</div>
                   <h3>Minting Failed</h3>
-                  <p>Please try again or contact support</p>
+                  <p>Please try again or email hello@devilxdetail.com</p>
                   <button 
                     onClick={() => setMintStatus('')}
                     className="blueskies-button-primary"

@@ -1,7 +1,6 @@
 import React, { Fragment, useState } from 'react'
-import { usePrivy } from "@privy-io/react-auth";
+import { usePrivy, useWallets } from "@privy-io/react-auth";
 import { Helmet } from 'react-helmet'
-import { ethers } from 'ethers';
 import Web3 from 'web3';
 
 import Header from '../components/header'
@@ -11,6 +10,7 @@ import './drop.css'
 
 const Drop = (props) => {
   const { login, authenticated, user } = usePrivy();
+  const { wallets } = useWallets();
   const [mintLoading, setMintLoading] = useState(false);
   const [mintStatus, setMintStatus] = useState('');
 
@@ -27,14 +27,57 @@ const Drop = (props) => {
 
       try {
         setMintStatus('requesting');
-        const provider = await window.ethereum;
-        if (!provider) {
-          throw new Error("No Ethereum provider found");
+
+        // Retrieve the appropriate linked wallet: prioritize user's primary wallet address
+        if (!user?.wallet?.address) {
+          throw new Error("Authenticated user has no linked wallet address");
+        }
+
+        const linkedWallet = wallets?.find(
+          (w) => w.address?.toLowerCase() === user.wallet.address.toLowerCase()
+        );
+
+        if (!linkedWallet) {
+          throw new Error("Linked wallet matching user not found or not connected");
+        }
+
+        const provider = await linkedWallet.getEthereumProvider();
+
+        // Ensure the wallet is connected to Sepolia
+        const SEPOLIA_ID = "0xaa36a7"; // Hex chain id for Sepolia (11155111)
+        try {
+          const chainIdHex = await provider.request({ method: "eth_chainId" });
+          if (chainIdHex !== SEPOLIA_ID) {
+            try {
+              await provider.request({
+                method: "wallet_switchEthereumChain",
+                params: [{ chainId: SEPOLIA_ID }],
+              });
+            } catch (switchErr) {
+              if (switchErr.code === 4902) {
+                await provider.request({
+                  method: "wallet_addEthereumChain",
+                  params: [{
+                    chainId: SEPOLIA_ID,
+                    chainName: "Ethereum Sepolia",
+                    rpcUrls: ["https://11155111.rpc.thirdweb.com"],
+                    nativeCurrency: { name: "Sepolia Ether", symbol: "ETH", decimals: 18 },
+                    blockExplorerUrls: ["https://sepolia.etherscan.io"],
+                  }],
+                });
+              } else {
+                throw switchErr;
+              }
+            }
+          }
+        } catch (chainErr) {
+          console.error("Chain check/switch failed:", chainErr);
+          setMintStatus("error: Wrong network");
+          return;
         }
 
         const web3 = new Web3(provider);
-        const accounts = await web3.eth.getAccounts();
-        const userAddress = accounts[0];
+        const userAddress = linkedWallet.address;
         console.log("Connected wallet address:", userAddress);
 
         // Contract details
