@@ -147,11 +147,10 @@ const Arc = () => {
             };
             console.log('Order data to insert:', orderData);
 
-            // Use regular client since service role is not configured
-            const { data: orderInsertData, error: orderError } = await supabase
+            // Use the same pattern as blueskies.jsx
+            const { error: orderError } = await supabase
                 .from('order')
-                .insert([orderData])
-                .select();
+                .insert([orderData]);
 
             if (orderError) {
                 console.error('Error creating order:', orderError);
@@ -164,7 +163,7 @@ const Arc = () => {
                 throw orderError;
             }
 
-            console.log('Order created successfully:', orderInsertData);
+            console.log('Order created successfully');
 
             setSubmitStatus('success');
             setTimeout(() => {
