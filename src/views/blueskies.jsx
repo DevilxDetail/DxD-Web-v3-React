@@ -794,7 +794,12 @@ const BlueSkies = () => {
                   <li>Bag boy design</li>
                 </ul>
               </div>
-              <div className="blueskies-plus">Plus???</div>
+              <div className="blueskies-item">
+                <h4 className="blueskies-item-title">Plus???</h4>
+                <ul className="blueskies-item-details">
+                  <li>Stay tuned for more details</li>
+                </ul>
+              </div>
             </div>
           </div>
           
