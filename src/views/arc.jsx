@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import { usePrivy } from "@privy-io/react-auth";
+import { supabase } from '../lib/supabase';
 import './arc.css';
 
 const Arc = () => {
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const iykRef = searchParams.get('iykRef');
+    const { login, authenticated, user } = usePrivy();
     const [apiData, setApiData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [selectedShoeSize, setSelectedShoeSize] = useState('');
+    const [submitting, setSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState('');
 
     const fetchIYKData = async () => {
         if (!iykRef) return;
@@ -55,10 +60,83 @@ const Arc = () => {
         setSelectedShoeSize(e.target.value);
     };
 
-    const handleCreateAccount = () => {
-        // Functionality will be added later
-        console.log('Create Account clicked');
+    const handleCreateAccount = async () => {
+        if (!authenticated) {
+            // User is not authenticated, trigger login flow
+            await login();
+            return;
+        }
+
+        // User is authenticated, proceed with submission
+        await handleSubmit();
     };
+
+    const handleSubmit = async () => {
+        if (!selectedShoeSize) {
+            alert('Please select a shoe size');
+            return;
+        }
+
+        if (!authenticated || !user?.id) {
+            alert('Please connect your account first');
+            return;
+        }
+
+        setSubmitting(true);
+        setSubmitStatus('submitting');
+
+        try {
+            // First, update the user's role to "Arc" in the user table
+            const { error: userUpdateError } = await supabase
+                .from('user')
+                .update({ role: 'Arc' })
+                .eq('auth_user_id', user.id);
+
+            if (userUpdateError) {
+                console.error('Error updating user role:', userUpdateError);
+                // Continue with order creation even if role update fails
+            }
+
+            // Then, create the order in the order table
+            const { error: orderError } = await supabase
+                .from('order')
+                .insert([{
+                    auth_user_id: user.id,
+                    drop: 'Blue Skies Bonus',
+                    size: selectedShoeSize,
+                    created_at: new Date().toISOString()
+                }]);
+
+            if (orderError) {
+                throw orderError;
+            }
+
+            setSubmitStatus('success');
+            setTimeout(() => {
+                setSubmitStatus('');
+                setSelectedShoeSize('');
+            }, 3000);
+
+        } catch (error) {
+            console.error('Error submitting order:', error);
+            setSubmitStatus('error');
+            setTimeout(() => {
+                setSubmitStatus('');
+            }, 3000);
+        } finally {
+            setSubmitting(false);
+        }
+    };
+
+    // Handle post-authentication flow
+    useEffect(() => {
+        if (authenticated && user?.id && apiData?.isValidRef) {
+            // User just authenticated, automatically proceed with submission if shoe size is selected
+            if (selectedShoeSize) {
+                handleSubmit();
+            }
+        }
+    }, [authenticated, user, apiData]);
 
     return (
         <>
@@ -111,13 +189,18 @@ const Arc = () => {
                                         <p className="instruction-item">3. Mint the drop</p>
                                     </div>
                                     <div className="action-buttons">
-                                        <button className="create-account-btn" onClick={handleCreateAccount}>
-                                            CREATE ACCOUNT
+                                        <button 
+                                            className="create-account-btn" 
+                                            onClick={handleCreateAccount}
+                                            disabled={submitting}
+                                        >
+                                            {submitting ? 'PROCESSING...' : authenticated ? 'SUBMIT' : 'CREATE ACCOUNT'}
                                         </button>
                                         <select 
                                             value={selectedShoeSize} 
                                             onChange={handleShoeSizeChange}
                                             className="shoe-size-dropdown"
+                                            disabled={submitting}
                                         >
                                             <option value="">Select Shoe Size</option>
                                             <option value="7">7</option>
@@ -134,6 +217,39 @@ const Arc = () => {
                                     </p>
                                 </div>
                             )}
+                        </div>
+                    )}
+
+                    {/* Submission Status Overlay */}
+                    {submitStatus && (
+                        <div className="arc-status-overlay">
+                            <div className="arc-status-modal">
+                                <div className="arc-status-content">
+                                    {submitStatus === 'submitting' && (
+                                        <>
+                                            <div className="arc-spinner"></div>
+                                            <h3>Processing your order...</h3>
+                                            <p>Please wait while we save your information</p>
+                                        </>
+                                    )}
+                                    
+                                    {submitStatus === 'success' && (
+                                        <>
+                                            <div className="arc-success-icon">✓</div>
+                                            <h3>Order Submitted Successfully!</h3>
+                                            <p>Your Arc Holder bonus has been recorded</p>
+                                        </>
+                                    )}
+                                    
+                                    {submitStatus === 'error' && (
+                                        <>
+                                            <div className="arc-error-icon">✗</div>
+                                            <h3>Submission Failed</h3>
+                                            <p>Please try again or contact support</p>
+                                        </>
+                                    )}
+                                </div>
+                            </div>
                         </div>
                     )}
                 </div>
