@@ -86,29 +86,99 @@ const Arc = () => {
         setSubmitStatus('submitting');
 
         try {
-            // First, update the user's role to "Arc" in the user table
-            const { error: userUpdateError } = await supabase
-                .from('user')
-                .update({ role: 'Arc' })
-                .eq('auth_user_id', user.id);
+            console.log('Starting submission process for user:', user.id);
+            console.log('Selected shoe size:', selectedShoeSize);
 
-            if (userUpdateError) {
-                console.error('Error updating user role:', userUpdateError);
-                // Continue with order creation even if role update fails
+            // First, check if user exists in user table
+            console.log('Checking if user exists in user table...');
+            const { data: existingUser, error: userCheckError } = await supabase
+                .from('user')
+                .select('user_id, auth_user_id')
+                .eq('auth_user_id', user.id)
+                .single();
+
+            if (userCheckError && userCheckError.code !== 'PGRST116') {
+                console.error('Error checking user existence:', userCheckError);
+                // Continue anyway - might be a new user
+            } else if (!existingUser) {
+                console.log('User not found in user table, creating new user...');
+                const { error: createUserError } = await supabase
+                    .from('user')
+                    .insert([{
+                        auth_user_id: user.id,
+                        evm_wallet: user.wallet?.address || '',
+                        email: user.email?.address || '',
+                        name: user.name || '',
+                        role: 'Arc',
+                        created_at: new Date().toISOString()
+                    }]);
+                
+                if (createUserError) {
+                    console.error('Error creating user:', createUserError);
+                    // Continue with order creation anyway
+                } else {
+                    console.log('User created successfully');
+                }
+            } else {
+                // User exists, update their role to "Arc"
+                console.log('User exists, updating role to Arc...');
+                const { data: userUpdateData, error: userUpdateError } = await supabase
+                    .from('user')
+                    .update({ role: 'Arc' })
+                    .eq('auth_user_id', user.id)
+                    .select();
+
+                if (userUpdateError) {
+                    console.error('Error updating user role:', userUpdateError);
+                    // Continue with order creation even if role update fails
+                } else {
+                    console.log('User role updated successfully:', userUpdateData);
+                }
             }
 
             // Then, create the order in the order table
-            const { error: orderError } = await supabase
+            console.log('Attempting to create order...');
+            const orderData = {
+                auth_user_id: user.id,
+                drop: 'Blue Skies Bonus',
+                size: selectedShoeSize,
+                created_at: new Date().toISOString(),
+                email_sent: 'No'
+            };
+            console.log('Order data to insert:', orderData);
+
+            const { data: orderInsertData, error: orderError } = await supabase
                 .from('order')
-                .insert([{
-                    auth_user_id: user.id,
-                    drop: 'Blue Skies Bonus',
-                    size: selectedShoeSize,
-                    created_at: new Date().toISOString()
-                }]);
+                .insert([orderData])
+                .select();
 
             if (orderError) {
-                throw orderError;
+                console.error('Error creating order:', orderError);
+                console.error('Error details:', {
+                    code: orderError.code,
+                    message: orderError.message,
+                    details: orderError.details,
+                    hint: orderError.hint
+                });
+                
+                // Try alternative approach - check if table exists or has different structure
+                console.log('Attempting alternative order creation...');
+                const { error: altOrderError } = await supabase
+                    .from('order')
+                    .insert([{
+                        auth_user_id: user.id,
+                        drop: 'Blue Skies Bonus',
+                        size: selectedShoeSize
+                    }]);
+
+                if (altOrderError) {
+                    console.error('Alternative order creation also failed:', altOrderError);
+                    throw orderError; // Throw original error
+                } else {
+                    console.log('Alternative order creation successful');
+                }
+            } else {
+                console.log('Order created successfully:', orderInsertData);
             }
 
             setSubmitStatus('success');
@@ -119,6 +189,13 @@ const Arc = () => {
 
         } catch (error) {
             console.error('Error submitting order:', error);
+            console.error('Full error object:', {
+                message: error.message,
+                code: error.code,
+                details: error.details,
+                hint: error.hint,
+                stack: error.stack
+            });
             setSubmitStatus('error');
             setTimeout(() => {
                 setSubmitStatus('');
