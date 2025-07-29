@@ -139,20 +139,8 @@ const Arc = () => {
             // Then, create the order in the order table
             console.log('Attempting to create order...');
             
-            // Get the user_id from the user table first
-            const { data: userData, error: userDataError } = await supabase
-                .from('user')
-                .select('user_id')
-                .eq('auth_user_id', user.id)
-                .single();
-
-            if (userDataError) {
-                console.error('Error getting user_id:', userDataError);
-                throw userDataError;
-            }
-
             const orderData = {
-                user_id: userData.user_id,
+                auth_user_id: user.id,
                 drop: 'Blue Skies Bonus',
                 size: selectedShoeSize,
                 created_at: new Date().toISOString(),
@@ -160,8 +148,14 @@ const Arc = () => {
             };
             console.log('Order data to insert:', orderData);
 
-            // Use regular client since RLS policies are now configured
-            const { data: orderInsertData, error: orderError } = await supabase
+            // Use service role client to bypass RLS policies
+            console.log('Service role client available:', !!supabaseServiceRole);
+            if (!supabaseServiceRole) {
+                console.error('Service role client is not available - check VITE_SUPABASE_SERVICE_ROLE_KEY');
+                throw new Error('Service role client not configured');
+            }
+
+            const { data: orderInsertData, error: orderError } = await supabaseServiceRole
                 .from('order')
                 .insert([orderData])
                 .select();
