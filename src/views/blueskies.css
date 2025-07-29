@@ -266,6 +266,7 @@
   .blueskies-left-section {
     max-width: 100%;
     order: 2;
+    text-align: left;
   }
   
   .blueskies-right-section {
@@ -354,6 +355,10 @@
     width: 100%;
     margin: 0;
     padding: 0 10px;
+  }
+  
+  .blueskies-left-section {
+    text-align: left;
   }
   
   .blueskies-banner {
