@@ -10,6 +10,7 @@ const Arc = () => {
     const [apiData, setApiData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [selectedShoeSize, setSelectedShoeSize] = useState('');
 
     const fetchIYKData = async () => {
         if (!iykRef) return;
@@ -50,6 +51,15 @@ const Arc = () => {
         fetchIYKData();
     }, [iykRef]);
 
+    const handleShoeSizeChange = (e) => {
+        setSelectedShoeSize(e.target.value);
+    };
+
+    const handleCreateAccount = () => {
+        // Functionality will be added later
+        console.log('Create Account clicked');
+    };
+
     return (
         <>
             <Helmet>
@@ -87,10 +97,41 @@ const Arc = () => {
                             {/* Valid Reference - Show Welcome Content */}
                             {apiData.isValidRef && (
                                 <div className="welcome-container">
-                                    <h1 className="welcome-title">Welcome to the Arc</h1>
-                                    <p className="welcome-subtitle">The physical token is the key...</p>
-                                    <p className="welcome-message">dont lose it</p>
-                                    <p className="welcome-footer">More to come...</p>
+                                    <h1 className="welcome-title">
+                                        Welcome<br />
+                                        Arc Holder
+                                    </h1>
+                                    <p className="welcome-subtitle">Your first gift awaits...</p>
+                                    <p className="welcome-message">
+                                        If you choose to mint our collab with DK (starting Wednesday, July 30th) you will receive an Arc Holder exclusive bonus.
+                                    </p>
+                                    <div className="instructions-list">
+                                        <p className="instruction-item">1. Create your account</p>
+                                        <p className="instruction-item">2. Select your shoe size</p>
+                                        <p className="instruction-item">3. Mint the drop</p>
+                                    </div>
+                                    <div className="action-buttons">
+                                        <button className="create-account-btn" onClick={handleCreateAccount}>
+                                            CREATE ACCOUNT
+                                        </button>
+                                        <select 
+                                            value={selectedShoeSize} 
+                                            onChange={handleShoeSizeChange}
+                                            className="shoe-size-dropdown"
+                                        >
+                                            <option value="">Select Shoe Size</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12">12</option>
+                                            <option value="13">13</option>
+                                        </select>
+                                    </div>
+                                    <p className="welcome-footer">
+                                        Remember... your decision to mint (or not mint) the drop does not impact your standing as an Arc Holder in any way. We appreciate your support in every form (not just finacially)!
+                                    </p>
                                 </div>
                             )}
                         </div>

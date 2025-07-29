@@ -1,15 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Lato:wght@400;600;700&display=swap');
+
 .arc-page {
     min-height: 100vh;
-    background-image: url('/arc-bkgrd.png');
+    background-image: url('/Arc Reward Background.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     position: relative;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
     color: white;
-    font-family: 'Marcellus', serif;
+    font-family: 'Lato', sans-serif;
 }
 
 .arc-overlay {
@@ -18,7 +20,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.1);
     z-index: 1;
 }
 
@@ -27,9 +29,13 @@
     z-index: 2;
     text-align: center;
     width: 100%;
-    max-width: 800px;
+    max-width: 600px;
     padding: 20px;
-    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
 }
 
 /* Loading Styles */
@@ -75,7 +81,7 @@
     font-weight: bold;
     text-transform: none;
     letter-spacing: 2px;
-    font-family: 'Marcellus', serif;
+    font-family: 'Lato', sans-serif;
 }
 
 /* Welcome Content Styles */
@@ -83,81 +89,157 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    min-height: 60vh;
-    gap: 0px;
-    position: relative;
+    justify-content: center;
+    gap: 30px;
     width: 100%;
-    padding-top: 40px;
+    max-width: 500px;
+    padding: 40px 20px;
 }
 
 .welcome-title {
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 48px;
+    font-weight: 700;
+    color: white;
+    text-align: center;
     margin: 0;
-    text-transform: none;
-    letter-spacing: 3px;
-    font-family: 'Marcellus', serif;
+    line-height: 1.1;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    font-family: 'Lato', sans-serif;
 }
 
 .welcome-subtitle {
-    font-size: 18px;
-    margin: 20px 0 0 0;
-    font-style: normal;
-    opacity: 0.9;
-    font-family: 'Marcellus', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
 }
 
 .welcome-message {
     font-size: 18px;
+    font-weight: 700;
+    color: white;
     margin: 0;
-    text-transform: none;
-    font-weight: 300;
-    opacity: 0.8;
-    font-family: 'Marcellus', serif;
+    text-align: center;
+    line-height: 1.4;
+    max-width: 450px;
+    font-family: 'Lato', sans-serif;
+}
+
+.instructions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 20px 0;
+}
+
+.instruction-item {
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 300px;
+    margin: 20px 0;
+}
+
+.create-account-btn {
+    background: #1a365d;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Lato', sans-serif;
+    transition: background-color 0.3s ease;
+}
+
+.create-account-btn:hover {
+    background: #2d5a8b;
+}
+
+.shoe-size-dropdown {
+    background: white;
+    color: black;
+    border: none;
+    padding: 15px 30px;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 16px;
+    padding-right: 45px;
+}
+
+.shoe-size-dropdown:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
 }
 
 .welcome-footer {
-    font-size: 18px;
+    font-size: 14px;
+    font-weight: 400;
+    color: white;
     margin: 0;
-    opacity: 0.7;
-    font-style: normal;
-    font-family: 'Marcellus', serif;
-    position: absolute;
-    bottom: -50px;
-    left: 50%;
-    transform: translateX(-50%);
-    white-space: nowrap;
+    text-align: center;
+    line-height: 1.5;
+    max-width: 450px;
+    opacity: 0.9;
+    font-family: 'Lato', sans-serif;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
     .welcome-title {
-        font-size: 18px;
-        letter-spacing: 2px;
+        font-size: 36px;
     }
     
     .welcome-subtitle {
-        font-size: 18px;
+        font-size: 20px;
     }
     
     .welcome-message {
-        font-size: 18px;
+        font-size: 16px;
+    }
+    
+    .instruction-item {
+        font-size: 16px;
     }
     
     .welcome-footer {
-        font-size: 18px;
+        font-size: 12px;
     }
     
     .error-text {
-        font-size: 18px;
+        font-size: 16px;
+    }
+    
+    .action-buttons {
+        max-width: 280px;
     }
 }
 
 @media (max-width: 480px) {
     .welcome-title {
-        font-size: 18px;
-        letter-spacing: 1px;
+        font-size: 28px;
     }
     
     .welcome-subtitle {
@@ -165,14 +247,28 @@
     }
     
     .welcome-message {
-        font-size: 18px;
+        font-size: 14px;
+    }
+    
+    .instruction-item {
+        font-size: 14px;
     }
     
     .welcome-footer {
-        font-size: 18px;
+        font-size: 11px;
     }
     
     .error-text {
-        font-size: 18px;
+        font-size: 14px;
+    }
+    
+    .action-buttons {
+        max-width: 260px;
+    }
+    
+    .create-account-btn,
+    .shoe-size-dropdown {
+        padding: 12px 25px;
+        font-size: 14px;
     }
 } 
