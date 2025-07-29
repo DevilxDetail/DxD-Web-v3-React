@@ -27,10 +27,13 @@ const BlueSkies = () => {
   const [mintingStatus, setMintingStatus] = useState('')
   const [mintLoading, setMintLoading] = useState(false)
   const [mintStatus, setMintStatus] = useState('')
+  const [transactionReceipt, setTransactionReceipt] = useState(null)
   const [showEditForm, setShowEditForm] = useState(false)
   const [showSignUpModal, setShowSignUpModal] = useState(false)
   const [isNewUser, setIsNewUser] = useState(false)
   const [googlePlacesLoaded, setGooglePlacesLoaded] = useState(false)
+  const [manualAddressMode, setManualAddressMode] = useState(false)
+  const [editManualAddressMode, setEditManualAddressMode] = useState(false)
   const addressInputRef = useRef(null)
   const editAddressInputRef = useRef(null)
   const autocompleteRef = useRef(null)
@@ -71,9 +74,9 @@ const BlueSkies = () => {
 
   // Initialize Google Places Autocomplete
   useEffect(() => {
-    console.log('Autocomplete effect triggered:', { googlePlacesLoaded, hasInput: !!addressInputRef.current })
+    console.log('Autocomplete effect triggered:', { googlePlacesLoaded, hasInput: !!addressInputRef.current, manualMode: manualAddressMode })
     
-    if (googlePlacesLoaded && addressInputRef.current) {
+    if (googlePlacesLoaded && addressInputRef.current && !manualAddressMode) {
       console.log('Initializing Google Places Autocomplete')
       
       // Clean up previous autocomplete instance
@@ -145,7 +148,7 @@ const BlueSkies = () => {
         autocompleteRef.current = null
       }
     }
-  }, [googlePlacesLoaded])
+  }, [googlePlacesLoaded, manualAddressMode])
 
   // Fetch user data on component mount
   useEffect(() => {
@@ -370,7 +373,7 @@ const BlueSkies = () => {
 
   // Initialize autocomplete for edit form when it opens
   useEffect(() => {
-    if (showEditForm && googlePlacesLoaded && editAddressInputRef.current) {
+    if (showEditForm && googlePlacesLoaded && editAddressInputRef.current && !editManualAddressMode) {
       console.log('Initializing autocomplete for edit form')
       setTimeout(() => {
         if (editAddressInputRef.current && window.google && window.google.maps) {
@@ -441,7 +444,7 @@ const BlueSkies = () => {
         }
       }, 100)
     }
-  }, [showEditForm, googlePlacesLoaded])
+  }, [showEditForm, googlePlacesLoaded, editManualAddressMode])
 
   const handleMint = async () => {
     try {
@@ -620,27 +623,27 @@ const BlueSkies = () => {
 
           // Transaction receipt contains transactionHash and other details
           console.log("Transaction successful:", receipt);
+          setTransactionReceipt(receipt);
           
           // If transaction successful, save to database
           try {
-            const { error: dropError } = await supabase
-              .from('blueskies_drop')
+            // Save to order table using auth_user_id (matching arc.jsx pattern)
+            const { error: orderError } = await supabase
+              .from('order')
               .insert([{
                 auth_user_id: user.id,
-                email: userData?.email || formData.email,
-                address: userData?.address || formData.address,
-                city: formData.city,
-                state: formData.state,
-                zip_code: formData.zipCode,
-                country: formData.country,
+                drop: 'DK',
                 size: selectedSize,
-                status: 'minted',
-                transaction_hash: receipt.transactionHash
+                address: userData?.address || formData.address,
+                transaction_id: receipt.transactionHash,
+                email_sent: 'No'
               }])
 
-            if (dropError) {
-              console.error('Error saving to database:', dropError)
-              // Still show success since minting worked
+            if (orderError) {
+              console.error('Error saving to order table:', orderError)
+              console.error('Order error details:', orderError)
+            } else {
+              console.log('Successfully saved to order table')
             }
           } catch (dbError) {
             console.error('Database error:', dbError)
@@ -728,6 +731,9 @@ const BlueSkies = () => {
       
       <div className="blueskies-main-content">
         <div className="blueskies-title">BLUE SKIES FOREVER</div>
+        <div className="blueskies-banner">
+          <img src="/BSBanner.png" alt="Blue Skies Forever Banner" className="blueskies-banner-image" />
+        </div>
         <div className="blueskies-content-sections">
           <div className="blueskies-left-section">
             <div className="blueskies-description">
@@ -807,20 +813,49 @@ const BlueSkies = () => {
 
               <div className="blueskies-form-group">
                 <label>Mailing Address *</label>
-                <input
-                  ref={addressInputRef}
-                  type="text"
-                  name="address"
-                  value={formData.address}
-                  onChange={handleFormChange}
-                  className={formErrors.address ? 'blueskies-input-error' : 'blueskies-input'}
-                  placeholder="Start typing your address..."
-                />
-                {!googlePlacesLoaded && (
-                  <span className="blueskies-info">Loading address autocomplete...</span>
-                )}
-                {googlePlacesLoaded && (
-                  <span className="blueskies-info">Address autocomplete ready - start typing</span>
+                {!manualAddressMode ? (
+                  <>
+                    <input
+                      ref={addressInputRef}
+                      type="text"
+                      name="address"
+                      value={formData.address}
+                      onChange={handleFormChange}
+                      className={formErrors.address ? 'blueskies-input-error' : 'blueskies-input'}
+                      placeholder="Start typing your address..."
+                    />
+                    {!googlePlacesLoaded && (
+                      <span className="blueskies-info">Loading address autocomplete...</span>
+                    )}
+                    {googlePlacesLoaded && (
+                      <span className="blueskies-info">Address autocomplete ready - start typing</span>
+                    )}
+                    <button
+                      type="button"
+                      onClick={() => setManualAddressMode(true)}
+                      className="blueskies-manual-address-btn"
+                    >
+                      Enter manually
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <input
+                      type="text"
+                      name="address"
+                      value={formData.address}
+                      onChange={handleFormChange}
+                      className={formErrors.address ? 'blueskies-input-error' : 'blueskies-input'}
+                      placeholder="Enter your full address manually..."
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setManualAddressMode(false)}
+                      className="blueskies-manual-address-btn"
+                    >
+                      Use autocomplete
+                    </button>
+                  </>
                 )}
                 {formErrors.address && <span className="blueskies-error">{formErrors.address}</span>}
               </div>
@@ -904,19 +939,48 @@ const BlueSkies = () => {
 
                       <div className="blueskies-form-group">
                         <label>Mailing Address *</label>
-                        <input
-                          ref={editAddressInputRef}
-                          type="text"
-                          name="address"
-                          value={formData.address}
-                          onChange={handleFormChange}
-                          className={formErrors.address ? 'blueskies-input-error' : 'blueskies-input'}
-                          placeholder="Start typing your address..."
-                        />
-                        {formErrors.address && <span className="blueskies-error">{formErrors.address}</span>}
-                        {googlePlacesLoaded && (
-                          <span className="blueskies-info">Address autocomplete ready - start typing</span>
+                        {!editManualAddressMode ? (
+                          <>
+                            <input
+                              ref={editAddressInputRef}
+                              type="text"
+                              name="address"
+                              value={formData.address}
+                              onChange={handleFormChange}
+                              className={formErrors.address ? 'blueskies-input-error' : 'blueskies-input'}
+                              placeholder="Start typing your address..."
+                            />
+                            {googlePlacesLoaded && (
+                              <span className="blueskies-info">Address autocomplete ready - start typing</span>
+                            )}
+                            <button
+                              type="button"
+                              onClick={() => setEditManualAddressMode(true)}
+                              className="blueskies-manual-address-btn"
+                            >
+                              Enter manually
+                            </button>
+                          </>
+                        ) : (
+                          <>
+                            <input
+                              type="text"
+                              name="address"
+                              value={formData.address}
+                              onChange={handleFormChange}
+                              className={formErrors.address ? 'blueskies-input-error' : 'blueskies-input'}
+                              placeholder="Enter your full address manually..."
+                            />
+                            <button
+                              type="button"
+                              onClick={() => setEditManualAddressMode(false)}
+                              className="blueskies-manual-address-btn"
+                            >
+                              Use autocomplete
+                            </button>
+                          </>
                         )}
+                        {formErrors.address && <span className="blueskies-error">{formErrors.address}</span>}
                       </div>
 
                       <div className="blueskies-modal-actions" style={{ marginTop: '20px', paddingTop: '20px', borderTop: '1px solid #E2E8F0' }}>
@@ -1029,11 +1093,20 @@ const BlueSkies = () => {
                 <>
                   <div className="blueskies-success-icon">✓</div>
                   <h3>Minting Successful!</h3>
+                  <a 
+                    href={`https://etherscan.io/tx/${transactionReceipt?.transactionHash}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="blueskies-transaction-link"
+                  >
+                    View Transaction
+                  </a>
                   <p>Please check your email for confirmation and additional information.</p>
                   <button 
                     onClick={() => {
                       setMintStatus('')
                       setSelectedSize('')
+                      setTransactionReceipt(null)
                     }}
                     className="blueskies-button-primary"
                     style={{ marginTop: '20px' }}

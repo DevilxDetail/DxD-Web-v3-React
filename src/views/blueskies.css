@@ -30,7 +30,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 120px 20px 40px 20px;
+  padding: 60px 20px 40px 20px;
   max-width: 1400px;
   margin: 0 auto;
   gap: 40px;
@@ -43,8 +43,28 @@
   font-family: 'Lato', sans-serif;
   text-align: center;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 40px;
+  margin-bottom: -10px;
   letter-spacing: 2px;
+}
+
+.blueskies-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0px;
+  width: 100%;
+}
+
+.blueskies-banner-image {
+  max-width: 40%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.blueskies-banner-image:hover {
+  transform: scale(1.02);
 }
 
 .blueskies-content-sections {
@@ -200,6 +220,14 @@
     margin-bottom: 30px;
   }
   
+  .blueskies-banner {
+    margin-bottom: 30px;
+  }
+  
+  .blueskies-banner-image {
+    border-radius: 8px;
+  }
+  
   .blueskies-content-sections {
     flex-direction: column;
     gap: 40px;
@@ -250,6 +278,14 @@
   .blueskies-title {
     font-size: 28px;
     margin-bottom: 25px;
+  }
+  
+  .blueskies-banner {
+    margin-bottom: 25px;
+  }
+  
+  .blueskies-banner-image {
+    border-radius: 6px;
   }
   
   .blueskies-description {
@@ -405,6 +441,24 @@
   display: block;
   font-family: 'Lato', sans-serif;
   font-style: italic;
+}
+
+.blueskies-manual-address-btn {
+  background: none;
+  border: none;
+  color: #3B82F6;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Lato', sans-serif;
+  cursor: pointer;
+  text-decoration: underline;
+  margin-top: 8px;
+  padding: 0;
+  transition: color 0.2s ease;
+}
+
+.blueskies-manual-address-btn:hover {
+  color: #1E40AF;
 }
 
 .blueskies-form-row {
@@ -618,6 +672,20 @@
   font-size: 32px;
   font-weight: bold;
   margin: 0 auto 20px;
+}
+
+.blueskies-transaction-link {
+  display: inline-block;
+  color: #3B82F6;
+  text-decoration: underline;
+  font-family: 'Lato', sans-serif;
+  font-weight: 600;
+  margin: 10px 0;
+  transition: color 0.2s ease;
+}
+
+.blueskies-transaction-link:hover {
+  color: #1E40AF;
 }
 
 .blueskies-error-icon {
