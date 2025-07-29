@@ -760,9 +760,8 @@ const BlueSkies = () => {
       />
       
       <div className="blueskies-main-content">
-        <div className="blueskies-title">BLUE SKIES FOREVER</div>
         <div className="blueskies-banner">
-          <img src="/BSBanner.png" alt="Blue Skies Forever Banner" className="blueskies-banner-image" />
+          <img src="/BSF Background.png" alt="Blue Skies Forever Background" className="blueskies-banner-image" />
         </div>
         <div className="blueskies-content-sections">
           <div className="blueskies-left-section">
