@@ -88,6 +88,13 @@ const Arc = () => {
         try {
             console.log('Starting submission process for user:', user.id);
             console.log('Selected shoe size:', selectedShoeSize);
+            console.log('Privy authenticated:', authenticated);
+            console.log('Privy user:', user);
+
+            // Check Supabase auth state
+            const { data: { user: supabaseUser }, error: authError } = await supabase.auth.getUser();
+            console.log('Supabase auth user:', supabaseUser);
+            console.log('Supabase auth error:', authError);
 
             // First, check if user exists in user table
             console.log('Checking if user exists in user table...');
@@ -139,7 +146,20 @@ const Arc = () => {
             // Then, create the order in the order table
             console.log('Attempting to create order...');
             
+            // Get the user_id from the user table first
+            const { data: userData, error: userDataError } = await supabase
+                .from('user')
+                .select('user_id')
+                .eq('auth_user_id', user.id)
+                .single();
+
+            if (userDataError) {
+                console.error('Error getting user_id:', userDataError);
+                throw userDataError;
+            }
+
             const orderData = {
+                user_id: userData.user_id,
                 drop: 'Blue Skies Bonus',
                 size: selectedShoeSize,
                 created_at: new Date().toISOString(),
