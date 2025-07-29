@@ -90,14 +90,14 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 30px;
+    gap: 20px;
     width: 100%;
     max-width: 500px;
-    padding: 40px 20px;
+    padding: 20px 20px;
 }
 
 .welcome-title {
-    font-size: 48px;
+    font-size: 96px;
     font-weight: 700;
     color: white;
     text-align: center;
@@ -108,7 +108,7 @@
 }
 
 .welcome-subtitle {
-    font-size: 24px;
+    font-size: 48px;
     font-weight: 700;
     color: white;
     margin: 0;
@@ -117,7 +117,7 @@
 }
 
 .welcome-message {
-    font-size: 18px;
+    font-size: 36px;
     font-weight: 700;
     color: white;
     margin: 0;
@@ -135,7 +135,7 @@
 }
 
 .instruction-item {
-    font-size: 18px;
+    font-size: 36px;
     font-weight: 700;
     color: white;
     margin: 0;
@@ -209,19 +209,19 @@
 /* Responsive Design */
 @media (max-width: 768px) {
     .welcome-title {
-        font-size: 36px;
+        font-size: 72px;
     }
     
     .welcome-subtitle {
-        font-size: 20px;
+        font-size: 36px;
     }
     
     .welcome-message {
-        font-size: 16px;
+        font-size: 28px;
     }
     
     .instruction-item {
-        font-size: 16px;
+        font-size: 28px;
     }
     
     .welcome-footer {
@@ -239,19 +239,19 @@
 
 @media (max-width: 480px) {
     .welcome-title {
-        font-size: 28px;
+        font-size: 56px;
     }
     
     .welcome-subtitle {
-        font-size: 18px;
+        font-size: 28px;
     }
     
     .welcome-message {
-        font-size: 14px;
+        font-size: 24px;
     }
     
     .instruction-item {
-        font-size: 14px;
+        font-size: 24px;
     }
     
     .welcome-footer {
