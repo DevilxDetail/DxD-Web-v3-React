@@ -70,6 +70,13 @@
   transform: none;
 }
 
+/* Mobile-specific banner image */
+@media (max-width: 768px) {
+  .blueskies-banner-image {
+    content: url('/BSF Background Mobile.png');
+  }
+}
+
 .blueskies-content-sections {
   display: flex;
   justify-content: center;
@@ -234,18 +241,13 @@
 @media (max-width: 768px) {
   .blueskies-main-content {
     flex-direction: column;
-    padding: 100px 0 30px 0;
-    gap: 30px;
+    padding: 80px 0 30px 0;
+    gap: 25px;
     text-align: center;
   }
   
-  .blueskies-title {
-    font-size: 36px;
-    margin-bottom: 30px;
-  }
-  
   .blueskies-banner {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
   
   .blueskies-banner-image {
@@ -254,45 +256,97 @@
   
   .blueskies-content-sections {
     flex-direction: column;
-    gap: 40px;
+    gap: 30px;
     text-align: center;
     width: 100%;
     margin: 0;
-    padding: 0 20px;
+    padding: 0 15px;
   }
   
   .blueskies-left-section {
     max-width: 100%;
+    order: 2;
   }
   
   .blueskies-right-section {
     max-width: 100%;
+    order: 1;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 20px;
   }
   
   .blueskies-description {
     font-size: 16px;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
+    line-height: 1.5;
+  }
+  
+  .blueskies-included-section {
+    margin-top: 20px;
+  }
+  
+  .blueskies-included-title {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  
+  .blueskies-item {
+    margin-bottom: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 8px;
+  }
+  
+  .blueskies-item-title {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  
+  .blueskies-item-details li {
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+  
+  .blueskies-plus {
+    font-size: 16px;
+    margin-top: 10px;
   }
   
   .blueskies-price {
-    font-size: 36px;
+    font-size: 42px;
+    margin-bottom: 15px;
+  }
+  
+  .blueskies-size-selection {
+    width: 100%;
+    max-width: 250px;
+    margin: 0 auto 15px auto;
   }
   
   .blueskies-size-dropdown {
-    padding: 12px 16px;
-    font-size: 14px;
+    padding: 15px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.9);
   }
   
   .blueskies-order-button {
-    padding: 16px 24px;
-    font-size: 14px;
+    width: 100%;
+    max-width: 250px;
+    padding: 18px 30px;
+    font-size: 16px;
+    border-radius: 8px;
+    margin: 0 auto;
   }
 }
 
 @media (max-width: 480px) {
   .blueskies-main-content {
-    padding: 90px 0 20px 0;
-    gap: 25px;
+    padding: 70px 0 20px 0;
+    gap: 20px;
   }
   
   .blueskies-content-sections {
@@ -301,33 +355,72 @@
     padding: 0 10px;
   }
   
-  .blueskies-title {
-    font-size: 28px;
-    margin-bottom: 25px;
-  }
-  
   .blueskies-banner {
-    margin-bottom: 25px;
+    margin-bottom: 15px;
   }
   
   .blueskies-banner-image {
     border-radius: 0;
   }
   
+  .blueskies-right-section {
+    padding: 20px;
+    margin-bottom: 15px;
+  }
+  
   .blueskies-description {
-    font-size: 14px;
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .blueskies-included-section {
+    margin-top: 15px;
   }
   
   .blueskies-included-title {
-    font-size: 24px;
+    font-size: 22px;
+    margin-bottom: 12px;
   }
   
-  .blueskies-items-list li {
+  .blueskies-item {
+    margin-bottom: 12px;
+    padding: 12px;
+  }
+  
+  .blueskies-item-title {
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+  
+  .blueskies-item-details li {
     font-size: 14px;
+    margin-bottom: 3px;
+  }
+  
+  .blueskies-plus {
+    font-size: 14px;
+    margin-top: 8px;
   }
   
   .blueskies-price {
-    font-size: 32px;
+    font-size: 36px;
+    margin-bottom: 12px;
+  }
+  
+  .blueskies-size-selection {
+    max-width: 220px;
+    margin-bottom: 12px;
+  }
+  
+  .blueskies-size-dropdown {
+    padding: 14px 18px;
+    font-size: 15px;
+  }
+  
+  .blueskies-order-button {
+    max-width: 220px;
+    padding: 16px 25px;
+    font-size: 15px;
   }
 }
 
