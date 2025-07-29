@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { usePrivy } from "@privy-io/react-auth";
-import { supabase } from '../lib/supabase';
+import { supabase, supabaseServiceRole } from '../lib/supabase';
 import './arc.css';
 
 const Arc = () => {
@@ -160,6 +160,7 @@ const Arc = () => {
             };
             console.log('Order data to insert:', orderData);
 
+            // Use regular client since RLS policies are now configured
             const { data: orderInsertData, error: orderError } = await supabase
                 .from('order')
                 .insert([orderData])
@@ -173,32 +174,10 @@ const Arc = () => {
                     details: orderError.details,
                     hint: orderError.hint
                 });
-                
-                // If RLS policy prevents order creation, store in user table instead
-                if (orderError.code === '42501') {
-                    console.log('RLS policy blocked order creation, storing in user table...');
-                    const { error: userOrderError } = await supabase
-                        .from('user')
-                        .update({
-                            role: 'Arc',
-                            arc_order_drop: 'Blue Skies Bonus',
-                            arc_order_size: selectedShoeSize,
-                            arc_order_date: new Date().toISOString()
-                        })
-                        .eq('auth_user_id', user.id);
-
-                    if (userOrderError) {
-                        console.error('Error storing order info in user table:', userOrderError);
-                        throw userOrderError;
-                    } else {
-                        console.log('Order info stored successfully in user table');
-                    }
-                } else {
-                    throw orderError;
-                }
-            } else {
-                console.log('Order created successfully:', orderInsertData);
+                throw orderError;
             }
+
+            console.log('Order created successfully:', orderInsertData);
 
             setSubmitStatus('success');
             setTimeout(() => {
