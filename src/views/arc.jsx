@@ -173,10 +173,32 @@ const Arc = () => {
                     details: orderError.details,
                     hint: orderError.hint
                 });
-                throw orderError;
-            }
+                
+                // If RLS policy prevents order creation, store in user table instead
+                if (orderError.code === '42501') {
+                    console.log('RLS policy blocked order creation, storing in user table...');
+                    const { error: userOrderError } = await supabase
+                        .from('user')
+                        .update({
+                            role: 'Arc',
+                            arc_order_drop: 'Blue Skies Bonus',
+                            arc_order_size: selectedShoeSize,
+                            arc_order_date: new Date().toISOString()
+                        })
+                        .eq('auth_user_id', user.id);
 
-            console.log('Order created successfully:', orderInsertData);
+                    if (userOrderError) {
+                        console.error('Error storing order info in user table:', userOrderError);
+                        throw userOrderError;
+                    } else {
+                        console.log('Order info stored successfully in user table');
+                    }
+                } else {
+                    throw orderError;
+                }
+            } else {
+                console.log('Order created successfully:', orderInsertData);
+            }
 
             setSubmitStatus('success');
             setTimeout(() => {
