@@ -19,7 +19,7 @@
 .blueskies-container {
   width: 100%;
   min-height: 100vh;
-  background: linear-gradient(135deg, #87CEEB 0%, #B0E0E6 50%, #87CEEB 100%);
+  background: linear-gradient(135deg, #5F9EA0 0%, #87CEEB 50%, #5F9EA0 100%);
   display: flex;
   flex-direction: column;
 }
@@ -84,10 +84,10 @@
 }
 
 .blueskies-description {
-  font-size: 18px;
+  font-size: 22px;
   line-height: 1.6;
   margin-bottom: 40px;
-  color: #2D3748;
+  color: white;
   font-weight: 400;
 }
 
@@ -96,34 +96,54 @@
 }
 
 .blueskies-included-title {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 600;
-  color: #2D3748;
-  margin-bottom: 15px;
-  font-family: 'Lato', sans-serif;
+  color: white;
+  margin-bottom: 20px;
+  font-family: 'Arial Black', sans-serif;
 }
 
-.blueskies-items-list {
+.blueskies-item {
+  margin-bottom: 20px;
+}
+
+.blueskies-item-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 8px;
+  font-family: 'Arial Black', sans-serif;
+}
+
+.blueskies-item-details {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.blueskies-items-list li {
-  font-size: 16px;
-  color: #4A5568;
-  margin-bottom: 8px;
+.blueskies-item-details li {
+  font-size: 18px;
+  color: white;
+  margin-bottom: 6px;
   font-family: 'Lato', sans-serif;
   position: relative;
-  padding-left: 20px;
+  padding-left: 15px;
 }
 
-.blueskies-items-list li:before {
+.blueskies-item-details li:before {
   content: "•";
   position: absolute;
   left: 0;
-  color: #2D3748;
+  color: white;
   font-weight: bold;
+}
+
+.blueskies-plus {
+  font-size: 18px;
+  color: white;
+  margin-top: 15px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 600;
 }
 
 .blueskies-right-section {

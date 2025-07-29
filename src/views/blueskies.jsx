@@ -627,26 +627,56 @@ const BlueSkies = () => {
           
           // If transaction successful, save to database
           try {
-            // Save to order table using auth_user_id (matching arc.jsx pattern)
+            // First, get the user_id from the user table
+            const { data: dbUserData, error: userDataError } = await supabase
+              .from('user')
+              .select('user_id')
+              .eq('auth_user_id', user.id)
+              .single();
+
+            if (userDataError) {
+              console.error('Error getting user_id:', userDataError);
+              throw userDataError;
+            }
+
+            // Save to order table using user_id (primary key from user table)
+            const orderData = {
+              user_id: dbUserData.user_id,
+              drop: 'Blue Skies Forever',
+              size: selectedSize,
+              address: userData?.address || formData.address,
+              transaction_id: receipt.transactionHash,
+              email_sent: 'No',
+              created_at: new Date().toISOString()
+            };
+
+            console.log('Order data to insert:', orderData);
+
             const { error: orderError } = await supabase
               .from('order')
-              .insert([{
-                auth_user_id: user.id,
-                drop: 'DK',
-                size: selectedSize,
-                address: userData?.address || formData.address,
-                transaction_id: receipt.transactionHash,
-                email_sent: 'No'
-              }])
+              .insert([orderData]);
 
             if (orderError) {
-              console.error('Error saving to order table:', orderError)
-              console.error('Order error details:', orderError)
+              console.error('Error saving to order table:', orderError);
+              console.error('Order error details:', {
+                code: orderError.code,
+                message: orderError.message,
+                details: orderError.details,
+                hint: orderError.hint
+              });
+              throw orderError;
             } else {
-              console.log('Successfully saved to order table')
+              console.log('Successfully saved to order table');
             }
           } catch (dbError) {
-            console.error('Database error:', dbError)
+            console.error('Database error:', dbError);
+            console.error('Full database error object:', {
+              message: dbError.message,
+              code: dbError.code,
+              details: dbError.details,
+              hint: dbError.hint,
+              stack: dbError.stack
+            });
             // Still show success since minting worked
           }
           
@@ -742,11 +772,30 @@ const BlueSkies = () => {
             
             <div className="blueskies-included-section">
               <h3 className="blueskies-included-title">Included in this drop:</h3>
-              <ul className="blueskies-items-list">
-                <li>Blue Skies Forever T</li>
-                <li>DK Edition</li>
-                <li>Bag Boy Diner Mug</li>
-              </ul>
+              <div className="blueskies-item">
+                <h4 className="blueskies-item-title">Blue Skies Forever Screened Tee</h4>
+                <ul className="blueskies-item-details">
+                  <li>6.5oz garment dyed cotton</li>
+                  <li>oversized, modern fit</li>
+                  <li>front and back screen</li>
+                  <li>NFC chipped</li>
+                </ul>
+              </div>
+              <div className="blueskies-item">
+                <h4 className="blueskies-item-title">DK Edition</h4>
+                <ul className="blueskies-item-details">
+                  <li>"Seein' Stars" digital art edition</li>
+                  <li>ERC1155 (ETH mainnet)</li>
+                </ul>
+              </div>
+              <div className="blueskies-item">
+                <h4 className="blueskies-item-title">Bag Boy Diner Mug</h4>
+                <ul className="blueskies-item-details">
+                  <li>Ceramic diner mug</li>
+                  <li>Bag boy design</li>
+                </ul>
+              </div>
+              <div className="blueskies-plus">Plus???</div>
             </div>
           </div>
           
