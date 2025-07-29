@@ -19,7 +19,8 @@
 .blueskies-container {
   width: 100%;
   min-height: 100vh;
-  background: linear-gradient(135deg, #5F9EA0 0%, #87CEEB 50%, #5F9EA0 100%);
+  background: url('/DK-Bckgrd.jpeg') no-repeat center center;
+  background-size: cover;
   display: flex;
   flex-direction: column;
 }
@@ -30,7 +31,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 60px 20px 40px 20px;
+  padding: 60px 0 40px 0;
   max-width: 1400px;
   margin: 0 auto;
   gap: 40px;
@@ -52,19 +53,21 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 0px;
-  width: 100%;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
 }
 
 .blueskies-banner-image {
-  max-width: 40%;
+  width: 100%;
   height: auto;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  border-radius: 0;
+  box-shadow: none;
   transition: transform 0.3s ease;
 }
 
 .blueskies-banner-image:hover {
-  transform: scale(1.02);
+  transform: none;
 }
 
 .blueskies-content-sections {
@@ -72,9 +75,10 @@
   justify-content: center;
   align-items: flex-start;
   gap: 80px;
-  width: calc(100% - 160px);
+  width: 100%;
   max-width: 1400px;
-  margin: 0 80px;
+  margin: 0;
+  padding: 0 80px;
 }
 
 .blueskies-left-section {
@@ -96,7 +100,7 @@
 }
 
 .blueskies-included-title {
-  font-size: 22px;
+  font-size: 28px;
   font-weight: 600;
   color: white;
   margin-bottom: 20px;
@@ -230,7 +234,7 @@
 @media (max-width: 768px) {
   .blueskies-main-content {
     flex-direction: column;
-    padding: 100px 15px 30px 15px;
+    padding: 100px 0 30px 0;
     gap: 30px;
     text-align: center;
   }
@@ -245,15 +249,16 @@
   }
   
   .blueskies-banner-image {
-    border-radius: 8px;
+    border-radius: 0;
   }
   
   .blueskies-content-sections {
     flex-direction: column;
     gap: 40px;
     text-align: center;
-    width: calc(100% - 40px);
-    margin: 0 20px;
+    width: 100%;
+    margin: 0;
+    padding: 0 20px;
   }
   
   .blueskies-left-section {
@@ -286,13 +291,14 @@
 
 @media (max-width: 480px) {
   .blueskies-main-content {
-    padding: 90px 10px 20px 10px;
+    padding: 90px 0 20px 0;
     gap: 25px;
   }
   
   .blueskies-content-sections {
-    width: calc(100% - 20px);
-    margin: 0 10px;
+    width: 100%;
+    margin: 0;
+    padding: 0 10px;
   }
   
   .blueskies-title {
@@ -305,7 +311,7 @@
   }
   
   .blueskies-banner-image {
-    border-radius: 6px;
+    border-radius: 0;
   }
   
   .blueskies-description {
@@ -313,7 +319,7 @@
   }
   
   .blueskies-included-title {
-    font-size: 18px;
+    font-size: 24px;
   }
   
   .blueskies-items-list li {
