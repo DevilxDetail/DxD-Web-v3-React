@@ -476,6 +476,8 @@ const BlueSkies = () => {
 
         const provider = await linkedWallet.getEthereumProvider();
 
+
+        /* // Remove check to sepolia
         // Ensure the wallet is connected to Sepolia
         const SEPOLIA_ID = "0xaa36a7"; // Hex chain id for Sepolia (11155111)
         try {
@@ -509,14 +511,53 @@ const BlueSkies = () => {
           setMintStatus("error: Wrong network");
           return;
         }
+        // remove call to Sepolia */
+        
 
+        // Ensure the wallet is connected to Ethereum Mainnet
+        const MAINNET_ID = "0x1"; // Hex chain id for Mainnet (1)
+        try {
+          const chainIdHex = await provider.request({ method: "eth_chainId" });
+          if (chainIdHex !== MAINNET_ID) {
+            try {
+              await provider.request({
+                method: "wallet_switchEthereumChain",
+                params: [{ chainId: MAINNET_ID }],
+              });
+            } catch (switchErr) {
+              // 4902 = Unrecognized chain -> add it first
+              if (switchErr.code === 4902) {
+                await provider.request({
+                  method: "wallet_addEthereumChain",
+                  params: [{
+                    chainId: MAINNET_ID,
+                    chainName: "Ethereum Mainnet",
+                    rpcUrls: ["https://ethereum.rpc.thirdweb.com"],
+                    nativeCurrency: { name: "Ether", symbol: "ETH", decimals: 18 },
+                    blockExplorerUrls: ["https://etherscan.io"],
+                  }],
+                });
+              } else {
+                throw switchErr;
+              }
+            }
+          }
+        } catch (chainErr) {
+          console.error("Chain check/switch failed:", chainErr);
+          setMintStatus("error: Wrong network");
+          return;
+        }
+
+        
         const web3 = new Web3(provider);
         const userAddress = linkedWallet.address;
         console.log("Connected wallet address:", userAddress);
 
         // Contract details
-        const contractAddress = "0x41E791EC136492484A96455CDA32C5201cF11650";
+        // Remove sepolia test contract: const contractAddress = "0x41E791EC136492484A96455CDA32C5201cF11650";
 
+        // Production BSF contract
+        const contractAddress = "0x4209E995e0cac9AdfE0a35095cbb488CBb20227A";
 
 
         // (Old claim flow removed for clarity – we now use bsfEdition below)
