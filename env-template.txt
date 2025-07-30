@@ -4,4 +4,7 @@ VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 VITE_SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
 
 # Google Places API Configuration
-VITE_GOOGLE_PLACES_API_KEY=your_google_places_api_key 
+VITE_GOOGLE_PLACES_API_KEY=your_google_places_api_key
+
+# SendGrid Configuration
+SENDGRID_API_KEY=your_sendgrid_api_key 
