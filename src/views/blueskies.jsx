@@ -685,10 +685,7 @@ const BlueSkies = () => {
             const userEmail = userData?.email || formData.email;
             if (userEmail) {
               const emailResponse = await fetch('/api/send-mint-email', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
+                // No custom headers to avoid CORS preflight
                 body: JSON.stringify({
                   userEmail: userEmail,
                   mintDetails: {
