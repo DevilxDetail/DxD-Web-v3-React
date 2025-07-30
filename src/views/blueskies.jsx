@@ -775,8 +775,8 @@ const BlueSkies = () => {
                 <h4 className="blueskies-item-title">Blue Skies Forever Screened Tee</h4>
                 <ul className="blueskies-item-details">
                   <li>6.5oz garment dyed cotton</li>
-                  <li>oversized, modern fit</li>
-                  <li>front and back screen</li>
+                  <li>Oversized, modern fit</li>
+                  <li>Front and back screen</li>
                   <li>NFC chipped</li>
                 </ul>
               </div>
@@ -796,9 +796,6 @@ const BlueSkies = () => {
               </div>
               <div className="blueskies-item">
                 <h4 className="blueskies-item-title">Plus???</h4>
-                <ul className="blueskies-item-details">
-                  <li>Stay tuned for more details</li>
-                </ul>
               </div>
             </div>
           </div>
