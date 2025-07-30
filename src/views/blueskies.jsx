@@ -681,6 +681,37 @@ const BlueSkies = () => {
             // Still show success since minting worked
           }
           
+          // Send mint confirmation email
+          try {
+            const userEmail = userData?.email || formData.email;
+            if (userEmail) {
+              const emailResponse = await fetch('/api/send-mint-email', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                  userEmail: userEmail,
+                  mintDetails: {
+                    transactionHash: receipt.transactionHash,
+                    walletAddress: userAddress,
+                    collectionName: 'Blue Skies Forever',
+                    size: selectedSize
+                  }
+                })
+              });
+
+              if (emailResponse.ok) {
+                console.log('Mint confirmation email sent successfully');
+              } else {
+                console.error('Failed to send mint confirmation email:', await emailResponse.text());
+              }
+            }
+          } catch (emailError) {
+            console.error('Error sending mint confirmation email:', emailError);
+            // Don't fail the mint if email fails
+          }
+          
           // Set mint status to success so UI shows correct confirmation
           setMintStatus('success');
 
@@ -776,8 +807,8 @@ const BlueSkies = () => {
                 <h4 className="blueskies-item-title">Blue Skies Forever Screened Tee</h4>
                 <ul className="blueskies-item-details">
                   <li>6.5oz garment dyed cotton</li>
-                  <li>oversized, modern fit</li>
-                  <li>front and back screen</li>
+                  <li>Oversized, modern fit</li>
+                  <li>Front and back screen</li>
                   <li>NFC chipped</li>
                 </ul>
               </div>
@@ -797,9 +828,6 @@ const BlueSkies = () => {
               </div>
               <div className="blueskies-item">
                 <h4 className="blueskies-item-title">Plus???</h4>
-                <ul className="blueskies-item-details">
-                  <li>Stay tuned for more details</li>
-                </ul>
               </div>
             </div>
           </div>

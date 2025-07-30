@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@privy-io/react-auth": "^1.60.0",
+    "@sendgrid/mail": "^8.1.5",
     "@supabase/supabase-js": "^2.49.1",
     "@tailwindcss/postcss": "^4.1.10",
     "@thirdweb-dev/chains": "^0.1.120",
