@@ -4,6 +4,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth"
 import { supabase } from '../lib/supabase'
 import Web3 from 'web3'
 import Header from '../components/header'
+import ConsistentFooter from '../components/ConsistentFooter'
 import './blueskies.css'
 
 const BlueSkies = () => {
@@ -1202,6 +1203,8 @@ const BlueSkies = () => {
           </div>
         </div>
       )}
+      
+      <ConsistentFooter />
     </div>
   )
 }

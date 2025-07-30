@@ -26,11 +26,18 @@ const Home = (props) => {
         rootClassName="header-root-class-name"
       />
       <div className="home-container2">
-        <img
-          alt="image"
-          src="/Banner%20-%20Teaser.png"
-          className="home-image1"
-        />
+        <Link to="/blueskies" className="home-banner-link">
+          <div className="home-banner-container">
+            <img
+              alt="Now Minting Banner"
+              src="/Banner%20-%20Now%20Minting.png"
+              className="home-image1"
+            />
+            <button className="home-view-drop-button">
+              View Drop
+            </button>
+          </div>
+        </Link>
         <img
           alt="image"
           src="/Banner%20-%20Teaser.png"

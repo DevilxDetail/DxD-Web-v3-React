@@ -117,7 +117,7 @@ const Profile = (props) => {
         <div className="profile-container3">
           <img
             alt="Profile"
-            src={profileData?.profile_image || "https://play.teleporthq.io/static/svg/default-img.svg"}
+            src={profileData?.profile_image || "/default profile.png"}
             className="profile-image"
           />
           <div className="profile-container4">

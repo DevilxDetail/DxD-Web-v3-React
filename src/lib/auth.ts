@@ -64,6 +64,7 @@ export async function createOrUpdateSupabaseUser(privyUser: PrivyUser) {
         .from('user')
         .insert([{
           ...userData,
+          profile_image: '/default profile.png', // Set default profile image for new users
           created_at: new Date().toISOString(),
         }])
         .select('user_id, auth_user_id, evm_wallet, email, name')

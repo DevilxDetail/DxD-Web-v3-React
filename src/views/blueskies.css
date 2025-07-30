@@ -6,6 +6,37 @@
   backdrop-filter: none !important;
 }
 
+/* Transparent Footer for Blueskies Page */
+.blueskies-page .footer-container1 {
+  background-color: transparent !important;
+  backdrop-filter: none !important;
+}
+
+/* Ensure footer text is visible on background */
+.blueskies-page .footer-text10,
+.blueskies-page .footer-text11,
+.blueskies-page .footer-text12,
+.blueskies-page .footer-text13,
+.blueskies-page .footer-text14,
+.blueskies-page .footer-link,
+.blueskies-page .footer-navlink1,
+.blueskies-page .footer-navlink2,
+.blueskies-page .footer-navlink3,
+.blueskies-page .footer-navlink4,
+.blueskies-page .footer-navlink5 {
+  color: white !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.blueskies-page .footer-link:hover,
+.blueskies-page .footer-navlink1:hover,
+.blueskies-page .footer-navlink2:hover,
+.blueskies-page .footer-navlink3:hover,
+.blueskies-page .footer-navlink4:hover,
+.blueskies-page .footer-navlink5:hover {
+  color: #b50000 !important;
+}
+
 /* Ensure header text is visible on light background */
 .blueskies-page .header-navlink2 {
   color: #2D3748 !important;
@@ -14,6 +45,40 @@
 
 .blueskies-page .header-navlink2:hover {
   color: #b50000 !important;
+}
+
+/* Blueskies page header connect button styling */
+.blueskies-page .header-button {
+  width: 100px;
+  height: 36px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #1E40AF 0%, #3B82F6 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Lato', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.blueskies-page .header-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(30, 64, 175, 0.4);
+  background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
+  color: white;
+}
+
+.blueskies-page .header-button:active {
+  transform: translateY(0);
 }
 
 .blueskies-container {

@@ -284,7 +284,7 @@ const Account = (props) => {
               style={{ cursor: 'pointer', position: 'relative' }}
             >
               <img 
-                src={formData.profile_image || "/placeholder-image.svg"} 
+                src={formData.profile_image || "/default profile.png"} 
                 alt="Profile" 
                 className="account-avatar"
                 style={{ opacity: imageLoading ? 0.5 : 1 }}

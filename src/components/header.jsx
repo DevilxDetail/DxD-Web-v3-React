@@ -67,7 +67,7 @@ const Header = (props) => {
             <div className="header-profile-dropdown">
               <div className="header-avatar-container" onClick={toggleDropdown}>
                 <img
-                  src={profileImage || "/placeholder-image.svg"}
+                  src={profileImage || "/default profile.png"}
                   alt="Profile"
                   className="header-avatar"
                 />
