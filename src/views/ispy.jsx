@@ -517,12 +517,11 @@ const BlueSkies = () => {
         // Contract details - I Spy Collection ERC721 NFT Claim
         const contractAddress = "0xb9868148c1E51DA4093498062FA8d4C2E8cCcb0C";
         
-        // ERC721 NFT Claim ABI
+        // ERC721 NFT Claim ABI - typically doesn't require tokenId for auto-assignment
         const nftClaimABI = [
           {
             "inputs": [
               { "internalType": "address", "name": "_receiver", "type": "address" },
-              { "internalType": "uint256", "name": "_tokenId", "type": "uint256" },
               { "internalType": "uint256", "name": "_quantity", "type": "uint256" },
               { "internalType": "address", "name": "_currency", "type": "address" },
               { "internalType": "uint256", "name": "_pricePerToken", "type": "uint256" },
@@ -550,7 +549,6 @@ const BlueSkies = () => {
 
           // Mint parameters for I Spy Collection
           const receiver = userAddress;
-          const tokenId = 0; // First token ID
           const quantity = "1"; // Mint 1 NFT
           const currency = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE"; // ETH
           const pricePerToken = web3.utils.toWei("0.1", "ether"); // 0.1 ETH in wei
@@ -594,7 +592,6 @@ const BlueSkies = () => {
           try {
             console.log("Preparing transaction with parameters:", {
               receiver,
-              tokenId,
               quantity,
               pricePerToken,
               allowlistProof,
@@ -605,7 +602,6 @@ const BlueSkies = () => {
           const receipt = await nftClaimContract.methods
             .claim(
               receiver,              // _receiver
-              tokenId,               // _tokenId
               quantity,              // _quantity
               currency,              // _currency (ETH)
               pricePerToken,         // _pricePerToken
