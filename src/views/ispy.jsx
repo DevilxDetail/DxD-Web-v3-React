@@ -514,54 +514,50 @@ const BlueSkies = () => {
         const userAddress = linkedWallet.address;
         console.log("Connected wallet address:", userAddress);
 
-        // Contract details
-        const contractAddress = "0x41E791EC136492484A96455CDA32C5201cF11650";
-
-
-
-        // (Old claim flow removed for clarity – we now use bsfEdition below)
-
-
-          const editionABI = [
-            {
-              "inputs": [
-                { "internalType": "address",  "name": "_receiver",         "type": "address" },
-                { "internalType": "uint256",  "name": "_tokenId",          "type": "uint256" },
-                { "internalType": "uint256",  "name": "_quantity",         "type": "uint256" },
-                { "internalType": "address",  "name": "_currency",         "type": "address" },
-                { "internalType": "uint256",  "name": "_pricePerToken",    "type": "uint256" },
-                { "components": [
-                    { "internalType": "bytes32[]", "name": "proof",                 "type": "bytes32[]" },
-                    { "internalType": "uint256",   "name": "quantityLimitPerWallet","type": "uint256" },
-                    { "internalType": "uint256",   "name": "pricePerToken",         "type": "uint256" },
-                    { "internalType": "address",   "name": "currency",              "type": "address" }
-                  ],
-                  "internalType": "struct IDrop1155.AllowlistProof",
-                  "name": "_allowlistProof",
-                  "type": "tuple"
-                },
-                { "internalType": "bytes",    "name": "_data",             "type": "bytes" }
-              ],
-              "name": "claim",
-              "outputs": [],
-              "stateMutability": "payable",
-              "type": "function"
-            }
-          ]
+        // Contract details - I Spy Collection ERC721 NFT Claim
+        const contractAddress = "0xb9868148c1E51DA4093498062FA8d4C2E8cCcb0C";
+        
+        // ERC721 NFT Claim ABI
+        const nftClaimABI = [
+          {
+            "inputs": [
+              { "internalType": "address", "name": "_receiver", "type": "address" },
+              { "internalType": "uint256", "name": "_tokenId", "type": "uint256" },
+              { "internalType": "uint256", "name": "_quantity", "type": "uint256" },
+              { "internalType": "address", "name": "_currency", "type": "address" },
+              { "internalType": "uint256", "name": "_pricePerToken", "type": "uint256" },
+              { "components": [
+                  { "internalType": "bytes32[]", "name": "proof", "type": "bytes32[]" },
+                  { "internalType": "uint256", "name": "quantityLimitPerWallet", "type": "uint256" },
+                  { "internalType": "uint256", "name": "pricePerToken", "type": "uint256" },
+                  { "internalType": "address", "name": "currency", "type": "address" }
+                ],
+                "internalType": "struct IDrop721.AllowlistProof",
+                "name": "_allowlistProof",
+                "type": "tuple"
+              },
+              { "internalType": "bytes", "name": "_data", "type": "bytes" }
+            ],
+            "name": "claim",
+            "outputs": [],
+            "stateMutability": "payable",
+            "type": "function"
+          }
+        ]
 
           // Initialize contract
-          const bsfEdition = new web3.eth.Contract(editionABI, contractAddress);
+          const nftClaimContract = new web3.eth.Contract(nftClaimABI, contractAddress);
 
-
+          // Mint parameters for I Spy Collection
           const receiver = userAddress;
-          const tokenId = 0;
-          const quantity = "1";
-          const currency = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
-          const pricePerToken = "150000000000000000";
+          const tokenId = 0; // First token ID
+          const quantity = "1"; // Mint 1 NFT
+          const currency = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE"; // ETH
+          const pricePerToken = web3.utils.toWei("0.1", "ether"); // 0.1 ETH in wei
           const allowlistProof = {
             proof: [],
-            quantityLimitPerWallet: "0",
-            pricePerToken: "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+            quantityLimitPerWallet: "0", // No limit
+            pricePerToken: pricePerToken,
             currency: "0x0000000000000000000000000000000000000000"
           };
           const data = "0x";
@@ -606,20 +602,20 @@ const BlueSkies = () => {
             });
 
           
-          const receipt = await bsfEdition.methods
+          const receipt = await nftClaimContract.methods
             .claim(
               receiver,              // _receiver
-              tokenId,           // _tokenId                ←  NOTE the parameter order!
-              quantity,          // _quantity
-              currency,      // _currency  (ETH)
-              pricePerToken,     // _pricePerToken
-              allowlistProof,    // _allowlistProof struct
-              data               // _data
+              tokenId,               // _tokenId
+              quantity,              // _quantity
+              currency,              // _currency (ETH)
+              pricePerToken,         // _pricePerToken
+              allowlistProof,        // _allowlistProof struct
+              data                   // _data
             )
             .send({
-              from:   receiver,
-              value:  pricePerToken, // payable ETH
-              gas:    300_000
+              from: receiver,
+              value: pricePerToken,  // payable ETH (0.1 ETH)
+              gas: 300_000
             });
 
           // Transaction receipt contains transactionHash and other details
@@ -643,7 +639,7 @@ const BlueSkies = () => {
             // Save to order table using user_id (primary key from user table)
             const orderData = {
               user_id: dbUserData.user_id,
-              drop: 'Blue Skies Forever',
+              drop: 'I Spy Collection',
               size: selectedSize,
               address: userData?.address || formData.address,
               transaction_id: receipt.transactionHash,
@@ -695,7 +691,7 @@ const BlueSkies = () => {
                   mintDetails: {
                     transactionHash: receipt.transactionHash,
                     walletAddress: userAddress,
-                    collectionName: 'Blue Skies Forever',
+                                              collectionName: 'I Spy Collection',
                     size: selectedSize
                   }
                 })
@@ -798,13 +794,13 @@ const BlueSkies = () => {
         <div className="blueskies-content-sections">
           <div className="blueskies-left-section">
             <div className="blueskies-description">
-              Imagine a body of work so powerful that you are reminded of it every time you look up on a sunny day. This is what DK has accomplished with his Blue Skies Forever collection. We are now taking it to the next level with this collaboration.
+              Discover the hidden world around you with DK's I Spy Collection. This unique collaboration brings together the art of observation and the thrill of discovery, creating an experience that challenges you to see the extraordinary in the ordinary.
             </div>
             
             <div className="blueskies-included-section">
               <h3 className="blueskies-included-title">Included in this drop:</h3>
               <div className="blueskies-item">
-                <h4 className="blueskies-item-title">Blue Skies Forever Screened Tee</h4>
+                <h4 className="blueskies-item-title">I Spy Collection Screened Tee</h4>
                 <ul className="blueskies-item-details">
                   <li>6.5oz garment dyed cotton</li>
                   <li>Oversized, modern fit</li>
@@ -815,15 +811,15 @@ const BlueSkies = () => {
               <div className="blueskies-item">
                 <h4 className="blueskies-item-title">DK Edition</h4>
                 <ul className="blueskies-item-details">
-                  <li>"Seein' Stars" digital art edition</li>
-                  <li>ERC1155 (ETH mainnet)</li>
+                  <li>"I Spy" digital art edition</li>
+                  <li>ERC721 (Sepolia testnet)</li>
                 </ul>
               </div>
               <div className="blueskies-item">
-                <h4 className="blueskies-item-title">Bag Boy Diner Mug</h4>
+                <h4 className="blueskies-item-title">Discovery Kit</h4>
                 <ul className="blueskies-item-details">
-                  <li>Ceramic diner mug</li>
-                  <li>Bag boy design</li>
+                  <li>Interactive elements</li>
+                  <li>Hidden details to find</li>
                 </ul>
               </div>
               <div className="blueskies-item">
@@ -833,7 +829,7 @@ const BlueSkies = () => {
           </div>
           
           <div className="blueskies-right-section">
-            <div className="blueskies-price">.15 ETH</div>
+            <div className="blueskies-price">.1 ETH</div>
             
             <div className="blueskies-size-selection">
               <select 
@@ -981,9 +977,9 @@ const BlueSkies = () => {
               <div className="blueskies-order-summary">
                 <h4>Order Summary</h4>
                 <div className="blueskies-order-details">
-                  <p><strong>Drop:</strong> Blue Skies Forever</p>
+                                      <p><strong>Drop:</strong> I Spy Collection</p>
                   <p><strong>Size:</strong> {selectedSize}</p>
-                  <p><strong>Price:</strong> 0.15 ETH</p>
+                                      <p><strong>Price:</strong> 0.1 ETH</p>
                 </div>
                 
                 <div className="blueskies-shipping-info">
