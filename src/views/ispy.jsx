@@ -7,6 +7,7 @@ import Header from '../components/header'
 import './ispy.css'
 
 const BlueSkies = () => {
+  // I Spy Collection - Clean working copy
   const { login, authenticated, user } = usePrivy()
   const { wallets } = useWallets()
   const [selectedSize, setSelectedSize] = useState('')
