@@ -517,8 +517,9 @@ const BlueSkies = () => {
         // Contract details - I Spy Collection ERC721 NFT Claim
         const contractAddress = "0xb9868148c1E51DA4093498062FA8d4C2E8cCcb0C";
         
-        // ERC721 NFT Claim ABI - typically doesn't require tokenId for auto-assignment
+        // ERC721 NFT Claim ABI - trying different claim function signatures
         const nftClaimABI = [
+          // Standard claim function
           {
             "inputs": [
               { "internalType": "address", "name": "_receiver", "type": "address" },
@@ -541,6 +542,27 @@ const BlueSkies = () => {
             "outputs": [],
             "stateMutability": "payable",
             "type": "function"
+          },
+          // Alternative claim function (some contracts use this)
+          {
+            "inputs": [
+              { "internalType": "address", "name": "_to", "type": "address" },
+              { "internalType": "uint256", "name": "_quantity", "type": "uint256" }
+            ],
+            "name": "claim",
+            "outputs": [],
+            "stateMutability": "payable",
+            "type": "function"
+          },
+          // Simple mint function
+          {
+            "inputs": [
+              { "internalType": "address", "name": "_to", "type": "address" }
+            ],
+            "name": "mint",
+            "outputs": [],
+            "stateMutability": "payable",
+            "type": "function"
           }
         ]
 
@@ -559,6 +581,18 @@ const BlueSkies = () => {
             currency: "0x0000000000000000000000000000000000000000"
           };
           const data = "0x";
+
+          // Try to read contract state first
+          try {
+            const contractCode = await web3.eth.getCode(contractAddress);
+            if (contractCode === '0x' || contractCode === '0x0') {
+              throw new Error('Contract not deployed at this address');
+            }
+            console.log('Contract code found, length:', contractCode.length);
+          } catch (error) {
+            console.error('Error checking contract:', error);
+            throw new Error('Contract verification failed');
+          }
 
 
         /*
@@ -599,20 +633,56 @@ const BlueSkies = () => {
             });
 
           
-          const receipt = await nftClaimContract.methods
-            .claim(
-              receiver,              // _receiver
-              quantity,              // _quantity
-              currency,              // _currency (ETH)
-              pricePerToken,         // _pricePerToken
-              allowlistProof,        // _allowlistProof struct
-              data                   // _data
-            )
-            .send({
-              from: receiver,
-              value: pricePerToken,  // payable ETH (0.1 ETH)
-              gas: 300_000
-            });
+          // Try different minting approaches
+          let receipt;
+          
+          try {
+            // First, try the standard claim function
+            console.log('Attempting standard claim function...');
+            receipt = await nftClaimContract.methods
+              .claim(
+                receiver,              // _receiver
+                quantity,              // _quantity
+                currency,              // _currency (ETH)
+                pricePerToken,         // _pricePerToken
+                allowlistProof,        // _allowlistProof struct
+                data                   // _data
+              )
+              .send({
+                from: receiver,
+                value: pricePerToken,  // payable ETH (0.1 ETH)
+                gas: 300_000
+              });
+          } catch (error) {
+            console.log('Standard claim failed, trying alternative claim...', error.message);
+            
+            try {
+              // Try alternative claim function
+              receipt = await nftClaimContract.methods
+                .claim(
+                  receiver,              // _to
+                  quantity              // _quantity
+                )
+                .send({
+                  from: receiver,
+                  value: pricePerToken,  // payable ETH (0.1 ETH)
+                  gas: 300_000
+                });
+            } catch (error2) {
+              console.log('Alternative claim failed, trying simple mint...', error2.message);
+              
+              // Try simple mint function
+              receipt = await nftClaimContract.methods
+                .mint(
+                  receiver              // _to
+                )
+                .send({
+                  from: receiver,
+                  value: pricePerToken,  // payable ETH (0.1 ETH)
+                  gas: 300_000
+                });
+            }
+          }
 
           // Transaction receipt contains transactionHash and other details
           console.log("Transaction successful:", receipt);
