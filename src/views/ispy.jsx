@@ -953,18 +953,6 @@ const BlueSkies = () => {
               preserveAspectRatio="xMidYMid meet"
               style={{ width: '100%', height: '100%' }}
             >
-              {/* Temporary test button - remove in production */}
-              <rect 
-                x="100" 
-                y="100" 
-                width="100" 
-                height="50" 
-                fill="rgba(255, 0, 0, 0.3)" 
-                onClick={() => console.log('Test click working!')}
-                style={{ cursor: 'pointer' }}
-              />
-              <text x="150" y="130" fill="white" textAnchor="middle">TEST CLICK</text>
-              
               {/* Prayer Candle */}
               <polygon
                 className={`click-area prayer-candle ${clickedItems.prayerCandle ? 'clicked' : ''}`}

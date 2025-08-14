@@ -56,8 +56,6 @@
   stroke-width: 2;
   cursor: pointer;
   transition: all 0.3s ease;
-  /* Temporary debug indicator - remove in production */
-  outline: 1px solid rgba(255, 0, 0, 0.5);
 }
 
 .click-area:hover {
