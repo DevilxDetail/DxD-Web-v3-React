@@ -10,6 +10,15 @@ const BlueSkies = () => {
   // I Spy Collection - Clean working copy
   const { login, authenticated, user } = usePrivy()
   const { wallets } = useWallets()
+  
+  // Interactive overlay state
+  const [showOverlay, setShowOverlay] = useState(true)
+  const [clickedItems, setClickedItems] = useState({
+    prayerCandle: false,
+    zippo: false,
+    dogTags: false
+  })
+  const [overlayAnimating, setOverlayAnimating] = useState(false)
   const [selectedSize, setSelectedSize] = useState('')
   const [isOrdering, setIsOrdering] = useState(false)
   const [showDataModal, setShowDataModal] = useState(false)
@@ -38,7 +47,29 @@ const BlueSkies = () => {
   const addressInputRef = useRef(null)
   const editAddressInputRef = useRef(null)
   const autocompleteRef = useRef(null)
+  const imageRef = useRef(null)
+  const svgRef = useRef(null)
 
+  // Interactive overlay handlers
+  const handleItemClick = (itemKey) => {
+    const newClickedItems = {
+      ...clickedItems,
+      [itemKey]: true
+    }
+    
+    setClickedItems(newClickedItems)
+    
+    // Check if all items are clicked
+    if (newClickedItems.prayerCandle && newClickedItems.zippo && newClickedItems.dogTags) {
+      // All items clicked, start animation
+      setOverlayAnimating(true)
+      setTimeout(() => {
+        setShowOverlay(false)
+        setOverlayAnimating(false)
+      }, 1000) // Animation duration
+    }
+  }
+  
   // Load Google Places API
   useEffect(() => {
     const loadGooglePlaces = () => {
@@ -150,6 +181,118 @@ const BlueSkies = () => {
       }
     }
   }, [googlePlacesLoaded, manualAddressMode])
+
+  // Initialize autocomplete for edit form when it opens
+  useEffect(() => {
+    if (showEditForm && googlePlacesLoaded && editAddressInputRef.current && !editManualAddressMode) {
+      console.log('Initializing autocomplete for edit form')
+      setTimeout(() => {
+        if (editAddressInputRef.current && window.google && window.google.maps) {
+          // Clean up previous autocomplete instance
+          if (autocompleteRef.current) {
+            window.google.maps.event.clearInstanceListeners(autocompleteRef.current)
+            autocompleteRef.current = null
+          }
+          
+          try {
+            const autocomplete = new window.google.maps.places.Autocomplete(editAddressInputRef.current, {
+              types: ['address'],
+              componentRestrictions: { country: 'us' }
+            })
+
+            autocompleteRef.current = autocomplete
+
+            autocomplete.addListener('place_changed', () => {
+              console.log('Edit form place changed event triggered')
+              const place = autocomplete.getPlace()
+              console.log('Edit form selected place:', place)
+              
+              if (place.geometry) {
+                // Extract address components
+                let streetNumber = ''
+                let route = ''
+                let city = ''
+                let state = ''
+                let zipCode = ''
+
+                place.address_components.forEach(component => {
+                  const types = component.types
+                  console.log('Edit form address component:', component.long_name, types)
+
+                  if (types.includes('street_number')) {
+                    streetNumber = component.long_name
+                  } else if (types.includes('route')) {
+                    route = component.long_name
+                  } else if (types.includes('locality')) {
+                    city = component.long_name
+                  } else if (types.includes('administrative_area_level_1')) {
+                    state = component.short_name
+                  } else if (types.includes('postal_code')) {
+                    zipCode = component.long_name
+                  }
+                })
+
+                // Update form data with parsed address
+                // Use the full formatted address from Google Places
+                const fullAddress = place.formatted_address || `${streetNumber} ${route}`.trim()
+                
+                console.log('Edit form parsed address:', { fullAddress, city, state, zipCode })
+                
+                setFormData(prev => ({
+                  ...prev,
+                  address: fullAddress,
+                  city: city,
+                  state: state,
+                  zipCode: zipCode
+                }))
+              }
+            })
+
+            console.log('Edit form autocomplete initialized successfully')
+          } catch (error) {
+            console.error('Error initializing edit form autocomplete:', error)
+          }
+        }
+      }, 100)
+    }
+  }, [showEditForm, googlePlacesLoaded, editManualAddressMode])
+
+  // Handle main content visibility based on overlay state
+  useEffect(() => {
+    if (!showOverlay) {
+      // Ensure main content is visible when overlay is gone
+      const mainContent = document.querySelector('.blueskies-main-content')
+      if (mainContent) {
+        mainContent.style.opacity = '1'
+        mainContent.style.pointerEvents = 'auto'
+      }
+    }
+  }, [showOverlay])
+
+  // Ensure SVG overlay matches image dimensions exactly
+  useEffect(() => {
+    if (imageRef.current && svgRef.current) {
+      const updateSVGSize = () => {
+        const img = imageRef.current
+        const svg = svgRef.current
+        if (img && svg) {
+          const rect = img.getBoundingClientRect()
+          svg.style.width = `${rect.width}px`
+          svg.style.height = `${rect.height}px`
+          svg.style.left = `${rect.left}px`
+          svg.style.top = `${rect.top}px`
+          svg.style.position = 'fixed'
+          
+        }
+      }
+      
+      // Update on load and resize
+      updateSVGSize()
+      window.addEventListener('resize', updateSVGSize)
+      
+      return () => window.removeEventListener('resize', updateSVGSize)
+    }
+  }, [imageRef.current, svgRef.current])
 
   // Fetch user data on component mount
   useEffect(() => {
@@ -371,81 +514,6 @@ const BlueSkies = () => {
       }, 100)
     }
   }, [showDataModal, googlePlacesLoaded])
-
-  // Initialize autocomplete for edit form when it opens
-  useEffect(() => {
-    if (showEditForm && googlePlacesLoaded && editAddressInputRef.current && !editManualAddressMode) {
-      console.log('Initializing autocomplete for edit form')
-      setTimeout(() => {
-        if (editAddressInputRef.current && window.google && window.google.maps) {
-          // Clean up previous autocomplete instance
-          if (autocompleteRef.current) {
-            window.google.maps.event.clearInstanceListeners(autocompleteRef.current)
-            autocompleteRef.current = null
-          }
-          
-          try {
-            const autocomplete = new window.google.maps.places.Autocomplete(editAddressInputRef.current, {
-              types: ['address'],
-              componentRestrictions: { country: 'us' }
-            })
-
-            autocompleteRef.current = autocomplete
-
-            autocomplete.addListener('place_changed', () => {
-              console.log('Edit form place changed event triggered')
-              const place = autocomplete.getPlace()
-              console.log('Edit form selected place:', place)
-              
-              if (place.geometry) {
-                // Extract address components
-                let streetNumber = ''
-                let route = ''
-                let city = ''
-                let state = ''
-                let zipCode = ''
-
-                place.address_components.forEach(component => {
-                  const types = component.types
-                  console.log('Edit form address component:', component.long_name, types)
-
-                  if (types.includes('street_number')) {
-                    streetNumber = component.long_name
-                  } else if (types.includes('route')) {
-                    route = component.long_name
-                  } else if (types.includes('locality')) {
-                    city = component.long_name
-                  } else if (types.includes('administrative_area_level_1')) {
-                    state = component.short_name
-                  } else if (types.includes('postal_code')) {
-                    zipCode = component.long_name
-                  }
-                })
-
-                // Update form data with parsed address
-                // Use the full formatted address from Google Places
-                const fullAddress = place.formatted_address || `${streetNumber} ${route}`.trim()
-                
-                console.log('Edit form parsed address:', { fullAddress, city, state, zipCode })
-                
-                setFormData(prev => ({
-                  ...prev,
-                  address: fullAddress,
-                  city: city,
-                  state: state,
-                  zipCode: zipCode
-                }))
-              }
-            })
-
-            console.log('Edit form autocomplete initialized successfully')
-          } catch (error) {
-            console.error('Error initializing edit form autocomplete:', error)
-          }
-        }
-      }, 100)
-    }
-  }, [showEditForm, googlePlacesLoaded, editManualAddressMode])
 
   const handleMint = async () => {
     try {
@@ -852,6 +920,73 @@ const BlueSkies = () => {
         iconBlackSrc="/icon%20-%20white-200h.png"
         rootClassName="header-root-class-name"
       />
+      
+      {/* Interactive Overlay */}
+      {showOverlay && (
+        <div className={`ispy-overlay ${overlayAnimating ? 'overlay-animating' : ''}`}>
+          <div className="overlay-image-container">
+            <img 
+              ref={imageRef}
+              src="/ispy-t-shirt-design-front-final.PNG.png" 
+              alt="I Spy Collection - Find the hidden items" 
+              className="overlay-image"
+              onLoad={() => {
+                if (imageRef.current) {
+                  console.log('Image loaded:', {
+                    naturalWidth: imageRef.current.naturalWidth,
+                    naturalHeight: imageRef.current.naturalHeight,
+                    clientWidth: imageRef.current.clientWidth,
+                    clientHeight: imageRef.current.clientHeight
+                  })
+                }
+              }}
+            />
+            
+            {/* SVG Overlay with Polygon Click Areas */}
+            <svg 
+              ref={svgRef}
+              className="overlay-svg" 
+              viewBox="0 0 2400 2400" 
+              preserveAspectRatio="xMidYMid meet"
+              onClick={(e) => {
+              }}
+            >
+              {/* Prayer Candle */}
+              <polygon
+                className={`click-area prayer-candle ${clickedItems.prayerCandle ? 'clicked' : ''}`}
+                points="528,410 541,389 581,366 611,355 636,345 655,345 672,338 687,338 700,338 717,338 727,342 740,349 753,355 761,359 767,366 772,376 774,391 842,622 977,1125 969,1144 956,1152 939,1161 918,1169 890,1176 869,1182 848,1190 818,1199 793,1207 770,1205 751,1201 738,1195 541,506 530,472 524,438"
+                onClick={() => handleItemClick('prayerCandle')}
+                data-title="Prayer Candle"
+              />
+              {clickedItems.prayerCandle && (
+                <text x="650" y="800" className="found-indicator">✓</text>
+              )}
+              
+              {/* Zippo */}
+              <polygon
+                className={`click-area zippo ${clickedItems.zippo ? 'clicked' : ''}`}
+                points="748,1417 814,1470 776,1542 848,1576 854,1595 863,1610 865,1621 865,1634 833,1651 842,1665 865,1680 818,1820 791,1824 659,1757 708,1614 640,1555 672,1492 723,1417"
+                onClick={() => handleItemClick('zippo')}
+                data-title="Zippo"
+              />
+              {clickedItems.zippo && (
+                <text x="750" y="1650" className="found-indicator">✓</text>
+              )}
+              
+              {/* Dog Tags */}
+              <polygon
+                className={`click-area dog-tags ${clickedItems.dogTags ? 'clicked' : ''}`}
+                points="977,1256 1003,1258 1024,1250 1043,1237 1060,1224 1079,1210 1105,1184 1124,1157 1145,1127 1168,1084 1185,1038 1196,1004 1202,970 1204,934 1204,900 1198,868 1189,839 1196,794 1196,758 1192,737 1183,705 1170,673 1151,643 1132,607 1119,584 1107,563 1100,544,1115 525,1132 512,1136 529,1139 542,1139 557,1145 571,1162 590,1215 620,1306 665,1323 665,1344 663,1357 654,1372 641,1380 620,1387 601,1389 578,1389 559,1387 540,1380 520,1367 504,1355 491,1202 419,1187,423 1170,427 1160,436 1149,448 1141,461 1134,480,1119 482,1105 493,1094 512,1096 529,1083 561,1069 576,1056 601,1054 624,1054 648,1064 682,1086 705,1105 726,1117 737,1132 758,1145 773,1160 788,1172 807,1181 822,1189 843,1175 879,1164 908,1147 936,1128 972,1107 1006,1092 1025,1071 1051,1054 1076,1037 1097,1026 1116,1013 1131,1001 1148,988 1171,975 1195,967,1214 965,1235"
+                onClick={() => handleItemClick('dogTags')}
+                data-title="Dog Tags"
+              />
+              {clickedItems.dogTags && (
+                <text x="1100" y="1100" className="found-indicator">✓</text>
+              )}
+            </svg>
+          </div>
+        </div>
+      )}
       
       <div className="blueskies-main-content">
         <div className="blueskies-banner">

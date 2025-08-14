@@ -1,5 +1,137 @@
 @import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Lato:wght@400;600;700&display=swap');
 
+/* Interactive Overlay Styles */
+.ispy-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.ispy-overlay.overlay-animating {
+  opacity: 0;
+  transform: scale(1.1);
+}
+
+.overlay-image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay-image {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
+}
+
+.overlay-svg {
+  position: fixed;
+  pointer-events: auto;
+  /* Position and size will be set by JavaScript */
+}
+
+.click-area {
+  fill: transparent;
+  stroke: transparent;
+  stroke-width: 2;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.click-area:hover {
+  fill: transparent;
+  stroke: rgba(255, 255, 255, 0.3);
+  stroke-width: 2;
+}
+
+.click-area.clicked {
+  fill: transparent;
+  stroke: #00ff00;
+  stroke-width: 3;
+  animation: none;
+  filter: drop-shadow(0 0 15px rgba(0, 255, 0, 0.8));
+}
+
+/* Add tooltips on hover */
+.click-area::before {
+  content: attr(data-title);
+  position: absolute;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 10000;
+}
+
+.click-area:hover::before {
+  opacity: 1;
+}
+
+.found-indicator {
+  fill: #00ff00;
+  font-size: 48px;
+  font-weight: bold;
+  text-anchor: middle;
+  dominant-baseline: middle;
+  filter: drop-shadow(0 0 10px rgba(0, 255, 0, 0.8));
+  animation: foundPulse 1s ease-in-out;
+}
+
+@keyframes foundPulse {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Ensure main content is hidden when overlay is active */
+.ispy-overlay + .blueskies-main-content {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease-in;
+}
+
+.ispy-overlay:not(.overlay-animating) + .blueskies-main-content {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Mobile responsiveness for overlay */
+@media (max-width: 768px) {
+  .found-indicator {
+    font-size: 36px;
+  }
+}
+
 /* Transparent Header for Blueskies Page */
 .blueskies-page .header-header {
   background-color: transparent !important;
