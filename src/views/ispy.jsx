@@ -52,6 +52,8 @@ const BlueSkies = () => {
 
   // Interactive overlay handlers
   const handleItemClick = (itemKey) => {
+    console.log('Item clicked:', itemKey) // Debug log
+    
     const newClickedItems = {
       ...clickedItems,
       [itemKey]: true
@@ -61,6 +63,7 @@ const BlueSkies = () => {
     
     // Check if all items are clicked
     if (newClickedItems.prayerCandle && newClickedItems.zippo && newClickedItems.dogTags) {
+      console.log('All items found! Starting animation...') // Debug log
       // All items clicked, start animation
       setOverlayAnimating(true)
       setTimeout(() => {
@@ -276,13 +279,9 @@ const BlueSkies = () => {
         const img = imageRef.current
         const svg = svgRef.current
         if (img && svg) {
-          const rect = img.getBoundingClientRect()
-          svg.style.width = `${rect.width}px`
-          svg.style.height = `${rect.height}px`
-          svg.style.left = `${rect.left}px`
-          svg.style.top = `${rect.top}px`
-          svg.style.position = 'fixed'
-          
+          // Simple approach: just ensure SVG covers the container
+          svg.style.width = '100%'
+          svg.style.height = '100%'
         }
       }
       
@@ -932,13 +931,17 @@ const BlueSkies = () => {
               className="overlay-image"
               onLoad={() => {
                 if (imageRef.current) {
-                  console.log('Image loaded:', {
+                  console.log('Image loaded successfully:', {
                     naturalWidth: imageRef.current.naturalWidth,
                     naturalHeight: imageRef.current.naturalHeight,
                     clientWidth: imageRef.current.clientWidth,
-                    clientHeight: imageRef.current.clientHeight
+                    clientHeight: imageRef.current.clientHeight,
+                    src: imageRef.current.src
                   })
                 }
+              }}
+              onError={(e) => {
+                console.error('Image failed to load:', e)
               }}
             />
             
@@ -948,9 +951,20 @@ const BlueSkies = () => {
               className="overlay-svg" 
               viewBox="0 0 2400 2400" 
               preserveAspectRatio="xMidYMid meet"
-              onClick={(e) => {
-              }}
+              style={{ width: '100%', height: '100%' }}
             >
+              {/* Temporary test button - remove in production */}
+              <rect 
+                x="100" 
+                y="100" 
+                width="100" 
+                height="50" 
+                fill="rgba(255, 0, 0, 0.3)" 
+                onClick={() => console.log('Test click working!')}
+                style={{ cursor: 'pointer' }}
+              />
+              <text x="150" y="130" fill="white" textAnchor="middle">TEST CLICK</text>
+              
               {/* Prayer Candle */}
               <polygon
                 className={`click-area prayer-candle ${clickedItems.prayerCandle ? 'clicked' : ''}`}
