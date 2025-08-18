@@ -1032,12 +1032,12 @@
   color: #3B82F6;
 }
 
-/* Footer Styles */
-.footer-root-class-name {
+/* Footer Styles - Only for I Spy page */
+.blueskies-container .footer-root-class-name {
   color: #000000 !important;
 }
 
-.footer-root-class-name * {
+.blueskies-container .footer-root-class-name * {
   color: #000000 !important;
   font-family: 'Lato', sans-serif !important;
   text-shadow: none !important;
