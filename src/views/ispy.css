@@ -205,10 +205,10 @@
 .blueskies-title {
   font-size: 48px;
   font-weight: 700;
-  color: white;
+  color: #000000;
   font-family: 'Adobe Garamond Pro', serif;
   text-align: center;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-shadow: none;
   margin-bottom: -10px;
   letter-spacing: 2px;
 }
@@ -218,6 +218,7 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 0px;
+  margin-top: 20px;
   width: 100vw;
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
@@ -258,7 +259,7 @@
   font-size: 22px;
   line-height: 1.6;
   margin-bottom: 40px;
-  color: white;
+  color: #000000;
   font-weight: 400;
   font-family: 'Adobe Garamond Pro', serif;
 }
@@ -270,7 +271,7 @@
 .blueskies-included-title {
   font-size: 28px;
   font-weight: 600;
-  color: white;
+  color: #000000;
   margin-bottom: 20px;
   font-family: 'Adobe Garamond Pro', serif;
 }
@@ -282,7 +283,7 @@
 .blueskies-item-title {
   font-size: 20px;
   font-weight: 700;
-  color: white;
+  color: #000000;
   margin-bottom: 8px;
   font-family: 'Adobe Garamond Pro', serif;
 }
@@ -295,7 +296,7 @@
 
 .blueskies-item-details li {
   font-size: 18px;
-  color: white;
+  color: #000000;
   margin-bottom: 6px;
   font-family: 'Adobe Garamond Pro', serif;
   position: relative;
@@ -306,13 +307,13 @@
   content: "•";
   position: absolute;
   left: 0;
-  color: white;
+  color: #000000;
   font-weight: bold;
 }
 
 .blueskies-plus {
   font-size: 18px;
-  color: white;
+  color: #000000;
   margin-top: 15px;
   font-family: 'Adobe Garamond Pro', serif;
   font-weight: 600;
@@ -329,9 +330,9 @@
 .blueskies-price {
   font-size: 48px;
   font-weight: 700;
-  color: white;
+  color: #000000;
   font-family: 'Adobe Garamond Pro', serif;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-shadow: none;
   text-align: center;
 }
 
@@ -368,7 +369,7 @@
   width: 100%;
   max-width: 300px;
   padding: 18px 30px;
-  background: linear-gradient(135deg, #1E40AF 0%, #3B82F6 100%);
+  background: linear-gradient(135deg, #8B1A3A 0%, #C71585 100%);
   color: white;
   border: none;
   border-radius: 8px;
@@ -379,13 +380,13 @@
   letter-spacing: 1px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
+  box-shadow: 0 4px 12px rgba(139, 26, 58, 0.3);
 }
 
 .blueskies-order-button:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(30, 64, 175, 0.4);
-  background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
+  box-shadow: 0 6px 16px rgba(139, 26, 58, 0.4);
+  background: linear-gradient(135deg, #6B1429 0%, #A0126B 100%);
 }
 
 .blueskies-order-button:disabled {
@@ -765,7 +766,7 @@
 
 .blueskies-button-primary {
   padding: 12px 24px;
-  background: linear-gradient(135deg, #1E40AF 0%, #3B82F6 100%);
+  background: linear-gradient(135deg, #8B1A3A 0%, #C71585 100%);
   color: white;
   border: none;
   border-radius: 8px;
@@ -777,7 +778,7 @@
 }
 
 .blueskies-button-primary:hover:not(:disabled) {
-  background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
+  background: linear-gradient(135deg, #6B1429 0%, #A0126B 100%);
   transform: translateY(-1px);
 }
 
@@ -1029,6 +1030,17 @@
 .pac-item-matched {
   font-weight: 600;
   color: #3B82F6;
+}
+
+/* Footer Styles */
+.footer-root-class-name {
+  color: #000000 !important;
+}
+
+.footer-root-class-name * {
+  color: #000000 !important;
+  font-family: 'Lato', sans-serif !important;
+  text-shadow: none !important;
 }
 
 /* Mobile Responsiveness for Modals */
