@@ -26,30 +26,13 @@ const Home = (props) => {
         rootClassName="header-root-class-name"
       />
       <div className="home-container2">
-        <Link to="/blueskies" className="home-banner-link">
-          <div className="home-banner-container">
-            <img
-              alt="Now Minting Banner"
-              src="/Banner%20-%20Now%20Minting.png"
-              className="home-image1"
-            />
-            <button className="home-view-drop-button">
-              View Drop
-            </button>
-          </div>
-        </Link>
-        <Link to="/blueskies" className="home-banner-link">
-          <div className="home-banner-container">
-            <img
-              alt="Now Minting Banner"
-              src="/Banner%20-%20Now%20Minting.png"
-              className="home-image2"
-            />
-            <button className="home-view-drop-button-mobile">
-              View Drop
-            </button>
-          </div>
-        </Link>
+        <div className="home-hero-container">
+          <img
+            alt="DxD Hero"
+            src="/ispy-hero-asset-web-1.png"
+            className="home-hero-image"
+          />
+        </div>
         <div className="home-container3">
           <Link to="/juice" className="home-navlink1">
             <div className="home-container4">
