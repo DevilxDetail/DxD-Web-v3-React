@@ -1,5 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Lato:wght@400;600;700&display=swap');
 
+/* Adobe Garamond Pro font family */
+@font-face {
+  font-family: 'Adobe Garamond Pro';
+  src: local('Adobe Garamond Pro'), local('AGaramondPro-Regular');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Adobe Garamond Pro';
+  src: local('Adobe Garamond Pro Bold'), local('AGaramondPro-Bold');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Adobe Garamond Pro';
+  src: local('Adobe Garamond Pro Italic'), local('AGaramondPro-Italic');
+  font-weight: normal;
+  font-style: italic;
+}
+
+/* Set Adobe Garamond Pro as default font for entire page */
+.blueskies-container {
+  font-family: 'Adobe Garamond Pro', serif;
+}
+
 /* Interactive Overlay Styles */
 .ispy-overlay {
   position: fixed;
@@ -156,7 +183,7 @@
 .blueskies-container {
   width: 100%;
   min-height: 100vh;
-  background: url('/DK-Bckgrd.jpeg') no-repeat center center;
+  background: url('/ispy-dxd-background.png') no-repeat center center;
   background-size: cover;
   display: flex;
   flex-direction: column;
@@ -178,7 +205,7 @@
   font-size: 48px;
   font-weight: 700;
   color: white;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Adobe Garamond Pro', serif;
   text-align: center;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: -10px;
@@ -207,12 +234,7 @@
   transform: none;
 }
 
-/* Mobile-specific banner image */
-@media (max-width: 768px) {
-  .blueskies-banner-image {
-    content: url('/BSF Background Mobile.png');
-  }
-}
+
 
 .blueskies-content-sections {
   display: flex;
@@ -228,7 +250,7 @@
 .blueskies-left-section {
   flex: 1;
   color: #4A5568;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Adobe Garamond Pro', serif;
 }
 
 .blueskies-description {
@@ -237,6 +259,7 @@
   margin-bottom: 40px;
   color: white;
   font-weight: 400;
+  font-family: 'Adobe Garamond Pro', serif;
 }
 
 .blueskies-included-section {
@@ -248,7 +271,7 @@
   font-weight: 600;
   color: white;
   margin-bottom: 20px;
-  font-family: 'Arial Black', sans-serif;
+  font-family: 'Adobe Garamond Pro', serif;
 }
 
 .blueskies-item {
@@ -260,7 +283,7 @@
   font-weight: 700;
   color: white;
   margin-bottom: 8px;
-  font-family: 'Arial Black', sans-serif;
+  font-family: 'Adobe Garamond Pro', serif;
 }
 
 .blueskies-item-details {
@@ -273,7 +296,7 @@
   font-size: 18px;
   color: white;
   margin-bottom: 6px;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Adobe Garamond Pro', serif;
   position: relative;
   padding-left: 15px;
 }
@@ -290,7 +313,7 @@
   font-size: 18px;
   color: white;
   margin-top: 15px;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Adobe Garamond Pro', serif;
   font-weight: 600;
 }
 
@@ -306,7 +329,7 @@
   font-size: 48px;
   font-weight: 700;
   color: white;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Adobe Garamond Pro', serif;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
@@ -323,7 +346,7 @@
   border-radius: 8px;
   background-color: white;
   font-size: 16px;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Adobe Garamond Pro', serif;
   color: #2D3748;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -350,7 +373,7 @@
   border-radius: 8px;
   font-size: 16px;
   font-weight: 600;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Adobe Garamond Pro', serif;
   text-transform: uppercase;
   letter-spacing: 1px;
   cursor: pointer;
@@ -605,7 +628,7 @@
   font-size: 20px;
   font-weight: 600;
   color: #2D3748;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Adobe Garamond Pro', serif;
 }
 
 .blueskies-modal-close {
@@ -636,7 +659,7 @@
 .blueskies-modal-content p {
   margin: 0 0 20px 0;
   color: #4A5568;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Adobe Garamond Pro', serif;
   line-height: 1.5;
 }
 
@@ -650,7 +673,7 @@
   margin-bottom: 8px;
   font-weight: 600;
   color: #2D3748;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Adobe Garamond Pro', serif;
   font-size: 14px;
 }
 
@@ -660,7 +683,7 @@
   border: 2px solid #E2E8F0;
   border-radius: 8px;
   font-size: 16px;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Adobe Garamond Pro', serif;
   transition: all 0.2s ease;
   box-sizing: border-box;
 }
@@ -677,7 +700,7 @@
   border: 2px solid #E53E3E;
   border-radius: 8px;
   font-size: 16px;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Adobe Garamond Pro', serif;
   transition: all 0.2s ease;
   box-sizing: border-box;
 }
@@ -693,7 +716,7 @@
   font-size: 14px;
   margin-top: 4px;
   display: block;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Adobe Garamond Pro', serif;
 }
 
 .blueskies-info {
@@ -701,7 +724,7 @@
   font-size: 14px;
   margin-top: 4px;
   display: block;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Adobe Garamond Pro', serif;
   font-style: italic;
 }
 
@@ -711,7 +734,7 @@
   color: #3B82F6;
   font-size: 14px;
   font-weight: 600;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Adobe Garamond Pro', serif;
   cursor: pointer;
   text-decoration: underline;
   margin-top: 8px;
@@ -747,7 +770,7 @@
   border-radius: 8px;
   font-size: 16px;
   font-weight: 600;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Adobe Garamond Pro', serif;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -771,7 +794,7 @@
   border-radius: 8px;
   font-size: 16px;
   font-weight: 600;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Adobe Garamond Pro', serif;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -791,7 +814,7 @@
   font-size: 18px;
   font-weight: 600;
   color: #2D3748;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Adobe Garamond Pro', serif;
 }
 
 .blueskies-order-details {
@@ -803,7 +826,7 @@
 
 .blueskies-order-details p {
   margin: 0 0 8px 0;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Adobe Garamond Pro', serif;
   color: #4A5568;
 }
 
@@ -822,12 +845,12 @@
   font-size: 16px;
   font-weight: 600;
   color: #2D3748;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Adobe Garamond Pro', serif;
 }
 
 .blueskies-shipping-info p {
   margin: 0 0 8px 0;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Adobe Garamond Pro', serif;
   color: #4A5568;
 }
 
@@ -848,7 +871,7 @@
   color: #3B82F6;
   font-size: 14px;
   font-weight: 600;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Adobe Garamond Pro', serif;
   cursor: pointer;
   text-decoration: underline;
   transition: color 0.2s ease;
@@ -897,13 +920,13 @@
   font-size: 24px;
   font-weight: 600;
   color: #2D3748;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Adobe Garamond Pro', serif;
 }
 
 .blueskies-minting-content p {
   margin: 0;
   color: #718096;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Adobe Garamond Pro', serif;
   line-height: 1.5;
 }
 
@@ -940,7 +963,7 @@
   display: inline-block;
   color: #3B82F6;
   text-decoration: underline;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Adobe Garamond Pro', serif;
   font-weight: 600;
   margin: 10px 0;
   transition: color 0.2s ease;
@@ -971,7 +994,7 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   border: 1px solid #e0e0e0;
   background: white;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Adobe Garamond Pro', serif;
 }
 
 .pac-item {
@@ -981,6 +1004,7 @@
   font-size: 14px;
   color: #2D3748;
   transition: background-color 0.2s ease;
+  font-family: 'Adobe Garamond Pro', serif;
 }
 
 .pac-item:hover {

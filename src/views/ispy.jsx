@@ -992,7 +992,7 @@ const BlueSkies = () => {
       
       <div className="blueskies-main-content">
         <div className="blueskies-banner">
-          <img src="/BSF Background.png" alt="Blue Skies Forever Background" className="blueskies-banner-image" />
+          <img src="/ispy-hero-asset-web-1.png" alt="I Spy Collection Hero" className="blueskies-banner-image" />
         </div>
         <div className="blueskies-content-sections">
           <div className="blueskies-left-section">
