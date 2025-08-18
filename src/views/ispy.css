@@ -34,7 +34,8 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: #000;
+  background: url('/ispy-dxd-background.png') no-repeat center center;
+  background-size: cover;
   z-index: 9999;
   display: flex;
   justify-content: center;
