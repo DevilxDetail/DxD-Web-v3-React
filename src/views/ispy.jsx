@@ -998,32 +998,34 @@ const BlueSkies = () => {
         <div className="blueskies-content-sections">
           <div className="blueskies-left-section">
             <div className="blueskies-description">
-              Discover the hidden world around you with DK's I Spy Collection. This unique collaboration brings together the art of observation and the thrill of discovery, creating an experience that challenges you to see the extraordinary in the ordinary.
+              A story about memory, digital clutter, and impermanence. ispy is a nostalgic journey through what once was. Liv has integrated her 3d artistry and animation into an experience.
             </div>
             
             <div className="blueskies-included-section">
               <h3 className="blueskies-included-title">Included in this drop:</h3>
               <div className="blueskies-item">
-                <h4 className="blueskies-item-title">I Spy Collection Screened Tee</h4>
+                <h4 className="blueskies-item-title">ispy Tee</h4>
                 <ul className="blueskies-item-details">
-                  <li>6.5oz garment dyed cotton</li>
-                  <li>Oversized, modern fit</li>
-                  <li>Front and back screen</li>
+                  <li>6oz super soft Supima cotton</li>
+                  <li>Regular fit (order true to size or size up for a relaxed fit)</li>
+                  <li>Front and back design</li>
                   <li>NFC chipped</li>
                 </ul>
               </div>
               <div className="blueskies-item">
-                <h4 className="blueskies-item-title">DK Edition</h4>
+                <h4 className="blueskies-item-title">Liv Edition</h4>
                 <ul className="blueskies-item-details">
-                  <li>"I Spy" digital art edition</li>
-                  <li>ERC721 (Sepolia testnet)</li>
+                  <li>ispy animated edition</li>
+                  <li>Mainnet ERC1155 (will be airdropped within 24 hours of mint)</li>
                 </ul>
               </div>
               <div className="blueskies-item">
-                <h4 className="blueskies-item-title">Discovery Kit</h4>
+                <h4 className="blueskies-item-title">Physical Collectible</h4>
                 <ul className="blueskies-item-details">
-                  <li>Interactive elements</li>
-                  <li>Hidden details to find</li>
+                  <li>1 of 3 physical items designed by Liv</li>
+                  <li>Dog Tag (6 in 10 chance)</li>
+                  <li>Prayer Candle (3 in 10 chance)</li>
+                  <li>Custom Zippo (1 in 10 chance)</li>
                 </ul>
               </div>
               <div className="blueskies-item">
@@ -1181,7 +1183,7 @@ const BlueSkies = () => {
               <div className="blueskies-order-summary">
                 <h4>Order Summary</h4>
                 <div className="blueskies-order-details">
-                                      <p><strong>Drop:</strong> I Spy Collection</p>
+                                      <p><strong>Drop:</strong>ispy</p>
                   <p><strong>Size:</strong> {selectedSize}</p>
                                       <p><strong>Price:</strong> 0.1 ETH</p>
                 </div>
