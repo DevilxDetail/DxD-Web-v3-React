@@ -1022,7 +1022,7 @@ const BlueSkies = () => {
               <div className="blueskies-item">
                 <h4 className="blueskies-item-title">Physical Collectible</h4>
                 <ul className="blueskies-item-details">
-                  <li>1 of 3 physical items designed by Liv</li>
+                  <li>1 of 3 physical items designed by Liv (will reveal on mint)</li>
                   <li>Dog Tag (6 in 10 chance)</li>
                   <li>Prayer Candle (3 in 10 chance)</li>
                   <li>Custom Zippo (1 in 10 chance)</li>
