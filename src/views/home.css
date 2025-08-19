@@ -11,34 +11,19 @@
 
 /* Hero image styling */
 .home-hero-container {
-  width: 100%;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px 40px;
+  padding: 0;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
 }
 
 .home-hero-image {
   width: 100%;
-  max-width: 1200px;
   height: auto;
-  object-fit: contain;
-}
-
-/* Hero image styling */
-.home-hero-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px 40px;
-}
-
-.home-hero-image {
-  width: 100%;
-  max-width: 1200px;
-  height: auto;
-  object-fit: contain;
+  object-fit: cover;
 }
  
 .home-text10 {
