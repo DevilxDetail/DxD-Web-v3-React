@@ -906,9 +906,9 @@ const BlueSkies = () => {
   return (
     <div className="blueskies-container blueskies-page">
       <Helmet>
-        <title>Blue Skies Forever</title>
-        <meta property="og:title" content="Blue Skies Forever" />
-        <meta name="description" content="Blue Skies Forever - a DK collaboration" />
+        <title>ispy by Liv</title>
+        <meta property="og:title" content="ispy by Liv" />
+        <meta name="description" content="ispy - a Liv collaboration" />
       </Helmet>
       
       <Header
@@ -1183,7 +1183,7 @@ const BlueSkies = () => {
               <div className="blueskies-order-summary">
                 <h4>Order Summary</h4>
                 <div className="blueskies-order-details">
-                                      <p><strong>Drop:</strong>ispy</p>
+                                      <p><strong>Drop:</strong> ispy</p>
                   <p><strong>Size:</strong> {selectedSize}</p>
                                       <p><strong>Price:</strong> 0.1 ETH</p>
                 </div>
