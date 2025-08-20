@@ -544,6 +544,8 @@ const BlueSkies = () => {
 
         const provider = await linkedWallet.getEthereumProvider();
 
+
+        /*
         // Ensure the wallet is connected to Sepolia
         const SEPOLIA_ID = "0xaa36a7"; // Hex chain id for Sepolia (11155111)
         try {
@@ -576,14 +578,54 @@ const BlueSkies = () => {
           console.error("Chain check/switch failed:", chainErr);
           setMintStatus("error: Wrong network");
           return;
+        } */
+
+
+        // Ensure the wallet is connected to Ethereum Mainnet
+        const MAINNET_ID = "0x1"; // Hex chain id for Mainnet (1)
+        try {
+          const chainIdHex = await provider.request({ method: "eth_chainId" });
+          if (chainIdHex !== MAINNET_ID) {
+            try {
+              await provider.request({
+                method: "wallet_switchEthereumChain",
+                params: [{ chainId: MAINNET_ID }],
+              });
+            } catch (switchErr) {
+              // 4902 = Unrecognized chain -> add it first
+              if (switchErr.code === 4902) {
+                await provider.request({
+                  method: "wallet_addEthereumChain",
+                  params: [{
+                    chainId: MAINNET_ID,
+                    chainName: "Ethereum Mainnet",
+                    rpcUrls: ["https://ethereum.rpc.thirdweb.com"],
+                    nativeCurrency: { name: "Ether", symbol: "ETH", decimals: 18 },
+                    blockExplorerUrls: ["https://etherscan.io"],
+                  }],
+                });
+              } else {
+                throw switchErr;
+              }
+            }
+          }
+        } catch (chainErr) {
+          console.error("Chain check/switch failed:", chainErr);
+          setMintStatus("error: Wrong network");
+          return;
         }
 
+
+        
         const web3 = new Web3(provider);
         const userAddress = linkedWallet.address;
         console.log("Connected wallet address:", userAddress);
 
         // Contract details - I Spy Collection ERC721 NFT Claim
-        const contractAddress = "0xb9868148c1E51DA4093498062FA8d4C2E8cCcb0C";
+        // ispy sepolia contract address
+        //const contractAddress = "0xb9868148c1E51DA4093498062FA8d4C2E8cCcb0C";
+        // ispy mainnet contract address
+        const contractAddress = "0x6cCd2b95D6928aEA7295ED5795F55105E12F0F3b";
         
         // ERC721 NFT Claim ABI - trying different claim function signatures
         const nftClaimABI = [
