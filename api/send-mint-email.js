@@ -20,12 +20,12 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    const { userEmail, mintDetails } = req.body;
+    const { userEmail, mintDetails, templateId } = req.body;
 
     // Validate required fields
-    if (!userEmail || !mintDetails) {
+    if (!userEmail || !mintDetails || !templateId) {
       return res.status(400).json({ 
-        error: 'Missing required fields: userEmail and mintDetails' 
+        error: 'Missing required fields: userEmail, mintDetails, and templateId' 
       });
     }
 
@@ -36,14 +36,14 @@ module.exports = async function handler(req, res) {
     const msg = {
       to: userEmail,
       from: 'hello@devilxdetail.com',
-      templateId: 'd-759bfd57d96c40bab6aea84d9f71db60',
+      templateId: templateId,
       dynamicTemplateData: {
         user_email: userEmail,
         mint_date: new Date().toLocaleDateString(),
         mint_time: new Date().toLocaleTimeString(),
         transaction_hash: mintDetails.transactionHash || 'N/A',
         wallet_address: mintDetails.walletAddress || 'N/A',
-        collection_name: mintDetails.collectionName || 'Blue Skies Forever',
+        collection_name: mintDetails.collectionName || 'N/A',
         size: mintDetails.size || 'N/A'
       }
     };
