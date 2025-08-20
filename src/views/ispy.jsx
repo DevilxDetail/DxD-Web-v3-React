@@ -924,8 +924,8 @@ const BlueSkies = () => {
       {/* Interactive Overlay */}
       {showOverlay && (
         <div className={`ispy-overlay ${overlayAnimating ? 'overlay-animating' : ''}`}>
-          <div className="overlay-image-container">
-            {/* Instruction Text */}
+          <div className="overlay-content">
+            {/* Instruction Text Above Image */}
             <div className="overlay-instructions">
               <p className="overlay-instruction-text">
                 To enter, find a Prayer Candle, a set of Dog Tags and a Zippo Lighter
@@ -941,59 +941,62 @@ const BlueSkies = () => {
               </button>
             </div>
             
-            <img 
-              ref={imageRef}
-              src="/ispy-t-shirt-design-front-final.PNG.png" 
-              alt="I Spy Collection - Find the hidden items" 
-              className="overlay-image"
-              onLoad={() => {
-                if (imageRef.current) {
-                  console.log('Image loaded successfully:', {
-                    naturalWidth: imageRef.current.naturalWidth,
-                    naturalHeight: imageRef.current.naturalHeight,
-                    clientWidth: imageRef.current.clientWidth,
-                    clientHeight: imageRef.current.clientHeight,
-                    src: imageRef.current.src
-                  })
-                }
-              }}
-              onError={(e) => {
-                console.error('Image failed to load:', e)
-              }}
-            />
-            
-            {/* SVG Overlay with Polygon Click Areas */}
-            <svg 
-              ref={svgRef}
-              className="overlay-svg" 
-              viewBox="0 0 2400 2400" 
-              preserveAspectRatio="xMidYMid meet"
-              style={{ width: '100%', height: '100%' }}
-            >
-              {/* Prayer Candle */}
-              <polygon
-                className={`click-area prayer-candle ${clickedItems.prayerCandle ? 'clicked' : ''}`}
-                points="528,410 541,389 581,366 611,355 636,345 655,345 672,338 687,338 700,338 717,338 727,342 740,349 753,355 761,359 767,366 772,376 774,391 842,622 977,1125 969,1144 956,1152 939,1161 918,1169 890,1176 869,1182 848,1190 818,1199 793,1207 770,1205 751,1201 738,1195 541,506 530,472 524,438"
-                onClick={() => handleItemClick('prayerCandle')}
-                data-title="Prayer Candle"
+            {/* Image Container */}
+            <div className="overlay-image-container">
+              <img 
+                ref={imageRef}
+                src="/ispy-t-shirt-design-front-final.PNG.png" 
+                alt="I Spy Collection - Find the hidden items" 
+                className="overlay-image"
+                onLoad={() => {
+                  if (imageRef.current) {
+                    console.log('Image loaded successfully:', {
+                      naturalWidth: imageRef.current.naturalWidth,
+                      naturalHeight: imageRef.current.naturalHeight,
+                      clientWidth: imageRef.current.clientWidth,
+                      clientHeight: imageRef.current.clientHeight,
+                      src: imageRef.current.src
+                    })
+                  }
+                }}
+                onError={(e) => {
+                  console.error('Image failed to load:', e)
+                }}
               />
               
-              {/* Zippo */}
-              <polygon
-                className={`click-area zippo ${clickedItems.zippo ? 'clicked' : ''}`}
-                points="748,1417 814,1470 776,1542 848,1576 854,1595 863,1610 865,1621 865,1634 833,1651 842,1665 865,1680 818,1820 791,1824 659,1757 708,1614 640,1555 672,1492 723,1417"
-                onClick={() => handleItemClick('zippo')}
-                data-title="Zippo"
-              />
-              
-              {/* Dog Tags */}
-              <polygon
-                className={`click-area dog-tags ${clickedItems.dogTags ? 'clicked' : ''}`}
-                points="977,1256 1003,1258 1024,1250 1043,1237 1060,1224 1079,1210 1105,1184 1124,1157 1145,1127 1168,1084 1185,1038 1196,1004 1202,970 1204,934 1204,900 1198,868 1189,839 1196,794 1196,758 1192,737 1183,705 1170,673 1151,643 1132,607 1119,584 1107,563 1100,544,1115 525,1132 512,1136 529,1139 542,1139 557,1145 571,1162 590,1215 620,1306 665,1323 665,1344 663,1357 654,1372 641,1380 620,1387 601,1389 578,1389 559,1387 540,1380 520,1367 504,1355 491,1202 419,1187,423 1170,427 1160,436 1149,448 1141,461 1134,480,1119 482,1105 493,1094 512,1096 529,1083 561,1069 576,1056 601,1054 624,1054 648,1064 682,1086 705,1105 726,1117 737,1132 758,1145 773,1160 788,1172 807,1181 822,1189 843,1175 879,1164 908,1147 936,1128 972,1107 1006,1092 1025,1071 1051,1054 1076,1037 1097,1026 1116,1013 1131,1001 1148,988 1171,975 1195,967,1214 965,1235"
-                onClick={() => handleItemClick('dogTags')}
-                data-title="Dog Tags"
-              />
-            </svg>
+              {/* SVG Overlay with Polygon Click Areas */}
+              <svg 
+                ref={svgRef}
+                className="overlay-svg" 
+                viewBox="0 0 2400 2400" 
+                preserveAspectRatio="xMidYMid meet"
+                style={{ width: '100%', height: '100%' }}
+              >
+                {/* Prayer Candle */}
+                <polygon
+                  className={`click-area prayer-candle ${clickedItems.prayerCandle ? 'clicked' : ''}`}
+                  points="528,410 541,389 581,366 611,355 636,345 655,345 672,338 687,338 700,338 717,338 727,342 740,349 753,355 761,359 767,366 772,376 774,391 842,622 977,1125 969,1144 956,1152 939,1161 918,1169 890,1176 869,1182 848,1190 818,1199 793,1207 770,1205 751,1201 738,1195 541,506 530,472 524,438"
+                  onClick={() => handleItemClick('prayerCandle')}
+                  data-title="Prayer Candle"
+                />
+                
+                {/* Zippo */}
+                <polygon
+                  className={`click-area zippo ${clickedItems.zippo ? 'clicked' : ''}`}
+                  points="748,1417 814,1470 776,1542 848,1576 854,1595 863,1610 865,1621 865,1634 833,1651 842,1665 865,1680 818,1820 791,1824 659,1757 708,1614 640,1555 672,1492 723,1417"
+                  onClick={() => handleItemClick('zippo')}
+                  data-title="Zippo"
+                />
+                
+                {/* Dog Tags */}
+                <polygon
+                  className={`click-area dog-tags ${clickedItems.dogTags ? 'clicked' : ''}`}
+                  points="977,1256 1003,1258 1024,1250 1043,1237 1060,1224 1079,1210 1105,1184 1124,1157 1145,1127 1168,1084 1185,1038 1196,1004 1202,970 1204,934 1204,900 1198,868 1189,839 1196,794 1196,758 1192,737 1183,705 1170,673 1151,643 1132,607 1119,584 1107,563 1100,544,1115 525,1132 512,1136 529,1139 542,1139 557,1145 571,1162 590,1215 620,1306 665,1323 665,1344 663,1357 654,1372 641,1380 620,1387 601,1389 578,1389 559,1387 540,1380 520,1367 504,1355 491,1202 419,1187,423 1170,427 1160,436 1149,448 1141,461 1134,480,1119 482,1105 493,1094 512,1096 529,1083 561,1069 576,1056 601,1054 624,1054 648,1064 682,1086 705,1105 726,1117 737,1132 758,1145 773,1160 788,1172 807,1181 822,1189 843,1175 879,1164 908,1147 936,1128 972,1107 1006,1092 1025,1071 1051,1054 1076,1037 1097,1026 1116,1013 1131,1001 1148,988 1171,975 1195,967,1214 965,1235"
+                  onClick={() => handleItemClick('dogTags')}
+                  data-title="Dog Tags"
+                />
+              </svg>
+            </div>
           </div>
         </div>
       )}
