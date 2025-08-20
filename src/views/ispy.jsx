@@ -925,6 +925,22 @@ const BlueSkies = () => {
       {showOverlay && (
         <div className={`ispy-overlay ${overlayAnimating ? 'overlay-animating' : ''}`}>
           <div className="overlay-image-container">
+            {/* Instruction Text */}
+            <div className="overlay-instructions">
+              <p className="overlay-instruction-text">
+                To enter, find a Prayer Candle, a set of Dog Tags and a Zippo Lighter
+              </p>
+              <button 
+                className="overlay-skip-button"
+                onClick={() => {
+                  setShowOverlay(false)
+                  setOverlayAnimating(false)
+                }}
+              >
+                (skip if you just can't find them)
+              </button>
+            </div>
+            
             <img 
               ref={imageRef}
               src="/ispy-t-shirt-design-front-final.PNG.png" 
@@ -961,9 +977,6 @@ const BlueSkies = () => {
                 onClick={() => handleItemClick('prayerCandle')}
                 data-title="Prayer Candle"
               />
-              {clickedItems.prayerCandle && (
-                <text x="650" y="800" className="found-indicator">✓</text>
-              )}
               
               {/* Zippo */}
               <polygon
@@ -972,9 +985,6 @@ const BlueSkies = () => {
                 onClick={() => handleItemClick('zippo')}
                 data-title="Zippo"
               />
-              {clickedItems.zippo && (
-                <text x="750" y="1650" className="found-indicator">✓</text>
-              )}
               
               {/* Dog Tags */}
               <polygon
@@ -983,18 +993,62 @@ const BlueSkies = () => {
                 onClick={() => handleItemClick('dogTags')}
                 data-title="Dog Tags"
               />
-              {clickedItems.dogTags && (
-                <text x="1100" y="1100" className="found-indicator">✓</text>
-              )}
             </svg>
           </div>
         </div>
       )}
       
       <div className="blueskies-main-content">
-        <div className="blueskies-banner">
-          <img src="/ispy-hero-asset-web-1.png" alt="I Spy Collection Hero" className="blueskies-banner-image" />
+        {/* Product Images Section */}
+        <div className="product-images-section">
+          <div className="product-images-container">
+            <div className="product-item product-video">
+              <video 
+                autoPlay 
+                loop 
+                muted 
+                playsInline
+                className="product-video-element"
+              >
+                <source src="/tRm2HlblR228TBx3.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            
+            <div className="product-item product-shirt">
+              <img 
+                src="/t-shirt-solo-render-EDITED.png" 
+                alt="I Spy Collection T-Shirt" 
+                className="product-image"
+              />
+            </div>
+            
+            <div className="product-item product-collectible">
+              <img 
+                src="/candle-rarity.png" 
+                alt="Candle Collectible" 
+                className="product-image"
+              />
+            </div>
+            
+            <div className="product-item product-collectible">
+              <img 
+                src="/dogtag-rarity.png" 
+                alt="Dog Tag Collectible" 
+                className="product-image"
+              />
+            </div>
+            
+            <div className="product-item product-collectible">
+              <img 
+                src="/lighter-rarity.png" 
+                alt="Lighter Collectible" 
+                className="product-image"
+              />
+            </div>
+          </div>
         </div>
+        
         <div className="blueskies-content-sections">
           <div className="blueskies-left-section">
             <div className="blueskies-description">
