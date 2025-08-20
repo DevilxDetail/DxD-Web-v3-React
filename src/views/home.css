@@ -18,12 +18,69 @@
   padding: 0;
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
+  position: relative;
+}
+
+.home-banner-clickable {
+  position: relative;
+  cursor: pointer;
 }
 
 .home-hero-image {
   width: 100%;
   height: auto;
   object-fit: cover;
+}
+
+/* Banner button styling */
+.home-banner-button-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.home-minting-button {
+  padding: 18px 30px;
+  background: linear-gradient(135deg, #B84A6A 0%, #E85FA8 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Adobe Garamond Pro', serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(184, 74, 106, 0.3);
+  white-space: nowrap;
+}
+
+.home-minting-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(184, 74, 106, 0.4);
+  background: linear-gradient(135deg, #9A3F5A 0%, #C54F8F 100%);
+}
+
+.home-minting-button:active {
+  transform: translateY(0);
+}
+
+/* Mobile responsiveness for banner button */
+@media (max-width: 768px) {
+  .home-minting-button {
+    padding: 16px 25px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-minting-button {
+    padding: 14px 20px;
+    font-size: 13px;
+  }
 }
  
 .home-text10 {

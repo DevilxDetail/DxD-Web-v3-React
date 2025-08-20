@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { usePrivy } from "@privy-io/react-auth";
 import { Helmet } from 'react-helmet'
 
@@ -9,6 +9,11 @@ import './home.css'
 
 const Home = (props) => {
   const { authenticated } = usePrivy();
+  const history = useHistory();
+  
+  const handleMintingClick = () => {
+    history.push('/ispy');
+  };
   
   return (
     <div className="home-container1">
@@ -27,11 +32,21 @@ const Home = (props) => {
       />
       <div className="home-container2">
         <div className="home-hero-container">
-          <img
-            alt="DxD Hero"
-            src="/ispy-hero-asset-web-1.png"
-            className="home-hero-image"
-          />
+          <div className="home-banner-clickable" onClick={handleMintingClick}>
+            <img
+              alt="DxD Hero"
+              src="/ispy-hero-asset-web-1.png"
+              className="home-hero-image"
+            />
+            <div className="home-banner-button-container">
+              <button className="home-minting-button" onClick={(e) => {
+                e.stopPropagation();
+                handleMintingClick();
+              }}>
+                Now Minting
+              </button>
+            </div>
+          </div>
         </div>
         <div className="home-container3">
           <Link to="/juice" className="home-navlink1">
