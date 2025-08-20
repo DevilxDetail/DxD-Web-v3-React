@@ -822,10 +822,11 @@ const BlueSkies = () => {
                 },
                 body: JSON.stringify({
                   userEmail: userEmail,
+                  templateId: 'd-12661005aeaf4336b9ffe235367a22c7',
                   mintDetails: {
                     transactionHash: receipt.transactionHash,
                     walletAddress: userAddress,
-                                              collectionName: 'I Spy Collection',
+                    collectionName: 'I Spy Collection',
                     size: selectedSize
                   }
                 })

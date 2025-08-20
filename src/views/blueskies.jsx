@@ -733,6 +733,7 @@ const BlueSkies = () => {
                 },
                 body: JSON.stringify({
                   userEmail: userEmail,
+                  templateId: 'd-759bfd57d96c40bab6aea84d9f71db60',
                   mintDetails: {
                     transactionHash: receipt.transactionHash,
                     walletAddress: userAddress,
