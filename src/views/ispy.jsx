@@ -1002,6 +1002,11 @@ const BlueSkies = () => {
       )}
       
       <div className="blueskies-main-content">
+        {/* Liv Banner */}
+        <div className="blueskies-banner">
+          <img src="/ispy-hero-asset-web-1.png" alt="I Spy Collection Hero" className="blueskies-banner-image" />
+        </div>
+        
         {/* Product Images Section */}
         <div className="product-images-section">
           <div className="product-images-container">
