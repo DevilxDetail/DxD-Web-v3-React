@@ -937,7 +937,7 @@ const BlueSkies = () => {
                   setOverlayAnimating(false)
                 }}
               >
-                (skip if you just can't find them)
+                (skip if you can't find them)
               </button>
             </div>
             
