@@ -1,0 +1,962 @@
+@import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Lato:wght@400;600;700&display=swap');
+
+/* Transparent Header for The Garden Page */
+.thegarden-page .header-header {
+  background-color: transparent !important;
+  backdrop-filter: none !important;
+}
+
+/* Transparent Footer for The Garden Page */
+.thegarden-page .footer-container1 {
+  background-color: transparent !important;
+  backdrop-filter: none !important;
+}
+
+/* Ensure footer text is visible on background */
+.thegarden-page .footer-text10,
+.thegarden-page .footer-text11,
+.thegarden-page .footer-text12,
+.thegarden-page .footer-text13,
+.thegarden-page .footer-text14,
+.thegarden-page .footer-link,
+.thegarden-page .footer-navlink1,
+.thegarden-page .footer-navlink2,
+.thegarden-page .footer-navlink3,
+.thegarden-page .footer-navlink4,
+.thegarden-page .footer-navlink5 {
+  color: white !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.thegarden-page .footer-link:hover,
+.thegarden-page .footer-navlink1:hover,
+.thegarden-page .footer-navlink2:hover,
+.thegarden-page .footer-navlink3:hover,
+.thegarden-page .footer-navlink4:hover,
+.thegarden-page .footer-navlink5:hover {
+  color: #22c55e !important;
+}
+
+/* Ensure header text is visible on light background */
+.thegarden-page .header-navlink2 {
+  color: #2D3748 !important;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.thegarden-page .header-navlink2:hover {
+  color: #22c55e !important;
+}
+
+/* The Garden page header connect button styling */
+.thegarden-page .header-button {
+  width: 100px;
+  height: 36px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Lato', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.thegarden-page .header-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(34, 197, 94, 0.4);
+  background: linear-gradient(135deg, #15803d 0%, #16a34a 100%);
+  color: white;
+}
+
+.thegarden-page .header-button:active {
+  transform: translateY(0);
+}
+
+.thegarden-container {
+  width: 100%;
+  min-height: 100vh;
+  background: url('/TG-Bckgrd.jpeg') no-repeat center center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+}
+
+.thegarden-main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 0 40px 0;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 40px;
+}
+
+.thegarden-title {
+  font-size: 48px;
+  font-weight: 700;
+  color: white;
+  font-family: 'Lato', sans-serif;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: -10px;
+  letter-spacing: 2px;
+}
+
+.thegarden-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0px;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+}
+
+.thegarden-banner-image {
+  width: 100%;
+  height: auto;
+  border-radius: 0;
+  box-shadow: none;
+  transition: transform 0.3s ease;
+}
+
+.thegarden-banner-image:hover {
+  transform: none;
+}
+
+/* Mobile-specific banner image */
+@media (max-width: 768px) {
+  .thegarden-banner-image {
+    content: url('/TG Background Mobile.png');
+  }
+}
+
+.thegarden-content-sections {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 80px;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0;
+  padding: 0 80px;
+}
+
+.thegarden-left-section {
+  flex: 1;
+  color: #4A5568;
+  font-family: 'Lato', sans-serif;
+}
+
+.thegarden-description {
+  font-size: 22px;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  color: white;
+  font-weight: 400;
+}
+
+.thegarden-included-section {
+  margin-top: 30px;
+}
+
+.thegarden-included-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 20px;
+  font-family: 'Arial Black', sans-serif;
+}
+
+.thegarden-item {
+  margin-bottom: 20px;
+}
+
+.thegarden-item-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 8px;
+  font-family: 'Arial Black', sans-serif;
+}
+
+.thegarden-item-details {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.thegarden-item-details li {
+  font-size: 18px;
+  color: white;
+  margin-bottom: 6px;
+  font-family: 'Lato', sans-serif;
+  position: relative;
+  padding-left: 15px;
+}
+
+.thegarden-item-details li:before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #22c55e;
+  font-weight: bold;
+}
+
+.thegarden-plus {
+  font-size: 18px;
+  color: white;
+  margin-top: 15px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 600;
+}
+
+.thegarden-right-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.thegarden-price {
+  font-size: 48px;
+  font-weight: 700;
+  color: white;
+  font-family: 'Lato', sans-serif;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.thegarden-size-selection {
+  width: 100%;
+  max-width: 300px;
+}
+
+.thegarden-size-dropdown {
+  width: 100%;
+  padding: 15px 20px;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  background-color: white;
+  font-size: 16px;
+  font-family: 'Lato', sans-serif;
+  color: #2D3748;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.thegarden-size-dropdown:focus {
+  outline: none;
+  border-color: #22c55e;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+}
+
+.thegarden-size-dropdown:hover {
+  border-color: #CBD5E0;
+}
+
+.thegarden-order-button {
+  width: 100%;
+  max-width: 300px;
+  padding: 18px 30px;
+  background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Lato', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+}
+
+.thegarden-order-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(34, 197, 94, 0.4);
+  background: linear-gradient(135deg, #15803d 0%, #16a34a 100%);
+}
+
+.thegarden-order-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.thegarden-order-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .thegarden-main-content {
+    flex-direction: column;
+    padding: 80px 0 30px 0;
+    gap: 25px;
+    text-align: center;
+  }
+  
+  .thegarden-banner {
+    margin-bottom: 20px;
+  }
+  
+  .thegarden-banner-image {
+    border-radius: 0;
+  }
+  
+  .thegarden-content-sections {
+    flex-direction: column;
+    gap: 30px;
+    text-align: center;
+    width: 100%;
+    margin: 0;
+    padding: 0 15px;
+  }
+  
+  .thegarden-left-section {
+    max-width: 100%;
+    order: 2;
+    text-align: left;
+  }
+  
+  .thegarden-right-section {
+    max-width: 100%;
+    width: 100%;
+    order: 1;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+  }
+  
+  .thegarden-description {
+    font-size: 16px;
+    margin-bottom: 25px;
+    line-height: 1.5;
+  }
+  
+  .thegarden-included-section {
+    margin-top: 20px;
+  }
+  
+  .thegarden-included-title {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  
+  .thegarden-item {
+    margin-bottom: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 8px;
+  }
+  
+  .thegarden-item-title {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  
+  .thegarden-item-details li {
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+  
+  .thegarden-plus {
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  
+  .thegarden-price {
+    font-size: 42px;
+    margin-bottom: 15px;
+  }
+  
+  .thegarden-size-selection {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto 15px auto;
+  }
+  
+  .thegarden-size-dropdown {
+    padding: 15px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+  
+  .thegarden-order-button {
+    width: 100%;
+    max-width: 100%;
+    padding: 18px 30px;
+    font-size: 16px;
+    border-radius: 8px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .thegarden-main-content {
+    padding: 70px 0 20px 0;
+    gap: 20px;
+  }
+  
+  .thegarden-content-sections {
+    width: 100%;
+    margin: 0;
+    padding: 0 10px;
+  }
+  
+  .thegarden-left-section {
+    text-align: left;
+  }
+  
+  .thegarden-banner {
+    margin-bottom: 15px;
+  }
+  
+  .thegarden-banner-image {
+    border-radius: 0;
+  }
+  
+  .thegarden-right-section {
+    padding: 20px;
+    margin-bottom: 15px;
+  }
+  
+  .thegarden-description {
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .thegarden-included-section {
+    margin-top: 15px;
+  }
+  
+  .thegarden-included-title {
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+  
+  .thegarden-item {
+    margin-bottom: 12px;
+    padding: 12px;
+  }
+  
+  .thegarden-item-title {
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+  
+  .thegarden-item-details li {
+    font-size: 14px;
+    margin-bottom: 3px;
+  }
+  
+  .thegarden-plus {
+    font-size: 14px;
+    margin-top: 8px;
+  }
+  
+  .thegarden-price {
+    font-size: 36px;
+    margin-bottom: 12px;
+  }
+  
+  .thegarden-size-selection {
+    max-width: 100%;
+    margin-bottom: 12px;
+  }
+  
+  .thegarden-size-dropdown {
+    padding: 14px 18px;
+    font-size: 15px;
+  }
+  
+  .thegarden-order-button {
+    max-width: 100%;
+    padding: 16px 25px;
+    font-size: 15px;
+  }
+}
+
+/* Modal Styles */
+.thegarden-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.thegarden-modal {
+  background: white;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.thegarden-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.thegarden-modal-header h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #2D3748;
+  font-family: 'Lato', sans-serif;
+}
+
+.thegarden-modal-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #718096;
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.thegarden-modal-close:hover {
+  background: #F7FAFC;
+  color: #2D3748;
+}
+
+.thegarden-modal-content {
+  padding: 24px;
+}
+
+.thegarden-modal-content p {
+  margin: 0 0 20px 0;
+  color: #4A5568;
+  font-family: 'Lato', sans-serif;
+  line-height: 1.5;
+}
+
+/* Form Styles */
+.thegarden-form-group {
+  margin-bottom: 20px;
+}
+
+.thegarden-form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #2D3748;
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+}
+
+.thegarden-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #E2E8F0;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: 'Lato', sans-serif;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.thegarden-input:focus {
+  outline: none;
+  border-color: #22c55e;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+}
+
+.thegarden-input-error {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #E53E3E;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: 'Lato', sans-serif;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.thegarden-input-error:focus {
+  outline: none;
+  border-color: #E53E3E;
+  box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.1);
+}
+
+.thegarden-error {
+  color: #E53E3E;
+  font-size: 14px;
+  margin-top: 4px;
+  display: block;
+  font-family: 'Lato', sans-serif;
+}
+
+.thegarden-info {
+  color: #718096;
+  font-size: 14px;
+  margin-top: 4px;
+  display: block;
+  font-family: 'Lato', sans-serif;
+  font-style: italic;
+}
+
+.thegarden-manual-address-btn {
+  background: none;
+  border: none;
+  color: #22c55e;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Lato', sans-serif;
+  cursor: pointer;
+  text-decoration: underline;
+  margin-top: 8px;
+  padding: 0;
+  transition: color 0.2s ease;
+}
+
+.thegarden-manual-address-btn:hover {
+  color: #16a34a;
+}
+
+.thegarden-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+
+/* Button Styles */
+.thegarden-modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #E2E8F0;
+}
+
+.thegarden-button-primary {
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Lato', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.thegarden-button-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #15803d 0%, #16a34a 100%);
+  transform: translateY(-1px);
+}
+
+.thegarden-button-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.thegarden-button-secondary {
+  padding: 12px 24px;
+  background: white;
+  color: #4A5568;
+  border: 2px solid #E2E8F0;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Lato', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.thegarden-button-secondary:hover {
+  background: #F7FAFC;
+  border-color: #CBD5E0;
+}
+
+/* Order Summary Styles */
+.thegarden-order-summary {
+  margin-bottom: 20px;
+}
+
+.thegarden-order-summary h4 {
+  margin: 0 0 16px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #2D3748;
+  font-family: 'Lato', sans-serif;
+}
+
+.thegarden-order-details {
+  background: #F7FAFC;
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.thegarden-order-details p {
+  margin: 0 0 8px 0;
+  font-family: 'Lato', sans-serif;
+  color: #4A5568;
+}
+
+.thegarden-order-details p:last-child {
+  margin-bottom: 0;
+}
+
+.thegarden-shipping-info {
+  background: #F7FAFC;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.thegarden-shipping-info h5 {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #2D3748;
+  font-family: 'Lato', sans-serif;
+}
+
+.thegarden-shipping-info p {
+  margin: 0 0 8px 0;
+  font-family: 'Lato', sans-serif;
+  color: #4A5568;
+}
+
+.thegarden-shipping-info p:last-child {
+  margin-bottom: 0;
+}
+
+.thegarden-shipping-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.thegarden-edit-button {
+  background: none;
+  border: none;
+  color: #22c55e;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Lato', sans-serif;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.thegarden-edit-button:hover {
+  color: #16a34a;
+}
+
+.thegarden-edit-form {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #E2E8F0;
+}
+
+.thegarden-signup-options {
+  margin-top: 24px;
+}
+
+/* Minting Status Overlay */
+.thegarden-minting-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.thegarden-minting-modal {
+  background: white;
+  border-radius: 16px;
+  padding: 40px;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.thegarden-minting-content h3 {
+  margin: 20px 0 12px 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #2D3748;
+  font-family: 'Lato', sans-serif;
+}
+
+.thegarden-minting-content p {
+  margin: 0;
+  color: #718096;
+  font-family: 'Lato', sans-serif;
+  line-height: 1.5;
+}
+
+.thegarden-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #E2E8F0;
+  border-top: 4px solid #22c55e;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.thegarden-success-icon {
+  width: 60px;
+  height: 60px;
+  background: #22c55e;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0 auto 20px;
+}
+
+.thegarden-transaction-link {
+  display: inline-block;
+  color: #22c55e;
+  text-decoration: underline;
+  font-family: 'Lato', sans-serif;
+  font-weight: 600;
+  margin: 10px 0;
+  transition: color 0.2s ease;
+}
+
+.thegarden-transaction-link:hover {
+  color: #16a34a;
+}
+
+.thegarden-error-icon {
+  width: 60px;
+  height: 60px;
+  background: #E53E3E;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0 auto 20px;
+}
+
+/* Google Places Autocomplete Styles */
+.pac-container {
+  z-index: 1002 !important;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid #e0e0e0;
+  background: white;
+  font-family: 'Lato', sans-serif;
+}
+
+.pac-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 14px;
+  color: #2D3748;
+  transition: background-color 0.2s ease;
+}
+
+.pac-item:hover {
+  background-color: #f8f9fa;
+}
+
+.pac-item-selected {
+  background-color: #dcfce7;
+}
+
+.pac-item-query {
+  font-weight: 600;
+  color: #2D3748;
+}
+
+.pac-item-query:after {
+  content: ", ";
+  font-weight: normal;
+}
+
+.pac-item-matched {
+  font-weight: 600;
+  color: #22c55e;
+}
+
+/* Mobile Responsiveness for Modals */
+@media (max-width: 768px) {
+  .thegarden-modal {
+    max-width: 95%;
+    margin: 10px;
+  }
+  
+  .thegarden-form-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .thegarden-modal-actions {
+    flex-direction: column;
+  }
+  
+  .thegarden-button-primary,
+  .thegarden-button-secondary {
+    width: 100%;
+  }
+  
+  .thegarden-minting-modal {
+    padding: 30px 20px;
+  }
+}
+

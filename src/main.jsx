@@ -34,6 +34,7 @@ import NY25 from './views/ny25'
 import MM23 from './views/mm25'
 import Arc from './views/arc'
 import BlueSkies from './views/blueskies'
+import TheGarden from './views/thegarden'
 import ISpy from './views/ispy'
 import ScrollToTop from './components/ScrollToTop'
 
@@ -66,6 +67,7 @@ const App = () => {
         <Route component={MM23} exact path="/mm25" />
         <Route component={Arc} exact path="/arc" />
         <Route component={BlueSkies} exact path="/blueskies" />
+        <Route component={TheGarden} exact path="/thegarden" />
         <Route component={ISpy} exact path="/ispy" />
         <Route component={NotFound} path="**" />
         <Redirect to="**" />

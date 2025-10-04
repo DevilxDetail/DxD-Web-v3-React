@@ -40,7 +40,7 @@ export async function createOrUpdateSupabaseUser(privyUser: PrivyUser) {
     // Modified query to handle 406 error
     const { data: existingUser, error: fetchError } = await supabase
       .from('user')
-      .select('user_id, auth_user_id, evm_wallet, email, name')
+      .select('id, auth_user_id, evm_wallet, email, name')
       .eq('auth_user_id', privyUser.id)
       .maybeSingle();
 
@@ -64,10 +64,9 @@ export async function createOrUpdateSupabaseUser(privyUser: PrivyUser) {
         .from('user')
         .insert([{
           ...userData,
-          profile_image: '/default profile.png', // Set default profile image for new users
           created_at: new Date().toISOString(),
         }])
-        .select('user_id, auth_user_id, evm_wallet, email, name')
+        .select('id, auth_user_id, evm_wallet, email, name')
         .single();
 
       if (error) {
@@ -83,7 +82,7 @@ export async function createOrUpdateSupabaseUser(privyUser: PrivyUser) {
         .from('user')
         .update(userData)
         .eq('auth_user_id', privyUser.id)
-        .select('user_id, auth_user_id, evm_wallet, email, name')
+        .select('id, auth_user_id, evm_wallet, email, name')
         .single();
 
       if (error) {

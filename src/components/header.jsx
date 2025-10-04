@@ -12,31 +12,11 @@ const Header = (props) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   useEffect(() => {
-    async function fetchUserProfile() {
-      if (authenticated && user?.id) {
-        try {
-          const { data, error } = await supabase
-            .from('user')
-            .select('profile_image')
-            .eq('auth_user_id', user.id)
-            .single();
-
-          if (error) {
-            console.error('Error fetching profile image:', error);
-            return;
-          }
-
-          if (data?.profile_image) {
-            setProfileImage(data.profile_image);
-          }
-        } catch (error) {
-          console.error('Error:', error);
-        }
-      }
+    // Set default profile image since profile_image column doesn't exist in database
+    if (authenticated) {
+      setProfileImage("/default profile.png");
     }
-
-    fetchUserProfile();
-  }, [authenticated, user]);
+  }, [authenticated]);
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
