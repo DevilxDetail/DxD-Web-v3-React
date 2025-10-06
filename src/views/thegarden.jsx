@@ -4,7 +4,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth"
 import { supabase, supabaseServiceRole } from '../lib/supabase'
 import Web3 from 'web3'
 import Header from '../components/header'
-import ConsistentFooter from '../components/ConsistentFooter'
+//import ConsistentFooter from '../components/ConsistentFooter'
 import './thegarden.css'
 
 const TheGarden = () => {
@@ -458,17 +458,15 @@ const TheGarden = () => {
         <div className="thegarden-content-sections">
           <div className="thegarden-left-section">
             <div className="thegarden-description">
-                Marfa 2025, Roy’s Automotive Shop. Come experience the Marfa Garden by Jules. Sponsored by AOTM, Gondi and TokenWorks.
+              <p>The Garden, Roy’s Automotive Shop.</p>
+              <p>Marfa 2025</p>
             </div>
-            
             <div className="thegarden-included-section">
               <div className="thegarden-item">
                 <h4 className="thegarden-item-title">The Limited Edition Hoodie:</h4>
                 <ul className="thegarden-item-details">
-                  <li>100% cotton</li>
-                  <li>Heavyweight 14oz fleece</li>
+                  <li>14oz 100% cotton</li>
                   <li>Loose fit</li>
-                  <li>Full zip closure</li>
                   <li>Knitted, cut, sewn, and dyed in Los Angeles, California</li>
                 </ul>
               </div>
