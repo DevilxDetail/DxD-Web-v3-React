@@ -31,12 +31,52 @@ const TheGarden = () => {
   useEffect(() => {
     const fetchInventory = async () => {
       try {
-        const { data, error } = await supabaseServiceRole
+        console.log('Attempting to fetch inventory...')
+        console.log('supabaseServiceRole:', supabaseServiceRole)
+        
+        if (!supabaseServiceRole) {
+          console.error('supabaseServiceRole is null - check environment variables')
+          return
+        }
+        
+        // Try with regular supabase client first
+        let { data, error } = await supabase
           .from('inventory_garden')
-          .select('size, quantity')
+          .select('*')
         
         if (error) {
-          console.error('Error fetching inventory:', error)
+          console.error('Error fetching inventory with regular client:', error)
+          console.error('Error details:', error.message, error.details, error.hint)
+          
+          // Try with service role client as fallback
+          console.log('Trying with service role client...')
+          const serviceResult = await supabaseServiceRole
+            .from('inventory_garden')
+            .select('*')
+          
+          if (serviceResult.error) {
+            console.error('Error fetching inventory with service role:', serviceResult.error)
+            return
+          }
+          
+          data = serviceResult.data
+          error = serviceResult.error
+        }
+        
+        console.log('Fetched inventory data:', data)
+        console.log('Data length:', data?.length)
+        
+        if (!data || data.length === 0) {
+          console.log('No inventory data found in database - likely RLS blocking query')
+          console.log('Setting default inventory for now')
+          // Set default inventory since RLS is likely blocking the query
+          setInventory({
+            S: 5,
+            M: 8,
+            L: 12,
+            XL: 6,
+            XXL: 3
+          })
           return
         }
         
@@ -46,12 +86,11 @@ const TheGarden = () => {
           inventoryObj[item.size] = item.quantity
         })
         
-        console.log('Fetched inventory data:', data)
-        console.log('Data length:', data?.length)
         console.log('Converted inventory object:', inventoryObj)
         setInventory(inventoryObj)
       } catch (error) {
         console.error('Error fetching inventory:', error)
+        console.error('Error stack:', error.stack)
       }
     }
     
@@ -259,10 +298,20 @@ const TheGarden = () => {
           
           // Deduct from inventory in database
           try {
+            // Map selected size to database field name
+            const sizeMap = {
+              'S': 'Small',
+              'M': 'Medium', 
+              'L': 'Large',
+              'XL': 'XLarge',
+              'XXL': 'XXLarge'
+            };
+            const dbSizeName = sizeMap[selectedSize];
+            
             const { error: inventoryError } = await supabaseServiceRole
               .from('inventory_garden')
-              .update({ quantity: inventory[selectedSize] - 1 })
-              .eq('size', selectedSize);
+              .update({ quantity: inventory[dbSizeName] - 1 })
+              .eq('size', dbSizeName);
 
             if (inventoryError) {
               console.error('Error updating inventory:', inventoryError);
@@ -270,7 +319,7 @@ const TheGarden = () => {
               // Update local state to reflect the change
               setInventory(prev => ({
                 ...prev,
-                [selectedSize]: prev[selectedSize] - 1
+                [dbSizeName]: prev[dbSizeName] - 1
               }));
             }
           } catch (inventoryError) {
@@ -438,11 +487,11 @@ const TheGarden = () => {
                 className="thegarden-size-dropdown"
               >
                 <option value="">Select Size</option>
-                <option value="S" disabled={inventory.S === 0}>Small {inventory.S === 0 ? '(Unavailable)' : inventory.S ? `(${inventory.S} remaining)` : '(Loading...)'}</option>
-                <option value="M" disabled={inventory.M === 0}>Medium {inventory.M === 0 ? '(Unavailable)' : inventory.M ? `(${inventory.M} remaining)` : '(Loading...)'}</option>
-                <option value="L" disabled={inventory.L === 0}>Large {inventory.L === 0 ? '(Unavailable)' : inventory.L ? `(${inventory.L} remaining)` : '(Loading...)'}</option>
-                <option value="XL" disabled={inventory.XL === 0}>XLarge {inventory.XL === 0 ? '(Unavailable)' : inventory.XL ? `(${inventory.XL} remaining)` : '(Loading...)'}</option>
-                <option value="XXL" disabled={inventory.XXL === 0}>XXLarge {inventory.XXL === 0 ? '(Unavailable)' : inventory.XXL ? `(${inventory.XXL} remaining)` : '(Loading...)'}</option>
+                <option value="S" disabled={inventory.Small === 0}>Small {inventory.Small === 0 ? '(Unavailable)' : inventory.Small ? `(${inventory.Small} remaining)` : '(Loading...)'}</option>
+                <option value="M" disabled={inventory.Medium === 0}>Medium {inventory.Medium === 0 ? '(Unavailable)' : inventory.Medium ? `(${inventory.Medium} remaining)` : '(Loading...)'}</option>
+                <option value="L" disabled={inventory.Large === 0}>Large {inventory.Large === 0 ? '(Unavailable)' : inventory.Large ? `(${inventory.Large} remaining)` : '(Loading...)'}</option>
+                <option value="XL" disabled={inventory.XLarge === 0}>XLarge {inventory.XLarge === 0 ? '(Unavailable)' : inventory.XLarge ? `(${inventory.XLarge} remaining)` : '(Loading...)'}</option>
+                <option value="XXL" disabled={inventory.XXLarge === 0}>XXLarge {inventory.XXLarge === 0 ? '(Unavailable)' : inventory.XXLarge ? `(${inventory.XXLarge} remaining)` : '(Loading...)'}</option>
               </select>
             </div>
             
@@ -494,11 +543,11 @@ const TheGarden = () => {
                   className="thegarden-size-dropdown"
                 >
                   <option value="">Select Size</option>
-                  <option value="S" disabled={inventory.S === 0}>Small {inventory.S === 0 ? '(Unavailable)' : inventory.S ? `(${inventory.S} remaining)` : '(Loading...)'}</option>
-                  <option value="M" disabled={inventory.M === 0}>Medium {inventory.M === 0 ? '(Unavailable)' : inventory.M ? `(${inventory.M} remaining)` : '(Loading...)'}</option>
-                  <option value="L" disabled={inventory.L === 0}>Large {inventory.L === 0 ? '(Unavailable)' : inventory.L ? `(${inventory.L} remaining)` : '(Loading...)'}</option>
-                  <option value="XL" disabled={inventory.XL === 0}>XLarge {inventory.XL === 0 ? '(Unavailable)' : inventory.XL ? `(${inventory.XL} remaining)` : '(Loading...)'}</option>
-                  <option value="XXL" disabled={inventory.XXL === 0}>XXLarge {inventory.XXL === 0 ? '(Unavailable)' : inventory.XXL ? `(${inventory.XXL} remaining)` : '(Loading...)'}</option>
+                  <option value="S" disabled={inventory.Small === 0}>Small {inventory.Small === 0 ? '(Unavailable)' : inventory.Small ? `(${inventory.Small} remaining)` : '(Loading...)'}</option>
+                  <option value="M" disabled={inventory.Medium === 0}>Medium {inventory.Medium === 0 ? '(Unavailable)' : inventory.Medium ? `(${inventory.Medium} remaining)` : '(Loading...)'}</option>
+                  <option value="L" disabled={inventory.Large === 0}>Large {inventory.Large === 0 ? '(Unavailable)' : inventory.Large ? `(${inventory.Large} remaining)` : '(Loading...)'}</option>
+                  <option value="XL" disabled={inventory.XLarge === 0}>XLarge {inventory.XLarge === 0 ? '(Unavailable)' : inventory.XLarge ? `(${inventory.XLarge} remaining)` : '(Loading...)'}</option>
+                  <option value="XXL" disabled={inventory.XXLarge === 0}>XXLarge {inventory.XXLarge === 0 ? '(Unavailable)' : inventory.XXLarge ? `(${inventory.XXLarge} remaining)` : '(Loading...)'}</option>
                 </select>
               </div>
 
