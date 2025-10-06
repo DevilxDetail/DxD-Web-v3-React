@@ -458,9 +458,7 @@ const TheGarden = () => {
         <div className="thegarden-content-sections">
           <div className="thegarden-left-section">
             <div className="thegarden-description">
-                <p>Marfa 2025, Roy’s Automotive Shop.</p>
-                <p>Come experience the Marfa Garden by Jules.</p>
-                <p>Sponsored by AOTM, Gondi and TokenWorks.</p>
+                Marfa 2025, Roy’s Automotive Shop. Come experience the Marfa Garden by Jules. Sponsored by AOTM, Gondi and TokenWorks.
             </div>
             
             <div className="thegarden-included-section">
