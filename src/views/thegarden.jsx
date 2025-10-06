@@ -4,7 +4,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth"
 import { supabase, supabaseServiceRole } from '../lib/supabase'
 import Web3 from 'web3'
 import Header from '../components/header'
-//import ConsistentFooter from '../components/ConsistentFooter'
+import ConsistentFooter from '../components/ConsistentFooter'
 import './thegarden.css'
 
 const TheGarden = () => {
