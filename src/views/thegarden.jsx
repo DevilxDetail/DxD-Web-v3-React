@@ -344,6 +344,22 @@ const TheGarden = () => {
         <title>The Garden</title>
         <meta property="og:title" content="The Garden" />
         <meta name="description" content="The Garden - a DxD collaboration" />
+        <style>{`
+          body.thegarden-page, html.thegarden-page {
+            background: none !important;
+            background-color: transparent !important;
+          }
+          .thegarden-page .header-header {
+            background: none !important;
+            background-color: transparent !important;
+            backdrop-filter: none !important;
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            z-index: 1000 !important;
+          }
+        `}</style>
       </Helmet>
       
       <Header
@@ -356,9 +372,24 @@ const TheGarden = () => {
         rootClassName="header-root-class-name"
       />
       
+      <div className="thegarden-banner">
+        <video 
+          src="/IMG_5569.MOV" 
+          autoPlay 
+          loop 
+          muted 
+          playsInline
+          className="thegarden-banner-video"
+        >
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      
       <div className="thegarden-main-content">
-        <div className="thegarden-banner">
-          <img src="/TG Background.png" alt="The Garden Background" className="thegarden-banner-image" />
+        <div className="thegarden-hero-section">
+          <img src="/Marfa Garden 3.png" alt="Marfa Garden 3" className="thegarden-hero-image" />
+          <img src="/Marfa Garden 2.png" alt="Marfa Garden 2" className="thegarden-hero-image" />
+          <img src="/Marfa Garden 1.png" alt="Marfa Garden 1" className="thegarden-hero-image" />
         </div>
         <div className="thegarden-content-sections">
           <div className="thegarden-left-section">
@@ -407,12 +438,11 @@ const TheGarden = () => {
                 className="thegarden-size-dropdown"
               >
                 <option value="">Select Size</option>
-                <option value="XS" disabled={inventory.XS === 0}>XS {inventory.XS === 0 ? '(Sold Out)' : inventory.XS ? `(${inventory.XS} left)` : '(Loading...)'}</option>
-                <option value="S" disabled={inventory.S === 0}>S {inventory.S === 0 ? '(Sold Out)' : inventory.S ? `(${inventory.S} left)` : '(Loading...)'}</option>
-                <option value="M" disabled={inventory.M === 0}>M {inventory.M === 0 ? '(Sold Out)' : inventory.M ? `(${inventory.M} left)` : '(Loading...)'}</option>
-                <option value="L" disabled={inventory.L === 0}>L {inventory.L === 0 ? '(Sold Out)' : inventory.L ? `(${inventory.L} left)` : '(Loading...)'}</option>
-                <option value="XL" disabled={inventory.XL === 0}>XL {inventory.XL === 0 ? '(Sold Out)' : inventory.XL ? `(${inventory.XL} left)` : '(Loading...)'}</option>
-                <option value="XXL" disabled={inventory.XXL === 0}>XXL {inventory.XXL === 0 ? '(Sold Out)' : inventory.XXL ? `(${inventory.XXL} left)` : '(Loading...)'}</option>
+                <option value="S" disabled={inventory.S === 0}>Small {inventory.S === 0 ? '(Unavailable)' : inventory.S ? `(${inventory.S} remaining)` : '(Loading...)'}</option>
+                <option value="M" disabled={inventory.M === 0}>Medium {inventory.M === 0 ? '(Unavailable)' : inventory.M ? `(${inventory.M} remaining)` : '(Loading...)'}</option>
+                <option value="L" disabled={inventory.L === 0}>Large {inventory.L === 0 ? '(Unavailable)' : inventory.L ? `(${inventory.L} remaining)` : '(Loading...)'}</option>
+                <option value="XL" disabled={inventory.XL === 0}>XLarge {inventory.XL === 0 ? '(Unavailable)' : inventory.XL ? `(${inventory.XL} remaining)` : '(Loading...)'}</option>
+                <option value="XXL" disabled={inventory.XXL === 0}>XXLarge {inventory.XXL === 0 ? '(Unavailable)' : inventory.XXL ? `(${inventory.XXL} remaining)` : '(Loading...)'}</option>
               </select>
             </div>
             
@@ -464,12 +494,11 @@ const TheGarden = () => {
                   className="thegarden-size-dropdown"
                 >
                   <option value="">Select Size</option>
-                  <option value="XS" disabled={inventory.XS === 0}>XS {inventory.XS === 0 ? '(Sold Out)' : inventory.XS ? `(${inventory.XS} left)` : '(Loading...)'}</option>
-                  <option value="S" disabled={inventory.S === 0}>S {inventory.S === 0 ? '(Sold Out)' : inventory.S ? `(${inventory.S} left)` : '(Loading...)'}</option>
-                  <option value="M" disabled={inventory.M === 0}>M {inventory.M === 0 ? '(Sold Out)' : inventory.M ? `(${inventory.M} left)` : '(Loading...)'}</option>
-                  <option value="L" disabled={inventory.L === 0}>L {inventory.L === 0 ? '(Sold Out)' : inventory.L ? `(${inventory.L} left)` : '(Loading...)'}</option>
-                  <option value="XL" disabled={inventory.XL === 0}>XL {inventory.XL === 0 ? '(Sold Out)' : inventory.XL ? `(${inventory.XL} left)` : '(Loading...)'}</option>
-                  <option value="XXL" disabled={inventory.XXL === 0}>XXL {inventory.XXL === 0 ? '(Sold Out)' : inventory.XXL ? `(${inventory.XXL} left)` : '(Loading...)'}</option>
+                  <option value="S" disabled={inventory.S === 0}>Small {inventory.S === 0 ? '(Unavailable)' : inventory.S ? `(${inventory.S} remaining)` : '(Loading...)'}</option>
+                  <option value="M" disabled={inventory.M === 0}>Medium {inventory.M === 0 ? '(Unavailable)' : inventory.M ? `(${inventory.M} remaining)` : '(Loading...)'}</option>
+                  <option value="L" disabled={inventory.L === 0}>Large {inventory.L === 0 ? '(Unavailable)' : inventory.L ? `(${inventory.L} remaining)` : '(Loading...)'}</option>
+                  <option value="XL" disabled={inventory.XL === 0}>XLarge {inventory.XL === 0 ? '(Unavailable)' : inventory.XL ? `(${inventory.XL} remaining)` : '(Loading...)'}</option>
+                  <option value="XXL" disabled={inventory.XXL === 0}>XXLarge {inventory.XXL === 0 ? '(Unavailable)' : inventory.XXL ? `(${inventory.XXL} remaining)` : '(Loading...)'}</option>
                 </select>
               </div>
 
