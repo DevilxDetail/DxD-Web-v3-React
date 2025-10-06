@@ -26,6 +26,21 @@ const TheGarden = () => {
   const [transactionReceipt, setTransactionReceipt] = useState(null)
   const [showEditForm, setShowEditForm] = useState(false)
   const [inventory, setInventory] = useState({})
+  const [dropdownOpen, setDropdownOpen] = useState(false)
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownOpen && !event.target.closest('.thegarden-custom-dropdown')) {
+        setDropdownOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [dropdownOpen])
 
   // Fetch inventory from database on component mount
   useEffect(() => {
@@ -481,18 +496,83 @@ const TheGarden = () => {
             <div className="thegarden-price">.0169 ETH</div>
             
             <div className="thegarden-size-selection">
-              <select 
-                value={selectedSize} 
-                onChange={handleSizeChange}
-                className="thegarden-size-dropdown"
-              >
-                <option value="">Select Size</option>
-                <option value="S" disabled={inventory.Small === 0}>Small {inventory.Small === 0 ? '(Unavailable)' : inventory.Small ? `(${inventory.Small} remaining)` : '(Loading...)'}</option>
-                <option value="M" disabled={inventory.Medium === 0}>Medium {inventory.Medium === 0 ? '(Unavailable)' : inventory.Medium ? `(${inventory.Medium} remaining)` : '(Loading...)'}</option>
-                <option value="L" disabled={inventory.Large === 0}>Large {inventory.Large === 0 ? '(Unavailable)' : inventory.Large ? `(${inventory.Large} remaining)` : '(Loading...)'}</option>
-                <option value="XL" disabled={inventory.XLarge === 0}>XLarge {inventory.XLarge === 0 ? '(Unavailable)' : inventory.XLarge ? `(${inventory.XLarge} remaining)` : '(Loading...)'}</option>
-                <option value="XXL" disabled={inventory.XXLarge === 0}>XXLarge {inventory.XXLarge === 0 ? '(Unavailable)' : inventory.XXLarge ? `(${inventory.XXLarge} remaining)` : '(Loading...)'}</option>
-              </select>
+              <div className="thegarden-custom-dropdown">
+                <div 
+                  className="thegarden-dropdown-trigger"
+                  onClick={() => setDropdownOpen(!dropdownOpen)}
+                >
+                  <span>{selectedSize ? `${selectedSize === 'S' ? 'Small' : selectedSize === 'M' ? 'Medium' : selectedSize === 'L' ? 'Large' : selectedSize === 'XL' ? 'XLarge' : 'XXLarge'} ${inventory[selectedSize === 'S' ? 'Small' : selectedSize === 'M' ? 'Medium' : selectedSize === 'L' ? 'Large' : selectedSize === 'XL' ? 'XLarge' : 'XXLarge'] === 0 ? '(Unavailable)' : inventory[selectedSize === 'S' ? 'Small' : selectedSize === 'M' ? 'Medium' : selectedSize === 'L' ? 'Large' : selectedSize === 'XL' ? 'XLarge' : 'XXLarge'] ? `(${inventory[selectedSize === 'S' ? 'Small' : selectedSize === 'M' ? 'Medium' : selectedSize === 'L' ? 'Large' : selectedSize === 'XL' ? 'XLarge' : 'XXLarge']} remaining)` : '(Loading...)'}` : 'Select Size'}</span>
+                  <span className="thegarden-dropdown-arrow">▼</span>
+                </div>
+                {dropdownOpen && (
+                  <div className="thegarden-dropdown-menu">
+                    <div 
+                      className="thegarden-dropdown-item"
+                      onClick={() => {
+                        setSelectedSize('');
+                        setDropdownOpen(false);
+                      }}
+                    >
+                      Select Size
+                    </div>
+                    <div 
+                      className={`thegarden-dropdown-item ${inventory.Small === 0 ? 'disabled' : ''}`}
+                      onClick={() => {
+                        if (inventory.Small > 0) {
+                          setSelectedSize('S');
+                          setDropdownOpen(false);
+                        }
+                      }}
+                    >
+                      Small {inventory.Small === 0 ? '(Unavailable)' : inventory.Small ? `(${inventory.Small} remaining)` : '(Loading...)'}
+                    </div>
+                    <div 
+                      className={`thegarden-dropdown-item ${inventory.Medium === 0 ? 'disabled' : ''}`}
+                      onClick={() => {
+                        if (inventory.Medium > 0) {
+                          setSelectedSize('M');
+                          setDropdownOpen(false);
+                        }
+                      }}
+                    >
+                      Medium {inventory.Medium === 0 ? '(Unavailable)' : inventory.Medium ? `(${inventory.Medium} remaining)` : '(Loading...)'}
+                    </div>
+                    <div 
+                      className={`thegarden-dropdown-item ${inventory.Large === 0 ? 'disabled' : ''}`}
+                      onClick={() => {
+                        if (inventory.Large > 0) {
+                          setSelectedSize('L');
+                          setDropdownOpen(false);
+                        }
+                      }}
+                    >
+                      Large {inventory.Large === 0 ? '(Unavailable)' : inventory.Large ? `(${inventory.Large} remaining)` : '(Loading...)'}
+                    </div>
+                    <div 
+                      className={`thegarden-dropdown-item ${inventory.XLarge === 0 ? 'disabled' : ''}`}
+                      onClick={() => {
+                        if (inventory.XLarge > 0) {
+                          setSelectedSize('XL');
+                          setDropdownOpen(false);
+                        }
+                      }}
+                    >
+                      XLarge {inventory.XLarge === 0 ? '(Unavailable)' : inventory.XLarge ? `(${inventory.XLarge} remaining)` : '(Loading...)'}
+                    </div>
+                    <div 
+                      className={`thegarden-dropdown-item ${inventory.XXLarge === 0 ? 'disabled' : ''}`}
+                      onClick={() => {
+                        if (inventory.XXLarge > 0) {
+                          setSelectedSize('XXL');
+                          setDropdownOpen(false);
+                        }
+                      }}
+                    >
+                      XXLarge {inventory.XXLarge === 0 ? '(Unavailable)' : inventory.XXLarge ? `(${inventory.XXLarge} remaining)` : '(Loading...)'}
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
             
             <button 
