@@ -458,36 +458,19 @@ const TheGarden = () => {
         <div className="thegarden-content-sections">
           <div className="thegarden-left-section">
             <div className="thegarden-description">
-              Step into a world where nature meets digital artistry. The Garden represents a harmonious blend of organic beauty and technological innovation, creating a unique space where every element tells a story of growth, creativity, and connection.
+              Marfa 2025, Roy's Automotive Shop. Come experience the Marfa Garden by Jules. Sponsored by AOTM, Gondi and TokenWorks.
             </div>
             
             <div className="thegarden-included-section">
-              <h3 className="thegarden-included-title">Included in this drop:</h3>
               <div className="thegarden-item">
-                <h4 className="thegarden-item-title">The Garden Organic Tee</h4>
+                <h4 className="thegarden-item-title">The Limited Edition Hoodie:</h4>
                 <ul className="thegarden-item-details">
-                  <li>100% organic cotton blend</li>
-                  <li>Relaxed, earth-friendly fit</li>
-                  <li>Botanical print design</li>
-                  <li>Eco-conscious packaging</li>
+                  <li>100% cotton</li>
+                  <li>Heavyweight 14oz fleece</li>
+                  <li>Loose fit</li>
+                  <li>Full zip closure</li>
+                  <li>Knitted, cut, sewn, and dyed in Los Angeles, California</li>
                 </ul>
-              </div>
-              <div className="thegarden-item">
-                <h4 className="thegarden-item-title">Garden Edition NFT</h4>
-                <ul className="thegarden-item-details">
-                  <li>"Bloom & Grow" digital art collection</li>
-                  <li>ERC1155 (ETH mainnet)</li>
-                </ul>
-              </div>
-              <div className="thegarden-item">
-                <h4 className="thegarden-item-title">Seed Packet Collection</h4>
-                <ul className="thegarden-item-details">
-                  <li>Heirloom seed varieties</li>
-                  <li>Planting instructions included</li>
-                </ul>
-              </div>
-              <div className="thegarden-item">
-                <h4 className="thegarden-item-title">Plus???</h4>
               </div>
             </div>
           </div>
