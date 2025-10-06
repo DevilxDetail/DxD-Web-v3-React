@@ -452,8 +452,6 @@ const TheGarden = () => {
       <div className="thegarden-main-content">
         <div className="thegarden-hero-section">
           <img src="/Marfa Garden 3.png" alt="Marfa Garden 3" className="thegarden-hero-image" />
-          <img src="/Marfa Garden 2.png" alt="Marfa Garden 2" className="thegarden-hero-image" />
-          <img src="/Marfa Garden 1.png" alt="Marfa Garden 1" className="thegarden-hero-image" />
         </div>
         <div className="thegarden-content-sections">
           <div className="thegarden-left-section">
