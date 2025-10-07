@@ -253,9 +253,9 @@
   align-items: flex-start;
   gap: 80px;
   width: 100%;
-  max-width: 1400px;
+  max-width: 1500px;
   margin: 0;
-  padding: 0 80px;
+  padding: 0 60px;
 }
 
 .thegarden-left-section {
