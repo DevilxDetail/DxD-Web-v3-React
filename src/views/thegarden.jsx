@@ -471,11 +471,6 @@ const TheGarden = () => {
             <div className="thegarden-included-section">
               <div className="thegarden-item">
                 <h4 className="thegarden-item-title">* The hoodie is only available for pick up in Marfa 10/15 - 10/19 *</h4>
-                <ul className="thegarden-item-details">
-                  <li>14oz 100% cotton</li>
-                  <li>Loose fit</li>
-                  <li>Knitted, cut, sewn, and dyed in Los Angeles, California</li>
-                </ul>
               </div>
             </div>
           </div>
