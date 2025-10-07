@@ -1,14 +1,10 @@
 import React, { Fragment, useState, useEffect, useRef } from 'react'
 import { Helmet } from 'react-helmet'
-import { usePrivy, useWallets } from "@privy-io/react-auth"
 import { supabase, supabaseServiceRole } from '../lib/supabase'
-import Web3 from 'web3'
 import Header from '../components/header'
 import './thegarden.css'
 
 const TheGarden = () => {
-  const { login, authenticated, user } = usePrivy()
-  const { wallets } = useWallets()
   const [selectedSize, setSelectedSize] = useState('')
   const [isOrdering, setIsOrdering] = useState(false)
   const [showDataModal, setShowDataModal] = useState(false)
@@ -19,10 +15,6 @@ const TheGarden = () => {
   })
   const [formErrors, setFormErrors] = useState({})
   const [isLoading, setIsLoading] = useState(false)
-  const [mintingStatus, setMintingStatus] = useState('')
-  const [mintLoading, setMintLoading] = useState(false)
-  const [mintStatus, setMintStatus] = useState('')
-  const [transactionReceipt, setTransactionReceipt] = useState(null)
   const [showEditForm, setShowEditForm] = useState(false)
   const [inventory, setInventory] = useState({})
   const [dropdownOpen, setDropdownOpen] = useState(false)
@@ -193,176 +185,7 @@ const TheGarden = () => {
   }
 
 
-  const handleMint = async () => {
-    try {
-      setMintLoading(true);
-      setMintStatus('connecting');
-
-      if (!authenticated) {
-        console.log("Not authenticated, prompting login");
-        await login();
-        return;
-      }
-
-      try {
-        setMintStatus('requesting');
-
-        // Retrieve the appropriate linked wallet: prioritize user's primary wallet address
-        if (!user?.wallet?.address) {
-          throw new Error("Authenticated user has no linked wallet address");
-        }
-
-        const linkedWallet = wallets?.find(
-          (w) => w.address?.toLowerCase() === user.wallet.address.toLowerCase()
-        );
-
-        if (!linkedWallet) {
-          throw new Error("Linked wallet matching user not found or not connected");
-        }
-
-        const provider = await linkedWallet.getEthereumProvider();
-
-        // Ensure the wallet is connected to Ethereum Mainnet
-        const MAINNET_ID = "0x1"; // Hex chain id for Mainnet (1)
-        try {
-          const chainIdHex = await provider.request({ method: "eth_chainId" });
-          if (chainIdHex !== MAINNET_ID) {
-            try {
-              await provider.request({
-                method: "wallet_switchEthereumChain",
-                params: [{ chainId: MAINNET_ID }],
-              });
-            } catch (switchErr) {
-              // 4902 = Unrecognized chain -> add it first
-              if (switchErr.code === 4902) {
-                await provider.request({
-                  method: "wallet_addEthereumChain",
-                  params: [{
-                    chainId: MAINNET_ID,
-                    chainName: "Ethereum Mainnet",
-                    rpcUrls: ["https://ethereum.rpc.thirdweb.com"],
-                    nativeCurrency: { name: "Ether", symbol: "ETH", decimals: 18 },
-                    blockExplorerUrls: ["https://etherscan.io"],
-                  }],
-                });
-              } else {
-                throw switchErr;
-              }
-            }
-          }
-        } catch (chainErr) {
-          console.error("Chain check/switch failed:", chainErr);
-          setMintStatus("error: Wrong network");
-          return;
-        }
-
-        const web3 = new Web3(provider);
-        const userAddress = linkedWallet.address;
-        console.log("Connected wallet address:", userAddress);
-
-        // Simple ETH transfer to devilxdetail.eth
-        const recipientAddress = "devilxdetail.eth"; // ENS name
-        const amountInEth = "0.0169"; // 0.0169 ETH
-        const amountInWei = web3.utils.toWei(amountInEth, "ether");
-
-        console.log("Sending ETH transfer...");
-
-        try {
-          console.log("Preparing ETH transfer:", {
-            from: userAddress,
-            to: recipientAddress,
-            value: amountInWei,
-            amount: amountInEth
-          });
-
-          const receipt = await web3.eth.sendTransaction({
-            from: userAddress,
-            to: recipientAddress,
-            value: amountInWei,
-            gas: 21000 // Standard gas limit for ETH transfer
-          });
-
-          // Transaction receipt contains transactionHash and other details
-          console.log("ETH transfer successful:", receipt);
-          setTransactionReceipt(receipt);
-          
-          // If transaction successful, update the order with transaction hash
-          try {
-            const { error: updateError } = await supabaseServiceRole
-              .from('order_garden')
-              .update({
-                transaction_id: receipt.transactionHash
-              })
-              .eq('size', selectedSize)
-              .eq('twitter', formData.twitter)
-              .is('transaction_id', null)
-              .order('created_at', { ascending: false })
-              .limit(1);
-
-            if (updateError) {
-              console.error('Error updating order with transaction hash:', updateError);
-              // Still show success since transfer worked
-            } else {
-              console.log('Successfully updated order with transaction hash');
-            }
-          } catch (dbError) {
-            console.error('Database error:', dbError);
-            // Still show success since transfer worked
-          }
-          
-          // Deduct from inventory in database
-          try {
-            // Map selected size to database field name
-            const sizeMap = {
-              'S': 'Small',
-              'M': 'Medium', 
-              'L': 'Large',
-              'XL': 'XLarge',
-              'XXL': 'XXLarge'
-            };
-            const dbSizeName = sizeMap[selectedSize];
-            
-            const { error: inventoryError } = await supabaseServiceRole
-              .from('inventory_garden')
-              .update({ quantity: inventory[dbSizeName] - 1 })
-              .eq('size', dbSizeName);
-
-            if (inventoryError) {
-              console.error('Error updating inventory:', inventoryError);
-            } else {
-              // Update local state to reflect the change
-              setInventory(prev => ({
-                ...prev,
-                [dbSizeName]: prev[dbSizeName] - 1
-              }));
-            }
-          } catch (inventoryError) {
-            console.error('Error updating inventory:', inventoryError);
-          }
-
-          // Set mint status to success so UI shows correct confirmation
-          setMintStatus('success');
-
-        } catch (error) {
-          console.error("Detailed error:", error);
-          const errorMessage = error.message || "Unknown error";
-          setMintStatus(`error: ${errorMessage}`);
-          throw error;
-        }
-
-      } catch (error) {
-        console.error("Error accessing wallet:", error);
-        setMintStatus('error');
-        throw error;
-      }
-
-    } catch (error) {
-      console.error("Error in transfer process:", error);
-      setMintStatus('error');
-    } finally {
-      setMintLoading(false);
-    }
-  }
+  // Minting and wallet connection removed – DB-only order flow
 
   const handleSaveChanges = async () => {
     if (!validateForm()) {
@@ -397,8 +220,8 @@ const TheGarden = () => {
   }
 
   const handleConfirmation = async () => {
+    // Nothing else to do – order already saved. Just close dialog.
     setShowConfirmationModal(false)
-    await handleMint()
   }
 
   return (
@@ -716,10 +539,10 @@ const TheGarden = () => {
                   </button>
                   <button 
                     onClick={handleConfirmation}
-                    disabled={mintLoading || isLoading}
+                    disabled={isLoading}
                     className="thegarden-button-primary"
                   >
-                    {mintLoading ? 'Processing...' : isLoading ? 'Saving...' : 'Confirm Order'}
+                    {isLoading ? 'Saving...' : 'Done'}
                   </button>
                 </div>
               )}
@@ -729,97 +552,6 @@ const TheGarden = () => {
       )}
 
 
-      {/* Minting Status Overlay */}
-      {mintStatus && (
-        <div className="thegarden-minting-overlay">
-          <div className="thegarden-minting-modal">
-            <div className="thegarden-minting-content">
-              {mintStatus === 'connecting' && (
-                <>
-                  <div className="thegarden-spinner"></div>
-                  <h3>Connecting to wallet...</h3>
-                  <p>Please approve the connection in your wallet</p>
-                </>
-              )}
-              
-              {mintStatus === 'requesting' && (
-                <>
-                  <div className="thegarden-spinner"></div>
-                  <h3>Sending Payment...</h3>
-                  <p>Submitting ETH transfer</p>
-                </>
-              )}
-              
-              {mintStatus === 'success' && (
-                <>
-                  <div className="thegarden-success-icon">✓</div>
-                  <h3>Payment Successful!</h3>
-                  <a 
-                    href={`https://etherscan.io/tx/${transactionReceipt?.transactionHash}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="thegarden-transaction-link"
-                  >
-                    View Transaction
-                  </a>
-                  <p>Your order has been confirmed. We will send you information on how to pick up your shirt in Marfa. Thank you for your purchase!</p>
-                  <button 
-                    onClick={() => {
-                      setMintStatus('')
-                      setSelectedSize('')
-                      setTransactionReceipt(null)
-                      setFormData({ twitter: '' })
-                      setShowConfirmationModal(false)
-                    }}
-                    className="thegarden-button-primary"
-                    style={{ marginTop: '20px' }}
-                  >
-                    Close
-                  </button>
-                </>
-              )}
-              
-              {mintStatus.startsWith('error:') && (
-                <>
-                  <div className="thegarden-error-icon">✗</div>
-                  <h3>Transaction Failed</h3>
-                  <p>{mintStatus.replace('error: ', '')}</p>
-                  <p>Your order has been cancelled. Please try again or contact hello@devilxdetail.com if you continue to experience issues.</p>
-                  <button 
-                    onClick={() => {
-                      setMintStatus('')
-                      setShowConfirmationModal(false)
-                    }}
-                    className="thegarden-button-primary"
-                    style={{ marginTop: '20px' }}
-                  >
-                    Return to Order
-                  </button>
-                </>
-              )}
-              
-              {mintStatus === 'error' && (
-                <>
-                  <div className="thegarden-error-icon">✗</div>
-                  <h3>Transaction Failed</h3>
-                  <p>Your transaction was cancelled or failed. Your order has been cancelled.</p>
-                  <p>Please try again or email hello@devilxdetail.com for assistance.</p>
-                  <button 
-                    onClick={() => {
-                      setMintStatus('')
-                      setShowConfirmationModal(false)
-                    }}
-                    className="thegarden-button-primary"
-                    style={{ marginTop: '20px' }}
-                  >
-                    Return to Order
-                  </button>
-                </>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
       
       {/* Footer intentionally omitted on The Garden page */}
     </div>
