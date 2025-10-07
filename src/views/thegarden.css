@@ -210,8 +210,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px 20px;
-  margin-bottom: 40px;
+  padding: 16px 20px;
+  margin-bottom: 32px;
   width: 100%;
   max-width: 1200px;
   margin-left: auto;
@@ -237,8 +237,8 @@
   .thegarden-hero-section {
     flex-direction: column;
     gap: 16px;
-    padding: 20px 20px;
-    margin-bottom: 20px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
   }
   
   .thegarden-hero-image {
@@ -595,13 +595,13 @@
 /* Tablet adjustments: larger hero image, tighter spacing */
 @media (min-width: 769px) and (max-width: 1024px) {
   .thegarden-main-content {
-    padding-top: 36px;
-    padding-bottom: 32px;
+    padding-top: 28px;
+    padding-bottom: 28px;
   }
 
   .thegarden-hero-section {
-    padding: 20px;
-    margin-bottom: 24px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
   }
 
   .thegarden-hero-image {
