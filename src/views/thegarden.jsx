@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect, useRef } from 'react'
 import { Helmet } from 'react-helmet'
 import { supabase, supabaseServiceRole } from '../lib/supabase'
+import Web3 from 'web3'
 import Header from '../components/header'
 import './thegarden.css'
 
@@ -18,6 +19,7 @@ const TheGarden = () => {
   const [showEditForm, setShowEditForm] = useState(false)
   const [inventory, setInventory] = useState({})
   const [dropdownOpen, setDropdownOpen] = useState(false)
+  const [paymentLoading, setPaymentLoading] = useState(false)
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -220,8 +222,90 @@ const TheGarden = () => {
   }
 
   const handleConfirmation = async () => {
-    // Nothing else to do – order already saved. Just close dialog.
-    setShowConfirmationModal(false)
+    try {
+      if (!window.ethereum) {
+        alert('A crypto wallet (e.g., Metamask) is required to complete payment.');
+        return;
+      }
+
+      setPaymentLoading(true)
+
+      const provider = window.ethereum
+      const SEPOLIA_ID = '0xaa36a7' // Sepolia chain id (hex for 11155111)
+
+      // Ensure Sepolia network
+      try {
+        const currentChain = await provider.request({ method: 'eth_chainId' })
+        if (currentChain !== SEPOLIA_ID) {
+          try {
+            await provider.request({
+              method: 'wallet_switchEthereumChain',
+              params: [{ chainId: SEPOLIA_ID }]
+            })
+          } catch (switchErr) {
+            if (switchErr.code === 4902) {
+              // Add Sepolia then switch
+              await provider.request({
+                method: 'wallet_addEthereumChain',
+                params: [{
+                  chainId: SEPOLIA_ID,
+                  chainName: 'Sepolia',
+                  rpcUrls: ['https://rpc.sepolia.org'],
+                  nativeCurrency: { name: 'Sepolia Ether', symbol: 'ETH', decimals: 18 },
+                  blockExplorerUrls: ['https://sepolia.etherscan.io']
+                }]
+              })
+            } else {
+              throw switchErr
+            }
+          }
+        }
+      } catch (netErr) {
+        console.error('Network switch error:', netErr)
+        alert('Please switch your wallet network to Sepolia and try again.')
+        return
+      }
+
+      // Request account and send transaction
+      const accounts = await provider.request({ method: 'eth_requestAccounts' })
+      const fromAddress = accounts?.[0]
+      if (!fromAddress) {
+        alert('No wallet account available.')
+        return
+      }
+
+      const web3 = new Web3(provider)
+      const valueWei = web3.utils.toWei('0.0169', 'ether')
+      const toAddress = '0x1146e58573f913033b0cdCc522fEb2546A429526'
+
+      try {
+        const receipt = await web3.eth.sendTransaction({
+          from: fromAddress,
+          to: toAddress,
+          value: valueWei
+        })
+
+        // Optionally update order record with tx hash
+        try {
+          await supabaseServiceRole
+            .from('order_garden')
+            .update({ transaction_id: receipt?.transactionHash || null })
+            .eq('size', selectedSize)
+            .eq('twitter', formData.twitter)
+            .is('transaction_id', null)
+        } catch (e) {
+          console.warn('Order update failed:', e)
+        }
+
+        alert('Transaction submitted: ' + (receipt?.transactionHash || ''))
+        setShowConfirmationModal(false)
+      } catch (txErr) {
+        console.error('Transaction error:', txErr)
+        alert(txErr?.message || 'Transaction failed or was rejected.')
+      }
+    } finally {
+      setPaymentLoading(false)
+    }
   }
 
   return (
@@ -539,10 +623,10 @@ const TheGarden = () => {
                   </button>
                   <button 
                     onClick={handleConfirmation}
-                    disabled={isLoading}
+                    disabled={isLoading || paymentLoading}
                     className="thegarden-button-primary"
                   >
-                    {isLoading ? 'Saving...' : 'Done'}
+                    {paymentLoading ? 'Processing...' : (isLoading ? 'Saving...' : 'Done')}
                   </button>
                 </div>
               )}
