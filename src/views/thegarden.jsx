@@ -574,7 +574,7 @@ const TheGarden = () => {
         <div className="thegarden-modal-overlay">
           <div className="thegarden-modal">
             <div className="thegarden-modal-header">
-              <h3>Shipping Information</h3>
+              <h3>Order Information</h3>
               <button 
                 onClick={() => setShowDataModal(false)}
                 className="thegarden-modal-close"
@@ -583,7 +583,7 @@ const TheGarden = () => {
               </button>
             </div>
             <div className="thegarden-modal-content">
-              <p>Please provide your Twitter handle and select a size to complete your order. Please note: the hoodie is only available for pick up in Marfa 10/15 - 10/19.</p>
+              <p>Please provide your Twitter handle and select a size to complete your order. Please note: the hoodie is only available for pick up in Marfa 10/15 - 10/19. We will coordinate via Twitter DM.</p>
               
               <div className="thegarden-form-group">
                 <label>Twitter Handle *</label>
