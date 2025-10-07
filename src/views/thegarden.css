@@ -125,6 +125,7 @@
   flex-direction: column;
   margin: 0;
   padding: 0;
+  padding-bottom: 32px; /* extra space since footer is removed on this page */
   position: relative;
   z-index: 2;
 }
