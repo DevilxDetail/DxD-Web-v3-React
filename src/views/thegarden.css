@@ -258,6 +258,22 @@
   padding: 0 60px;
 }
 
+/* Desktop-only tweaks: widen content area and pull it closer to hero */
+@media (min-width: 1025px) {
+  .thegarden-content-sections {
+    max-width: 1600px;
+    padding: 0 48px;
+  }
+
+  .thegarden-main-content {
+    gap: 24px;
+  }
+
+  .thegarden-hero-section {
+    margin-bottom: 8px;
+  }
+}
+
 .thegarden-left-section {
   flex: 1;
   color: #4A5568;
