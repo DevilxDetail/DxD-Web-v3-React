@@ -583,7 +583,7 @@ const TheGarden = () => {
               </button>
             </div>
             <div className="thegarden-modal-content">
-              <p>Please provide your Twitter handle and select a size to complete your order.</p>
+              <p>Please provide your Twitter handle and select a size to complete your order. Please note: the hoodie is only available for pick up in Marfa 10/15 - 10/19.</p>
               
               <div className="thegarden-form-group">
                 <label>Twitter Handle *</label>
