@@ -157,31 +157,9 @@ const TheGarden = () => {
 
     setIsLoading(true)
     try {
-      // Save to order_garden table directly without authentication
-      const orderData = {
-        size: selectedSize,
-        twitter: formData.twitter,
-        transaction_id: null // Will be updated after minting
-      };
-
-      console.log('Order data to insert:', orderData);
-
-      const { error: orderError } = await supabaseServiceRole
-        .from('order_garden')
-        .insert([orderData]);
-
-      if (orderError) {
-        console.error('Error saving to order_garden table:', orderError);
-        throw orderError;
-      } else {
-        console.log('Successfully saved to order_garden table');
-      }
-      
+      // No DB write here; we only open confirmation. DB insert happens after successful payment.
       setShowDataModal(false)
       setShowConfirmationModal(true)
-    } catch (error) {
-      console.error('Error saving data:', error)
-      alert('Error saving your information. Please try again.')
     } finally {
       setIsLoading(false)
     }
@@ -286,16 +264,17 @@ const TheGarden = () => {
           value: valueWei
         })
 
-        // Optionally update order record with tx hash
+        // Create order record now that payment is confirmed
         try {
           await supabaseServiceRole
             .from('order_garden')
-            .update({ transaction_id: receipt?.transactionHash || null })
-            .eq('size', selectedSize)
-            .eq('twitter', formData.twitter)
-            .is('transaction_id', null)
+            .insert([{
+              size: selectedSize,
+              twitter: formData.twitter,
+              transaction_id: receipt?.transactionHash || null
+            }])
         } catch (e) {
-          console.warn('Order update failed:', e)
+          console.warn('Order insert failed:', e)
         }
 
         // Decrement inventory for purchased size
