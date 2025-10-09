@@ -323,11 +323,15 @@ const TheGarden = () => {
             background: none !important;
             background-color: transparent !important;
             backdrop-filter: none !important;
-            position: absolute !important;
+            position: fixed !important;
             top: 0 !important;
             left: 0 !important;
             right: 0 !important;
             z-index: 1000 !important;
+            padding-top: 20px !important;
+            padding-bottom: 20px !important;
+            padding-left: 40px !important;
+            padding-right: 40px !important;
           }
         `}</style>
       </Helmet>
