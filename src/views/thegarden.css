@@ -17,6 +17,8 @@
   left: 0 !important;
   right: 0 !important;
   z-index: 1000 !important;
+  padding-top: 16px !important;
+  padding-bottom: 16px !important;
 }
 
 .thegarden-page .header-container {
