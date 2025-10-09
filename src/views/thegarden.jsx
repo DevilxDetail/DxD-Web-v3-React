@@ -210,28 +210,28 @@ const TheGarden = () => {
       setPaymentLoading(true)
 
       const provider = window.ethereum
-      const SEPOLIA_ID = '0xaa36a7' // Sepolia chain id (hex for 11155111)
+      const MAINNET_ID = '0x1' // Ethereum Mainnet chain id
 
-      // Ensure Sepolia network
+      // Ensure Ethereum Mainnet
       try {
         const currentChain = await provider.request({ method: 'eth_chainId' })
-        if (currentChain !== SEPOLIA_ID) {
+        if (currentChain !== MAINNET_ID) {
           try {
             await provider.request({
               method: 'wallet_switchEthereumChain',
-              params: [{ chainId: SEPOLIA_ID }]
+              params: [{ chainId: MAINNET_ID }]
             })
           } catch (switchErr) {
             if (switchErr.code === 4902) {
-              // Add Sepolia then switch
+              // Add Ethereum Mainnet then switch
               await provider.request({
                 method: 'wallet_addEthereumChain',
                 params: [{
-                  chainId: SEPOLIA_ID,
-                  chainName: 'Sepolia',
-                  rpcUrls: ['https://rpc.sepolia.org'],
-                  nativeCurrency: { name: 'Sepolia Ether', symbol: 'ETH', decimals: 18 },
-                  blockExplorerUrls: ['https://sepolia.etherscan.io']
+                  chainId: MAINNET_ID,
+                  chainName: 'Ethereum Mainnet',
+                  rpcUrls: ['https://ethereum.publicnode.com'],
+                  nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+                  blockExplorerUrls: ['https://etherscan.io']
                 }]
               })
             } else {
@@ -241,7 +241,7 @@ const TheGarden = () => {
         }
       } catch (netErr) {
         console.error('Network switch error:', netErr)
-        alert('Please switch your wallet network to Sepolia and try again.')
+        alert('Please switch your wallet network to Ethereum Mainnet and try again.')
         return
       }
 
