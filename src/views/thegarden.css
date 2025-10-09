@@ -85,33 +85,10 @@
 
 /* The Garden page header connect button styling */
 .thegarden-page .header-button {
-  width: 100px;
-  height: 36px;
-  padding: 8px 16px;
-  background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 600;
-  font-family: 'Lato', sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  display: none !important;
 }
 
-.thegarden-page .header-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(34, 197, 94, 0.4);
-  background: linear-gradient(135deg, #15803d 0%, #16a34a 100%);
-  color: white;
-}
+/* No hover state needed when hidden */
 
 .thegarden-page .header-button:active {
   transform: translateY(0);
