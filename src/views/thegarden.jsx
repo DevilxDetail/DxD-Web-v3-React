@@ -20,6 +20,7 @@ const TheGarden = () => {
   const [inventory, setInventory] = useState({})
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const [paymentLoading, setPaymentLoading] = useState(false)
+  const [showSuccessModal, setShowSuccessModal] = useState(false)
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -297,8 +298,8 @@ const TheGarden = () => {
           console.warn('Order update failed:', e)
         }
 
-        alert('Transaction submitted: ' + (receipt?.transactionHash || ''))
         setShowConfirmationModal(false)
+        setShowSuccessModal(true)
       } catch (txErr) {
         console.error('Transaction error:', txErr)
         alert(txErr?.message || 'Transaction failed or was rejected.')
@@ -640,7 +641,33 @@ const TheGarden = () => {
       )}
 
 
-      
+      {showSuccessModal && (
+        <div className="thegarden-modal-overlay">
+          <div className="thegarden-modal">
+            <div className="thegarden-modal-header">
+              <h3>Purchase Confirmed</h3>
+              <button 
+                onClick={() => setShowSuccessModal(false)}
+                className="thegarden-modal-close"
+              >
+                ×
+              </button>
+            </div>
+            <div className="thegarden-modal-content">
+              <p>Congratulations! We will DM you to coordinate pick up in Marfa.</p>
+              <div className="thegarden-modal-actions">
+                <button 
+                  onClick={() => setShowSuccessModal(false)}
+                  className="thegarden-button-primary"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Footer intentionally omitted on The Garden page */}
     </div>
   )
