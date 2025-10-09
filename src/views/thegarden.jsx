@@ -298,6 +298,27 @@ const TheGarden = () => {
           console.warn('Order update failed:', e)
         }
 
+        // Decrement inventory for purchased size
+        try {
+          const sizeMap = { 'S': 'Small', 'M': 'Medium', 'L': 'Large', 'XL': 'XLarge', 'XXL': 'XXLarge' }
+          const dbSizeName = sizeMap[selectedSize]
+          if (dbSizeName) {
+            const currentQty = inventory?.[dbSizeName] ?? 0
+            const nextQty = currentQty > 0 ? currentQty - 1 : 0
+            const { error: inventoryError } = await supabaseServiceRole
+              .from('inventory_garden')
+              .update({ quantity: nextQty })
+              .eq('size', dbSizeName)
+            if (inventoryError) {
+              console.error('Error updating inventory:', inventoryError)
+            } else {
+              setInventory(prev => ({ ...prev, [dbSizeName]: nextQty }))
+            }
+          }
+        } catch (inventoryErr) {
+          console.error('Inventory decrement error:', inventoryErr)
+        }
+
         setShowConfirmationModal(false)
         setShowSuccessModal(true)
       } catch (txErr) {
