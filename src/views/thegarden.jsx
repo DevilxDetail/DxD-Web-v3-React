@@ -347,18 +347,7 @@ const TheGarden = () => {
         rootClassName="header-root-class-name"
       />
       
-      <div className="thegarden-banner">
-        <video 
-          src="/IMG_5569.MOV" 
-          autoPlay 
-          loop 
-          muted 
-          playsInline
-          className="thegarden-banner-video"
-        >
-          Your browser does not support the video tag.
-        </video>
-      </div>
+      {/* Background video removed for white background */}
       
       <div className="thegarden-main-content">
         <div className="thegarden-hero-section">

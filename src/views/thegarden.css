@@ -104,7 +104,7 @@
 .thegarden-container {
   width: 100%;
   min-height: 100vh;
-  background: transparent;
+  background: #ffffff;
   display: flex;
   flex-direction: column;
   margin: 0;
@@ -138,17 +138,8 @@
   letter-spacing: 2px;
 }
 
-.thegarden-banner {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+/* Remove video background; use white background instead */
+.thegarden-banner { display: none; }
 
 .thegarden-banner-image {
   width: 100%;
@@ -162,16 +153,7 @@
   transform: none;
 }
 
-.thegarden-banner-video {
-  width: 100%;
-  height: 100%;
-  border-radius: 0;
-  box-shadow: none;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-  transform: scale(1.1);
-}
+.thegarden-banner-video { display: none; }
 
 /* Mobile-specific banner image */
 @media (max-width: 768px) {
