@@ -349,7 +349,7 @@ const TheGarden = () => {
           <div className="thegarden-left-section">
             <div className="thegarden-included-section">
               <div className="thegarden-item">
-                <h4 className="thegarden-item-title">The Garden at Roy’s Zip Up Hoodie</h4>
+                <h4 className="thegarden-item-title">The Garden at Roy’s - Zip Up</h4>
                 <ul className="thegarden-item-details">
                   <li>Limited run</li>
                   <li>14oz 100% cotton, loose fit</li>
