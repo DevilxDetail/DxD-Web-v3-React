@@ -218,8 +218,8 @@
 .thegarden-content-sections {
   display: flex;
   justify-content: center;
-  align-items: auto;
-  gap: 60px;
+  align-items: flex-start;
+  gap: 80px;
   width: 100%;
   max-width: 1500px;
   margin: 0;
