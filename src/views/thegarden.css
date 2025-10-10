@@ -8,6 +8,7 @@
 
 /* Transparent Header for The Garden Page */
 .thegarden-page .header-header {
+  display: none !important;
   background-color: transparent !important;
   backdrop-filter: blur(5px) !important;
   background: none !important;

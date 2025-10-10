@@ -337,15 +337,7 @@ const TheGarden = () => {
         `}</style>
       </Helmet>
       
-      <Header
-        text={
-          <Fragment>
-            <span className="thegarden-text10">About DxD</span>
-          </Fragment>
-        }
-        iconBlackSrc="/icon%20-%20white-200h.png"
-        rootClassName="header-root-class-name"
-      />
+      {/* Header hidden on this page */}
       
       {/* Background video removed for white background */}
       
