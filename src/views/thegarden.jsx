@@ -353,7 +353,6 @@ const TheGarden = () => {
                 <ul className="thegarden-item-details">
                   <li>Limited run</li>
                   <li>14oz 100% cotton, loose fit</li>
-                  <li>Loose fit</li>
                   <li>Knitted, cut, sewn, and dyed in Los Angeles, California</li>
                 </ul>
               </div>
