@@ -235,6 +235,7 @@
 
   .thegarden-main-content {
     gap: 14px;
+    max-width: 1520px; /* +120px total (60px each side) compared to base 1400px */
   }
 
   .thegarden-hero-section {
