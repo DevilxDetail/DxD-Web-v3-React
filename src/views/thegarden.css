@@ -231,6 +231,8 @@
   .thegarden-content-sections {
     max-width: 1600px;
     padding: 0 48px;
+    margin-left: 200px;
+    margin-right: 200px;
   }
 
   .thegarden-main-content {
