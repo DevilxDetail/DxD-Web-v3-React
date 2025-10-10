@@ -366,24 +366,20 @@ const TheGarden = () => {
         </div>
         <div className="thegarden-content-sections">
           <div className="thegarden-left-section">
-            <div className="thegarden-description">
-              <p>The Garden at Roy’s Zip Up Hoodie </p>
-            </div>
             <div className="thegarden-included-section">
               <div className="thegarden-item">
-                <h4 className="thegarden-item-title">The Limited Edition Hoodie:</h4>
+                <h4 className="thegarden-item-title">The Garden at Roy’s Zip Up Hoodie</h4>
                 <ul className="thegarden-item-details">
                   <li>Limited run</li>
                   <li>14oz 100% cotton, loose fit</li>
                   <li>Loose fit</li>
                   <li>Knitted, cut, sewn, and dyed in Los Angeles, California</li>
                 </ul>
-                  <p>*pick up only Marfa 10/15 - 10/19*</p>
               </div>
             </div>
             <div className="thegarden-included-section">
               <div className="thegarden-item">
-                <h4 className="thegarden-item-title">* The hoodie is only available for pick up in Marfa 10/15 - 10/19 *</h4>
+                <h4 className="thegarden-item-title">*pick up only Marfa 10/15 - 10/19*</h4>
               </div>
             </div>
           </div>
