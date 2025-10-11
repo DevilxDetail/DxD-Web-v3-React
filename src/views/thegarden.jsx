@@ -336,9 +336,9 @@ const TheGarden = () => {
           }
         `}</style>
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="/Jules Thumbnail.jpg" />
+        <meta property="og:image" content="https://devilxdetail.com/Jules Thumbnail.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content="/Jules Thumbnail.jpg" />
+        <meta name="twitter:image" content="https://devilxdetail.com/Jules Thumbnail.jpg" />
       </Helmet>
       
       {/* Header hidden on this page */}
