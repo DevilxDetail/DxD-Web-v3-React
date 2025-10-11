@@ -355,6 +355,8 @@ const TheGarden = () => {
                   <li>14oz 100% cotton, loose fit</li>
                   <li>Knitted, cut, sewn, and dyed in Los Angeles, California</li>
                 </ul>
+                <p></p>
+                <h4 className="thegarden-item-title">*pick up only Marfa 10/15 - 10/19*</h4>
               </div>
             </div>
             <div className="thegarden-included-section">
