@@ -256,6 +256,14 @@
     align-items: flex-start !important; /* left-justify within its column */
     text-align: left;
   }
+
+  /* Ensure the pickup notice line is left-justified within full row width */
+  .thegarden-left-section .thegarden-included-section:last-of-type .thegarden-item {
+    width: 100%;
+  }
+  .thegarden-left-section .thegarden-included-section:last-of-type .thegarden-item-title {
+    text-align: left;
+  }
 }
 
 .thegarden-left-section {
