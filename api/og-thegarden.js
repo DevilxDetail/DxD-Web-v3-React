@@ -5,13 +5,9 @@ export const config = {
 export default async function handler(request) {
   const url = new URL(request.url);
   
-  // Only handle /thegarden route
-  if (!url.pathname.includes('/thegarden')) {
-    return fetch(request);
-  }
-
-  // Fetch the original HTML
-  const response = await fetch(request);
+  // Fetch index.html directly to avoid infinite loop
+  const baseUrl = url.origin + '/index.html';
+  const response = await fetch(baseUrl);
   let html = await response.text();
 
   // Replace the default og:image and twitter:image with Jules Thumbnail
@@ -28,7 +24,7 @@ export default async function handler(request) {
   return new Response(html, {
     headers: {
       'content-type': 'text/html',
-      'cache-control': response.headers.get('cache-control') || 'public, max-age=0, must-revalidate'
+      'cache-control': 'public, max-age=0, must-revalidate'
     }
   });
 }
