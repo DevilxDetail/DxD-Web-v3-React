@@ -335,6 +335,10 @@ const TheGarden = () => {
             padding-right: 40px !important;
           }
         `}</style>
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="/alpha_thumbnail.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="/alpha_thumbnail.jpg" />
       </Helmet>
       
       {/* Header hidden on this page */}
