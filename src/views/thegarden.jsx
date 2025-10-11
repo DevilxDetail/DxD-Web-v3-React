@@ -351,18 +351,15 @@ const TheGarden = () => {
               <div className="thegarden-item">
                 <h4 className="thegarden-item-title">The Garden at Roy’s - Zip Up</h4>
                 <ul className="thegarden-item-details">
-                  <li>Limited run</li>
-                  <li>14oz 100% cotton, loose fit</li>
-                  <li>Knitted, cut, sewn, and dyed in Los Angeles, California</li>
+                  <li>.0169 ETH // Limited run</li>
+                  <li>Pick up in Marfa</li>
+                  <li>Produced with Devil x Detail</li>
                 </ul>
-                <h4 className="thegarden-item-title"> </h4>
-                <h4 className="thegarden-item-title">*pick up only Marfa 10/15 - 10/19*</h4>
               </div>
             </div>
           </div>
           
           <div className="thegarden-right-section">
-            <div className="thegarden-price">.0169 ETH</div>
             
             <div className="thegarden-size-selection">
               <div className="thegarden-custom-dropdown">
