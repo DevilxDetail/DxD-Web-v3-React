@@ -243,6 +243,19 @@
   .thegarden-hero-section {
     margin-bottom: 40;
   }
+
+  /* Align each column toward the center to respect the gap */
+  .thegarden-left-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;    /* right-justify within its column */
+    text-align: right;
+  }
+
+  .thegarden-right-section {
+    align-items: flex-start !important; /* left-justify within its column */
+    text-align: left;
+  }
 }
 
 .thegarden-left-section {
