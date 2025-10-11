@@ -18,6 +18,10 @@
       "src": "/api/send-mint-email",
       "dest": "/api/send-mint-email.js"
     },
+    {
+      "src": "/thegarden",
+      "dest": "/api/og-thegarden.js"
+    },
     { "handle": "filesystem" },
     {
       "src": "/favicon.ico",
