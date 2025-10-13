@@ -67,21 +67,21 @@ const DK = () => {
   return (
     <div className="dk-container">
       <Helmet>
-        <title>DxD - DK Presale</title>
-        <meta name="description" content="Join the DK x devil x detail presale list" />
+        <title>DK x DxD</title>
+        <meta name="description" content="Blue Skies Forever" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         
         {/* Essential OG Tags */}
-        <meta property="og:title" content="DxD - DK Presale" />
+        <meta property="og:title" content="DK x DxD" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://devilxdetail.com/dk" />
         <meta property="og:image" content="https://devilxdetail.com/dk-header.png" />
-        <meta property="og:description" content="Join the DK x devil x detail presale list" />
+        <meta property="og:description" content="Blue Skies Forever" />
         
         {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="DxD - DK Presale" />
-        <meta name="twitter:description" content="Join the DK x devil x detail presale list" />
+        <meta name="twitter:title" content="DK x DxD" />
+        <meta name="twitter:description" content="Blue Skies Forever" />
         <meta name="twitter:image" content="https://devilxdetail.com/dk-header.png" />
       </Helmet>
       
