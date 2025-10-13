@@ -123,6 +123,12 @@ const DK = () => {
             
             <div className="dk-date">Authenticated</div>
             
+            <img 
+              src="/BSF Background Mobile.png" 
+              alt="BSF Background" 
+              className="dk-bsf-background"
+            />
+            
             <div className="dk-description">
               Blue Skies Forever<br />
               Official DK x DxD Collaboration

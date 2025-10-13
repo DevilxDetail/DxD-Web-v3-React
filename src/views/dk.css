@@ -73,6 +73,16 @@
   margin-bottom: 30px;
 }
 
+.dk-bsf-background {
+  width: 100vw;
+  height: auto;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  display: block;
+  object-fit: cover;
+  margin-bottom: 30px;
+}
+
 .dk-description {
   font-size: 16pt;
   font-family: 'Marcellus', serif;
