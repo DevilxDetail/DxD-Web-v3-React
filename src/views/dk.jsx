@@ -121,45 +121,15 @@ const DK = () => {
               className="dk-header-image"
             />
             
-            <div className="dk-date">July 2025</div>
+            <div className="dk-date">Authenticated</div>
             
             <div className="dk-description">
-              Enter below for a chance to win a<br />
-              free drop and to join the presale list
+              Blue Skies Forever<br />
+              Official DK x DxD Collaboration
             </div>
             
-            <form onSubmit={handleSubmit} className="dk-form">
-              <input
-                type="text"
-                name="twitter"
-                placeholder="Twitter Username"
-                value={formData.twitter}
-                onChange={handleInputChange}
-                className="thq-input"
-                required
-              />
-              
-              <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                value={formData.email}
-                onChange={handleInputChange}
-                className="thq-input"
-                required
-              />
-              
-              <button 
-                type="submit" 
-                className="thq-button-filled"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? 'Submitting...' : 'Submit'}
-              </button>
-            </form>
-            
             <div className="dk-footer-text">
-              Make sure you are following<br />
+              Keep an eye out for some more fun stuff...<br />
               <a 
                 href="https://x.com/danielkoeth" 
                 target="_blank" 
