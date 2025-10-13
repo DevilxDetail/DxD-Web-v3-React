@@ -134,24 +134,7 @@ const DK = () => {
               Official DK x DxD Collaboration
             </div>
             
-            <div className="dk-footer-text">
-              Keep an eye out for some more fun stuff...<br />
-              <a 
-                href="https://x.com/danielkoeth" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="dk-footer-link"
-              >
-                @danielkoeth
-              </a> and <a 
-                href="https://x.com/devilxdetail" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="dk-footer-link"
-              >
-                @devilxdetail
-              </a>
-            </div>
+            
           </div>
         </div>
       </div>
