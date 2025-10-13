@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Impact:wght@400&display=swap');
+
+.marfa2025-container {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.marfa2025-background {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.marfa2025-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.marfa2025-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 800px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.marfa2025-main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  width: 100%;
+}
+
+/* Hero Section */
+.marfa2025-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.marfa2025-hero-text {
+  font-family: 'Impact', sans-serif;
+  font-size: 48px;
+  font-weight: 400;
+  color: white;
+  text-align: center;
+  margin: 0;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+  letter-spacing: 2px;
+}
+
+.marfa2025-hero-subtitle {
+  font-family: 'Impact', sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: white;
+  text-align: center;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+  letter-spacing: 1px;
+}
+
+.marfa2025-shirt-image {
+  width: 33.33%;
+  max-width: 300px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+}
+
+/* Description Section */
+.marfa2025-description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.marfa2025-description-text {
+  font-family: 'Impact', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: white;
+  text-align: center;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+  letter-spacing: 1px;
+  line-height: 1.4;
+}
+
+.marfa2025-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 400;
+  transition: all 0.3s ease;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.marfa2025-link:hover {
+  color: #f0f8ff;
+  text-decoration: underline;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .marfa2025-content {
+    padding: 15px;
+    max-width: 95%;
+  }
+  
+  .marfa2025-main-content {
+    gap: 30px;
+  }
+  
+  .marfa2025-hero-text {
+    font-size: 36px;
+    letter-spacing: 1px;
+  }
+  
+  .marfa2025-hero-subtitle {
+    font-size: 18px;
+    letter-spacing: 0.5px;
+  }
+  
+  .marfa2025-shirt-image {
+    width: 50%;
+    max-width: 200px;
+  }
+  
+  .marfa2025-description-text {
+    font-size: 16px;
+    letter-spacing: 0.5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .marfa2025-hero-text {
+    font-size: 28px;
+  }
+  
+  .marfa2025-hero-subtitle {
+    font-size: 16px;
+  }
+  
+  .marfa2025-shirt-image {
+    width: 60%;
+    max-width: 150px;
+  }
+  
+  .marfa2025-description-text {
+    font-size: 14px;
+  }
+}
