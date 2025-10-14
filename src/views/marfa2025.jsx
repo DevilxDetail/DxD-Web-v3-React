@@ -53,7 +53,7 @@ const Marfa2025 = () => {
               <p className="marfa2025-hero-subtitle">To claim:</p>
               <p className="marfa2025-description-text">
                 DM <a 
-                  href="https://x.com/devilxdetail" 
+                  href="https://twitter.com/messages/compose?recipient_id=1356284157828063232" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="marfa2025-link"
@@ -63,18 +63,6 @@ const Marfa2025 = () => {
               </p>
             </div>
           </div>
-        </div>
-        
-        {/* DM Us Button */}
-        <div className="marfa2025-dm-button-container">
-          <a 
-            href="https://twitter.com/messages/compose?recipient_id=1356284157828063232"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="marfa2025-dm-button"
-          >
-            DM Us
-          </a>
         </div>
       </div>
     </div>
