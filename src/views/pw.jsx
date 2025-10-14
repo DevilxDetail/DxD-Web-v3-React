@@ -40,7 +40,7 @@ const PW = () => {
         throw error
       }
 
-      setSubmitMessage('You've been successfully registered!')
+      setSubmitMessage('Registration Successful!')
       setFormData({ twitter: '', email: '' })
       setShowToast(true)
       
@@ -101,9 +101,9 @@ const PW = () => {
             {/* Description Section */}
             <div className="pw-description">
               <div className="pw-auction-info">
-                <p className="pw-auction-text">Post Wook x DxD</p>
-                <p className="pw-auction-text">October 2025</p>
-                <p className="pw-auction-text">18 1/1 Auctions w/ Matching 1/1 Jacket</p>
+                <p className="pw-auction-text1">Post Wook x DxD</p>
+                <p className="pw-auction-text2">October 2025</p>
+                <p className="pw-auction-text2">18 1/1 Auctions w/ Matching 1/1 Jacket</p>
               </div>
               <img 
                 src="/PW Jacket.png" 
