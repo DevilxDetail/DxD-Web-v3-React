@@ -127,16 +127,6 @@ const Marfa = (props) => {
           />
         </div>
       </div>
-      <div className="marfa-dm-button-container">
-        <a 
-          href="https://twitter.com/messages/compose?recipient_id=1356284157828063232"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="marfa-dm-button"
-        >
-          DM Us
-        </a>
-      </div>
       <ConsistentFooter />
     </div>
   )
