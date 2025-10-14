@@ -79,7 +79,25 @@
   gap: 8px;
 }
 
-.pw-auction-text {
+.pw-auction-text1 {
+  font-family: 'Century Old Style Std', serif;
+  font-size: 32px;
+  font-weight: 600;
+  color: black;
+  text-align: center;
+  margin: 0;
+}
+
+.pw-auction-text2 {
+  font-family: 'Century Old Style Std', serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: black;
+  text-align: center;
+  margin: 0;
+}
+
+.pw-auction-text3 {
   font-family: 'Century Old Style Std', serif;
   font-size: 18px;
   font-weight: 400;
