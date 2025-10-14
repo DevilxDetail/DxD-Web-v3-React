@@ -229,6 +229,37 @@
 .marfa-text34 {
   display: inline-block;
 }
+
+.marfa-dm-button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  margin-bottom: 20px;
+}
+
+.marfa-dm-button {
+  background-color: #ffffff;
+  color: #292929;
+  padding: 15px 30px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-family: 'Lato', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.marfa-dm-button:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  color: #292929;
+}
  
 @media(max-width: 1600px) {
   .marfa-container2 {
@@ -318,5 +349,12 @@
   }
   .marfa-image9 {
     width: 50%;
+  }
+  .marfa-dm-button-container {
+    padding: 30px 20px;
+  }
+  .marfa-dm-button {
+    padding: 12px 24px;
+    font-size: 14px;
   }
 }
