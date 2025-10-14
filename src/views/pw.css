@@ -107,7 +107,7 @@
 }
 
 .pw-jacket-image {
-  width: 45%;
+  width: 50%;
   max-width: 300px;
   height: auto;
   object-fit: contain;
@@ -337,7 +337,7 @@
   
   .pw-jacket-image {
     width: 50%;
-    max-width: 150px;
+    max-width: 250px;
   }
   
   .pw-form-text {
