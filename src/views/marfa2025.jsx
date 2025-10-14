@@ -50,7 +50,7 @@ const Marfa2025 = () => {
             
             {/* Description Section */}
             <div className="marfa2025-description">
-              <p className="marfa2025-description-text">To claim:</p>
+              <p className="marfa2025-hero-subtitle">To claim:</p>
               <p className="marfa2025-description-text">
                 DM <a 
                   href="https://x.com/devilxdetail" 
