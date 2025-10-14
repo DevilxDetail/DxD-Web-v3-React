@@ -13,7 +13,6 @@
   position: relative;
   display: flex;
   justify-content: center;
-  margin-top: 50px;
 }
 
 .marfa2025-video {
@@ -154,6 +153,7 @@
 @media (max-width: 480px) {
   .marfa2025-hero-text {
     font-size: 28px;
+    margin-top: 30px;
   }
   
   .marfa2025-hero-subtitle {
