@@ -45,6 +45,7 @@
   align-items: center;
   gap: 20px;
   width: 100%;
+  margin-top: 30;
 }
 
 .pw-hero-text {
@@ -386,7 +387,7 @@
   
   .pw-jacket-image {
     width: 60%;
-    max-width: 250px;
+    max-width: 180px;
   }
   
   .pw-form-text {
