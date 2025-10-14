@@ -115,8 +115,7 @@ const PW = () => {
             {/* Form Section */}
             <div className="pw-form-section">
               <p className="pw-form-text">
-                Enter your info below for a sneak preview</p>
-              <p className="pw-form-text">
+                Enter your info below for a sneak preview <br />
                 and a special gift</p>
               
               <form onSubmit={handleSubmit} className="pw-form">
