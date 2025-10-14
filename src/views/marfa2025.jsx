@@ -64,6 +64,18 @@ const Marfa2025 = () => {
             </div>
           </div>
         </div>
+        
+        {/* DM Us Button */}
+        <div className="marfa2025-dm-button-container">
+          <a 
+            href="https://twitter.com/messages/compose?recipient_id=1356284157828063232"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="marfa2025-dm-button"
+          >
+            DM Us
+          </a>
+        </div>
       </div>
     </div>
   )

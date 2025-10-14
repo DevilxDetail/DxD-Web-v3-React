@@ -118,6 +118,44 @@
   text-decoration: underline;
 }
 
+/* DM Us Button */
+.marfa2025-dm-button-container {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.marfa2025-dm-button {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #000000;
+  padding: 15px 30px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-family: 'Impact', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.marfa2025-dm-button:hover {
+  background-color: rgba(255, 255, 255, 1);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  color: #000000;
+}
+
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
   .marfa2025-content {
@@ -148,6 +186,16 @@
     font-size: 16px;
     letter-spacing: 0.5px;
   }
+  
+  .marfa2025-dm-button-container {
+    bottom: 30px;
+    padding: 0 15px;
+  }
+  
+  .marfa2025-dm-button {
+    padding: 12px 24px;
+    font-size: 16px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -166,6 +214,16 @@
   }
   
   .marfa2025-description-text {
+    font-size: 14px;
+  }
+  
+  .marfa2025-dm-button-container {
+    bottom: 20px;
+    padding: 0 10px;
+  }
+  
+  .marfa2025-dm-button {
+    padding: 10px 20px;
     font-size: 14px;
   }
 }
