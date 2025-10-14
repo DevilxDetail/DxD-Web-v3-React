@@ -120,13 +120,16 @@
 
 /* DM Us Button */
 .marfa2025-dm-button-container {
-  position: relative;
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px 20px 0 20px;
-  margin-top: 20px;
+  padding: 0 20px;
 }
 
 .marfa2025-dm-button {
@@ -185,7 +188,8 @@
   }
   
   .marfa2025-dm-button-container {
-    padding: 15px 15px 0 15px;
+    bottom: 30px;
+    padding: 0 15px;
   }
   
   .marfa2025-dm-button {
@@ -214,7 +218,8 @@
   }
   
   .marfa2025-dm-button-container {
-    padding: 10px 10px 0 10px;
+    bottom: 20px;
+    padding: 0 10px;
   }
   
   .marfa2025-dm-button {
