@@ -40,7 +40,7 @@ const PW = () => {
         throw error
       }
 
-      setSubmitMessage('Successfully registered for the presale!')
+      setSubmitMessage('You've been successfully registered!')
       setFormData({ twitter: '', email: '' })
       setShowToast(true)
       
@@ -67,21 +67,21 @@ const PW = () => {
   return (
     <div className="pw-container">
       <Helmet>
-        <title>DxD - Post Wook Collaboration</title>
-        <meta name="description" content="Join the Post Wook x devil x detail presale list" />
+        <title>Post Wook x DxD</title>
+        <meta name="description" content="Post Wook x DxD" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         
         {/* Essential OG Tags */}
-        <meta property="og:title" content="DxD - Post Wook Collaboration" />
+        <meta property="og:title" content="Post Wook x DxD" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://devilxdetail.com/pw" />
         <meta property="og:image" content="https://devilxdetail.com/pw-header.png" />
-        <meta property="og:description" content="Join the Post Wook x devil x detail presale list" />
+        <meta property="og:description" content="Post Wook x DxD" />
         
         {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="DxD - Post Wook Collaboration" />
-        <meta name="twitter:description" content="Join the Post Wook x devil x detail presale list" />
+        <meta name="twitter:title" content="Post Wook x DxD" />
+        <meta name="twitter:description" content="Post Wook x DxD" />
         <meta name="twitter:image" content="https://devilxdetail.com/pw-header.png" />
       </Helmet>
       
@@ -101,9 +101,9 @@ const PW = () => {
             {/* Description Section */}
             <div className="pw-description">
               <div className="pw-auction-info">
-                <p className="pw-auction-text">18 1/1 Auctions</p>
-                <p className="pw-auction-text">1/1 Jacket for Auction Winners</p>
-                <p className="pw-auction-text">Bidder's editions/ .1 ETH reserve</p>
+                <p className="pw-auction-text">Post Wook x DxD</p>
+                <p className="pw-auction-text">October 2025</p>
+                <p className="pw-auction-text">18 1/1 Auctions w/ Matching 1/1 Jacket</p>
               </div>
               <img 
                 src="/PW Jacket.png" 
@@ -115,7 +115,8 @@ const PW = () => {
             {/* Form Section */}
             <div className="pw-form-section">
               <p className="pw-form-text">
-                Enter your info below for a sneak preview and for the chance at a bonus gift!
+                Enter your info below for a sneak preview <br />
+                and a special gift.
               </p>
               
               <form onSubmit={handleSubmit} className="pw-form">
