@@ -477,8 +477,8 @@ const TheGarden = () => {
               </p>
 
               <p>
-                {' '}<strong>We are aware that some wallets have flagged the Devil x Detail EVM address as fake phishing. The account has not been compromised 
-                but if you have concerns, please dm @nicedayjules or @devilxdetail.</strong>{' '}
+                {' '}<strong>*** We are aware that some wallets have flagged the Devil x Detail EVM address as fake phishing. The account has not been compromised 
+                but if you have concerns, please dm @nicedayjules or @devilxdetail. ***</strong>{' '}
               </p>
               
               <div className="thegarden-form-group">
