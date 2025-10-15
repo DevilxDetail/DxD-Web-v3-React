@@ -32,7 +32,7 @@ const PW = () => {
           {
             twitter: formData.twitter,
             email: formData.email,
-            artist: 'Post Wook'
+            artist: 'POST WOOK'
           }
         ])
 
@@ -67,21 +67,21 @@ const PW = () => {
   return (
     <div className="pw-container">
       <Helmet>
-        <title>Post Wook x DxD</title>
-        <meta name="description" content="Post Wook x DxD" />
+        <title>POST WOOK x DxD</title>
+        <meta name="description" content="POST WOOK x DxD" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         
         {/* Essential OG Tags */}
-        <meta property="og:title" content="Post Wook x DxD" />
+        <meta property="og:title" content="POST WOOK x DxD" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://devilxdetail.com/pw" />
         <meta property="og:image" content="https://devilxdetail.com/pw-header.png" />
-        <meta property="og:description" content="Post Wook x DxD" />
+        <meta property="og:description" content="POST WOOK x DxD" />
         
         {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Post Wook x DxD" />
-        <meta name="twitter:description" content="Post Wook x DxD" />
+        <meta name="twitter:title" content="POST WOOK x DxD" />
+        <meta name="twitter:description" content="POST WOOK x DxD" />
         <meta name="twitter:image" content="https://devilxdetail.com/pw-header.png" />
       </Helmet>
       
@@ -101,7 +101,7 @@ const PW = () => {
             {/* Description Section */}
             <div className="pw-description">
               <div className="pw-auction-info">
-                <p className="pw-auction-text1">Post Wook x DxD</p>
+                <p className="pw-auction-text1">POST WOOK x DxD</p>
                 <p className="pw-auction-text2">October 2025</p>
                 <p className="pw-auction-text2">18 1/1 Auctions w/ Matching 1/1 Jacket</p>
               </div>
