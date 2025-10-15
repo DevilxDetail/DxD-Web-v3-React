@@ -7,4 +7,5 @@ VITE_SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
 VITE_GOOGLE_PLACES_API_KEY=your_google_places_api_key
 
 # SendGrid Configuration
-SENDGRID_API_KEY=your_sendgrid_api_key 
+SENDGRID_API_KEY=your_sendgrid_api_key
+ORDER_NOTIFICATION_EMAIL=your_order_notification_email@devilxdetail.com 

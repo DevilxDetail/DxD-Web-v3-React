@@ -187,6 +187,28 @@ const TheGarden = () => {
         }
       }
 
+      // Send SMS notification
+      try {
+        await fetch('/api/send-order-sms', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            phoneNumber: '+1234567890', // Replace with your phone number for SMS notifications
+            orderDetails: {
+              size: selectedSize,
+              twitter: formData.twitter,
+              orderId: new Date().getTime().toString() // Simple order ID based on timestamp
+            }
+          })
+        })
+        console.log('SMS notification sent successfully')
+      } catch (smsError) {
+        console.error('Error sending SMS notification:', smsError)
+        // Don't fail the order if SMS fails
+      }
+
       // Close data modal and show success modal
       setShowDataModal(false)
       setShowSuccessModal(true)

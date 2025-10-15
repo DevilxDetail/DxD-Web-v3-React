@@ -19,6 +19,10 @@
       "dest": "/api/send-mint-email.js"
     },
     {
+      "src": "/api/send-order-sms",
+      "dest": "/api/send-order-sms.js"
+    },
+    {
       "src": "/thegarden",
       "dest": "/api/thegarden"
     },
