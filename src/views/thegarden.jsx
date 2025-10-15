@@ -355,7 +355,7 @@ const TheGarden = () => {
               <div className="thegarden-item">
                 <h4 className="thegarden-item-title">The Garden at Roy’s - Zip Up</h4>
                 <ul className="thegarden-item-details">
-                  <li>.0169 ETH // Limited run</li>
+                  <li>.0169 ETH // $69 USD</li>
                   <li>Pick up in Marfa</li>
                   <li>Produced with Devil x Detail</li>
                 </ul>
@@ -450,7 +450,7 @@ const TheGarden = () => {
               disabled={isOrdering}
               className="thegarden-order-button"
             >
-              {isOrdering ? 'PROCESSING...' : 'CHECKOUT'}
+              {isOrdering ? 'PROCESSING...' : 'RESERVE'}
             </button>
           </div>
         </div>
@@ -471,14 +471,12 @@ const TheGarden = () => {
             </div>
             <div className="thegarden-modal-content">
               <p>
-                Please provide your Twitter handle and select a size to complete your order.{' '}
+                Please provide your Twitter handle and select a size to reserve your hoodie.{' '}
                 <strong>The hoodie is only available for pick up in Marfa 10/15 - 10/19.</strong>{' '}
-                We will coordinate via Twitter DM.
               </p>
 
               <p>
-                {' '}<strong>*** We are aware that some wallets have flagged the Devil x Detail EVM address as fake phishing. The account has not been compromised 
-                but if you have concerns, please dm @nicedayjules or @devilxdetail. ***</strong>{' '}
+                We will coordinate pickup via DM. Be prepared to pay at that time (send ETH to devilxdetail.eth or pay in cash).
               </p>
               
               <div className="thegarden-form-group">
@@ -522,7 +520,7 @@ const TheGarden = () => {
                   disabled={isLoading || !selectedSize}
                   className="thegarden-button-primary"
                 >
-                  Purchase
+                  Confirm
                 </button>
               </div>
             </div>
@@ -638,7 +636,7 @@ const TheGarden = () => {
               </button>
             </div>
             <div className="thegarden-modal-content">
-              <p>Congratulations! We will DM you to coordinate pick up in Marfa.</p>
+              <p>Your hoodie is reserved! We will DM you to coordinate pick up in Marfa.</p>
               <div className="thegarden-modal-actions">
                 <button 
                   onClick={() => setShowSuccessModal(false)}
