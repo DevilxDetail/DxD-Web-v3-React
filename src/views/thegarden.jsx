@@ -9,17 +9,14 @@ const TheGarden = () => {
   const [selectedSize, setSelectedSize] = useState('')
   const [isOrdering, setIsOrdering] = useState(false)
   const [showDataModal, setShowDataModal] = useState(false)
-  const [showConfirmationModal, setShowConfirmationModal] = useState(false)
   const [userData, setUserData] = useState(null)
   const [formData, setFormData] = useState({
     twitter: ''
   })
   const [formErrors, setFormErrors] = useState({})
   const [isLoading, setIsLoading] = useState(false)
-  const [showEditForm, setShowEditForm] = useState(false)
   const [inventory, setInventory] = useState({})
   const [dropdownOpen, setDropdownOpen] = useState(false)
-  const [paymentLoading, setPaymentLoading] = useState(false)
   const [showSuccessModal, setShowSuccessModal] = useState(false)
 
   // Close dropdown when clicking outside
@@ -157,155 +154,47 @@ const TheGarden = () => {
 
     setIsLoading(true)
     try {
-      // No DB write here; we only open confirmation. DB insert happens after successful payment.
-      setShowDataModal(false)
-      setShowConfirmationModal(true)
-    } finally {
-      setIsLoading(false)
-    }
-  }
-
-
-  // Minting and wallet connection removed – DB-only order flow
-
-  const handleSaveChanges = async () => {
-    if (!validateForm()) {
-      return
-    }
-
-    setIsLoading(true)
-    try {
-      // Update the order with new Twitter handle
-      const { error: updateError } = await supabaseServiceRole
+      // Create order record directly
+      const { error: orderError } = await supabaseServiceRole
         .from('order_garden')
-        .update({
-          twitter: formData.twitter
-        })
-        .eq('size', selectedSize)
-        .is('transaction_id', null)
-        .order('created_at', { ascending: false })
-        .limit(1);
+        .insert([{
+          size: selectedSize,
+          twitter: formData.twitter,
+          transaction_id: null
+        }])
 
-      if (updateError) throw updateError
+      if (orderError) {
+        console.error('Error saving to order_garden table:', orderError)
+        alert('Error saving your order. Please try again.')
+        return
+      }
 
-      setShowEditForm(false)
-      
-      // Show success message
-      alert('Your information has been saved successfully!')
+      // Decrement inventory for purchased size
+      const sizeMap = { 'S': 'Small', 'M': 'Medium', 'L': 'Large', 'XL': 'XLarge', 'XXL': 'XXLarge' }
+      const dbSizeName = sizeMap[selectedSize]
+      if (dbSizeName) {
+        const currentQty = inventory?.[dbSizeName] ?? 0
+        const nextQty = currentQty > 0 ? currentQty - 1 : 0
+        const { error: inventoryError } = await supabaseServiceRole
+          .from('inventory_garden')
+          .update({ quantity: nextQty })
+          .eq('size', dbSizeName)
+        
+        if (inventoryError) {
+          console.error('Error updating inventory:', inventoryError)
+        } else {
+          setInventory(prev => ({ ...prev, [dbSizeName]: nextQty }))
+        }
+      }
+
+      // Close data modal and show success modal
+      setShowDataModal(false)
+      setShowSuccessModal(true)
     } catch (error) {
-      console.error('Error saving data:', error)
-      alert('Error saving your information. Please try again.')
+      console.error('Error processing order:', error)
+      alert('Error processing your order. Please try again.')
     } finally {
       setIsLoading(false)
-    }
-  }
-
-  const handleConfirmation = async () => {
-    try {
-      if (!window.ethereum) {
-        alert('A crypto wallet (e.g., Metamask) is required to complete payment.');
-        return;
-      }
-
-      setPaymentLoading(true)
-
-      const provider = window.ethereum
-      const MAINNET_ID = '0x1' // Ethereum Mainnet chain id
-
-      // Ensure Ethereum Mainnet
-      try {
-        const currentChain = await provider.request({ method: 'eth_chainId' })
-        if (currentChain !== MAINNET_ID) {
-          try {
-            await provider.request({
-              method: 'wallet_switchEthereumChain',
-              params: [{ chainId: MAINNET_ID }]
-            })
-          } catch (switchErr) {
-            if (switchErr.code === 4902) {
-              // Add Ethereum Mainnet then switch
-              await provider.request({
-                method: 'wallet_addEthereumChain',
-                params: [{
-                  chainId: MAINNET_ID,
-                  chainName: 'Ethereum Mainnet',
-                  rpcUrls: ['https://ethereum.publicnode.com'],
-                  nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
-                  blockExplorerUrls: ['https://etherscan.io']
-                }]
-              })
-            } else {
-              throw switchErr
-            }
-          }
-        }
-      } catch (netErr) {
-        console.error('Network switch error:', netErr)
-        alert('Please switch your wallet network to Ethereum Mainnet and try again.')
-        return
-      }
-
-      // Request account and send transaction
-      const accounts = await provider.request({ method: 'eth_requestAccounts' })
-      const fromAddress = accounts?.[0]
-      if (!fromAddress) {
-        alert('No wallet account available.')
-        return
-      }
-
-      const web3 = new Web3(provider)
-      const valueWei = web3.utils.toWei('0.0169', 'ether')
-      const toAddress = '0x1146e58573f913033b0cdCc522fEb2546A429526'
-
-      try {
-        const receipt = await web3.eth.sendTransaction({
-          from: fromAddress,
-          to: toAddress,
-          value: valueWei
-        })
-
-        // Create order record now that payment is confirmed
-        try {
-          await supabaseServiceRole
-            .from('order_garden')
-            .insert([{
-              size: selectedSize,
-              twitter: formData.twitter,
-              transaction_id: receipt?.transactionHash || null
-            }])
-        } catch (e) {
-          console.warn('Order insert failed:', e)
-        }
-
-        // Decrement inventory for purchased size
-        try {
-          const sizeMap = { 'S': 'Small', 'M': 'Medium', 'L': 'Large', 'XL': 'XLarge', 'XXL': 'XXLarge' }
-          const dbSizeName = sizeMap[selectedSize]
-          if (dbSizeName) {
-            const currentQty = inventory?.[dbSizeName] ?? 0
-            const nextQty = currentQty > 0 ? currentQty - 1 : 0
-            const { error: inventoryError } = await supabaseServiceRole
-              .from('inventory_garden')
-              .update({ quantity: nextQty })
-              .eq('size', dbSizeName)
-            if (inventoryError) {
-              console.error('Error updating inventory:', inventoryError)
-            } else {
-              setInventory(prev => ({ ...prev, [dbSizeName]: nextQty }))
-            }
-          }
-        } catch (inventoryErr) {
-          console.error('Inventory decrement error:', inventoryErr)
-        }
-
-        setShowConfirmationModal(false)
-        setShowSuccessModal(true)
-      } catch (txErr) {
-        console.error('Transaction error:', txErr)
-        alert(txErr?.message || 'Transaction failed or was rejected.')
-      }
-    } finally {
-      setPaymentLoading(false)
     }
   }
 
@@ -528,99 +417,6 @@ const TheGarden = () => {
         </div>
       )}
 
-      {/* Confirmation Modal */}
-      {showConfirmationModal && (
-        <div className="thegarden-modal-overlay">
-          <div className="thegarden-modal">
-            <div className="thegarden-modal-header">
-              <h3>Confirm Your Order</h3>
-              <button 
-                onClick={() => setShowConfirmationModal(false)}
-                className="thegarden-modal-close"
-              >
-                ×
-              </button>
-            </div>
-            <div className="thegarden-modal-content">
-              <div className="thegarden-order-summary">
-                <h4>Order Summary</h4>
-                <div className="thegarden-order-details">
-                  <p><strong>Drop:</strong> The Garden</p>
-                  <p><strong>Size:</strong> {selectedSize}</p>
-                  <p><strong>Price:</strong> 0.0169 ETH</p>
-                </div>
-                
-                <div className="thegarden-shipping-info">
-                  <div className="thegarden-shipping-header">
-                    <h5>Order Information</h5>
-                    <button 
-                      onClick={() => setShowEditForm(!showEditForm)}
-                      className="thegarden-edit-button"
-                    >
-                      {showEditForm ? 'Cancel Edit' : 'Edit'}
-                    </button>
-                  </div>
-                  
-                  {!showEditForm ? (
-                    <>
-                      <p><strong>Twitter Handle:</strong> {formData.twitter}</p>
-                    </>
-                  ) : (
-                    <div className="thegarden-edit-form">
-                      <div className="thegarden-form-group">
-                        <label>Twitter Handle *</label>
-                        <input
-                          type="text"
-                          name="twitter"
-                          value={formData.twitter}
-                          onChange={handleFormChange}
-                          className={formErrors.twitter ? 'thegarden-input-error' : 'thegarden-input'}
-                          placeholder="@yourusername"
-                        />
-                        {formErrors.twitter && <span className="thegarden-error">{formErrors.twitter}</span>}
-                      </div>
-
-                      <div className="thegarden-modal-actions" style={{ marginTop: '20px', paddingTop: '20px', borderTop: '1px solid #E2E8F0' }}>
-                        <button 
-                          onClick={() => setShowEditForm(false)}
-                          className="thegarden-button-secondary"
-                        >
-                          Cancel
-                        </button>
-                        <button 
-                          onClick={handleSaveChanges}
-                          disabled={isLoading}
-                          className="thegarden-button-primary"
-                        >
-                          {isLoading ? 'Saving...' : 'Save Changes'}
-                        </button>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              {!showEditForm && (
-                <div className="thegarden-modal-actions">
-                  <button 
-                    onClick={() => setShowConfirmationModal(false)}
-                    className="thegarden-button-secondary"
-                  >
-                    Cancel
-                  </button>
-                  <button 
-                    onClick={handleConfirmation}
-                    disabled={isLoading || paymentLoading}
-                    className="thegarden-button-primary"
-                  >
-                    {paymentLoading ? 'Processing...' : (isLoading ? 'Saving...' : 'Done')}
-                  </button>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
 
 
       {showSuccessModal && (
