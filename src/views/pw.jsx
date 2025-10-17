@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Helmet } from 'react-helmet'
-import { supabase } from '../lib/supabase'
+import { supabase, supabaseServiceRole } from '../lib/supabase'
 import './pw.css'
 
 const PW = () => {
@@ -83,7 +83,10 @@ const PW = () => {
     setSubmitMessage('')
 
     try {
-      const { data, error } = await supabase
+      // Use service role client if available (for RLS bypass), otherwise fall back to regular client
+      const client = supabaseServiceRole || supabase
+      
+      const { data, error } = await client
         .from('presale')
         .insert([
           {
