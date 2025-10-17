@@ -79,17 +79,6 @@ const PW = () => {
       return
     }
     
-    // Check if Supabase is properly configured
-    if (!import.meta.env.VITE_SUPABASE_URL || import.meta.env.VITE_SUPABASE_URL.includes('your_supabase_project_url')) {
-      setSubmitMessage('Database not configured. Please contact support.')
-      setShowToast(true)
-      setTimeout(() => {
-        setShowToast(false)
-        setSubmitMessage('')
-      }, 5000)
-      return
-    }
-    
     setIsSubmitting(true)
     setSubmitMessage('')
 
@@ -126,17 +115,7 @@ const PW = () => {
         code: error.code
       })
       
-      // More specific error message based on error type
-      let errorMessage = 'Error submitting form. Please try again.'
-      if (error.message?.includes('Invalid API key')) {
-        errorMessage = 'Database connection error. Please contact support.'
-      } else if (error.message?.includes('relation "presale" does not exist')) {
-        errorMessage = 'Database table not found. Please contact support.'
-      } else if (error.message?.includes('duplicate key')) {
-        errorMessage = 'This email or Twitter handle is already registered.'
-      }
-      
-      setSubmitMessage(errorMessage)
+      setSubmitMessage('Error submitting form. Please try again.')
       setShowToast(true)
       
       // Auto-dismiss error toast after 5 seconds
