@@ -11,6 +11,49 @@ const PW = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitMessage, setSubmitMessage] = useState('')
   const [showToast, setShowToast] = useState(false)
+  const [validationErrors, setValidationErrors] = useState({})
+
+  // Validation functions
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!email.trim()) {
+      return 'Email is required'
+    }
+    if (!emailRegex.test(email)) {
+      return 'Please enter a valid email address'
+    }
+    return null
+  }
+
+  const validateTwitter = (twitter) => {
+    if (!twitter.trim()) {
+      return 'Twitter handle is required'
+    }
+    // Remove @ if present and validate format
+    const cleanTwitter = twitter.replace(/^@/, '')
+    const twitterRegex = /^[a-zA-Z0-9_]{1,15}$/
+    if (!twitterRegex.test(cleanTwitter)) {
+      return 'Please enter a valid Twitter handle (1-15 characters, letters, numbers, and underscores only)'
+    }
+    return null
+  }
+
+  const validateForm = () => {
+    const errors = {}
+    
+    const emailError = validateEmail(formData.email)
+    if (emailError) {
+      errors.email = emailError
+    }
+    
+    const twitterError = validateTwitter(formData.twitter)
+    if (twitterError) {
+      errors.twitter = twitterError
+    }
+    
+    setValidationErrors(errors)
+    return Object.keys(errors).length === 0
+  }
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -18,10 +61,24 @@ const PW = () => {
       ...prev,
       [name]: value
     }))
+    
+    // Clear validation error for this field when user starts typing
+    if (validationErrors[name]) {
+      setValidationErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }))
+    }
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    
+    // Validate form before submission
+    if (!validateForm()) {
+      return
+    }
+    
     setIsSubmitting(true)
     setSubmitMessage('')
 
@@ -30,8 +87,8 @@ const PW = () => {
         .from('presale')
         .insert([
           {
-            twitter: formData.twitter,
-            email: formData.email,
+            twitter: formData.twitter.replace(/^@/, ''), // Remove @ symbol if present
+            email: formData.email.trim().toLowerCase(), // Normalize email
             artist: 'POST WOOK'
           }
         ])
@@ -119,32 +176,42 @@ const PW = () => {
                 and a special gift</p>
               
               <form onSubmit={handleSubmit} className="pw-form">
-                <input
-                  type="text"
-                  name="twitter"
-                  placeholder="Twitter Handle"
-                  value={formData.twitter}
-                  onChange={handleInputChange}
-                  className="pw-input"
-                  required
-                />
-                
-                <div className="pw-email-container">
+                <div className="pw-input-group">
                   <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    value={formData.email}
+                    type="text"
+                    name="twitter"
+                    placeholder="Twitter Handle"
+                    value={formData.twitter}
                     onChange={handleInputChange}
-                    className="pw-input pw-email-input"
+                    className={`pw-input ${validationErrors.twitter ? 'pw-input-error' : ''}`}
                     required
                   />
+                  {validationErrors.twitter && (
+                    <div className="pw-error-message">{validationErrors.twitter}</div>
+                  )}
+                </div>
+                
+                <div className="pw-email-container">
+                  <div className="pw-input-group">
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className={`pw-input pw-email-input ${validationErrors.email ? 'pw-input-error' : ''}`}
+                      required
+                    />
+                    {validationErrors.email && (
+                      <div className="pw-error-message">{validationErrors.email}</div>
+                    )}
+                  </div>
                   <button 
                     type="submit" 
                     className="pw-submit-btn"
                     disabled={isSubmitting}
                   >
-                    Submit
+                    {isSubmitting ? 'Submitting...' : 'Submit'}
                   </button>
                 </div>
               </form>
