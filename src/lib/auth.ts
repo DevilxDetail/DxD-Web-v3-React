@@ -1,9 +1,10 @@
-import { supabase } from './supabase';
+import { supabase, supabaseServiceRole } from './supabase';
 
 // Add a test function to verify Supabase connection
 export async function testSupabaseConnection() {
   try {
-    const { data, error } = await supabase.from('user').select('count').limit(1);
+    const client = supabaseServiceRole || supabase;
+    const { data, error } = await client.from('user').select('count').limit(1);
     if (error) throw error;
     console.log('Supabase connection test successful:', data);
     return true;
@@ -34,11 +35,14 @@ export async function createOrUpdateSupabaseUser(privyUser: PrivyUser) {
     throw new Error('Wallet address is required');
   }
 
+  // Use service role client to bypass RLS policies since we're using Privy auth
+  const client = supabaseServiceRole || supabase;
+
   try {
     console.log('Checking for existing user with auth_user_id:', privyUser.id);
     
     // Modified query to handle 406 error
-    const { data: existingUser, error: fetchError } = await supabase
+    const { data: existingUser, error: fetchError } = await client
       .from('user')
       .select('id, auth_user_id, evm_wallet, email, name')
       .eq('auth_user_id', privyUser.id)
@@ -60,7 +64,7 @@ export async function createOrUpdateSupabaseUser(privyUser: PrivyUser) {
 
     if (!existingUser) {
       console.log('Creating new user...');
-      const { data, error } = await supabase
+      const { data, error } = await client
         .from('user')
         .insert([{
           ...userData,
@@ -78,7 +82,7 @@ export async function createOrUpdateSupabaseUser(privyUser: PrivyUser) {
       return data;
     } else {
       console.log('Updating existing user...');
-      const { data, error } = await supabase
+      const { data, error } = await client
         .from('user')
         .update(userData)
         .eq('auth_user_id', privyUser.id)

@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect, useRef } from 'react'
 import { Helmet } from 'react-helmet'
 import { usePrivy, useWallets } from "@privy-io/react-auth"
-import { supabase } from '../lib/supabase'
+import { getSupabaseClient } from '../lib/supabase'
 import Web3 from 'web3'
 import Header from '../components/header'
 import ConsistentFooter from '../components/ConsistentFooter'
@@ -181,7 +181,8 @@ const BlueSkies = () => {
 
   const fetchUserData = async () => {
     try {
-      const { data, error } = await supabase
+      const client = getSupabaseClient();
+      const { data, error } = await client
         .from('user')
         .select('email, address')
         .eq('auth_user_id', user.id)
@@ -669,21 +670,22 @@ const BlueSkies = () => {
           
           // If transaction successful, save to database
           try {
-            // First, get the user_id from the user table
-            const { data: dbUserData, error: userDataError } = await supabase
+            // First, get the id from the user table
+            const client = getSupabaseClient();
+            const { data: dbUserData, error: userDataError } = await client
               .from('user')
-              .select('user_id')
+              .select('id')
               .eq('auth_user_id', user.id)
               .single();
 
             if (userDataError) {
-              console.error('Error getting user_id:', userDataError);
+              console.error('Error getting user id:', userDataError);
               throw userDataError;
             }
 
             // Save to order table using user_id (primary key from user table)
             const orderData = {
-              user_id: dbUserData.user_id,
+              user_id: dbUserData.id,
               drop: 'Blue Skies Forever',
               size: selectedSize,
               address: userData?.address || formData.address,
@@ -694,7 +696,7 @@ const BlueSkies = () => {
 
             console.log('Order data to insert:', orderData);
 
-            const { error: orderError } = await supabase
+            const { error: orderError } = await client
               .from('order')
               .insert([orderData]);
 
@@ -786,7 +788,8 @@ const BlueSkies = () => {
     setIsLoading(true)
     try {
       // Save to user table - use address directly from Google Places
-      const { error: userError } = await supabase
+      const client = getSupabaseClient();
+      const { error: userError } = await client
         .from('user')
         .update({
           email: formData.email,

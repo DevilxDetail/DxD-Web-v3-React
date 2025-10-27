@@ -38,6 +38,7 @@ import Arc from './views/arc'
 import BlueSkies from './views/blueskies'
 import TheGarden from './views/thegarden'
 import ISpy from './views/ispy'
+import PostWook from './views/postwook'
 import ScrollToTop from './components/ScrollToTop'
 
 const App = () => {
@@ -73,6 +74,7 @@ const App = () => {
         <Route component={BlueSkies} exact path="/blueskies" />
         <Route component={TheGarden} exact path="/thegarden" />
         <Route component={ISpy} exact path="/ispy" />
+        <Route component={PostWook} exact path="/postwook" />
         <Route component={NotFound} path="**" />
         <Redirect to="**" />
       </Switch>

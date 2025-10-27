@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import { usePrivy } from "@privy-io/react-auth";
 import { Helmet } from 'react-helmet'
-import { supabase } from '../lib/supabase'
+import { getSupabaseClient } from '../lib/supabase'
 import { Link, useHistory } from 'react-router-dom'
 
 import Header from '../components/header'
@@ -18,11 +18,12 @@ const Profile = (props) => {
     async function fetchUserProfile() {
       if (authenticated && user?.id) {
         try {
-          const { data, error } = await supabase
+          const client = getSupabaseClient();
+          const { data, error } = await client
             .from('user')
-            .select('user_id, auth_user_id, evm_wallet, email, name, profile_image')
+            .select('id, auth_user_id, evm_wallet, email, name, profile_image')
             .eq('auth_user_id', user.id)
-            .single();
+            .maybeSingle();
 
           if (error) {
             console.error('Error fetching user profile:', error);

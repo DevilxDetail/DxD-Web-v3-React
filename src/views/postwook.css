@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Century+Old+Style+Std:wght@400;700&display=swap');
+
+/* Transparent Header for PostWook Page */
+.postwook-page .header-header {
+  background-color: transparent !important;
+  backdrop-filter: none !important;
+}
+
+/* Transparent Footer for PostWook Page */
+.postwook-page .footer-container1 {
+  background-color: transparent !important;
+  backdrop-filter: none !important;
+}
+
+/* Ensure footer text is visible on background */
+.postwook-page .footer-text10,
+.postwook-page .footer-text11,
+.postwook-page .footer-text12,
+.postwook-page .footer-text13,
+.postwook-page .footer-text14,
+.postwook-page .footer-link,
+.postwook-page .footer-navlink1,
+.postwook-page .footer-navlink2,
+.postwook-page .footer-navlink3,
+.postwook-page .footer-navlink4,
+.postwook-page .footer-navlink5 {
+  color: black !important;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.postwook-page .footer-link:hover,
+.postwook-page .footer-navlink1:hover,
+.postwook-page .footer-navlink2:hover,
+.postwook-page .footer-navlink3:hover,
+.postwook-page .footer-navlink4:hover,
+.postwook-page .footer-navlink5:hover {
+  color: #666 !important;
+}
+
+/* Ensure header text is visible */
+.postwook-page .header-navlink2 {
+  color: #2D3748 !important;
+}
+
+.postwook-page .header-navlink2:hover {
+  color: #b50000 !important;
+}
+
+.postwook-container {
+  width: 100%;
+  min-height: 100vh;
+  background-image: url('/Rectangle.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+}
+
+.postwook-main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 60px;
+  width: 100%;
+}
+
+/* Hero Section */
+.postwook-hero {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 60px;
+}
+
+.postwook-hero-image {
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+  object-fit: contain;
+  aspect-ratio: 16 / 9;
+}
+
+/* Text Section */
+.postwook-text-section {
+  width: 100%;
+  max-width: 1000px;
+  text-align: center;
+}
+
+.postwook-text-placeholder {
+  font-family: 'Century Old Style Std', serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: black;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Auctions Grid */
+.postwook-auctions-grid {
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.postwook-auction-item {
+  width: 100%;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+}
+
+.postwook-auction-item:hover {
+  border-color: #007bff;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.postwook-auction-placeholder {
+  font-family: 'Century Old Style Std', serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #666;
+  text-align: center;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 1024px) {
+  .postwook-auctions-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .postwook-main-content {
+    padding: 40px 15px;
+    gap: 40px;
+  }
+  
+  .postwook-hero {
+    margin-top: 40px;
+  }
+  
+  .postwook-hero-image {
+    max-width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+  
+  .postwook-text-placeholder {
+    font-size: 16px;
+  }
+  
+  .postwook-auctions-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  
+  .postwook-auction-item {
+    aspect-ratio: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .postwook-main-content {
+    padding: 30px 10px;
+    gap: 30px;
+  }
+  
+  .postwook-hero {
+    margin-top: 30px;
+  }
+  
+  .postwook-hero-image {
+    aspect-ratio: 16 / 9;
+  }
+  
+  .postwook-text-placeholder {
+    font-size: 14px;
+  }
+  
+  .postwook-auctions-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  
+  .postwook-auction-placeholder {
+    font-size: 14px;
+  }
+}
+

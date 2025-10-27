@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect, useRef } from 'react'
 import { usePrivy } from "@privy-io/react-auth";
 import { Helmet } from 'react-helmet'
-import { supabase } from '../lib/supabase'
+import { getSupabaseClient } from '../lib/supabase'
 import { uploadProfileImage } from '../lib/storage'
 import { useHistory } from 'react-router-dom'
 import { ethers } from 'ethers';
@@ -44,11 +44,12 @@ const Account = (props) => {
     async function fetchUserData() {
       if (authenticated && user?.id) {
         try {
-          const { data, error } = await supabase
+          const client = getSupabaseClient();
+          const { data, error } = await client
             .from('user')
-            .select('*')
+            .select('id, auth_user_id, evm_wallet, email, name, phone, address, profile_image')
             .eq('auth_user_id', user.id)
-            .single();
+            .maybeSingle();
 
           if (error) {
             console.error('Error fetching user data:', error);
@@ -151,7 +152,8 @@ const Account = (props) => {
     try {
       setSaveStatus('saving');
       
-      const { error } = await supabase
+      const client = getSupabaseClient();
+      const { error } = await client
         .from('user')
         .update({
           name: formData.name,

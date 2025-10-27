@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { usePrivy } from "@privy-io/react-auth";
-import { supabase, supabaseServiceRole } from '../lib/supabase';
+import { getSupabaseClient } from '../lib/supabase';
 import './arc.css';
 
 const Arc = () => {
@@ -91,16 +91,12 @@ const Arc = () => {
             console.log('Privy authenticated:', authenticated);
             console.log('Privy user:', user);
 
-            // Check Supabase auth state
-            const { data: { user: supabaseUser }, error: authError } = await supabase.auth.getUser();
-            console.log('Supabase auth user:', supabaseUser);
-            console.log('Supabase auth error:', authError);
-
             // First, check if user exists in user table
             console.log('Checking if user exists in user table...');
-            const { data: existingUser, error: userCheckError } = await supabase
+            const client = getSupabaseClient();
+            const { data: existingUser, error: userCheckError } = await client
                 .from('user')
-                .select('user_id, auth_user_id')
+                .select('id, auth_user_id')
                 .eq('auth_user_id', user.id)
                 .single();
 
@@ -109,7 +105,7 @@ const Arc = () => {
                 // Continue anyway - might be a new user
             } else if (!existingUser) {
                 console.log('User not found in user table, creating new user...');
-                const { error: createUserError } = await supabase
+                const { error: createUserError } = await client
                     .from('user')
                     .insert([{
                         auth_user_id: user.id,
@@ -129,7 +125,7 @@ const Arc = () => {
             } else {
                 // User exists, update their role to "Arc"
                 console.log('User exists, updating role to Arc...');
-                const { data: userUpdateData, error: userUpdateError } = await supabase
+                const { data: userUpdateData, error: userUpdateError } = await client
                     .from('user')
                     .update({ role: 'Arc' })
                     .eq('auth_user_id', user.id)
@@ -146,20 +142,20 @@ const Arc = () => {
             // Then, create the order in the order table
             console.log('Attempting to create order...');
             
-            // Get the user_id from the user table first
-            const { data: userData, error: userDataError } = await supabase
+            // Get the id from the user table first
+            const { data: userData, error: userDataError } = await client
                 .from('user')
-                .select('user_id')
+                .select('id')
                 .eq('auth_user_id', user.id)
                 .single();
 
             if (userDataError) {
-                console.error('Error getting user_id:', userDataError);
+                console.error('Error getting user id:', userDataError);
                 throw userDataError;
             }
 
             const orderData = {
-                user_id: userData.user_id,
+                user_id: userData.id,
                 drop: 'Blue Skies Bonus',
                 size: selectedShoeSize,
                 created_at: new Date().toISOString(),
@@ -168,7 +164,7 @@ const Arc = () => {
             console.log('Order data to insert:', orderData);
 
             // Use the same pattern as blueskies.jsx
-            const { error: orderError } = await supabase
+            const { error: orderError } = await client
                 .from('order')
                 .insert([orderData]);
 

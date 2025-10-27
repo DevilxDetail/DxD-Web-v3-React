@@ -259,8 +259,7 @@ const IYKPage = () => {
         backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("/ClickCreate Background.png")',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        fontFamily: 'Lato, sans-serif',
-        position: 'relative'
+        fontFamily: 'Lato, sans-serif'
       }}>
       {/* Header Container */}
       <div style={{
@@ -554,9 +553,7 @@ const IYKPage = () => {
                                 border: formErrors.twitter ? '1px solid #b50000' : '1px solid #ccc',
                                 fontSize: '12pt',
                                 textAlign: 'left',
-                                fontFamily: 'Lato, sans-serif',
-                                'text-align': 'left',
-                                textAlign: 'left'
+                                fontFamily: 'Lato, sans-serif'
                               }}
                             />
                             {formErrors.twitter && (
@@ -589,9 +586,7 @@ const IYKPage = () => {
                                 border: formErrors.email ? '1px solid #b50000' : '1px solid #ccc',
                                 fontSize: '12pt',
                                 textAlign: 'left',
-                                fontFamily: 'Lato, sans-serif',
-                                'text-align': 'left',
-                                textAlign: 'left'
+                                fontFamily: 'Lato, sans-serif'
                               }}
                             />
                             {formErrors.email && (
@@ -624,9 +619,7 @@ const IYKPage = () => {
                                 border: formErrors.evm_wallet ? '1px solid #b50000' : '1px solid #ccc',
                                 fontSize: '12pt',
                                 textAlign: 'left',
-                                fontFamily: 'Lato, sans-serif',
-                                'text-align': 'left',
-                                textAlign: 'left'
+                                fontFamily: 'Lato, sans-serif'
                               }}
                             />
                             {formErrors.evm_wallet && (
