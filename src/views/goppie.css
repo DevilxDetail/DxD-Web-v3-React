@@ -136,6 +136,7 @@
     line-height: 1.4;
     max-width: 100%;
     font-family: 'Lato', sans-serif;
+    word-break: break-all;
 }
 
 .action-buttons {
