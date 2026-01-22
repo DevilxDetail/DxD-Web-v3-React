@@ -135,7 +135,13 @@ const Goppie = () => {
                                 <div className="welcome-container">
                                     <img src="/goppie-hero.png" alt="Goppie" className="hero-image" />
                                     <p className="welcome-message">
-                                        Congratulations! You have successfully authenticated your IYK chip.
+                                        The beginning of what's next. Open to influence and interpretation. The foundation. CTRL
+                                    </p>
+                                    <p className="welcome-message">
+                                        To mint, copy the claim code below and access the Manifold link. The mint is free but you will have to cover a small Manifold fee and gas.
+                                    </p>
+                                    <p className="welcome-message">
+                                        Make sure you don't lose this tile, it will be your key to future access.
                                     </p>
                                     
                                     {/* Show loading state while checking database */}
