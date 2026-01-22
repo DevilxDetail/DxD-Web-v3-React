@@ -1,0 +1,411 @@
+@import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Lato:wght@400;600;700&display=swap');
+
+.goppie-page {
+    min-height: 100vh;
+    background: #000000;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: 'Lato', sans-serif;
+}
+
+.goppie-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+.goppie-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* Loading Styles */
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Error Styles - Black screen with "nothing to see here" */
+.error-container {
+    background: black;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+}
+
+.error-text {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: none;
+    letter-spacing: 2px;
+    font-family: 'Lato', sans-serif;
+}
+
+/* Welcome Content Styles */
+.welcome-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 35px;
+    width: 100%;
+    max-width: 500px;
+    padding: 20px 20px 10px 20px;
+    min-height: 100vh;
+}
+
+.hero-image {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 12px;
+}
+
+.welcome-title {
+    font-size: 110px;
+    font-weight: 900;
+    color: white;
+    font-family: 'Arial Black', 'Arial Bold', Arial, sans-serif;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+.welcome-subtitle {
+    font-size: 60px;
+    font-weight: 900;
+    color: white;
+    font-family: 'Arial Black', 'Arial Bold', Arial, sans-serif;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+.welcome-message {
+    font-size: 28px;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+    text-align: center;
+    line-height: 1.4;
+    max-width: 450px;
+    font-family: 'Lato', sans-serif;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 300px;
+    margin: 30px 0;
+}
+
+.create-account-btn {
+    background: #1a365d;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Lato', sans-serif;
+    transition: background-color 0.3s ease;
+}
+
+.create-account-btn:hover {
+    background: #2d5a8b;
+}
+
+.create-account-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.chip-uid {
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    margin: 20px 0;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    letter-spacing: 1px;
+}
+
+.manifold-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin: 30px 0;
+}
+
+.manifold-loading p {
+    color: white;
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+}
+
+.manifold-code-container {
+    margin: 30px 0;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.manifold-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+    margin: 0 0 20px 0;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.manifold-code {
+    font-size: 32px;
+    font-weight: 900;
+    color: white;
+    margin: 0;
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 3px;
+    word-break: break-all;
+}
+
+.no-code-message {
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 20px 0;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    font-style: italic;
+}
+
+.welcome-footer {
+    font-size: 14px;
+    font-weight: 400;
+    color: white;
+    margin: 0;
+    text-align: center;
+    line-height: 1.5;
+    max-width: 450px;
+    opacity: 0.9;
+    font-family: 'Lato', sans-serif;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .welcome-container {
+        gap: 25px;
+        padding: 15px 20px 5px 20px;
+    }
+    
+    .welcome-title {
+        font-size: 70px;
+        font-family: 'Arial Black', 'Arial Bold', Arial, sans-serif;
+        font-weight: 900;
+    }
+    
+    .welcome-subtitle {
+        font-size: 40px;
+        font-family: 'Arial Black', 'Arial Bold', Arial, sans-serif;
+        font-weight: 900;
+    }
+    
+    .welcome-message {
+        font-size: 22px;
+    }
+    
+    .welcome-footer {
+        font-size: 12px;
+    }
+    
+    .error-text {
+        font-size: 16px;
+    }
+    
+    .action-buttons {
+        max-width: 280px;
+        margin: 25px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .welcome-container {
+        gap: 20px;
+        padding: 10px 15px 5px 15px;
+    }
+    
+    .welcome-title {
+        font-size: 50px;
+        font-family: 'Arial Black', 'Arial Bold', Arial, sans-serif;
+        font-weight: 900;
+    }
+    
+    .welcome-subtitle {
+        font-size: 30px;
+        font-family: 'Arial Black', 'Arial Bold', Arial, sans-serif;
+        font-weight: 900;
+    }
+    
+    .welcome-message {
+        font-size: 18px;
+    }
+    
+    .welcome-footer {
+        font-size: 11px;
+    }
+    
+    .error-text {
+        font-size: 14px;
+    }
+    
+    .action-buttons {
+        max-width: 260px;
+        margin: 20px 0;
+    }
+    
+    .create-account-btn {
+        padding: 12px 25px;
+        font-size: 14px;
+    }
+}
+
+/* Submission Status Overlay */
+.goppie-status-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.goppie-status-modal {
+    background: white;
+    border-radius: 12px;
+    padding: 40px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.goppie-status-content h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #2D3748;
+    margin: 20px 0 10px 0;
+    font-family: 'Lato', sans-serif;
+}
+
+.goppie-status-content p {
+    font-size: 16px;
+    color: #4A5568;
+    margin: 0;
+    font-family: 'Lato', sans-serif;
+}
+
+.goppie-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #E2E8F0;
+    border-top: 4px solid #1a365d;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+.goppie-success-icon {
+    width: 60px;
+    height: 60px;
+    background: #48BB78;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 32px;
+    color: white;
+    font-weight: bold;
+}
+
+.goppie-error-icon {
+    width: 60px;
+    height: 60px;
+    background: #F56565;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 32px;
+    color: white;
+    font-weight: bold;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
