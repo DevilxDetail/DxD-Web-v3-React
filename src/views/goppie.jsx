@@ -14,6 +14,7 @@ const Goppie = () => {
     const [chipUid, setChipUid] = useState(null);
     const [manifoldCode, setManifoldCode] = useState(null);
     const [checkingDatabase, setCheckingDatabase] = useState(false);
+    const [copied, setCopied] = useState(false);
 
     const fetchIYKData = async () => {
         if (!iykRef) return;
@@ -86,6 +87,18 @@ const Goppie = () => {
         }
     };
 
+    const handleCopyCode = async () => {
+        if (!manifoldCode) return;
+        
+        try {
+            await navigator.clipboard.writeText(manifoldCode);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        } catch (err) {
+            console.error('Failed to copy code:', err);
+        }
+    };
+
     useEffect(() => {
         if (!iykRef) {
             setError('No IYK reference provided in the URL. Please use /goppie?iykRef=YOUR_REF');
@@ -138,10 +151,10 @@ const Goppie = () => {
                                         The beginning of what's next. Open to influence and interpretation.
                                     </p>
                                     <p className="welcome-message">
-                                        To mint, copy the claim code below and access the Manifold link. The mint is free but you will have to cover a small Manifold fee and gas.
+                                        To mint, copy the claim code and click the Manifold link below. The mint is free (you will have to cover a small Manifold fee and gas.)
                                     </p>
                                     <p className="welcome-message">
-                                        Make sure you don't lose this tile, it will be your key to future access.
+                                        Do not lose this tile, it will be your key to future access.
                                     </p>
                                     
                                     {/* Show loading state while checking database */}
@@ -154,10 +167,21 @@ const Goppie = () => {
                                     
                                     {/* Show manifold code if found */}
                                     {!checkingDatabase && manifoldCode && (
-                                        <div className="manifold-code-container">
-                                            <h2 className="manifold-title">Your Manifold Code</h2>
-                                            <p className="manifold-code">{manifoldCode}</p>
-                                        </div>
+                                        <>
+                                            <div className="manifold-code-container" onClick={handleCopyCode}>
+                                                <h2 className="manifold-title">Claim Code</h2>
+                                                <p className="manifold-code">{manifoldCode}</p>
+                                                <p className="copy-hint">{copied ? 'Copied!' : '(click to copy)'}</p>
+                                            </div>
+                                            <a 
+                                                href="https://manifold.xyz/@goppie/id/4109994224" 
+                                                target="_blank" 
+                                                rel="noopener noreferrer"
+                                                className="manifold-link"
+                                            >
+                                                Manifold Claim Link
+                                            </a>
+                                        </>
                                     )}
                                     
                                     {/* Show message if no code found */}

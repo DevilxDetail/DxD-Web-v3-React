@@ -204,6 +204,13 @@
     background: rgba(255, 255, 255, 0.15);
     border-radius: 12px;
     border: 2px solid rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.manifold-code-container:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
 }
 
 .manifold-title {
@@ -221,11 +228,43 @@
     font-size: 32px;
     font-weight: 900;
     color: white;
-    margin: 0;
+    margin: 0 0 10px 0;
     text-align: center;
     font-family: 'Courier New', monospace;
     letter-spacing: 3px;
     word-break: break-all;
+}
+
+.copy-hint {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    font-style: italic;
+}
+
+.manifold-link {
+    display: inline-block;
+    margin: 10px 0 20px 0;
+    padding: 15px 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 8px;
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    font-family: 'Lato', sans-serif;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.manifold-link:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.6);
+    transform: translateY(-2px);
 }
 
 .no-code-message {
