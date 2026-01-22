@@ -128,7 +128,7 @@
 }
 
 .welcome-message-large {
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 700;
     color: white;
     margin: 0;
@@ -350,7 +350,7 @@
     }
     
     .welcome-message-large {
-        font-size: 32px;
+        font-size: 28px;
     }
     
     .welcome-message {
@@ -390,7 +390,7 @@
     }
     
     .welcome-message-large {
-        font-size: 32px;
+        font-size: 28px;
     }
     
     .welcome-message {
