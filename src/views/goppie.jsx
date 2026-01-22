@@ -156,7 +156,7 @@ const Goppie = () => {
                                         To mint, copy the claim code and click the Manifold link below.
                                     </p>
                                     <p className="welcome-message">
-                                        Do not lose this tile, it will be your key to future access.
+                                        Hold on to this tile, it is your key to future access.
                                     </p>
                                     
                                     {/* Show loading state while checking database */}
