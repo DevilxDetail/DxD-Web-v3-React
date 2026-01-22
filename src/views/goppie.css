@@ -199,8 +199,8 @@
 }
 
 .manifold-code-container {
-    margin: 30px 0;
-    padding: 30px;
+    margin: 30px 0 15px 0;
+    padding: 20px;
     background: rgba(255, 255, 255, 0.15);
     border-radius: 12px;
     border: 2px solid rgba(255, 255, 255, 0.3);
@@ -247,20 +247,27 @@
 }
 
 .manifold-link {
-    display: inline-block;
-    margin: 10px 0 20px 0;
+    display: block;
+    margin: 0 0 20px 0;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
     color: white;
     font-size: 28px;
     font-weight: 700;
     font-family: 'Lato', sans-serif;
-    text-decoration: underline;
+    text-decoration: none;
     text-align: center;
     line-height: 1.4;
-    transition: opacity 0.3s ease;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 100%;
 }
 
 .manifold-link:hover {
-    opacity: 0.8;
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
 }
 
 .no-code-message {
