@@ -57,10 +57,25 @@ const Goppie = () => {
         setCheckingDatabase(true);
         try {
             console.log('Checking database for UID:', uid);
+            console.log('UID type:', typeof uid);
+            console.log('UID length:', uid?.length);
             
+            // First, let's see all records in the table for debugging
+            const { data: allRecords, error: allError } = await supabase
+                .from('goppie')
+                .select('iyk_uid, manifold_code');
+            
+            if (allError) {
+                console.error('Error fetching all records:', allError);
+            } else {
+                console.log('All records in goppie table:', allRecords);
+                console.log('Number of records:', allRecords?.length);
+            }
+            
+            // Now try to match the specific UID
             const { data, error } = await supabase
                 .from('goppie')
-                .select('manifold_code')
+                .select('manifold_code, iyk_uid')
                 .eq('iyk_uid', uid)
                 .single();
 
@@ -68,15 +83,19 @@ const Goppie = () => {
                 if (error.code === 'PGRST116') {
                     // No matching record found
                     console.log('No matching UID found in database');
+                    console.log('Error details:', error);
                 } else {
                     console.error('Error querying database:', error);
                 }
                 return;
             }
 
+            console.log('Query result:', data);
             if (data && data.manifold_code) {
                 setManifoldCode(data.manifold_code);
                 console.log('Manifold code found:', data.manifold_code);
+            } else {
+                console.log('No manifold_code in result:', data);
             }
         } catch (err) {
             console.error('Error checking manifold code:', err);
