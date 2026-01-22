@@ -190,10 +190,6 @@ const Goppie = () => {
                                             No code found for this chip.
                                         </p>
                                     )}
-                                    
-                                    <p className="welcome-footer">
-                                        Thank you for being part of the Devil x Detail community!
-                                    </p>
                                 </div>
                             )}
                         </div>
