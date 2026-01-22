@@ -14,6 +14,7 @@ const Goppie = () => {
     const [chipUid, setChipUid] = useState(null);
     const [manifoldCode, setManifoldCode] = useState(null);
     const [checkingDatabase, setCheckingDatabase] = useState(false);
+    const [debugInfo, setDebugInfo] = useState([]);
 
     const fetchIYKData = async () => {
         if (!iykRef) return;
@@ -55,10 +56,12 @@ const Goppie = () => {
 
     const checkManifoldCode = async (uid) => {
         setCheckingDatabase(true);
+        const debug = [];
+        
         try {
-            console.log('Checking database for UID:', uid);
-            console.log('UID type:', typeof uid);
-            console.log('UID length:', uid?.length);
+            debug.push(`Checking UID: ${uid}`);
+            debug.push(`UID type: ${typeof uid}`);
+            debug.push(`UID length: ${uid?.length}`);
             
             // First, let's see all records in the table for debugging
             const { data: allRecords, error: allError } = await supabase
@@ -66,10 +69,12 @@ const Goppie = () => {
                 .select('iyk_uid, manifold_code');
             
             if (allError) {
-                console.error('Error fetching all records:', allError);
+                debug.push(`Error fetching records: ${allError.message}`);
             } else {
-                console.log('All records in goppie table:', allRecords);
-                console.log('Number of records:', allRecords?.length);
+                debug.push(`Found ${allRecords?.length || 0} records in table`);
+                allRecords?.forEach((record, idx) => {
+                    debug.push(`Record ${idx + 1}: UID="${record.iyk_uid}" (${typeof record.iyk_uid}), Code="${record.manifold_code}"`);
+                });
             }
             
             // Now try to match the specific UID
@@ -81,24 +86,22 @@ const Goppie = () => {
 
             if (error) {
                 if (error.code === 'PGRST116') {
-                    // No matching record found
-                    console.log('No matching UID found in database');
-                    console.log('Error details:', error);
+                    debug.push('No matching UID found in database');
                 } else {
-                    console.error('Error querying database:', error);
+                    debug.push(`Query error: ${error.message}`);
                 }
+                setDebugInfo(debug);
                 return;
             }
 
-            console.log('Query result:', data);
+            debug.push(`Match found! Code: ${data.manifold_code}`);
             if (data && data.manifold_code) {
                 setManifoldCode(data.manifold_code);
-                console.log('Manifold code found:', data.manifold_code);
-            } else {
-                console.log('No manifold_code in result:', data);
             }
+            setDebugInfo(debug);
         } catch (err) {
-            console.error('Error checking manifold code:', err);
+            debug.push(`Exception: ${err.message}`);
+            setDebugInfo(debug);
         } finally {
             setCheckingDatabase(false);
         }
@@ -187,6 +190,16 @@ const Goppie = () => {
                                         <p className="no-code-message">
                                             No code found for this chip.
                                         </p>
+                                    )}
+                                    
+                                    {/* Debug Info */}
+                                    {debugInfo.length > 0 && (
+                                        <div className="debug-info">
+                                            <h3>Debug Info:</h3>
+                                            {debugInfo.map((info, idx) => (
+                                                <p key={idx}>{info}</p>
+                                            ))}
+                                        </div>
                                     )}
                                     
                                     <p className="welcome-footer">

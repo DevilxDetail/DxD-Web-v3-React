@@ -238,6 +238,33 @@
     font-style: italic;
 }
 
+.debug-info {
+    margin: 20px 0;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.debug-info h3 {
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    font-family: 'Lato', sans-serif;
+}
+
+.debug-info p {
+    color: white;
+    font-size: 11px;
+    margin: 5px 0;
+    font-family: 'Courier New', monospace;
+    word-break: break-all;
+    line-height: 1.4;
+}
+
 .welcome-footer {
     font-size: 14px;
     font-weight: 400;
