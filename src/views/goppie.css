@@ -127,8 +127,19 @@
     letter-spacing: 2px;
 }
 
-.welcome-message {
+.welcome-message-large {
     font-size: 32px;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+    text-align: center;
+    line-height: 1.4;
+    max-width: 100%;
+    font-family: 'Lato', sans-serif;
+}
+
+.welcome-message {
+    font-size: 28px;
     font-weight: 700;
     color: white;
     margin: 0;
@@ -338,8 +349,12 @@
         font-weight: 900;
     }
     
-    .welcome-message {
+    .welcome-message-large {
         font-size: 32px;
+    }
+    
+    .welcome-message {
+        font-size: 22px;
     }
     
     .welcome-footer {
@@ -374,8 +389,12 @@
         font-weight: 900;
     }
     
-    .welcome-message {
+    .welcome-message-large {
         font-size: 32px;
+    }
+    
+    .welcome-message {
+        font-size: 18px;
     }
     
     .welcome-footer {
