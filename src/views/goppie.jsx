@@ -151,7 +151,7 @@ const Goppie = () => {
                                         The beginning of what's next. Open to influence and interpretation.
                                     </p>
                                     <p className="welcome-message">
-                                        To mint, copy the claim code and click the Manifold link below. The mint is free (you will have to cover a small Manifold fee and gas.)
+                                        To mint, copy the claim code and click the Manifold link below.
                                     </p>
                                     <p className="welcome-message">
                                         Do not lose this tile, it will be your key to future access.
