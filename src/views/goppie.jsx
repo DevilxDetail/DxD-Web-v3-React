@@ -14,7 +14,6 @@ const Goppie = () => {
     const [chipUid, setChipUid] = useState(null);
     const [manifoldCode, setManifoldCode] = useState(null);
     const [checkingDatabase, setCheckingDatabase] = useState(false);
-    const [debugInfo, setDebugInfo] = useState([]);
 
     const fetchIYKData = async () => {
         if (!iykRef) return;
@@ -56,44 +55,11 @@ const Goppie = () => {
 
     const checkManifoldCode = async (uid) => {
         setCheckingDatabase(true);
-        const debug = [];
         
         try {
             const client = getSupabaseClient();
-            debug.push(`=== DATABASE CHECK ===`);
-            debug.push(`Scanned UID: "${uid}"`);
-            debug.push(`Type: ${typeof uid}, Length: ${uid?.length}`);
-            debug.push(`Using client: ${client ? 'Connected' : 'Not available'}`);
-            debug.push(``);
+            console.log('Checking database for UID:', uid);
             
-            // First, let's see all records in the table for debugging
-            const { data: allRecords, error: allError } = await client
-                .from('goppie')
-                .select('iyk_uid, manifold_code');
-            
-            if (allError) {
-                debug.push(`❌ ERROR fetching table: ${allError.message}`);
-                debug.push(`Error code: ${allError.code}`);
-                debug.push(`Error details: ${JSON.stringify(allError.details)}`);
-            } else {
-                debug.push(`✓ Table access successful`);
-                debug.push(`Total records found: ${allRecords?.length || 0}`);
-                debug.push(``);
-                debug.push(`=== ALL UIDs IN TABLE ===`);
-                
-                if (allRecords && allRecords.length > 0) {
-                    allRecords.forEach((record, idx) => {
-                        const uidMatch = record.iyk_uid === uid ? '✓ MATCH' : '';
-                        debug.push(`${idx + 1}. "${record.iyk_uid}" → "${record.manifold_code}" ${uidMatch}`);
-                    });
-                } else {
-                    debug.push('(Table is empty)');
-                }
-                debug.push(``);
-            }
-            
-            // Now try to match the specific UID
-            debug.push(`=== MATCHING ===`);
             const { data, error } = await client
                 .from('goppie')
                 .select('manifold_code, iyk_uid')
@@ -102,24 +68,19 @@ const Goppie = () => {
 
             if (error) {
                 if (error.code === 'PGRST116') {
-                    debug.push('❌ No matching UID found');
+                    console.log('No matching UID found in database');
                 } else {
-                    debug.push(`❌ Query error: ${error.message}`);
-                    debug.push(`Error code: ${error.code}`);
+                    console.error('Error querying database:', error);
                 }
-                setDebugInfo(debug);
                 return;
             }
 
-            debug.push(`✓ Match found!`);
-            debug.push(`Code: ${data.manifold_code}`);
             if (data && data.manifold_code) {
                 setManifoldCode(data.manifold_code);
+                console.log('Manifold code found:', data.manifold_code);
             }
-            setDebugInfo(debug);
         } catch (err) {
-            debug.push(`❌ Exception: ${err.message}`);
-            setDebugInfo(debug);
+            console.error('Error checking manifold code:', err);
         } finally {
             setCheckingDatabase(false);
         }
@@ -173,19 +134,9 @@ const Goppie = () => {
                             {apiData.isValidRef && (
                                 <div className="welcome-container">
                                     <img src="/goppie-hero.png" alt="Goppie" className="hero-image" />
-                                    <h1 className="welcome-title">
-                                        Welcome<br />
-                                        Goppie
-                                    </h1>
-                                    <p className="welcome-subtitle">Your access is confirmed</p>
                                     <p className="welcome-message">
                                         Congratulations! You have successfully authenticated your IYK chip.
                                     </p>
-                                    {chipUid && (
-                                        <p className="chip-uid">
-                                            Chip UID: {chipUid}
-                                        </p>
-                                    )}
                                     
                                     {/* Show loading state while checking database */}
                                     {checkingDatabase && (
@@ -208,16 +159,6 @@ const Goppie = () => {
                                         <p className="no-code-message">
                                             No code found for this chip.
                                         </p>
-                                    )}
-                                    
-                                    {/* Debug Info */}
-                                    {debugInfo.length > 0 && (
-                                        <div className="debug-info">
-                                            <h3>Debug Info:</h3>
-                                            {debugInfo.map((info, idx) => (
-                                                <p key={idx}>{info}</p>
-                                            ))}
-                                        </div>
                                     )}
                                     
                                     <p className="welcome-footer">
