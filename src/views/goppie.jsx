@@ -135,7 +135,7 @@ const Goppie = () => {
                                 <div className="welcome-container">
                                     <img src="/goppie-hero.png" alt="Goppie" className="hero-image" />
                                     <p className="welcome-message">
-                                        The beginning of what's next. Open to influence and interpretation. The foundation. CTRL
+                                        The beginning of what's next. Open to influence and interpretation.
                                     </p>
                                     <p className="welcome-message">
                                         To mint, copy the claim code below and access the Manifold link. The mint is free but you will have to cover a small Manifold fee and gas.
