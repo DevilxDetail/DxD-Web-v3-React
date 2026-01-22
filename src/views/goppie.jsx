@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import { supabase } from '../lib/supabase';
+import { getSupabaseClient } from '../lib/supabase';
 import './goppie.css';
 
 const Goppie = () => {
@@ -59,26 +59,42 @@ const Goppie = () => {
         const debug = [];
         
         try {
-            debug.push(`Checking UID: ${uid}`);
-            debug.push(`UID type: ${typeof uid}`);
-            debug.push(`UID length: ${uid?.length}`);
+            const client = getSupabaseClient();
+            debug.push(`=== DATABASE CHECK ===`);
+            debug.push(`Scanned UID: "${uid}"`);
+            debug.push(`Type: ${typeof uid}, Length: ${uid?.length}`);
+            debug.push(`Using client: ${client ? 'Connected' : 'Not available'}`);
+            debug.push(``);
             
             // First, let's see all records in the table for debugging
-            const { data: allRecords, error: allError } = await supabase
+            const { data: allRecords, error: allError } = await client
                 .from('goppie')
                 .select('iyk_uid, manifold_code');
             
             if (allError) {
-                debug.push(`Error fetching records: ${allError.message}`);
+                debug.push(`❌ ERROR fetching table: ${allError.message}`);
+                debug.push(`Error code: ${allError.code}`);
+                debug.push(`Error details: ${JSON.stringify(allError.details)}`);
             } else {
-                debug.push(`Found ${allRecords?.length || 0} records in table`);
-                allRecords?.forEach((record, idx) => {
-                    debug.push(`Record ${idx + 1}: UID="${record.iyk_uid}" (${typeof record.iyk_uid}), Code="${record.manifold_code}"`);
-                });
+                debug.push(`✓ Table access successful`);
+                debug.push(`Total records found: ${allRecords?.length || 0}`);
+                debug.push(``);
+                debug.push(`=== ALL UIDs IN TABLE ===`);
+                
+                if (allRecords && allRecords.length > 0) {
+                    allRecords.forEach((record, idx) => {
+                        const uidMatch = record.iyk_uid === uid ? '✓ MATCH' : '';
+                        debug.push(`${idx + 1}. "${record.iyk_uid}" → "${record.manifold_code}" ${uidMatch}`);
+                    });
+                } else {
+                    debug.push('(Table is empty)');
+                }
+                debug.push(``);
             }
             
             // Now try to match the specific UID
-            const { data, error } = await supabase
+            debug.push(`=== MATCHING ===`);
+            const { data, error } = await client
                 .from('goppie')
                 .select('manifold_code, iyk_uid')
                 .eq('iyk_uid', uid)
@@ -86,21 +102,23 @@ const Goppie = () => {
 
             if (error) {
                 if (error.code === 'PGRST116') {
-                    debug.push('No matching UID found in database');
+                    debug.push('❌ No matching UID found');
                 } else {
-                    debug.push(`Query error: ${error.message}`);
+                    debug.push(`❌ Query error: ${error.message}`);
+                    debug.push(`Error code: ${error.code}`);
                 }
                 setDebugInfo(debug);
                 return;
             }
 
-            debug.push(`Match found! Code: ${data.manifold_code}`);
+            debug.push(`✓ Match found!`);
+            debug.push(`Code: ${data.manifold_code}`);
             if (data && data.manifold_code) {
                 setManifoldCode(data.manifold_code);
             }
             setDebugInfo(debug);
         } catch (err) {
-            debug.push(`Exception: ${err.message}`);
+            debug.push(`❌ Exception: ${err.message}`);
             setDebugInfo(debug);
         } finally {
             setCheckingDatabase(false);
