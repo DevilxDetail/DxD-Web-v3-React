@@ -147,7 +147,9 @@ const Goppie = () => {
                             {apiData.isValidRef && (
                                 <div className="welcome-container">
                                     <img src="/goppie-hero.png" alt="Goppie" className="hero-image" />
-                                    <p className="welcome-message-large">
+                                    <h1 className="ctrl-title">CTRL</h1>
+                                    <p className="ctrl-subtitle">by Goppie</p>
+                                    <p className="welcome-message">
                                         The beginning of what's next. Open to influence and interpretation.
                                     </p>
                                     <p className="welcome-message">
