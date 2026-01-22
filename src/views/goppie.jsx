@@ -179,7 +179,7 @@ const Goppie = () => {
                                                 rel="noopener noreferrer"
                                                 className="manifold-link"
                                             >
-                                                Manifold Claim Link
+                                                Mint CTRL
                                             </a>
                                         </>
                                     )}

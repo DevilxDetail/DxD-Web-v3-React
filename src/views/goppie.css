@@ -206,6 +206,8 @@
     border: 2px solid rgba(255, 255, 255, 0.3);
     cursor: pointer;
     transition: all 0.3s ease;
+    width: 100%;
+    max-width: 100%;
 }
 
 .manifold-code-container:hover {
@@ -214,7 +216,7 @@
 }
 
 .manifold-title {
-    font-size: 28px;
+    font-size: 18px;
     font-weight: 700;
     color: white;
     margin: 0 0 20px 0;
@@ -235,13 +237,13 @@
 }
 
 .copy-hint {
-    font-size: 28px;
-    font-weight: 700;
-    color: white;
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
     margin: 0;
     text-align: center;
     font-family: 'Lato', sans-serif;
-    line-height: 1.4;
+    font-style: italic;
 }
 
 .manifold-link {
