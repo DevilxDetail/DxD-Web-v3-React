@@ -1,0 +1,16 @@
+---
+description: Git authentication and production deployment for Devil x Detail
+alwaysApply: true
+---
+
+# Git and Production Deployment
+
+- Push this repository through its dedicated SSH host alias:
+  `git@github-devilxdetail:DevilxDetail/DxD-Web-v3-React.git`.
+- Before pushing, verify `ssh -T git@github-devilxdetail` authenticates as
+  `DevilxDetail`.
+- Never use the default `github.com` SSH identity for this repository; it
+  belongs to a different GitHub account used by other projects.
+- Push production changes with `git push origin main`.
+- Vercel deploys production automatically after `main` reaches GitHub.
+- See `README.md` for the documented workflow.

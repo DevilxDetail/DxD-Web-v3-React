@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet'
 
 const IYK_API_KEY = 'f68709437f89477e1e082faabfcd0623193dcbdce4b7807c64d063a1ae4e2116'
 const MIN_AUTH_DISPLAY_MS = 1800
+const MOSAIC_IMAGES = Array.from({ length: 7 }, (_, index) => `/bsf-mosaic-${index + 1}.png`)
 
 const BSF = () => {
   const location = useLocation()
@@ -13,6 +14,7 @@ const BSF = () => {
   const [phase, setPhase] = useState('authenticating')
   const [errorMessage, setErrorMessage] = useState('')
   const [videoFading, setVideoFading] = useState(false)
+  const [loadFrame, setLoadFrame] = useState(false)
   const videoRef = useRef(null)
 
   useEffect(() => {
@@ -73,6 +75,7 @@ const BSF = () => {
   const handleVideoEnded = () => {
     // Reveal the static frame underneath, then fade the video's last frame out
     // for a seamless hand-off from motion to still image.
+    setLoadFrame(true)
     setPhase('image')
     setVideoFading(true)
   }
@@ -179,6 +182,67 @@ const BSF = () => {
         .bsf-frame {
           z-index: 1;
         }
+
+        .bsf-final-content {
+          position: absolute;
+          z-index: 3;
+          inset: 10% 20px 4%;
+          overflow-y: auto;
+          scrollbar-width: none;
+        }
+
+        .bsf-final-content::-webkit-scrollbar {
+          display: none;
+        }
+
+        .bsf-title {
+          width: 100%;
+          margin: 0;
+          color: #4a4a4a;
+          font-family: Arial, sans-serif;
+          font-size: clamp(20px, 4vw, 42px);
+          font-weight: 700;
+          line-height: 1.1;
+          text-align: center;
+          text-transform: uppercase;
+        }
+
+        .bsf-mosaic {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          grid-auto-rows: clamp(100px, 17vh, 180px);
+          gap: 10px;
+          width: min(1100px, 100%);
+          margin: 36px auto 0;
+        }
+
+        .bsf-mosaic-tile {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .bsf-mosaic-tile:nth-child(1),
+        .bsf-mosaic-tile:nth-child(4) {
+          grid-column: span 2;
+        }
+
+        @media (max-width: 600px) {
+          .bsf-final-content {
+            inset: 9% 14px 3%;
+          }
+
+          .bsf-mosaic {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-auto-rows: 120px;
+            gap: 8px;
+            margin-top: 28px;
+          }
+
+          .bsf-mosaic-tile:nth-child(4) {
+            grid-column: span 1;
+          }
+        }
       `}</style>
 
       <div className="bsf-root">
@@ -201,9 +265,11 @@ const BSF = () => {
 
         {(phase === 'video' || phase === 'image') && (
           <>
-            {/* Static frame sits underneath so it is already painted the moment
-                the video ends, avoiding any flash between motion and still. */}
-            <img className="bsf-frame" src="/bsf-frame.png" alt="Blue Skies Forever" />
+            {/* Start against black. Once playback has actually begun, load the
+                static frame underneath the opaque video so it is ready at the end. */}
+            {loadFrame && (
+              <img className="bsf-frame" src="/bsf-frame.png" alt="Blue Skies Forever" />
+            )}
             <video
               ref={videoRef}
               className={`bsf-media${videoFading ? ' fading' : ''}`}
@@ -212,8 +278,24 @@ const BSF = () => {
               muted
               playsInline
               preload="auto"
+              onPlaying={() => setLoadFrame(true)}
               onEnded={handleVideoEnded}
             />
+            {phase === 'image' && (
+              <div className="bsf-final-content">
+                <h1 className="bsf-title">Explore the World of DK</h1>
+                <div className="bsf-mosaic">
+                  {MOSAIC_IMAGES.map((src, index) => (
+                    <img
+                      key={src}
+                      className="bsf-mosaic-tile"
+                      src={src}
+                      alt={`DK world scene ${index + 1}`}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
           </>
         )}
       </div>
