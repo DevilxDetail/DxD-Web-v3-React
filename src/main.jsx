@@ -36,6 +36,7 @@ import NY25 from './views/ny25'
 import MM23 from './views/mm25'
 import Arc from './views/arc'
 import BlueSkies from './views/blueskies'
+import BSF from './views/bsf'
 import TheGarden from './views/thegarden'
 import ISpy from './views/ispy'
 import PostWook from './views/postwook'
@@ -73,6 +74,7 @@ const App = () => {
         <Route component={MM23} exact path="/mm25" />
         <Route component={Arc} exact path="/arc" />
         <Route component={BlueSkies} exact path="/blueskies" />
+        <Route component={BSF} exact path="/bsf" />
         <Route component={TheGarden} exact path="/thegarden" />
         <Route component={ISpy} exact path="/ispy" />
         <Route component={PostWook} exact path="/postwook" />
