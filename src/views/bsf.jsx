@@ -16,6 +16,9 @@ const BSF = () => {
   const [videoFading, setVideoFading] = useState(false)
   const [loadFrame, setLoadFrame] = useState(false)
   const videoRef = useRef(null)
+  const tileDelays = useRef(
+    MOSAIC_IMAGES.map(() => `${(0.4 + Math.random() * 1.6).toFixed(2)}s`)
+  )
 
   useEffect(() => {
     let cancelled = false
@@ -71,6 +74,15 @@ const BSF = () => {
       cancelled = true
     }
   }, [iykRef])
+
+  useEffect(() => {
+    if (!loadFrame) return
+
+    MOSAIC_IMAGES.forEach((src) => {
+      const image = new Image()
+      image.src = src
+    })
+  }, [loadFrame])
 
   const handleVideoEnded = () => {
     // Reveal the static frame underneath, then fade the video's last frame out
@@ -200,11 +212,12 @@ const BSF = () => {
           margin: 0;
           color: #4a4a4a;
           font-family: Arial, sans-serif;
-          font-size: clamp(20px, 4vw, 42px);
+          font-size: clamp(36px, 7vw, 82px);
           font-weight: 700;
-          line-height: 1.1;
+          line-height: 0.95;
           text-align: center;
           text-transform: uppercase;
+          animation: bsf-content-fade-in 1.2s ease-out 0.25s both;
         }
 
         .bsf-mosaic {
@@ -220,11 +233,34 @@ const BSF = () => {
           width: 100%;
           height: 100%;
           object-fit: cover;
+          animation: bsf-tile-fade-in 1.15s ease-out var(--fade-delay) both;
         }
 
         .bsf-mosaic-tile:nth-child(1),
         .bsf-mosaic-tile:nth-child(4) {
           grid-column: span 2;
+        }
+
+        @keyframes bsf-content-fade-in {
+          from {
+            opacity: 0;
+            transform: translateY(16px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes bsf-tile-fade-in {
+          from {
+            opacity: 0;
+            transform: translateY(18px) scale(0.98);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
         }
 
         @media (max-width: 600px) {
@@ -237,6 +273,10 @@ const BSF = () => {
             grid-auto-rows: 120px;
             gap: 8px;
             margin-top: 28px;
+          }
+
+          .bsf-title {
+            font-size: clamp(32px, 11vw, 52px);
           }
 
           .bsf-mosaic-tile:nth-child(4) {
@@ -291,6 +331,7 @@ const BSF = () => {
                       className="bsf-mosaic-tile"
                       src={src}
                       alt={`DK world scene ${index + 1}`}
+                      style={{ '--fade-delay': tileDelays.current[index] }}
                     />
                   ))}
                 </div>
